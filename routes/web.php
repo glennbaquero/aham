@@ -12,5 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin-master');
 });
+Route::get('/admin/admin-users', function () {
+    return view('admin.superadmin.administrator.index');
+})->name('admin.admin');
