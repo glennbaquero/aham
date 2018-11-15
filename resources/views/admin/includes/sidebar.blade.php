@@ -7,15 +7,15 @@
         <li class="header">SECURITY</li>
         <li class="active treeview menu-open">
           <a href="#">
-            <i class="fas fa-shield"></i> <span>Access control</span>
+            <i class="fas fa-shield-alt"></i> <span>Access control</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="{{ route('admin.admin') }}"><i class="fas fa-user-shield"></i> Administrator</a></li>
-            <li><a href=""><i class="fas fa-id-card-alt"></i> Roles</a></li>
-            <li><a href=""><i class="fas fa-shield-alt"></i> Permission</a></li>
+            <li><a href="{{ route('admin.admin') }}"><i class="fas fa-user-shield"></i> Administrator</a></li>
+            <li><a href="{{ route('admin.roles') }}"><i class="fas fa-id-card-alt"></i> Roles</a></li>
+            <li><a href="{{ route('admin.permission') }}"><i class="fas fa-shield-alt"></i> Permission</a></li>
           </ul>
         </li>
       </ul>

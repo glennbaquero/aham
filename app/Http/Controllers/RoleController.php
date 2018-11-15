@@ -3,18 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Role;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+ *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $roles = Role::paginate(5);
+        return view('admin.superadmin.roles.index', compact('roles'));
     }
 
     /**
@@ -24,7 +27,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.superadmin.roles.create');
     }
 
     /**
@@ -35,7 +38,8 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Role::create($request->all());
+        return response()->json('success');
     }
 
     /**
@@ -55,9 +59,18 @@ class RoleController extends Controller
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit($id)
     {
-        //
+        return view('admin.superadmin.roles.edit', [
+            'role'=>Role::find($id)
+        ]);
+    }
+
+    public function view($id)
+    {
+        return view('admin.superadmin.roles.edit', [
+            'role'=>Role::find($id)
+        ]);
     }
 
     /**
@@ -67,9 +80,10 @@ class RoleController extends Controller
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, $id)
     {
-        //
+        Role::find($id)->update($request->all());
+        return response()->json('success');
     }
 
     /**
@@ -78,8 +92,9 @@ class RoleController extends Controller
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy($id)
     {
-        //
+        Role::destroy($id);
+        return redirect()->back();
     }
 }
