@@ -12,17 +12,20 @@
     
         <link rel="stylesheet" type="text/css" href="{{ mix('assets/css/vendor.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ mix('assets/css/app.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('/css/main.css') }}">
     </head>
+
     <body class="hold-transition skin-blue sidebar-mini">
-        <div id="app">
-            <div class="wrapper">
+        
+        <div id="app" class="wrapper">
             @include('admin.includes.header')      
             @yield('content')
             @include('admin.includes.sidebar')
-            </div>
-            @include('admin.includes.footer')     
+            <prx-alert></prx-alert>
         </div>
-        
+        <div class="wrapper">
+            @include('admin.includes.footer') 
+        </div>
         @yield('js')
         
         <script type="text/javascript" src="{{ mix('assets/js/manifest.js') }}"></script>
