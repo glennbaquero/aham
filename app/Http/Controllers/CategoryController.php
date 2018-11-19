@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.regularadmin.categories.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.regularadmin.categories.create');
     }
 
     /**
@@ -35,7 +35,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Category::create($request->all());
+
+        return 'success';
     }
 
     /**
@@ -44,9 +46,11 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($id)
     {
-        //
+        return view('admin.regularadmin.categories.edit',[
+            'category' => Category::find($id)
+        ]);
     }
 
     /**
@@ -67,9 +71,11 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        Category::find($id)->update($request->all());
+
+        return 'success';
     }
 
     /**
@@ -80,6 +86,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        
     }
 }
