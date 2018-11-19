@@ -2,6 +2,12 @@ import { EventBus } from '../EventBus.js'
 
 Vue.mixin({
 
+    data() {
+        return {
+            csrftoken: window.axios.defaults.headers.common['X-CSRF-TOKEN']             
+        }
+    },
+
 	methods: {
 
         /**

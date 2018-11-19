@@ -11,6 +11,7 @@ try {
     window.$ = window.jQuery = require('jquery');
     require('bootstrap3');
     require('admin-lte');
+    require('dropzone');
 } catch (e) {}
 
 /**

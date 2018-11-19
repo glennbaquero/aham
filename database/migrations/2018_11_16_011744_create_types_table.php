@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRepairMenTable extends Migration
+class CreateTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateRepairMenTable extends Migration
      */
     public function up()
     {
-        Schema::create('repair_men', function (Blueprint $table) {
+        Schema::create('types', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->inteager('status')->default(0);
+            $table->string('name');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateRepairMenTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('repair_men');
+        Schema::dropIfExists('types');
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Type;
 use Illuminate\Http\Request;
+use App\ProductImage;
 
-class TypeController extends Controller
+class ProductImageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class TypeController extends Controller
      */
     public function index()
     {
-        return view('admin.regularadmin.types.index');
+        //
     }
 
     /**
@@ -24,7 +24,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        return view('admin.regularadmin.types.create');
+        //
     }
 
     /**
@@ -35,31 +35,27 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        Type::create($request->all());
-
-        return 'success';
+        
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Type  $type
+     * @param  \App\ProductImage  $productImage
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(ProductImage $productImage)
     {
-        return view('admin.regularadmin.types.edit',[
-            'type' => Type::find($id)
-        ]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Type  $type
+     * @param  \App\ProductImage  $productImage
      * @return \Illuminate\Http\Response
      */
-    public function edit(Type $type)
+    public function edit(ProductImage $productImage)
     {
         //
     }
@@ -68,23 +64,21 @@ class TypeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Type  $type
+     * @param  \App\ProductImage  $productImage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ProductImage $productImage)
     {
-        Type::find($id)->update($request->all());
-
-        return 'success';
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Type  $type
+     * @param  \App\ProductImage  $productImage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Type $type)
+    public function destroy(ProductImage $productImage)
     {
         //
     }

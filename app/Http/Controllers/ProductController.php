@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
 use Illuminate\Http\Request;
+
+use App\Product;
+use App\ProductImage;
+use App\Type;
+use App\Category;
 
 class ProductController extends Controller
 {
@@ -14,7 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.regularadmin.products.index');
     }
 
     /**
@@ -24,7 +28,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.regularadmin.products.create',[
+            'types' => Type::all(),
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -33,9 +40,16 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, ProductImage $image)
     {
-        //
+        $product = Product::create($request->except(['images']));
+        foreach($request->file('images') as $image) {
+            $path = $image->store('product-images', 'public');
+
+            ProductImage::create(['product_id'=>$product->id, 'image' => $path]);
+        }
+
+        return 'success';
     }
 
     /**
@@ -44,9 +58,13 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        //
+        return view('admin.regularadmin.products.edit', [
+            'categories' => Category::all(),
+            'types' => Type::all(),
+            'product' => Product::find($id)
+        ]);
     }
 
     /**
@@ -67,9 +85,17 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id, ProductImage $image)
     {
-        //
+        Product::findOrFail($id)->update($request->except(['image']));
+
+        if($request->get('image')) {
+            $path = $request->file('image')->store('product', 'public');
+
+            $image->update_image($path, $id);
+        }
+
+        return 'success';
     }
 
     /**

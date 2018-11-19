@@ -22,12 +22,12 @@ class CreateUserProductsTable extends Migration
             $table->string('serial_number')->nullable();
             $table->date('purchase_date');
             $table->string('contract_number');
-            $table->string('docatch');
-            $table->date('dop');
-            $table->date('edate');
-            $table->date('adate');
+            $table->string('file_extension');
+            $table->date('date_of_purchase');
+            $table->date('expiration_date');
+            $table->date('applied_date');
             $table->decimal('amount');
-            $table->string('appno');
+            $table->string('application_number');
             $table->string('pytdet');
             $table->string('dcode');
             $table->integer('warranty_type');
