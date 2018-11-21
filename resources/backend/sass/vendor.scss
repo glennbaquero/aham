@@ -9,3 +9,32 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic');
 @import '~datatables.net-bs/css/dataTables.bootstrap.css';
 @import '~dropzone/dist/dropzone.css';
+
+.login-page {
+	overflow: hidden;
+}
+
+.login-page, .login-box-body, .register-box-body, .login-page .btn {
+	background: #3c8dbc;
+}
+
+.login-page .btn {
+	border-color: #fff;
+}
+
+.login-page .btn, .login-page a, .login-box-msg, .login-logo, .register-logo, .login-page .btn-primary:active:hover, .login-page .btn-primary:active:focus, .login-page .btn-primary.active:focus {
+	color: #fff;
+}
+
+.login-page .btn-primary:active:hover, .login-page .btn-primary:active:focus, .login-page .btn-primary.active:focus {
+	background: #3c8dbc;
+	border-color: #3c8dbc;
+}
+
+.login-page .form-group.has-error .help-block {
+	color: #fff;
+}
+
+.login-page.skin-blue .wrapper, .login-page.skin-blue .main-sidebar, .login-page.skin-blue .left-side {
+	background: #3c8dbc;
+}

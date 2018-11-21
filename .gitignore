@@ -17,5 +17,5 @@ public/assets
 *.bak
 *.sql
 *.tar.xz
-public/mix-manifest.json
 *.index
+public/mix-manifest.json
