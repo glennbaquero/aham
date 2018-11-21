@@ -12,19 +12,24 @@
 */
 
 Auth::routes();
-// Route::get('{slug}', 'PageController@show')->name('slug');
+// Route::get('{slug}', 'PageController@show')->nme('slug');
 
 Route::get('', 'HomeController@index')->name('home');
 
 /****************************************
  * SUPER ADMIN ROUTES					*
  ****************************************/
+
 Route::name('admin.')
 ->prefix('admin')
 ->namespace('Admins')
 ->group(function() {
 	Route::get('login', 'Auth\LoginController@showLoginForm')->name('login.show');
 	Route::post('login', 'Auth\LoginController@login')->name('login');
+	Route::get('password/email', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.email.show');
+	Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+	Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset.show');
+	Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
 });
 
 
