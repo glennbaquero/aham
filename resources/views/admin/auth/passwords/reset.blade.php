@@ -3,14 +3,15 @@
 @section('content')
 <div class="login-box">
   <div class="login-logo">
-    <a href="{{ url('/') }}"><b>{{ config('app.name') }}</b></a>
+    <a href="{{ url('/') }}"><b>Reset Password</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
+    <p class="login-box-msg">Enter your new password</p>
 
-    <form action="{{ route('admin.login') }}" method="POST">
+    <form action="{{ route('admin.password.reset') }}" method="POST">
       @csrf
+      <input type="hidden" name="token" value="{{ $token }}">
       <div class="form-group has-feedback">
         <input type="email" name="email" class="form-control" placeholder="Email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -29,13 +30,19 @@
               <strong>{{ $errors->first('password') }}</strong>
           </span>
       @endif
-      <div class="pb-3">
-        <a href="{{ route('admin.password.email.show') }}">I forgot my password</a><br>
+      <div class="form-group has-feedback">
+        <input type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
+      @if ($errors->has('password'))
+          <span class="invalid-feedback" role="alert">
+              <strong>{{ $errors->first('password') }}</strong>
+          </span>
+      @endif
       <div class="row">
         <!-- /.col -->
         <div class="col-xs-12">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Submit</button>
         </div>
         <!-- /.col -->
       </div>
