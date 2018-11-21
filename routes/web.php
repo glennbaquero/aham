@@ -11,16 +11,24 @@
 |
 */
 
-Route::get('/', function () {
-    return view('admin-master');
-});
+Auth::routes();
 
+Route::get('', 'HomeController@index')->name('home');
 
 /****************************************
  * SUPER ADMIN ROUTES					*
  ****************************************/
 
-Route::group(['prefix' => 'admin'], function(){
+Route::get('admin/login', 'Admins\Auth\LoginController@showLoginForm')->name('admin.login.show');
+Route::post('admin/login', 'Admins\Auth\LoginController@login')->name('admin.login');
+
+Route::prefix('admin')
+	->middleware('admin_auth')
+	->group(function() {
+
+	Route::get('/', 'Admins\DashboardController@index')->name('admin.dashboard');
+	Route::get('logout', 'Admins\Auth\LoginController@logout')->name('admin.logout');
+
 
 	/****************
 	 * PERMISSION
@@ -86,7 +94,3 @@ Route::group(['prefix' => 'regular-admin'], function(){
 Route::get('/admin/admin-users', function () {
     return view('admin.superadmin.administrator.index');
 })->name('admin.admin');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

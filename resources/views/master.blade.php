@@ -4,11 +4,12 @@
         <link rel="stylesheet" type="text/css" href="{{ mix('assets/css/vendor.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ mix('assets/css/app.css') }}">
     </head>
-    <body class="hold-transition skin-blue sidebar-mini">
+    <body>
     
-            @include('admin.includes.header')      
-            @include('admin.includes.sidebar')      
         <div id="app" class="wrapper">
+    
+            @yield('content')
+
         </div>
 
         <script type="text/javascript" src="{{ mix('assets/js/manifest.js') }}"></script>

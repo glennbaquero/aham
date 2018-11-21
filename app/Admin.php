@@ -9,9 +9,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Admin extends Authenticatable
 {
-     use Notifiable;
+    use Notifiable;
+
+    protected $guarded = [];
 
 	public function renderFullname() {
-		return null;
+		return ucwords($this->firstname . ' ' . $this->lastname);
 	}
 }
