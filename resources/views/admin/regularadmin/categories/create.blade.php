@@ -2,36 +2,37 @@
 @section('content')
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>Role</h1>
+		<h1>Categories</h1>
 		<ol class="breadcrumb">
 			<li>
-				<a href="{{ route('admin.roles') }}"><i class="fas fa-user-shield"></i> Administrator</a>
+				<a href="{{ route('regular.categories.index') }}"><i class="fas fa-user-shield"></i> Categories</a>
 			</li>
 			<li class="active">
 				Add
 			</li>
 		</ol>
-</section>
-<section class="content">
+	</section>
+	<section class="content">
 		<div class="row">
 			<div class="col-xs-12">
-				<!-- /.box-header -->
-					<form @submit.prevent="formSubmit" 
-						data-action="{{ route('regular.categories.store') }}" 
-						data-ref="category-details"
-						action="#" method="GET">
+				
+				<std-alert></std-alert>
 
-						<category-details ref="category-details"
-						:fetchurl="'{{ route('regular.categories.fetch') }}'">
-						</category-details>
+				<form @submit.prevent="formSubmit" 
+					data-action="{{ route('regular.categories.store') }}" 
+					data-ref="category-details"
+					action="#" method="GET">
 
-						<div class="row">
-							<div class="col col-xs-12">
-								<button type="submit" class="btn btn-primary pull-right">Save Changes</button>
-							</div>
+					<category-details ref="category-details"
+					:fetchurl="'{{ route('regular.categories.fetch') }}'">
+					</category-details>
+
+					<div class="row">
+						<div class="col col-xs-12">
+							<button type="submit" class="btn btn-primary pull-right">Save Changes</button>
 						</div>
-					</form>
-				<!-- /.box-body -->
+					</div>
+				</form>
 			</div>
 		</div>
 	</section>

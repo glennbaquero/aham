@@ -17,19 +17,37 @@
 	<section class="content">
 		<div class="row">
 			<div class="col-xs-12">
-				<div class="box">
-					<div class="box-header">
-						<h3 class="box-title">Roles</h3>
-					</div>
-					<!-- /.box-header -->
-					<div class="box-body">
-						<products-table 
-							:fetchurl="'{{ route('regular.products.fetch') }}'"
-							:autofetch="true"
-						></products-table>
-					</div>
-					<!-- /.box-body -->
-				</div>
+
+				<div class="box box-widget nav-tabs-custom table-responsive">
+	                <ul class="nav nav-tabs">
+	                    <li class="active">
+	                        <a href="#pages" data-toggle="tab"><h5><b>Slider</b></h5></a>
+	                    </li>
+	                    <li>
+	                        <a @click="runDatatable('pages-product')" href="#pages-product" data-toggle="tab"><h5><b>Archive</b></h5></a>
+	                    </li>                                                   
+	                </ul>
+
+	                <div class="tab-content">
+	                    <div class="tab-pane active" id="pages">
+	                        
+	                        <products-table ref="pages"
+								:autofetch="true"
+								:fetchurl="'{{ route('regular.products.fetch') }}'"
+							></products-table>
+
+	                    </div>
+	                    <div class="tab-pane" id="pages-product">
+	                        
+							 <products-table ref="pages-product"
+								:autofetch="false"
+								:fetchurl="'{{ route('regular.products.archive') }}'"
+							></products-table>
+
+	                    </div>                  
+	                </div>
+        	    </div>
+
 			</div>
 		</div>
 	</section>

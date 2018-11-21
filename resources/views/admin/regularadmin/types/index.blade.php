@@ -17,19 +17,37 @@
 	<section class="content">
 		<div class="row">
 			<div class="col-xs-12">
-				<div class="box">
-					<div class="box-header">
-						<h3 class="box-title">Type</h3>
-					</div>
-					<!-- /.box-header -->
-					<div class="box-body">
-						<types-table 
-							:fetchurl="'{{ route('regular.types.fetch') }}'"
-							:autofetch="true"
-						></types-table>
-					</div>
-					<!-- /.box-body -->
-				</div>
+				
+				<div class="box box-widget nav-tabs-custom table-responsive">
+	                <ul class="nav nav-tabs">
+	                    <li class="active">
+	                        <a href="#pages" data-toggle="tab"><h5><b>Slider</b></h5></a>
+	                    </li>
+	                    <li>
+	                        <a @click="runDatatable('pages-type')" href="#pages-type" data-toggle="tab"><h5><b>Archive</b></h5></a>
+	                    </li>                                                   
+	                </ul>
+
+	                <div class="tab-content">
+	                    <div class="tab-pane active" id="pages">
+	                        
+	                        <types-table ref="pages"
+								:fetchurl="'{{ route('regular.types.fetch') }}'"
+								:autofetch="true"
+							></types-table>
+
+	                    </div>
+	                    <div class="tab-pane" id="pages-type">
+	                        
+							<types-table ref="pages-type"
+								:autofetch="false"
+								:fetchurl="'{{ route('regular.types.archive') }}'"
+							></types-table>
+
+	                    </div>                  
+	                </div>
+        	    </div>
+
 			</div>
 		</div>
 	</section>

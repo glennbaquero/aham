@@ -41,7 +41,7 @@
     		<!-- DATATABLE -->
     		<datatable ref="datatable"
             :headers="['#', 'Image', 'Model', 'Name', 'Extended Amount', 'Created At']"
-            :columns="['id', 'image', 'model', 'name', 'extended_amount', 'edate', 'created_at']"
+            :columns="['id', 'tbimage', 'model', 'name', 'extended_amount', 'edate', 'created_at']"
     		:filters="filters"
     		
     		:fetchurl="fetchurl"
@@ -55,7 +55,7 @@
     			<tbody slot="body">
     				<tr v-for="item in items">
                         <td>{{ item.id }}</td>
-                        <td><img :src="renderImage(item.image)" class="img-thumbnail" width="75" height="75"></td>
+                        <td><img :src="item.tbimage" class="img-thumbnail" width="75" height="75"></td>
                         <td>{{ item.model }}</td>
                         <td>{{ item.name }}</td>
     					<td>{{ item.extended_amount }}</td>

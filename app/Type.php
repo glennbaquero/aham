@@ -20,6 +20,18 @@ class Type extends Model
     	return $this->hasMany(Product::class);
     }
 
+    public static function store($request, $item = null) {
+        $vars = $request->only('name');
+
+        if(!$item) {
+            $item = static::create($vars);
+        } else {
+            $item->update($vars);
+        }
+
+        return $item;
+    }
+
     /*
      * Render
      */
@@ -29,6 +41,14 @@ class Type extends Model
     }
 
     public function renderView() {
-    	return route('regular.types.view', $this->id);
+    	return route('regular.types.edit', $this->id);
+    }
+
+    public function renderDelete() {
+        return route('regular.types.destroy', $this->id);
+    }
+
+    public function renderRestore() {
+        return route('regular.types.restore', $this->id);
     }
 }

@@ -1,18 +1,32 @@
 @extends('admin-master')
 @section('content')
-	<div class="content-wrapper">
+<div class="content-wrapper">
 	<section class="content-header">
 		<h1>Type</h1>
 		<ol class="breadcrumb">
 			<li>
-				<a href="{{ route('regular.types.index') }}"><i class="fas fa-user-shield"></i> Administrator</a>
+				<a href="{{ route('regular.types.index') }}"><i class="fas fa-user-shield"></i> Type</a>
 			</li>
 			<li class="active">
-				Add
+				Edit
 			</li>
 		</ol>
-</section>
-<section class="content">
+	</section>
+	<section class="content">
+		<div class="row mb-4">
+			<div class="col-md-12">
+				
+				<std-button
+				:size="'btn-sm pull-right'"
+				:label="'Delete'"
+		        :action="'{{ $type->trashed() ? 'restore' : 'delete' }}'"
+		        :message="'{{ 'type ' . $type->renderName() }}'"
+		        :restoreurl="'{{ $type->renderRestore() }}'"
+		        :deleteurl="'{{ $type->renderDelete() }}'"
+		        ></std-button>
+
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-xs-12">
 				<!-- /.box-header -->
@@ -22,7 +36,7 @@
 						action="#" method="GET">
 
 						<type-details ref="type-details"
-						:fetchurl="'{{ route('regular.types.fetch', $type->id) }}'">
+						:fetchurl="'{{ route('regular.type.fetch', $type->id) }}'">
 						</type-details>
 
 						<div class="row">

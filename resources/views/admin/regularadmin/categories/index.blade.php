@@ -16,20 +16,37 @@
 	</section>
 	<section class="content">
 		<div class="row">
+
 			<div class="col-xs-12">
-				<div class="box">
-					<div class="box-header">
-						<h3 class="box-title">Category</h3>
-					</div>
-					<!-- /.box-header -->
-					<div class="box-body">
-						<categories-table 
-							:fetchurl="'{{ route('regular.categories.fetch') }}'"
+				<div class="box box-widget nav-tabs-custom table-responsive">
+	                <ul class="nav nav-tabs">
+	                    <li class="active">
+	                        <a href="#pages" data-toggle="tab"><h5><b>Category</b></h5></a>
+	                    </li>
+	                    <li>
+	                        <a @click="runDatatable('pages-category')" href="#pages-category" data-toggle="tab"><h5><b>Archive</b></h5></a>
+	                    </li>                                                   
+	                </ul>
+
+	                <div class="tab-content">
+	                    <div class="tab-pane active" id="pages">
+	                        
+							<categories-table ref="pages"
 							:autofetch="true"
-						></categories-table>
-					</div>
-					<!-- /.box-body -->
-				</div>
+							:fetchurl="'{{ route('regular.categories.fetch') }}'"
+							></categories-table>
+
+	                    </div>
+	                    <div class="tab-pane" id="pages-category">
+
+	                    	<categories-table ref="pages-category"
+							:autofetch="false"
+							:fetchurl="'{{ route('regular.categories.archive') }}'"
+							></categories-table>
+
+	                    </div>                  
+	                </div>
+        	    </div>
 			</div>
 		</div>
 	</section>

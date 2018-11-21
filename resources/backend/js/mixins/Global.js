@@ -28,6 +28,12 @@ Vue.mixin({
             return tmpName;
         },
 
+        compareArrayValue(valueToCompare, valueToFilter, array, columnToCompare = 'value', columnToFilter = 'label') {
+            let obj = array.filter((obj) => { return obj[columnToFilter] === valueToFilter })[0];
+            if (!obj) { return false; }
+            return obj[columnToCompare] == valueToCompare;
+        },
+
         /**
          * Takes two objects then copies the value of the
          * first object's field value that is available
@@ -174,13 +180,16 @@ Vue.mixin({
                 type = 'success';
             }
 
-            alert(message);
+
+            EventBus.$emit('showModal', {
+                                content: message,
+                                type: 'success'
+                            });
 
             if (data.redirect) {
                 window.location.href = data.redirect;
             }
         },
-
         /**
          * Check if param is String
          * 
@@ -268,6 +277,12 @@ Vue.mixin({
                 console.log(error)
             }
             
+        },
+        
+        showModal(title = null) {
+            ebi.$emit('showModal', {
+                title: title,
+            })
         },
 	}
 });

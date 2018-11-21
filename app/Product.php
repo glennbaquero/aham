@@ -25,12 +25,34 @@ class Product extends Model
     	return $this->belongsTo(Type::class);
     }
 
-    public function image() {
+    public function images() {
         return $this->hasMany(ProductImage::class);
     }
     
-    public function product_image($request){
+    public function product_image($request) {
         $this->product_images()->create($request);
+    }
+
+    public static function store($request, $item = null) {
+        $vars = $request->only(['name', 'model', 'extended_amount', 'description', 'specification', 'category_id', 'type_id']);
+
+       
+
+        if(!$item) {
+            $item = static::create($vars);
+        } else {
+            $item->update($vars);
+        }
+
+         if($request->hasFile('images')) {
+            foreach($request->file('images') as $image) {
+                $path = $image->store('product-images', 'public');
+
+                $item->images()->create(['image' => $path]);
+            }
+        }
+
+        return $item;
     }
 
     /*
@@ -42,11 +64,27 @@ class Product extends Model
     }
 
     public function renderView() {
-    	return route('regular.product.view', $this->id);
+    	return route('regular.product.edit', $this->id);
+    }
+
+    public function renderTableImage() {
+        return asset('storage/'.$this->image()->first()['image']);
+    }
+
+    public function renderAllImage() {
+        return $this->image()->get();
     }
 
     public function renderProductImage()
     {
         return $this->image;
+    }
+
+    public function renderDelete() {
+        return route('regular.product.destroy', $this->id);
+    }
+
+    public function renderRestore() {
+        return route('regular.product.restore', $this->id);
     }
 }

@@ -2,6 +2,11 @@ require('./bootstrap');
 window.Vue = require('vue');
 require('./settings');
 
+Vue.component('std-alert', require('./components/Alert.vue'));
+Vue.component('std-button', require('./components/ActionButton.vue'));
+Vue.component('std-remove-image', require('./components/RemoveImage.vue'));
+Vue.component('images', require('./components/Images.vue'));
+
 Vue.component('roles-table', require('./views/roles/RolesTable.vue'));
 Vue.component('roles-details', require('./views/roles/RoleDetails.vue'));
 Vue.component('prx-alert', require('./components/Alert.vue'));
@@ -12,6 +17,14 @@ Vue.component('category-details', require('./views/categories/CategoryDetails.vu
 Vue.component('types-table', require('./views/types/TypesTable.vue'));
 Vue.component('type-details', require('./views/types/TypeDetails.vue'));
 
+Vue.component('page-item-table', require('./views/page-items/PageItemTable.vue'));
+Vue.component('page-item-details', require('./views/page-items/PageItemDetails.vue'));
+
+Vue.component('page-table', require('./views/pages/PageTable.vue'));
+Vue.component('page-details', require('./views/pages/PageDetails.vue'));
+
+Vue.component('carousels-table', require('./views/carousels/CarouselsTable.vue'));
+Vue.component('carousel-details', require('./views/carousels/CarouselDetails.vue'));
 
 const app = {
 	init() {
@@ -20,7 +33,17 @@ const app = {
 
 	setupVue() {
 		new Vue({
-		    el: '#app'
+		    el: '#app',
+
+		    methods: {
+		    	runDatatable(ref = null, elem = 'datatable', method = 'fetch') {
+                	const table = this.$refs[ref].$refs[elem];
+
+                	if (!table.empty) {
+	                	table[method]();
+                	}
+                },
+		    }
 		});
 	}
 };

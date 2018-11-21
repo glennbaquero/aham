@@ -94,6 +94,19 @@
                                     <input type="file" name="images[]" class="form-control input-sm" multiple>
                                 </div>
                             </div>
+
+                            
+                            <div class="col col-xs-12 col-sm-12 col-md-12">
+                                <images :items="item.photos" @on-delete="init"></images>
+                            </div>
+
+                            <!-- <div class="col col-xs-12 col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Product Images</label>
+                                    <img :src="renderImage(item.image)" class="img-thumbnail" width="75" height="75">
+                                </div>
+                            </div> -->
+
                         </div>
 
                         
@@ -212,6 +225,10 @@ export default {
 
         load(value) {
             this.loading = value;
+        },
+
+        renderImage(image) {
+            return 'storage/'+image;
         }
     },
 }

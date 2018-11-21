@@ -206,6 +206,10 @@
             }
         },
 
+        mounted() {
+            this.init();
+        },
+
         methods: {
 
             /**

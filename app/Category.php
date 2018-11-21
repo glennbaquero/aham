@@ -19,6 +19,18 @@ class Category extends Model
     	return $this->hasMany(Product::class);
     }
 
+    public static function store($request, $item = null) {
+        $vars = $request->only('name');
+
+        if(!$item) {
+            $item = static::create($vars);
+        } else {
+            $item->update($vars);
+        }
+
+        return $item;
+    }
+
     /*
      * Render
      */
@@ -28,6 +40,14 @@ class Category extends Model
     }
 
     public function renderView() {
-    	return route('regular.categories.view', $this->id);
+    	return route('regular.categories.edit', $this->id);
+    }
+
+    public function renderDelete() {
+        return route('regular.categories.destroy', $this->id);
+    }
+
+    public function renderRestore() {
+        return route('regular.categories.restore', $this->id);
     }
 }
