@@ -74,6 +74,7 @@ Route::prefix('admin')
 	Route::post('products/fetch/q?archive=1', 'ProductFetchController@fetch')->name('regular.products.archive');
 	Route::post('products/fetch/{id?}', 'ProductFetchController@fetchItem')->name('regular.product.fetch');
 
+
 	/****************
 	 * CATEGORY
 	 ****************/
@@ -88,6 +89,7 @@ Route::prefix('admin')
 	Route::post('categories/fetch/q', 'CategoryFetchController@fetch')->name('regular.categories.fetch');
 	Route::post('categories/fetch/q?archive=1', 'CategoryFetchController@fetch')->name('regular.categories.archive');
 	Route::post('categories/fetch/{id?}', 'CategoryFetchController@fetchItem')->name('regular.category.fetch');
+
 
 	/****************
 	 * TYPE
@@ -106,10 +108,10 @@ Route::prefix('admin')
 
 	Route::post('image/store', 'ProductImageController@store')->name('regular.image.store');
 
+
 	/****************
 	 * CMS
 	 ****************/
-
 	Route::get('carousel', 'CarouselController@index')->name('carousel.index');
 	Route::get('carousel/edit/{id}', 'CarouselController@edit')->name('carousel.edit');
 	Route::get('carousel/create', 'CarouselController@create')->name('carousel.create');
