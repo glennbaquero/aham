@@ -2,13 +2,13 @@
 @section('content')
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>Type</h1>
+		<h1>{{ $type->renderName() }} <small>(Update product type information and details)</small></h1>
 		<ol class="breadcrumb">
 			<li>
-				<a href="{{ route('admin.types.index') }}"><i class="fas fa-user-shield"></i> Type</a>
+				<a href="{{ route('admin.types.index') }}"><i class="fas fa-th-large"></i> Product Types</a>
 			</li>
 			<li class="active">
-				Edit
+				{{ $type->renderName() }}
 			</li>
 		</ol>
 	</section>

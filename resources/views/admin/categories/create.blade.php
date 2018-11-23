@@ -2,10 +2,10 @@
 @section('content')
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>Categories</h1>
+		<h1>Add Category <small>(Make a new product category)</small></h1>
 		<ol class="breadcrumb">
 			<li>
-				<a href="{{ route('admin.categories.index') }}"><i class="fas fa-user-shield"></i> Categories</a>
+				<a href="{{ route('admin.categories.index') }}"><i class="fas fa-archive"></i> Categories</a>
 			</li>
 			<li class="active">
 				Add

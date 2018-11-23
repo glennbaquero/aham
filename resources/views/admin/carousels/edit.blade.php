@@ -2,13 +2,13 @@
 @section('content')
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>Slider</h1>
+		<h1>{{ $carousel->renderName() }} <small>(Update slider information and details)</small></h1>
 		<ol class="breadcrumb">
 			<li>
-				<a href="{{ route('admin.carousel.index') }}"><i class="fas fa-user-shield"></i> Slider</a>
+				<a href="{{ route('admin.carousel.index') }}"><i class="fas fa-images"></i> Sliders</a>
 			</li>
 			<li class="active">
-				Edit
+				{{ $carousel->renderName() }}
 			</li>
 		</ol>
 	</section>

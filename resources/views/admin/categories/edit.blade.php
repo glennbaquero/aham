@@ -2,13 +2,13 @@
 @section('content')
 <div class="content-wrapper">
 		<section class="content-header">
-			<h1>Category</h1>
+			<h1>{{ $category->renderName() }} <small>(Update product category information and details)</small></h1>
 			<ol class="breadcrumb">
 				<li>
-					<a href="{{ route('admin.categories.index') }}"><i class="fas fa-user-shield"></i> Category</a>
+					<a href="{{ route('admin.categories.index') }}"><i class="fas fa-archive"></i> Categories</a>
 				</li>
 				<li class="active">
-					Edit
+					{{ $category->renderName() }}
 				</li>
 			</ol>
 	</section>

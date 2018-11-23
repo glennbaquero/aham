@@ -2,17 +2,14 @@
 @section('content')
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>Administrator <small>(Index)</small></h1>
+		<h1>Administrators <small>(Manage administrators)</small></h1>
 		<ol class="breadcrumb">
-			<li>
-				<a href="{{ route('admin.administrator') }}"><i class="fas fa-user-shield"></i> Administrator</a>
-			</li>
 			<li class="active">
-				Index
+				<a href="{{ route('admin.administrator') }}"><i class="fas fa-user-shield"></i> Administrators</a>
 			</li>
 		</ol>
 		<br>
-		<a href="{{ route('admin.administrator.create') }}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Admin</a>
+		<a href="{{ route('admin.administrator.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Admin</a>
 	</section>
 	<section class="content">
 		<div class="row">

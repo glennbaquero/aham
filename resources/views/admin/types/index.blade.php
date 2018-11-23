@@ -2,17 +2,14 @@
 @section('content')
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>Type <small>(Index)</small></h1>
+		<h1>Product Types <small>(Manage product types)</small></h1>
 		<ol class="breadcrumb">
-			<li>
-				<a href="{{ route('admin.types.index') }}"><i class="fas fa-user-shield"></i> Administrator</a>
-			</li>
 			<li class="active">
-				Index
+				<a href="{{ route('admin.types.index') }}"><i class="fas fa-th-large"></i> Product Types</a>
 			</li>
 		</ol>
 		<br>
-		<a href="{{ route('admin.types.create') }}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Types</a>
+		<a href="{{ route('admin.types.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Type</a>
 	</section>
 	<section class="content">
 		<div class="row">
@@ -21,7 +18,7 @@
 				<div class="box box-widget nav-tabs-custom table-responsive">
 	                <ul class="nav nav-tabs">
 	                    <li class="active">
-	                        <a href="#pages" data-toggle="tab"><h5><b>Slider</b></h5></a>
+	                        <a href="#pages" data-toggle="tab"><h5><b>Product Types</b></h5></a>
 	                    </li>
 	                    <li>
 	                        <a @click="runDatatable('pages-type')" href="#pages-type" data-toggle="tab"><h5><b>Archive</b></h5></a>

@@ -4,7 +4,7 @@
 <!-- Content Header (Page header) -->
 <div class="content-wrapper">
 <section class="content-header">
-	<h1>Create Page <small>Make a new page</small></h1>
+	<h1>Add Page <small>Make a new page</small></h1>
 	<ol class="breadcrumb">
         <li class=""><a href="{{ route('admin.pages.index') }}"><i class="fas fa-file"></i> Pages</a></li>
         <li class="active"><a href="#">Create</a></li>
