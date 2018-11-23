@@ -23,8 +23,13 @@ Vue.component('page-item-details', require('./views/page-items/PageItemDetails.v
 Vue.component('page-table', require('./views/pages/PageTable.vue'));
 Vue.component('page-details', require('./views/pages/PageDetails.vue'));
 
+Vue.component('admins-table', require('./views/administrators/AdminsTable.vue'));
+Vue.component('admin-details', require('./views/administrators/AdminDetails.vue'));
+
 Vue.component('carousels-table', require('./views/carousels/CarouselsTable.vue'));
 Vue.component('carousel-details', require('./views/carousels/CarouselDetails.vue'));
+
+Vue.component('permission-list', require('./views/permission/PermissionsList.vue'));
 
 const app = {
 	init() {

@@ -9,6 +9,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
+        "spatie/laravel-permission": "^2.27",
         "teamtnt/laravel-scout-tntsearch-driver": "^3.3"
     },
     "require-dev": {

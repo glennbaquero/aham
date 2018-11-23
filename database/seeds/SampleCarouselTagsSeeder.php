@@ -13,6 +13,7 @@ class SampleCarouselTagsSeeder extends Seeder
      */
     public function run()
     {
+        \DB::table('carousel_tags')->delete();
         factory(CarouselTag::class, 10)->create();
     }
 }

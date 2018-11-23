@@ -13,9 +13,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ route('admin.admin') }}"><i class="fas fa-user-shield"></i> Administrator</a></li>
+            <li><a href="{{ route('admin.administrator') }}"><i class="fas fa-user-shield"></i> Administrator</a></li>
             <li><a href="{{ route('admin.roles') }}"><i class="fas fa-id-card-alt"></i> Roles</a></li>
-            <li><a href="{{ route('admin.permission') }}"><i class="fas fa-shield-alt"></i> Permission</a></li>
+            <li><a href=""><i class="fas fa-shield-alt"></i> Permission</a></li>
           </ul>
         </li>
       </ul>

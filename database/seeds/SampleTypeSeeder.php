@@ -12,6 +12,7 @@ class SampleTypeSeeder extends Seeder
      */
     public function run()
     {
+        \DB::table('types')->delete();
         factory(Type::class, 10)->create();
     }
 }
