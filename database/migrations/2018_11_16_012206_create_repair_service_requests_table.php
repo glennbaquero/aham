@@ -17,15 +17,15 @@ class CreateRepairServiceRequestsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('repair_man_id')->unsigned()->index();
-            $table->foreign('repair_man_id')->references('id')->on('repair_men')->onDelete('cascade');
-            $table->integer('warranty_id');
+            $table->integer('repair_men_id')->unsigned()->index();
+            $table->foreign('repair_men_id')->references('id')->on('repair_men')->onDelete('cascade');
             $table->text('complaint')->nullable();
             $table->text('solution')->nullable();
-            $table->string('ro_number');
-            $table->date('ro_date');
+            $table->string('ro_number')->nullable();
+            $table->date('ro_date')->nullable();
             $table->decimal('repair_cost')->nullable();
             $table->boolean('status')->default(false);
+            $table->softDeletes();
 
             $table->timestamps();
         });

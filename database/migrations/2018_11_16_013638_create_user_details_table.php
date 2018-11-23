@@ -23,6 +23,8 @@ class CreateUserDetailsTable extends Migration
             $table->integer('bday_month');
             $table->integer('bday_day');
             $table->integer('bday_year');
+            $table->text('address');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

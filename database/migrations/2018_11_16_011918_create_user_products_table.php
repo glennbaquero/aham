@@ -28,9 +28,10 @@ class CreateUserProductsTable extends Migration
             $table->date('applied_date');
             $table->decimal('amount');
             $table->string('application_number');
-            $table->string('pytdet');
-            $table->string('dcode');
+            $table->string('pytdet')->nullable();
+            $table->string('dcode')->nullable();
             $table->integer('warranty_type');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

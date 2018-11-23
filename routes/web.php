@@ -49,7 +49,7 @@ Route::prefix('admin')
 ->group(function() {
 
 	/****************************************
-	 * SUPER ADMIN ROUTES							*
+	 * SUPER ADMIN ROUTES					*
 	 ****************************************/
 	Route::name('admin.')
 	->group(function() {
@@ -94,6 +94,30 @@ Route::prefix('admin')
 
 
 	});
+
+	/****************************************
+	 * REPAIR SERVICE ROUTES				*
+	 ****************************************/
+
+	Route::name('repair.')
+	->group(function() {
+
+		Route::get('requests', 'RepairServiceRequestController@index')->name('request');
+		Route::get('request/create', 'RepairServiceRequestController@create')->name('request.create');
+		Route::post('request/store', 'RepairServiceRequestController@store')->name('request.store');
+		Route::get('request/view/edit/{id}', 'RepairServiceRequestController@edit')->name('request.edit');
+		Route::post('request/update/{id}', 'RepairServiceRequestController@update')->name('request.update');
+		Route::delete('request/destroy/{id}', 'RepairServiceRequestController@destroy')->name('request.destroy');
+		Route::post('request/restore/{role}', 'RepairServiceRequestController@restore')->name('request.restore');
+
+		Route::post('requests/fetch/q', 'RepairServiceRequestFetchController@fetch')->name('requests.fetch');
+		Route::post('requests/fetch/q?archive=1', 'RepairServiceRequestFetchController@fetch')->name('requests.archive');
+		Route::post('requests/fetch/role/{id?}', 'RepairServiceRequestFetchController@fetchItem')->name('request.fetch');
+		Route::post('requests/fetch/role/{id?}', 'RepairServiceRequestFetchController@fetchItem')->name('request.fetch');
+
+	});
+
+
 	/****************
 	 * PRODUCT
 	 ****************/

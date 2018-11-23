@@ -20,7 +20,7 @@
         <div id="app" class="wrapper">
             @include('admin.includes.header')      
             @yield('content')
-            @include('admin.includes.sidebar')
+            @include('admin.includes.repairservice.sidebar')
             {{-- @include('admin.includes.regularadmin.sidebar') --}}
             <prx-alert></prx-alert>
         </div>
