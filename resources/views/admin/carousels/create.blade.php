@@ -2,10 +2,10 @@
 @section('content')
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>Types</h1>
+		<h1>Slider</h1>
 		<ol class="breadcrumb">
 			<li>
-				<a href="{{ route('admin.roles') }}"><i class="fas fa-user-shield"></i> Types</a>
+				<a href="{{ route('admin.carousel.index') }}"><i class="fas fa-user-shield"></i> Slider</a>
 			</li>
 			<li class="active">
 				Add
@@ -17,13 +17,13 @@
 			<div class="col-xs-12">
 				<!-- /.box-header -->
 					<form @submit.prevent="formSubmit" 
-						data-action="{{ route('regular.types.store') }}" 
-						data-ref="type-details"
+						data-action="{{ route('admin.carousel.store') }}" 
+						data-ref="carousel-details"
 						action="#" method="GET">
 
-						<type-details ref="type-details"
-						:fetchurl="'{{ route('regular.types.fetch') }}'">
-						</type-details>
+						<carousel-details ref="carousel-details"
+						:fetchurl="'{{ route('admin.carousel.fetch') }}'">
+						</carousel-details>
 
 						<div class="row">
 							<div class="col col-xs-12">

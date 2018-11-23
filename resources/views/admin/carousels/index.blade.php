@@ -2,53 +2,52 @@
 @section('content')
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>Products <small>(Index)</small></h1>
+		<h1>Slider <small>(Index)</small></h1>
 		<ol class="breadcrumb">
 			<li>
-				<a href="{{ route('admin.roles') }}"><i class="fas fa-user-shield"></i> Administrator</a>
+				<a href="{{ route('admin.carousel.index') }}"><i class="fas fa-user-shield"></i> Slider</a>
 			</li>
 			<li class="active">
 				Index
 			</li>
 		</ol>
 		<br>
-		<a href="{{ route('regular.product.create') }}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Product</a>
+		<a href="{{ route('admin.carousel.create') }}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Slider</a>
 	</section>
 	<section class="content">
 		<div class="row">
 			<div class="col-xs-12">
-
 				<div class="box box-widget nav-tabs-custom table-responsive">
 	                <ul class="nav nav-tabs">
 	                    <li class="active">
 	                        <a href="#pages" data-toggle="tab"><h5><b>Slider</b></h5></a>
 	                    </li>
 	                    <li>
-	                        <a @click="runDatatable('pages-product')" href="#pages-product" data-toggle="tab"><h5><b>Archive</b></h5></a>
+	                        <a @click="runDatatable('pages-carousel')" href="#pages-carousel" data-toggle="tab"><h5><b>Archive</b></h5></a>
 	                    </li>                                                   
 	                </ul>
 
 	                <div class="tab-content">
 	                    <div class="tab-pane active" id="pages">
 	                        
-	                        <products-table ref="pages"
+	                        <carousels-table ref="pages"
 								:autofetch="true"
-								:fetchurl="'{{ route('regular.products.fetch') }}'"
-							></products-table>
+								:fetchurl="'{{ route('admin.carousels.fetch') }}'"
+							></carousels-table>
 
 	                    </div>
-	                    <div class="tab-pane" id="pages-product">
+	                    <div class="tab-pane" id="pages-carousel">
 	                        
-							 <products-table ref="pages-product"
+							<carousels-table ref="pages-carousel"
 								:autofetch="false"
-								:fetchurl="'{{ route('regular.products.archive') }}'"
-							></products-table>
+								:fetchurl="'{{ route('admin.carousels.archive') }}'"
+							></carousels-table>
 
 	                    </div>                  
 	                </div>
         	    </div>
-
 			</div>
+		</div>
 		</div>
 	</section>
 </div>

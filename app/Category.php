@@ -40,14 +40,14 @@ class Category extends Model
     }
 
     public function renderView() {
-    	return route('regular.categories.edit', $this->id);
+    	return route('admin.categories.edit', $this->id);
     }
 
     public function renderDelete() {
-        return route('regular.categories.destroy', $this->id);
+        return route('admin.categories.destroy', $this->id);
     }
 
     public function renderRestore() {
-        return route('regular.categories.restore', $this->id);
+        return route('admin.categories.restore', $this->id);
     }
 }

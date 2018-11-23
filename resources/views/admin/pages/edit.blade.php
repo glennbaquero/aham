@@ -6,7 +6,7 @@
 	<section class="content-header">
 		<h1>{{ $page->renderName() }} <small>Update page information and details</small></h1>
 		<ol class="breadcrumb">
-	        <li class=""><a href="{{ route('pages.index') }}"><i class="fas fa-file"></i> Pages</a></li>
+	        <li class=""><a href="{{ route('admin.pages.index') }}"><i class="fas fa-file"></i> Pages</a></li>
 	        <li class="active"><a href="#">{{ $page->renderName() }}</a></li>
 	    </ol>
 	</section>
@@ -46,12 +46,12 @@
 	                    <div class="tab-pane active" id="magnitude">
 	                        
 	                        <form @submit.prevent="formSubmit" 
-							data-action="{{ route('pages.update', $page->id) }}" 
+							data-action="{{ route('admin.pages.update', $page->id) }}" 
 							data-ref="page-details"
 							action="#" method="GET">
 
 								<page-details ref="page-details" 
-								:fetchurl="'{{ route('page.fetch', $page->id) }}'">
+								:fetchurl="'{{ route('admin.page.fetch', $page->id) }}'">
 								</page-details>
 
 								<div class="row">
@@ -66,7 +66,7 @@
 	                        
 	                        <page-item-table ref="page-items"
 	                        :autofetch="false"
-	                        :fetchurl="'{{ route('page-items.fetch.page', $page->id) }}'"
+	                        :fetchurl="'{{ route('admin.page-items.fetch.page', $page->id) }}'"
 	                        ></page-item-table>
 
 	                    </div>                  

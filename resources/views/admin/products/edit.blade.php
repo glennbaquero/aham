@@ -5,7 +5,7 @@
 		<h1>Product</h1>
 		<ol class="breadcrumb">
 			<li>
-				<a href="{{ route('regular.products.index') }}"><i class="fas fa-user-shield"></i> Product</a>
+				<a href="{{ route('admin.products.index') }}"><i class="fas fa-user-shield"></i> Product</a>
 			</li>
 			<li class="active">
 				Add
@@ -31,12 +31,12 @@
 		<div class="col-xs-12">
 			<!-- /.box-header -->
 				<form @submit.prevent="formSubmit" 
-					data-action="{{ route('regular.product.update', $product->id) }}" 
+					data-action="{{ route('admin.product.update', $product->id) }}" 
 					data-ref="product-details"
 					action="#" method="GET">
 
 					<product-details ref="product-details"
-					:fetchurl="'{{ route('regular.product.fetch', $product->id) }}'"
+					:fetchurl="'{{ route('admin.product.fetch', $product->id) }}'"
 					:categories="{{ $categories }}"
 					:types="{{ $types }}">
 					</product-details>

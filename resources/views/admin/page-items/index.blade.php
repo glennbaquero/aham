@@ -9,7 +9,7 @@
             <small>Manage Page Items</small>
         </h1>
         <ol class="breadcrumb">
-            <li class="active"><a href="{{ route('page-items.index') }}"><i class="fas fa-file-alt"></i> Page Items</a></li>
+            <li class="active"><a href="{{ route('admin.page-items.index') }}"><i class="fas fa-file-alt"></i> Page Items</a></li>
         </ol>
 
     </section>
@@ -19,7 +19,7 @@
 
         <div class="row mb-4">
             <div class="col-md-12">
-                <a href="{{ route('page-items.create') }}" class="btn btn-primary btn-sm">
+                <a href="{{ route('admin.page-items.create') }}" class="btn btn-primary btn-sm">
                     <i class="fa fa-plus mr-1"></i> Add Page Item
                 </a>
             </div>
@@ -44,7 +44,7 @@
                             <page-item-table ref="page-items"
                             :filterpages="{{ $pages }}"
                             :autofetch="true"
-                            :fetchurl="'{{ route('page-items.fetch') }}'"
+                            :fetchurl="'{{ route('admin.page-items.fetch') }}'"
                             ></page-item-table>
 
                         </div>
@@ -53,7 +53,7 @@
                             <page-item-table ref="page-items-archive"
                             :filterpages="{{ $pages }}"
                             :autofetch="false"
-                            :fetchurl="'{{ route('page-items.fetch.archive') }}'"
+                            :fetchurl="'{{ route('admin.page-items.fetch.archive') }}'"
                             ></page-item-table>
 
                         </div>                  

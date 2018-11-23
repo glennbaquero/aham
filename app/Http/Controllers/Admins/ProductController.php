@@ -22,7 +22,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.regularadmin.products.index');
+        return view('admin.products.index');
     }
 
     /**
@@ -32,7 +32,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.regularadmin.products.create',[
+        return view('admin.products.create',[
             'types' => Type::all(),
             'categories' => Category::all()
         ]);
@@ -77,7 +77,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.regularadmin.products.edit', [
+        return view('admin.products.edit', [
             'categories' => Category::all(),
             'types' => Type::all(),
             'product' => Product::withTrashed()->find($id)
@@ -93,7 +93,6 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, $id)
     {
-        
         $product = Product::withTrashed()->find($id);
        
         DB::beginTransaction();

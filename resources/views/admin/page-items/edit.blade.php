@@ -6,7 +6,7 @@
 <section class="content-header">
 	<h1>{{ $pageItem->renderName() }} <small>Update page item information and details</small></h1>
 	<ol class="breadcrumb">
-        <li class=""><a href="{{ route('page-items.index') }}"><i class="fas fa-file-alt"></i> Page Items</a></li>
+        <li class=""><a href="{{ route('admin.page-items.index') }}"><i class="fas fa-file-alt"></i> Page Items</a></li>
         <li class="active"><a href="#">{{ $pageItem->renderName() }}</a></li>
     </ol>
 </section>
@@ -34,12 +34,12 @@
 		<div class="col-md-12">
 
 			<form @submit.prevent="formSubmit" 
-			data-action="{{ route('page-items.update', $pageItem->id) }}" 
+			data-action="{{ route('admin.page-items.update', $pageItem->id) }}" 
 			data-ref="pageItem-details"
 			action="#" method="GET">
 
 				<page-item-details ref="pageItem-details" 
-				:fetchurl="'{{ route('page-item.fetch', $pageItem->id) }}'">
+				:fetchurl="'{{ route('admin.page-item.fetch', $pageItem->id) }}'">
 				</page-item-details>
 
 				<div class="row">

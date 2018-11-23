@@ -5,7 +5,7 @@
 		<h1>Categories</h1>
 		<ol class="breadcrumb">
 			<li>
-				<a href="{{ route('regular.categories.index') }}"><i class="fas fa-user-shield"></i> Categories</a>
+				<a href="{{ route('admin.categories.index') }}"><i class="fas fa-user-shield"></i> Categories</a>
 			</li>
 			<li class="active">
 				Add
@@ -19,12 +19,12 @@
 				<std-alert></std-alert>
 
 				<form @submit.prevent="formSubmit" 
-					data-action="{{ route('regular.categories.store') }}" 
+					data-action="{{ route('admin.categories.store') }}" 
 					data-ref="category-details"
 					action="#" method="GET">
 
 					<category-details ref="category-details"
-					:fetchurl="'{{ route('regular.categories.fetch') }}'">
+					:fetchurl="'{{ route('admin.categories.fetch') }}'">
 					</category-details>
 
 					<div class="row">

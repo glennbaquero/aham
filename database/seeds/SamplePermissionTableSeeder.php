@@ -30,7 +30,7 @@ class SamplePermissionTableSeeder extends Seeder
     	];
 
     	foreach ($permissions as $permission) {
-	        Permission::create(['name' => $permission['name'], 'guard_name' => $permission['guard_name']]);
+	        Permission::create($permission);
     	}
 
     }

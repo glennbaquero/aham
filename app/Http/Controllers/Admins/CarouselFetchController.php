@@ -64,6 +64,7 @@ class CarouselFetchController extends FetchController
             $item = Carousel::withTrashed()->find($id);
             $item->tags = $item->tags()->pluck('id')->toArray();
             $formatted_images = [];
+            
             foreach($item->images as $image){
                 $formatted_images[] = [
                     'id' => $image->id,
@@ -71,6 +72,7 @@ class CarouselFetchController extends FetchController
                     'url' => $image->renderDelete(),
                 ];
             }
+
             $item->photos = $formatted_images;
         }
 

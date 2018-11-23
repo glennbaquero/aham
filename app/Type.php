@@ -41,14 +41,14 @@ class Type extends Model
     }
 
     public function renderView() {
-    	return route('regular.types.edit', $this->id);
+    	return route('admin.types.edit', $this->id);
     }
 
     public function renderDelete() {
-        return route('regular.types.destroy', $this->id);
+        return route('admin.types.destroy', $this->id);
     }
 
     public function renderRestore() {
-        return route('regular.types.restore', $this->id);
+        return route('admin.types.restore', $this->id);
     }
 }

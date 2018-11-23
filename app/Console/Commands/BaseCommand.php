@@ -44,7 +44,6 @@ class BaseCommand extends Command
         }
 
         $this->info(PHP_EOL);
-        $this->warn($this->description);
         $this->info("<fg=yellow;>/*--------------------------------------------");
         $this->info("<fg=yellow;>| <fg=red;>WARNING! WARNING! WARNING! WARNING! WARNING!");
         $this->info("<fg=yellow;>|---------------------------------------------");

@@ -20,7 +20,7 @@ class CarouselController extends Controller
      */
     public function index()
     {
-        return view('admin.regularadmin.cms.carousels.index');
+        return view('admin.carousels.index');
     }
 
     /**
@@ -30,7 +30,7 @@ class CarouselController extends Controller
      */
     public function create()
     {
-        return view('admin.regularadmin.cms.carousels.create');
+        return view('admin.carousels.create');
     }
 
     /**
@@ -73,7 +73,7 @@ class CarouselController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.regularadmin.cms.carousels.edit',[
+        return view('admin.carousels.edit',[
             'carousel' => Carousel::withTrashed()->find($id),
             'image_id' => CarouselImage::where('carousel_id', $id)->get(),
         ]);

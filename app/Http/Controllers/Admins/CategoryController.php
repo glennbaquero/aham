@@ -18,7 +18,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.regularadmin.categories.index');
+        return view('admin.categories.index');
     }
 
     /**
@@ -28,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.regularadmin.categories.create');
+        return view('admin.categories.create');
     }
 
     /**
@@ -69,7 +69,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.regularadmin.categories.edit',[
+        return view('admin.categories.edit',[
             'category' => Category::withTrashed()->find($id)
         ]);
     }
