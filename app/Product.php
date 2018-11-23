@@ -63,16 +63,10 @@ class Product extends Model
         return '#' . $this->id . ' ' . $this->model;
     }
 
-    public function renderTableImage() {
-        return asset('storage/'.$this->image()->first()['image']);
-    }
-
-    public function renderAllImage() {
-        return $this->image()->get();
-    }
-
-    public function renderProductImage() {
-        return $this->image;
+    public function renderFilePath($column = 'image') {
+        $path = null;
+        if (count($this->images)) { $path = $this->images()->first()->renderFilePath($column); }
+        return $path;
     }
 
     public function renderView() {

@@ -38,3 +38,32 @@
 .login-page.skin-blue .wrapper, .login-page.skin-blue .main-sidebar, .login-page.skin-blue .left-side {
 	background: #3c8dbc;
 }
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+	background-color: #3C8DBC !important;
+	border-color: #367FA9 !important;
+}
+
+.select2-selection__choice__remove {
+	color: #fff !important;
+}
+
+.form-control {
+	-webkit-border-radius: 3px;
+	        border-radius: 3px;
+}
+
+.treeview .treeview-menu {
+	display: block !important;
+	visibility: hidden;
+	opacity: 0;
+	height: 0;
+	overflow: hidden;
+}
+
+.treeview.menu-open .treeview-menu {
+	visibility: visible;
+	opacity: 1;
+	height: auto;
+}
+

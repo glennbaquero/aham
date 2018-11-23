@@ -27,6 +27,9 @@ export default {
 			            const field = $(this);
 
 			            field.select2();
+
+						/* Trigger change to display default value */
+						field.val(value).trigger('change');
 			        });
 				},
 			}

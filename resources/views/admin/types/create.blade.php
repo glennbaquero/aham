@@ -2,13 +2,13 @@
 @section('content')
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>Types</h1>
+		<h1>Add Product Type <small>(Make a new product type)</small></h1>
 		<ol class="breadcrumb">
 			<li>
-				<a href="{{ route('admin.roles') }}"><i class="fas fa-user-shield"></i> Types</a>
+				<a href="{{ route('admin.types.index') }}"><i class="fas fa-th-large"></i> Product Types</a>
 			</li>
 			<li class="active">
-				Add
+				New Product Type
 			</li>
 		</ol>
 </section>

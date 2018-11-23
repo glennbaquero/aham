@@ -35,27 +35,19 @@
 
                             <div class="col col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label for="">Role</label>
-                                    <select name="roles[]" class="form-control input-sm select2" multiple>
-                                        <option v-for="role in roles" :value="role.name">{{ role.name }}</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col col-xs-12 col-sm-12 col-md-6">
-                                <div class="form-group">
                                     <label for="">Email</label>
                                     <input v-model="item.email" :readonly="disable" type="email"  name="email" class="form-control input-sm" placeholder="Email">
                                 </div>
                             </div>
 
-                            <div class="col col-xs-12 col-sm-12 col-md-6">
+                            <div class="col col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label for="">Password</label>
-                                    <input v-model="item.password" :readonly="disable" name="password" type="password" class="form-control input-sm" placeholder="Password">
+                                    <label for="">Role</label>
+                                    <select v-model="item.role_ids" :data-value="item.role_ids" name="roles[]" class="form-control input-sm select2" multiple>
+                                        <option v-for="role in roles" :value="role.id">{{ role.name }}</option>
+                                    </select>
                                 </div>
                             </div>
-
                             
                         </div>
                         <!-- End Row -->
@@ -98,7 +90,7 @@ export default {
     	return {
             loading: false,
             item: {
-                role: [],
+                role_ids: [],
             },
 
             roles: []
@@ -123,7 +115,6 @@ export default {
     		}
 
             this.ckeditor.init();
-
     	},
 
     	init() {
@@ -136,10 +127,10 @@ export default {
     		axios.post(this.fetchurl)
     		.then(response => {
                 const data = response.data;
-                this.item = data.item ? data.item : {};
-                this.item.role = data.item ? data.item.role : [];
-                this.roles = data.roles;
                 console.log(data);
+                this.item = data.item ? data.item : {};
+                this.item.role_ids = data.roleIds;
+                this.roles = data.roles;
     		}).catch(error => {
                 console.log(error);
     		}).then(() => {
