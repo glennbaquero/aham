@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admins;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminRequest;
+
 use App\Admin;
-use Illuminate\Http\Request;
+use DB;
 
 class AdminController extends Controller
 {
@@ -15,7 +17,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.superadmin.administrator.index');
     }
 
     /**
@@ -25,7 +27,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.superadmin.administrator.create');
     }
 
     /**
@@ -34,9 +36,17 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminRequest $request)
     {
-        //
+        DB::beginTransaction();
+        $admin = Admin::store($request);
+        DB::commit();
+
+        return response()->json([
+            'message' => 'Verification link is sent to their email',
+            'redirect' => $admin->renderView(),
+        ]);
+
     }
 
     /**
@@ -45,7 +55,7 @@ class AdminController extends Controller
      * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function show(Admin $admin)
+    public function show($id)
     {
         //
     }
@@ -56,9 +66,11 @@ class AdminController extends Controller
      * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function edit(Admin $admin)
+    public function edit($id)
     {
-        //
+        return view('admin.superadmin.administrator.edit', [
+            'admin' => Admin::withTrashed()->find($id)
+        ]);
     }
 
     /**
@@ -68,9 +80,18 @@ class AdminController extends Controller
      * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admin $admin)
+    public function update(AdminRequest $request, $id)
     {
-        //
+
+        $admin = Admin::withTrashed()->find($id);
+
+        DB::beginTransaction();
+        $admin = Admin::store($request, $admin);
+        DB::commit();
+
+        return response()->json([
+            'message' => 'You have successfully updated the admin'
+        ]);
     }
 
     /**
@@ -79,8 +100,29 @@ class AdminController extends Controller
      * @param  \App\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Admin $admin)
+    public function destroy($id)
     {
-        //
+        $admin = Admin::find($id);
+        $admin->delete();
+
+        return response()->json([
+            'message' => "You have successfully archived {$admin->renderName()}",
+        ]);
+    }
+
+    /**
+     * Restore the specified resource from storage.
+     *
+     * @param  \App\Admin  $admin
+     * @return \Illuminate\Http\Response
+     */
+    public function restore($id)
+    {
+        $admin = Admin::onlyTrashed()->find($id);
+        $admin->restore();
+
+        return response()->json([
+            'message' => "You have successfully restored {$admin->renderName()}",
+        ]);
     }
 }

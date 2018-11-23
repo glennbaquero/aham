@@ -5,19 +5,19 @@ namespace App\Http\Controllers\Admins;
 use Illuminate\Http\Request;
 use App\Http\Controllers\FetchController;
 
+use App\Admin;
 use App\Role;
-use App\Permission;
 
-class RoleFetchController extends FetchController
+class AdminFetchController extends FetchController
 {
-    /**
+	/**
      * Set object class of fetched data
      * 
      * @return void
      */
     public function setObjectClass()
     {
-        $this->class = new Role;
+        $this->class = new Admin;
     }
 
     /**
@@ -44,7 +44,8 @@ class RoleFetchController extends FetchController
         foreach($items as $item) {
             array_push($result, array(
                 'id' => $item->id,
-                'name' => $item->name,
+                'name' => $item->firstname. ''. $item->lastname,
+                'email' => $item->email,
                 'created_at' => $item->created_at->format('M d, Y (H:i:s)'),
 
                 'actions' => array(
@@ -61,15 +62,15 @@ class RoleFetchController extends FetchController
         $item = null;
 
         if ($id) {
-            $item = Role::withTrashed()->find($id);
-            $item->permissions = $item->permissions()->pluck('id')->toArray();
+            $item = Admin::withTrashed()->find($id);
+            // $item->permissions = $item->permissions()->pluck('id')->toArray();
         }
 
-        $permissions = Permission::all();
+        $roles = Role::all();
 
         return response()->json([
             'item' => $item,
-            'permissions' => $permissions
+            'roles' => $roles
         ]);
     }
 }

@@ -19,18 +19,43 @@
                         <!-- Start Row -->
                 		<div class="row">
 
-                    		<div class="col col-xs-12 col-sm-12 col-md-12">
+                    		<div class="col col-xs-12 col-sm-12 col-md-6">
                     			<div class="form-group">
-                    				<label for="">Name</label>
-                    				<input v-model="item.name" :disabled="editable" name="name" type="text" class="form-control input-sm" placeholder="Name">
+                    				<label for="">Firstname</label>
+                    				<input v-model="item.firstname" :disabled="editable" name="firstname" type="text" class="form-control input-sm" placeholder="Firstname">
                     			</div>
                     		</div>
-                            <div class="col col-xs-12 col-sm-12 col-md-12">
+
+                            <div class="col col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label for="">Description</label>
-                                    <textarea class="content" name="description">{{ item.description }}</textarea>
+                                    <label for="">Lastname</label>
+                                    <input v-model="item.lastname" :disabled="editable" name="lastname" type="text" class="form-control input-sm" placeholder="Lastname">
                                 </div>
                             </div>
+
+                            <div class="col col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="">Role</label>
+                                    <select name="roles[]" class="form-control input-sm select2" multiple>
+                                        <option v-for="role in roles" :value="role.name">{{ role.name }}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col col-xs-12 col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Email</label>
+                                    <input v-model="item.email" :readonly="disable" type="email"  name="email" class="form-control input-sm" placeholder="Email">
+                                </div>
+                            </div>
+
+                            <div class="col col-xs-12 col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Password</label>
+                                    <input v-model="item.password" :readonly="disable" name="password" type="password" class="form-control input-sm" placeholder="Password">
+                                </div>
+                            </div>
+
                             
                         </div>
                         <!-- End Row -->
@@ -54,6 +79,7 @@ export default {
 	props: {
         submiturl: String,
         fetchurl: String,
+        disable: Boolean,
         disabled: Boolean,
         model: {},
     },
@@ -72,10 +98,10 @@ export default {
     	return {
             loading: false,
             item: {
-                permissions: [],
+                role: [],
             },
 
-            permissions: []
+            roles: []
     	}
     },
 
@@ -111,8 +137,8 @@ export default {
     		.then(response => {
                 const data = response.data;
                 this.item = data.item ? data.item : {};
-                this.item.permissions = data.item ? data.item.permissions : [];
-                this.permissions = data.permissions;
+                this.item.role = data.item ? data.item.role : [];
+                this.roles = data.roles;
                 console.log(data);
     		}).catch(error => {
                 console.log(error);

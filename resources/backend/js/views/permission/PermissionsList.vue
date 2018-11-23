@@ -18,19 +18,13 @@
 
                         <!-- Start Row -->
                 		<div class="row">
-
-                    		<div class="col col-xs-12 col-sm-12 col-md-12">
-                    			<div class="form-group">
-                    				<label for="">Name</label>
-                    				<input v-model="item.name" :disabled="editable" name="name" type="text" class="form-control input-sm" placeholder="Name">
-                    			</div>
-                    		</div>
-                            <div class="col col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label for="">Description</label>
-                                    <textarea class="content" name="description">{{ item.description }}</textarea>
+                            <template v-for="permission in permissions">
+                                <div class="col col-xs-12 col-sm-12 col-md-3">
+                                    <div class="form-group">
+                                        <input type="checkbox" :value="permission.name" name="role_has_permissions[]"> {{ permission.name }}
+                                    </div>
                                 </div>
-                            </div>
+                            </template>
                             
                         </div>
                         <!-- End Row -->
@@ -46,8 +40,6 @@
 
 <script>
 import Loader from '../../components/Loader.vue';
-import ckeditor from '../../mixins/ckeditor.js';
-import flatpickr from '../../mixins/flatpickr.js';
 import select2 from '../../mixins/select2.js';
 
 export default {
@@ -63,8 +55,6 @@ export default {
     },
 
     mixins: [
-        ckeditor,
-        flatpickr,
         select2,
     ],
 
@@ -95,8 +85,6 @@ export default {
     		if (this.model) {
     			this.item = this.model ? this.model : {};
     		}
-
-            this.ckeditor.init();
 
     	},
 

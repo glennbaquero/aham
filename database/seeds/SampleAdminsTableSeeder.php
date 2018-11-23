@@ -13,6 +13,9 @@ class SampleAdminsTableSeeder extends Seeder
      */
     public function run()
     {
+
+        \DB::table('admins')->delete();
+        
     	$admins = [
         	[
 		        'firstname' => 'Admin',
@@ -22,6 +25,14 @@ class SampleAdminsTableSeeder extends Seeder
 		        'password' => '$2y$10$KDigvlqpSELK7OiGEjqGlu.bb1rLaHvB3OHZGvV3EuoDq5HslMO0i', // password
 		        'remember_token' => str_random(10),
 		    ],
+            [
+                'firstname' => 'Admin',
+                'lastname' => 'PRAXXYS',
+                'email' => 'glenn@praxxys.ph',
+                'email_verified_at' => now(),
+                'password' => '$2y$10$KDigvlqpSELK7OiGEjqGlu.bb1rLaHvB3OHZGvV3EuoDq5HslMO0i', // password
+                'remember_token' => str_random(10),
+            ],
         ];
 
     	foreach ($admins as $admin) {

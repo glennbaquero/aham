@@ -30,37 +30,69 @@ Route::name('admin.')
 	Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 	Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset.show');
 	Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
+
+
+	// Route::get('roles', 'RoleController@index')->name('admin.roles.index');
+
+	// Route::post('roles/fetch/q', 'RoleFetchController@fetch')->name('regular.roles.fetch');
+	// Route::post('roles/fetch/q?archive=1', 'RoleFetchController@fetch')->name('regular.roles.archive');
+	// Route::post('roles/fetch/{id?}', 'RoleFetchController@fetchItem')->name('regular.role.fetch');
 });
 
 
 /****************************************
- * REGULAR ADMIN ROUTES					*
+ * ADMIN ROUTES							*
  ****************************************/
 Route::prefix('admin')
 ->middleware('admin_auth')
 ->namespace('Admins')
 ->group(function() {
 
+	/****************************************
+	 * SUPER ADMIN ROUTES							*
+	 ****************************************/
 	Route::name('admin.')
 	->group(function() {
 		Route::get('/', 'DashboardController@index')->name('dashboard');
 		Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 		/****************
+		 * ADMINISTRATOR
+		 ****************/
+		Route::get('administrators', 'AdminController@index')->name('administrator');
+		Route::get('administrator/create', 'AdminController@create')->name('administrator.create');
+		Route::post('administrator/store', 'AdminController@store')->name('administrator.store');
+		Route::get('administrator/view/edit/{id}', 'AdminController@edit')->name('administrator.edit');
+		Route::post('administrator/update/{id}', 'AdminController@update')->name('administrator.update');
+		Route::delete('administrator/destroy/{id}', 'AdminController@destroy')->name('administrator.destroy');
+		Route::post('administrator/restore/{role}', 'AdminController@restore')->name('administrator.restore');
+
+		Route::post('administrators/fetch/q', 'AdminFetchController@fetch')->name('administrators.fetch');
+		Route::post('administrators/fetch/q?archive=1', 'AdminFetchController@fetch')->name('administrators.archive');
+		Route::post('administrators/fetch/role/{id?}', 'AdminFetchController@fetchItem')->name('administrator.fetch');
+
+		/****************
 		 * PERMISSION
 		 ****************/
 		Route::get('permission', 'PermissionController@index')->name('permission');
 
+
+		/****************
+		 * ROLE
+		 ****************/
 		Route::get('roles', 'RoleController@index')->name('roles');
 		Route::get('roles/create', 'RoleController@create')->name('roles.create');
 		Route::post('roles/store', 'RoleController@store')->name('roles.store');
 		Route::get('roles/view/edit/{id}', 'RoleController@edit')->name('roles.edit');
-		Route::get('roles/view/{id}', 'RoleController@view')->name('roles.view');
 		Route::post('roles/update/{id}', 'RoleController@update')->name('role.update');
-		Route::post('roles/destroy/{id}', 'RoleController@destroy')->name('role.destroy');
+		Route::delete('roles/destroy/{id}', 'RoleController@destroy')->name('role.destroy');
+		Route::post('roles/restore/{role}', 'RoleController@restore')->name('role.restore');
 
-		Route::post('roles/fetch', 'RoleFetchController@fetch')->name('roles.fetch');
+		Route::post('roles/fetch/q', 'RoleFetchController@fetch')->name('roles.fetch');
+		Route::post('roles/fetch/q?archive=1', 'RoleFetchController@fetch')->name('roles.archive');
 		Route::post('roles/fetch/role/{id?}', 'RoleFetchController@fetchItem')->name('role.fetch');
+
+
 	});
 	/****************
 	 * PRODUCT

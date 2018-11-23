@@ -12,6 +12,7 @@ class SampleRolesTableSeeder extends Seeder
      */
     public function run()
     {
+        \DB::table('roles')->delete();
         factory(Role::class, 50)->create();
     }
 }
