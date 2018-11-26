@@ -15,6 +15,14 @@ use DB;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('App\Http\Middleware\Admins\Products\ProductIndexMiddleware', ['only' => ['index']]);
+        $this->middleware('App\Http\Middleware\Admins\Products\ProductStoreMiddleware', ['only' => ['create', 'store']]);
+        $this->middleware('App\Http\Middleware\Admins\Products\ProductUpdateMiddleware', ['only' => ['edit', 'update']]);
+        $this->middleware('App\Http\Middleware\Admins\Products\ProductDestroyMiddleware', ['only' => ['destroy', 'restore']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

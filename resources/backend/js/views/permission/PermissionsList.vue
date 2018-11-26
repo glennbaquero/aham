@@ -7,28 +7,31 @@
         <div class="row">
             <div class="col-md-12">
                 <!-- Box Start -->
-                <div class="box box-primary">
+                <div class="box box-primary no-border">
                     <div class="box-header with-border">
-                        <i class="fa fa-info-circle"></i>
-                        <h3 class="box-title">Basic Information</h3>
                     </div>
 
                     <!-- Start Box Body -->
                 	<div class="box-body">
+                        <template v-for="category in categories">
+                            <!-- Start Row -->
+                    		<div class="row">
 
-                        <!-- Start Row -->
-                		<div class="row">
-                            <template v-for="permission in permissions">
-                                <div class="col col-xs-12 col-sm-12 col-md-3">
-                                    <div class="form-group">
-                                        <input type="checkbox" :value="permission.name" name="role_has_permissions[]"> {{ permission.name }}
-                                    </div>
+                                <div class="col col-xs-12">
+                                    <label><i :class="category.icon" class="mr-2"></i> {{ category.name }} <small>({{ category.description }})</small></label>
                                 </div>
-                            </template>
-                            
-                        </div>
-                        <!-- End Row -->
-                        
+                                
+                                <template v-for="permission in category.permissions">
+                                    <div class="col col-xs-6 col-sm-6 col-md-3">
+                                        <div class="form-group">
+                                            <input type="checkbox" v-model="item.permissions" :value="permission.id" name="permissions[]"> {{ permission.label }}
+                                        </div>
+                                    </div>
+                                </template>
+                                
+                            </div>
+                            <!-- End Row -->
+                        </template>
                     </div>
                     <!-- Box End -->
                 </div>
@@ -40,23 +43,21 @@
 
 <script>
 import Loader from '../../components/Loader.vue';
-import select2 from '../../mixins/select2.js';
 
 export default {
 	props: {
-        submiturl: String,
         fetchurl: String,
         disabled: Boolean,
+        autofetch: {
+            default: true,
+            type: Boolean,
+        },
         model: {},
     },
 
     components: {
         'loader': Loader
     },
-
-    mixins: [
-        select2,
-    ],
 
     data() {
     	return {
@@ -65,7 +66,8 @@ export default {
                 permissions: [],
             },
 
-            permissions: []
+            categories: [],
+            hasInit: false,
     	}
     },
 
@@ -77,7 +79,10 @@ export default {
 
     mounted() {
     	this.setup();
-    	this.init();
+
+        if (this.autofetch) {
+            this.init();
+        }
     },
 
     methods: {
@@ -85,11 +90,17 @@ export default {
     		if (this.model) {
     			this.item = this.model ? this.model : {};
     		}
-
     	},
 
+        run() {
+            if (!this.hasInit) {
+                this.hasInit = true;
+                this.fetch();
+            }
+        },
+
     	init() {
-    		this.fetch();
+            this.fetch();
     	},
 
     	fetch() {
@@ -99,14 +110,12 @@ export default {
     		.then(response => {
                 const data = response.data;
                 this.item = data.item ? data.item : {};
-                this.item.permissions = data.item ? data.item.permissions : [];
-                this.permissions = data.permissions;
+                this.categories = data.categories;
                 console.log(data);
     		}).catch(error => {
                 console.log(error);
     		}).then(() => {
                 this.load(false);
-                this.select2.init('.select2');
             });
     	},
 

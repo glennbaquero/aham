@@ -32,45 +32,61 @@
 
 			<div class="col-xs-12">
 				<!-- /.box-header -->
-					<form @submit.prevent="formSubmit" 
-						data-action="{{ route('admin.role.update', $role->id) }}" 
-						data-ref="roles-details"
-						action="#" method="GET">
+					
 
-						<div class="box box-widget nav-tabs-custom table-responsive">
-			                <ul class="nav nav-tabs">
-			                    <li class="active">
-			                        <a href="#pages" data-toggle="tab"><h5><b>Role</b></h5></a>
-			                    </li>
-			                    <li>
-			                        <a href="#pages-permission" data-toggle="tab"><h5><b>Permissions</b></h5></a>
-			                    </li>                                                   
-			                </ul>
+				<div class="box box-widget nav-tabs-custom table-responsive">
+	                <ul class="nav nav-tabs">
+	                    <li class="active">
+	                        <a href="#pages" data-toggle="tab"><h5><b>Role</b></h5></a>
+	                    </li>
+	                    <li>
+	                        <a @click="runComponent('permissions-details')" href="#pages-permission" data-toggle="tab"><h5><b>Permissions</b></h5></a>
+	                    </li>                                                   
+	                </ul>
 
-			                <div class="tab-content">
-			                    <div class="tab-pane active" id="pages">
-			                        
-				                    <roles-details ref="roles-details"
-										:fetchurl="'{{ route('admin.role.fetch', $role->id) }}'">
-									</roles-details>
+	                <div class="tab-content">
+	                    <div class="tab-pane active" id="pages">
 
-			                    </div>
-			                    <div class="tab-pane" id="pages-permission">
-			                        
-									<permission-list ref="permissions-details"
-										:fetchurl="'{{ route('admin.role.fetch', $role->id) }}'"
-									></permission-list>
+	                    	<form @submit.prevent="formSubmit" 
+							data-action="{{ route('admin.role.update', $role->id) }}" 
+							data-ref="roles-details"
+							action="#" method="GET">
+	                        
+			                    <roles-details ref="roles-details"
+									:fetchurl="'{{ route('admin.role.fetch', $role->id) }}'">
+								</roles-details>
 
-			                    </div>                  
-			                </div>
-		        	    </div>
+								<div class="row">
+									<div class="col col-xs-12">
+										<button type="submit" class="btn btn-primary pull-right">Save Changes</button>
+									</div>
+								</div>
+							</form>
 
-						<div class="row">
-							<div class="col col-xs-12">
-								<button type="submit" class="btn btn-primary pull-right">Save Changes</button>
-							</div>
-						</div>
-					</form>
+	                    </div>
+	                    <div class="tab-pane" id="pages-permission">
+
+	                    	<form @submit.prevent="formSubmit" 
+							data-action="{{ route('admin.permissions.update', $role->id) }}" 
+							data-ref="permissions-details"
+							action="#" method="GET">
+	                        
+								<permission-list ref="permissions-details"
+									:autofetch="false"
+									:fetchurl="'{{ route('admin.permissions.fetch', $role->id) }}'"
+								></permission-list>
+
+								<div class="row">
+									<div class="col col-xs-12">
+										<button type="submit" class="btn btn-primary pull-right">Save Changes</button>
+									</div>
+								</div>
+							</form>
+
+	                    </div>                  
+	                </div>
+        	    </div>
+						
 				<!-- /.box-body -->
 			</div>
 		</div>

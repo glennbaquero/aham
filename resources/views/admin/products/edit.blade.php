@@ -15,15 +15,19 @@
 <section class="content">
 	<div class="row mb-4">
 		<div class="col-md-12">
+
+			@if ($checker->permission->can(['admin.product.destroy', 'admin.product.restore']))
+				
+				<std-button
+				:size="'btn-sm pull-right'"
+				:label="'Delete'"
+		        :action="'{{ $product->trashed() ? 'restore' : 'delete' }}'"
+		        :message="'{{ 'product ' . $product->renderName() }}'"
+		        :restoreurl="'{{ $product->renderRestore() }}'"
+		        :deleteurl="'{{ $product->renderDelete() }}'"
+		        ></std-button>
 			
-			<std-button
-			:size="'btn-sm pull-right'"
-			:label="'Delete'"
-	        :action="'{{ $product->trashed() ? 'restore' : 'delete' }}'"
-	        :message="'{{ 'product ' . $product->renderName() }}'"
-	        :restoreurl="'{{ $product->renderRestore() }}'"
-	        :deleteurl="'{{ $product->renderDelete() }}'"
-	        ></std-button>
+			@endif
 
 		</div>
 	</div>
