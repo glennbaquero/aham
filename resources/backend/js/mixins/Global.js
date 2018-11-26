@@ -257,6 +257,8 @@ Vue.mixin({
 
         showErrors(error) {
             const response = error.response;
+
+            console.log(response);
             
             if(response.status) {
                switch (response.status) {
@@ -268,7 +270,7 @@ Vue.mixin({
                         break;
                     default:
                             EventBus.$emit('showModal', {
-                                content: 'Oops.. Something went wrong.. Please try again later.',
+                                content: response.statusText,
                                 hasErrors: true,
                             });
                         break;

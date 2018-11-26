@@ -43,7 +43,7 @@ class AdminController extends Controller
         DB::commit();
 
         return response()->json([
-            'message' => 'Verification link is sent to their email',
+            'message' => 'You have successfully added a new admin, an email verification was sent to their email.',
             'redirect' => $admin->renderView(),
         ]);
 
@@ -90,7 +90,7 @@ class AdminController extends Controller
         DB::commit();
 
         return response()->json([
-            'message' => 'You have successfully updated the admin'
+            'message' => "You have successfully updated the {$admin->renderName()}"
         ]);
     }
 

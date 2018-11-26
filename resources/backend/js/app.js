@@ -42,12 +42,20 @@ const app = {
 
 		    methods: {
 		    	runDatatable(ref = null, elem = 'datatable', method = 'fetch') {
-                	const table = this.$refs[ref].$refs[elem];
+		            const table = this.$refs[ref].$refs[elem];
 
-                	if (!table.empty) {
-	                	table[method]();
-                	}
-                },
+		            if (!table.empty) {
+		                table[method]();
+		            }
+		        },
+
+		        runComponent(ref = null, method = 'run') {
+		            const elem = this.$refs[ref];
+
+		            if (!elem.hasInit) {
+		                elem[method]();
+		            }
+		        },
 		    }
 		});
 	}

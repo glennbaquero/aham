@@ -60,12 +60,49 @@ class Admin extends Authenticatable
 			$vars = $request->only(['firstname', 'lastname']);
 			$item->update($vars);
 		}
-		$roles = Role::whereIn('id', $request->input('roles'))->get();
-		$item->syncRoles($roles);
 
-		return $item;
-		
+		if ($request->filled('roles')) {
+			$roles = Role::whereIn('id', $request->input('roles'))->get();
+			$item->syncRoles($roles);
+		} else {
+			foreach ($item->roles as $role) {
+				$item->removeRole($role);
+			}
+		}
+
+		return $item;	
 	}
+
+	/**
+	 * @Checkers
+	 */
+	
+	/**
+     * Determine if the model has any of the given permissions.
+     *
+     * @param array ...$permissions
+     *
+     * @return bool
+     * @throws \Exception
+     */
+    public function hasAnyPermission(...$permissions): bool
+    {
+    	if (!count($this->roles)) {
+    		return true;
+    	}
+
+        if (is_array($permissions[0])) {
+            $permissions = $permissions[0];
+        }
+
+        foreach ($permissions as $permission) {
+            if ($this->checkPermissionTo($permission)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     /*
      * Renders
