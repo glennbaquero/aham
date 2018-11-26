@@ -5,7 +5,7 @@
 			<h1>Category</h1>
 			<ol class="breadcrumb">
 				<li>
-					<a href="{{ route('regular.categories.index') }}"><i class="fas fa-user-shield"></i> Category</a>
+					<a href="{{ route('admin.categories.index') }}"><i class="fas fa-user-shield"></i> Category</a>
 				</li>
 				<li class="active">
 					Edit
@@ -32,12 +32,12 @@
 			<div class="col-xs-12">
 				<!-- /.box-header -->
 					<form @submit.prevent="formSubmit" 
-						data-action="{{ route('regular.categories.update', $category->id) }}" 
+						data-action="{{ route('admin.categories.update', $category->id) }}" 
 						data-ref="category-details"
 						action="#" method="GET">
 
 						<category-details ref="category-details"
-						:fetchurl="'{{ route('regular.category.fetch', $category->id) }}'">
+						:fetchurl="'{{ route('admin.category.fetch', $category->id) }}'">
 						</category-details>
 
 						<div class="row">

@@ -12,7 +12,6 @@
     
         <link rel="stylesheet" type="text/css" href="{{ mix('assets/css/vendor.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ mix('assets/css/app.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('/css/main.css') }}">
     </head>
 
     <body class="hold-transition skin-blue sidebar-mini">
@@ -20,12 +19,9 @@
         <div id="app" class="wrapper">
             @include('admin.includes.header')      
             @yield('content')
-            @include('admin.includes.repairservice.sidebar')
-            {{-- @include('admin.includes.regularadmin.sidebar') --}}
-            <prx-alert></prx-alert>
-        </div>
-        <div class="wrapper">
+            @include('admin.includes.sidebar')
             @include('admin.includes.footer') 
+            <prx-alert></prx-alert>
         </div>
         @yield('js')
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.11.1/ckeditor.js"></script>

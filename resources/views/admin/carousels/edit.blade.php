@@ -2,10 +2,10 @@
 @section('content')
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>Type</h1>
+		<h1>Slider</h1>
 		<ol class="breadcrumb">
 			<li>
-				<a href="{{ route('regular.types.index') }}"><i class="fas fa-user-shield"></i> Type</a>
+				<a href="{{ route('admin.carousel.index') }}"><i class="fas fa-user-shield"></i> Slider</a>
 			</li>
 			<li class="active">
 				Edit
@@ -19,10 +19,10 @@
 				<std-button
 				:size="'btn-sm pull-right'"
 				:label="'Delete'"
-		        :action="'{{ $type->trashed() ? 'restore' : 'delete' }}'"
-		        :message="'{{ 'type ' . $type->renderName() }}'"
-		        :restoreurl="'{{ $type->renderRestore() }}'"
-		        :deleteurl="'{{ $type->renderDelete() }}'"
+		        :action="'{{ $carousel->trashed() ? 'restore' : 'delete' }}'"
+		        :message="'{{ 'carousel ' . $carousel->renderName() }}'"
+		        :restoreurl="'{{ $carousel->renderRestore() }}'"
+		        :deleteurl="'{{ $carousel->renderDelete() }}'"
 		        ></std-button>
 
 			</div>
@@ -31,13 +31,14 @@
 			<div class="col-xs-12">
 				<!-- /.box-header -->
 					<form @submit.prevent="formSubmit" 
-						data-action="{{ route('regular.types.update', $type->id) }}" 
-						data-ref="type-details"
+						data-action="{{ route('admin.carousel.update', $carousel->id) }}" 
+						data-ref="carousel-details"
 						action="#" method="GET">
 
-						<type-details ref="type-details"
-						:fetchurl="'{{ route('regular.type.fetch', $type->id) }}'">
-						</type-details>
+						<carousel-details ref="carousel-details"
+						:fetchurl="'{{ route('admin.carousel.fetch', $carousel->id) }}'"
+						>
+						</carousel-details>
 
 						<div class="row">
 							<div class="col col-xs-12">

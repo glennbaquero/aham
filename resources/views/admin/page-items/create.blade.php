@@ -6,7 +6,7 @@
 <section class="content-header">
 	<h1>Create Page Item <small>Make a new page item</small></h1>
 	<ol class="breadcrumb">
-        <li class=""><a href="{{ route('page-items.index') }}"><i class="fas fa-file-alt"></i> Page Items</a></li>
+        <li class=""><a href="{{ route('admin.page-items.index') }}"><i class="fas fa-file-alt"></i> Page Items</a></li>
         <li class="active"><a href="#">Create</a></li>
     </ol>
 </section>
@@ -19,12 +19,12 @@
 			{{-- <std-alert></std-alert> --}}
 			
 			<form @submit.prevent="formSubmit" 
-			data-action="{{ route('page-items.store') }}" 
+			data-action="{{ route('admin.page-items.store') }}" 
 			data-ref="page-item-details"
 			action="#" method="GET">
 
 				<page-item-details ref="page-item-details" 
-				:fetchurl="'{{ route('page-item.fetch') }}'">
+				:fetchurl="'{{ route('admin.page-item.fetch') }}'">
 				</page-item-details>
 
 				<div class="row">

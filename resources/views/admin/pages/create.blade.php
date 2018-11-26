@@ -6,7 +6,7 @@
 <section class="content-header">
 	<h1>Create Page <small>Make a new page</small></h1>
 	<ol class="breadcrumb">
-        <li class=""><a href="{{ route('pages.index') }}"><i class="fas fa-file"></i> Pages</a></li>
+        <li class=""><a href="{{ route('admin.pages.index') }}"><i class="fas fa-file"></i> Pages</a></li>
         <li class="active"><a href="#">Create</a></li>
     </ol>
 </section>
@@ -17,12 +17,12 @@
 		<div class="col-md-12">
 			
 			<form @submit.prevent="formSubmit" 
-			data-action="{{ route('pages.store') }}" 
+			data-action="{{ route('admin.pages.store') }}" 
 			data-ref="page-details"
 			action="#" method="GET">
 
 				<page-details ref="page-details" 
-				:fetchurl="'{{ route('page.fetch') }}'">
+				:fetchurl="'{{ route('admin.page.fetch') }}'">
 				</page-details>
 
 				<div class="row">

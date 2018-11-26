@@ -5,7 +5,7 @@
 		<h1>Service Request</h1>
 		<ol class="breadcrumb">
 			<li>
-				<a href="{{ route('repair.request') }}"><i class="fas fa-user-shield"></i> Service Request</a>
+				<a href="{{ route('admin.request') }}"><i class="fas fa-user-shield"></i> Service Request</a>
 			</li>
 			<li class="active">
 				Edit
@@ -31,12 +31,13 @@
 			<div class="col-xs-12">
 				<!-- /.box-header -->
 					<form @submit.prevent="formSubmit" 
-						data-action="{{ route('repair.request.update', $request->id) }}" 
+						data-action="{{ route('admin.request.update', $request->id) }}" 
 						data-ref="repair-request-details"
 						action="#" method="GET">
 
 						<repair-request-details ref="repair-request-details"
-						:fetchurl="'{{ route('repair.request.fetch', $request->id) }}'">
+						:fetchurl="'{{ route('admin.request.fetch', $request->id) }}'"
+						:hide="false">
 						</repair-request-details>
 
 						<div class="row">

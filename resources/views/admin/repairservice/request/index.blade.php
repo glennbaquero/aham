@@ -5,14 +5,14 @@
 		<h1>Service Request <small>(Index)</small></h1>
 		<ol class="breadcrumb">
 			<li>
-				<a href="{{ route('repair.request') }}"><i class="fas fa-user-shield"></i> Service Request</a>
+				<a href="{{ route('admin.request') }}"><i class="fas fa-user-shield"></i> Service Request</a>
 			</li>
 			<li class="active">
 				Index
 			</li>
 		</ol>
 		<br>
-		<a href="{{ route('repair.request.create') }}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Request</a>
+		<a href="{{ route('admin.request.create') }}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Request</a>
 	</section>
 	<section class="content">
 		<div class="row">
@@ -32,7 +32,7 @@
 	                    <div class="tab-pane active" id="pages">
 	                        
 	                        <repair-request-table ref="pages"
-								:fetchurl="'{{ route('repair.requests.fetch') }}'"
+								:fetchurl="'{{ route('admin.requests.fetch') }}'"
 								:autofetch="true"
 							></repair-request-table>
 
@@ -41,7 +41,7 @@
 	                        
 							<repair-request-table ref="pages-request"
 								:autofetch="false"
-								:fetchurl="'{{ route('repair.requests.archive') }}'"
+								:fetchurl="'{{ route('admin.requests.archive') }}'"
 							></repair-request-table>
 
 	                    </div>                  

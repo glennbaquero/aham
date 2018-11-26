@@ -26,8 +26,8 @@ class SampleAdminsTableSeeder extends Seeder
 		        'remember_token' => str_random(10),
 		    ],
             [
-                'firstname' => 'Admin',
-                'lastname' => 'PRAXXYS',
+                'firstname' => 'Glenn',
+                'lastname' => 'Baquero',
                 'email' => 'glenn@praxxys.ph',
                 'email_verified_at' => now(),
                 'password' => '$2y$10$KDigvlqpSELK7OiGEjqGlu.bb1rLaHvB3OHZGvV3EuoDq5HslMO0i', // password

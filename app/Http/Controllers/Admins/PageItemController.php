@@ -22,7 +22,7 @@ class PageItemController extends Controller
     {
         $pages = Page::select(Page::MINIMAL_COLUMN)->whereHas('page_items')->orderBy('slug', 'asc')->get();
 
-        return view('admin.regularadmin.cms.page-items.index', [
+        return view('admin.page-items.index', [
             'pages' => $pages,
         ]);
     }
@@ -34,7 +34,7 @@ class PageItemController extends Controller
      */
     public function create()
     {
-        return view('admin.regularadmin.cms.page-items.create');
+        return view('admin.page-items.create');
     }
 
     /**
@@ -78,7 +78,7 @@ class PageItemController extends Controller
     {
         $pageItem = PageItem::withTrashed()->find($id);
 
-        return view('admin.regularadmin.cms.page-items.edit', [
+        return view('admin.page-items.edit', [
             'pageItem' => $pageItem,
         ]);
     }

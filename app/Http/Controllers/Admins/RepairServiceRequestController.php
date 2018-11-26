@@ -83,7 +83,7 @@ class RepairServiceRequestController extends Controller
     {
         $repair = RepairServiceRequest::withTrashed()->find($id);
         DB::beginTransaction();
-        $repair = RepairServiceRequest::store($request, $repair);        
+        RepairServiceRequest::store($request, $repair);        
         DB::commit();
 
         return response()->json([

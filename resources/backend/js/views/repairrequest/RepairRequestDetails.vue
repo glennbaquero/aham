@@ -18,11 +18,11 @@
 
                         <!-- Start Row -->
                 		<div class="row">
-
+                            <template>
                     		<div class="col col-xs-12 col-sm-12 col-md-6">
                     			<div class="form-group">
                     				<label for="">Customer Fullname</label>
-                                    <select class="form-control" v-model="item.user_id" name="user">
+                                    <select class="form-control" v-model="item.user_id" name="user" @change="customerChange">
                                         <template v-for="user in users">
                                             <option :value="user.id">{{ user.userdetail.firstname }} {{ user.userdetail.lastname }}</option>
                                         </template>
@@ -33,14 +33,29 @@
                                 <div class="form-group">
                                     <label for="">Customer Registered Product</label>
                                     <select class="form-control select2" multiple name="userproducts[]">
-                                        <template v-for="user in users">
+
+                                        <template v-for="user in users" v-if="userproducts === null">
                                             <option v-for="userproduct in user.userproducts" 
-                                                    v-if="userproduct.user_id == item.user_id" 
-                                                    :value="user.id"
+                                                    v-if="userproduct.user_id === item.user_id" 
+                                                    :value="userproduct.id"
                                                     >{{ userproduct.product.name }}
                                             </option>
                                         </template>
+
+                                        <template v-for="userproduct in userproducts" v-if="userproducts !== null">
+                                            <option :value="userproduct.product.id" :selected="userproduct.product.id">
+                                                {{ userproduct.product.name }}
+                                            </option>
+                                        </template>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                     <template v-for="user in users" v-if="user.id === item.user_id">
+                                        <label for="">Address</label>
+                                        <input disabled="false" type="text" class="form-control input-sm" :value="user.userdetail.address">
+                                    </template>
                                 </div>
                             </div>
                             <div class="col col-xs-12 col-sm-12 col-md-12">
@@ -59,11 +74,29 @@
                             <div class="col col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Assign Repair Man</label>
-                                    <select class="form-control" v-model="item.repair_men_id" name="repair_man_id">
-                                        <template v-for="repairman in repairmen">
-                                            <option v-if="repairman.status === 0" :value="repairman.id">{{ repairman.firstname }} {{ repairman.lastname }}</option>
+                                    <select class="form-control" v-model="item.repair_men_id" name="repair_men_id">
+
+                                        <template v-for="repairman in repairmen" v-if="repairman.status === 0">
+                                            <option :class="repairman.status === 1 ? 'text-danger' : ''" 
+                                                    :value="repairman.id" 
+                                                    :selected="repairman.status === 1 ? true : false">
+
+                                                    {{ repairman.firstname }} {{ repairman.lastname }} 
+
+                                            </option>
                                         </template>
                                     </select>
+
+                                   <br>
+                
+                                    <label :hidden="hide">Assigned Repair Man</label>
+                                 
+                                    <template v-for="repairman in repairmen">
+                                        <p v-if="item.repairman === repairman.id" :hidden="hide">
+                                            {{ repairman.firstname+' '+repairman.lastname }} 
+                                        </p>
+                                    </template>
+                                    <input type="text" name="repairman" v-model="item.repairman" hidden>
                                 </div>
                             </div>
 
@@ -73,7 +106,18 @@
                                     <input v-model="item.cost" :disabled="editable" name="repair_cost" type="number" min="1" class="form-control input-sm">
                                 </div>
                             </div>
-                            
+
+                            <div class="col col-xs-12 col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Status</label>
+                                    <select class="form-control" name="status">
+                                        <option value="0" :selected="item.status === 0 ? true : false">PENDING</option>
+                                        <option value="1" :selected="item.status === 1 ? true : false">ON GOING</option>
+                                        <option value="2" :selected="item.status === 2 ? true : false">COMPLETE</option>
+                                    </select>
+                                </div>
+                            </div>
+                            </template>
                         </div>
                         <!-- End Row -->
                         
@@ -98,6 +142,7 @@ export default {
         fetchurl: String,
         disabled: Boolean,
         model: {},
+        hide: Boolean,
     },
 
     components: {
@@ -113,9 +158,13 @@ export default {
     data() {
     	return {
             loading: false,
-            item: {},
+            item: {
+                repairman:null,
+            },
             users: [],
             repairmen: [],
+            userproducts: [],
+           
     	}
     },
 
@@ -153,6 +202,8 @@ export default {
                 this.item = data.item ? data.item : {};
                 this.users = data.users;
                 this.repairmen = data.repairmen;
+                this.userproducts = data.userproducts;
+                this.item.repairman = data.item.repair_men_id;
     		}).catch(error => {
                 console.log(error);
     		}).then(() => {
@@ -163,6 +214,10 @@ export default {
 
         load(value) {
             this.loading = value;
+        },
+
+        customerChange() {
+            this.userproducts = null;
         },
     },
 }

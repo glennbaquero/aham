@@ -15,7 +15,7 @@ class RepairMan extends Model
     protected $dates = ['deleted_at'];
 
     public function request() {
-    	return $this->belongsTo(RepairServiceRequest::class);
+    	return $this->hasMany(RepairServiceRequest::class);
     }
 
     

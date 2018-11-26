@@ -71,10 +71,6 @@ class Product extends Model
         return '#' . $this->id . ' ' . $this->model;
     }
 
-    public function renderView() {
-    	return route('regular.product.edit', $this->id);
-    }
-
     public function renderTableImage() {
         return asset('storage/'.$this->images()->first()['image']);
     }
@@ -83,16 +79,19 @@ class Product extends Model
         return $this->images()->get();
     }
 
-    public function renderProductImage()
-    {
-        return $this->images;
+    public function renderProductImage() {
+        return $this->image;
+    }
+
+    public function renderView() {
+        return route('admin.product.edit', $this->id);
     }
 
     public function renderDelete() {
-        return route('regular.product.destroy', $this->id);
+        return route('admin.product.destroy', $this->id);
     }
 
     public function renderRestore() {
-        return route('regular.product.restore', $this->id);
+        return route('admin.product.restore', $this->id);
     }
 }

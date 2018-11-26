@@ -40,8 +40,8 @@
 
     		<!-- DATATABLE -->
     		<datatable ref="datatable"
-            :headers="['#', 'Name', 'Created At']"
-            :columns="['id', 'name', 'created_at']"
+            :headers="['#', 'Model', 'Name', 'Serial Number', 'Contract Number', 'Complaint', 'Repair Order Date', 'Status']"
+            :columns="['id', 'model', 'users', 'serial_number', 'contract_number', 'complaint', 'created_at', 'status']"
     		:filters="filters"
     		
     		:fetchurl="fetchurl"
@@ -53,19 +53,44 @@
     		>
 
     			<tbody slot="body">
-    				<tr v-for="item in items">
-                        <td>{{ item.id }}</td>
-    					<td>{{ item.name }}</td>
-    					<td>{{ item.created_at }}</td>
-                        <td>
-                            <center>
-                                <a :href="item.actions.view" 
-                                class="btn btn-xs btn-primary">
-                                    <span class="fa fa-eye"></span>
-                                </a>
-                            </center>                            
-                        </td>                        
-    				</tr>
+                    <template v-for="item in items">
+                        <tr  v-for="model in item.model">
+                            <td>{{ item.id }}</td>
+                            <td>
+                                <img v-for="image in model.product.images" class="img-thumbnail" :src="renderImage(image.image)" width="75" height="75">
+                                {{ model.product.model }}
+                            </td>
+                            <td>
+                                {{ item.users.userdetail.firstname }} {{ item.users.userdetail.lastname }}        
+                            </td>
+                            <td>{{ model.serial_number }}</td>
+                            <td>{{ model.contract_number }}</td>
+        					<td v-html="item.complaint"></td>
+                            <td>{{ item.created_at }}</td>
+        					<td>
+                                <span :class="
+                                            item.status === 0 ? ' badge pull-right btn-danger' : 
+                                            ( item.status === 1 ? ' badge pull-right btn-primary' : 
+                                            ( item.status === 2 ? ' badge pull-right btn-success' : '' ) )">
+
+                                    {{ 
+                                    item.status === 0 ? 'PENDING' : 
+                                    ( item.status === 1 ? 'ONGOING' : 
+                                    ( item.status === 2 ? 'COMPLETE' : '' ) ) }}
+                                    
+                                </span>
+                                
+                            </td>
+                            <td>
+                                <center>
+                                    <a :href="item.actions.view" 
+                                    class="btn btn-xs btn-primary">
+                                        <span class="fa fa-eye"></span>
+                                    </a>
+                                </center>                            
+                            </td> 
+                        </tr>
+                     </template>                       
     			</tbody>
 
     		</datatable>
@@ -172,6 +197,10 @@
     		load: function(val) {
     			this.loading = val;
     		},
+
+            renderImage(image) {
+                return 'storage/' + image;
+            }
     	}
     }
 </script>

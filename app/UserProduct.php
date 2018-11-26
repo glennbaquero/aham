@@ -17,11 +17,11 @@ class UserProduct extends Model
 
 
     public function user() {
-        return $this->belongsTo(User::class)->with('product');
+        return $this->belongsTo(User::class)->with('userdetail');
     }
 
     public function product() {
-    	return $this->belongsTo(Product::class);
+    	return $this->belongsTo(Product::class)->with('images');
     }
 
     public function servicerequest() {

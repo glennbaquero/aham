@@ -47,8 +47,11 @@ class RepairServiceRequestFetchController extends FetchController
         foreach($items as $item) {
             array_push($result, array(
                 'id' => $item->id,
-                'name' => $item->name,
+                'model' => $item->userproduct,
+                'users' => $item->user,
+                'complaint' => $item->complaint,
                 'created_at' => $item->created_at->format('M d, Y (H:i:s)'),
+                'status' => $item->status,
 
                 'actions' => array(
                     'view' => $item->renderView()
@@ -61,10 +64,13 @@ class RepairServiceRequestFetchController extends FetchController
 
     public function fetchItem($id = null)
     {
-        $item = null;
+        $item = null;  
+
+        $userproducts = null;
 
         if ($id) {
-            $item = RepairServiceRequest::with('user','repairman')->withTrashed()->find($id);
+            $item = RepairServiceRequest::with('user', 'repairman')->withTrashed()->find($id);
+            $userproducts = $item->userproduct()->get();
         }
         
         $users = User::with('userdetail', 'userproducts')->get();
@@ -73,7 +79,8 @@ class RepairServiceRequestFetchController extends FetchController
         return response()->json([
             'item' => $item,
             'users' => $users,
-            'repairmen' => $repairmen
+            'repairmen' => $repairmen,
+            'userproducts' => $userproducts !== null ? $userproducts : null,
         ]);
     }
 }

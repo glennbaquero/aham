@@ -13,12 +13,12 @@ class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
- *
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('admin.superadmin.roles.index');
+        return view('admin.roles.index');
     }
 
     /**
@@ -28,7 +28,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('admin.superadmin.roles.create');
+        return view('admin.roles.create');
     }
 
     /**
@@ -71,8 +71,8 @@ class RoleController extends Controller
     public function edit($id)
     {
 
-        return view('admin.superadmin.roles.edit', [
-            'role'=>Role::withTrashed()->find($id)
+        return view('admin.roles.edit', [
+            'role' => Role::withTrashed()->find($id)
         ]);
     }
 

@@ -2,10 +2,10 @@
 @section('content')
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>Role</h1>
+		<h1>Types</h1>
 		<ol class="breadcrumb">
 			<li>
-				<a href="{{ route('admin.roles') }}"><i class="fas fa-user-shield"></i> Administrator</a>
+				<a href="{{ route('admin.roles') }}"><i class="fas fa-user-shield"></i> Types</a>
 			</li>
 			<li class="active">
 				Add
@@ -17,16 +17,13 @@
 			<div class="col-xs-12">
 				<!-- /.box-header -->
 					<form @submit.prevent="formSubmit" 
-						data-action="{{ route('regular.product.store') }}" 
-						data-ref="product-details"
+						data-action="{{ route('admin.types.store') }}" 
+						data-ref="type-details"
 						action="#" method="GET">
 
-						<product-details ref="product-details"
-						:fetchurl="'{{ route('regular.products.fetch') }}'"
-						:imageurl="'{{ route('regular.image.store') }}'"
-						:categories="{{ $categories }}"
-						:types="{{ $types }}">
-						</product-details>
+						<type-details ref="type-details"
+						:fetchurl="'{{ route('admin.types.fetch') }}'">
+						</type-details>
 
 						<div class="row">
 							<div class="col col-xs-12">

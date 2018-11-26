@@ -17,7 +17,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.superadmin.administrator.index');
+        return view('admin.administrator.index');
     }
 
     /**
@@ -27,7 +27,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admin.superadmin.administrator.create');
+        return view('admin.administrator.create');
     }
 
     /**
@@ -68,7 +68,7 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.superadmin.administrator.edit', [
+        return view('admin.administrator.edit', [
             'admin' => Admin::withTrashed()->find($id)
         ]);
     }

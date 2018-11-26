@@ -9,7 +9,7 @@
         <small>Manage Pages</small>
     </h1>
     <ol class="breadcrumb">
-        <li class="active"><a href="{{ route('pages.index') }}"><i class="fas fa-file"></i> Pages</a></li>
+        <li class="active"><a href="{{ route('admin.pages.index') }}"><i class="fas fa-file"></i> Pages</a></li>
     </ol>
 
 </section>
@@ -19,7 +19,7 @@
 
     <div class="row mb-4">
         <div class="col-md-12">
-            <a href="{{ route('pages.create') }}" class="btn btn-primary btn-sm">
+            <a href="{{ route('admin.pages.create') }}" class="btn btn-primary btn-sm">
                 <i class="fa fa-plus mr-1"></i> Add Page
             </a>
         </div>
@@ -43,7 +43,7 @@
                         
                         <page-table ref="pages"
                         :autofetch="true"
-                        :fetchurl="'{{ route('pages.fetch') }}'"
+                        :fetchurl="'{{ route('admin.pages.fetch') }}'"
                         ></page-table>
 
                     </div>
@@ -51,7 +51,7 @@
                         
                         <page-table ref="pages-archive"
                         :autofetch="false"
-                        :fetchurl="'{{ route('pages.fetch.archive') }}'"
+                        :fetchurl="'{{ route('admin.pages.fetch.archive') }}'"
                         ></page-table>
 
                     </div>                  

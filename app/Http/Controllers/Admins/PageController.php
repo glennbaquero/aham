@@ -19,7 +19,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        return view('admin.regularadmin.cms.pages.index');
+        return view('admin.pages.index');
     }
 
     /**
@@ -29,7 +29,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        return view('admin.regularadmin.cms.pages.create');
+        return view('admin.pages.create');
     }
 
     /**
@@ -73,7 +73,7 @@ class PageController extends Controller
     {
         $page = Page::withTrashed()->find($id);
 
-        return view('admin.regularadmin.cms.pages.edit', [
+        return view('admin.pages.edit', [
             'page' => $page,
         ]);
     }
