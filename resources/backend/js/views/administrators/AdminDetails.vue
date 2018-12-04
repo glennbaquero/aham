@@ -19,21 +19,21 @@
                         <!-- Start Row -->
                 		<div class="row">
 
-                    		<div class="col col-xs-12 col-sm-12 col-md-6">
+                    		<div class="col col-xs-12 col-sm-12 col-md-4">
                     			<div class="form-group">
                     				<label for="">Firstname</label>
                     				<input v-model="item.firstname" :disabled="editable" name="firstname" type="text" class="form-control input-sm" placeholder="Firstname">
                     			</div>
                     		</div>
 
-                            <div class="col col-xs-12 col-sm-12 col-md-6">
+                            <div class="col col-xs-12 col-sm-12 col-md-4">
                                 <div class="form-group">
                                     <label for="">Lastname</label>
                                     <input v-model="item.lastname" :disabled="editable" name="lastname" type="text" class="form-control input-sm" placeholder="Lastname">
                                 </div>
                             </div>
 
-                            <div class="col col-xs-12 col-sm-12 col-md-12">
+                            <div class="col col-xs-12 col-sm-12 col-md-4">
                                 <div class="form-group">
                                     <label for="">Email</label>
                                     <input v-model="item.email" :readonly="disable" type="email"  name="email" class="form-control input-sm" placeholder="Email">
@@ -42,7 +42,7 @@
 
                             <div class="col col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label for="">Role</label>
+                                    <label for="">Role <small>(If no role is specified the user will be able to access everything)</small></label>
                                     <select v-model="item.role_ids" :data-value="item.role_ids" name="roles[]" class="form-control input-sm select2" multiple>
                                         <option v-for="role in roles" :value="role.id">{{ role.name }}</option>
                                     </select>

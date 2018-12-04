@@ -63,7 +63,8 @@ Route::name('admin.')
 	/****************
 	 * PERMISSION
 	 ****************/
-	Route::get('permission', 'PermissionController@index')->name('permission');
+	Route::post('permissions/update/{id}', 'PermissionController@update')->name('permissions.update');
+	Route::post('permission/fetch/role/{id}', 'PermissionFetchController@fetchItem')->name('permissions.fetch');
 
 
 	/****************

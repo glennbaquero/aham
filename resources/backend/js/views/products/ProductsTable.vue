@@ -45,7 +45,7 @@
     		:filters="filters"
     		
     		:fetchurl="fetchurl"
-    		:actionable="true"
+    		:actionable="actionable"
     		:selectable="false"
 
     		@loaded="init"
@@ -60,7 +60,7 @@
                         <td>{{ item.name }}</td>
     					<td>{{ item.extended_amount }}</td>
     					<td>{{ item.created_at }}</td>
-                        <td>
+                        <td v-show="actionable">
                             <center>
                                 <a :href="item.actions.view" 
                                 class="btn btn-xs btn-primary">
@@ -94,7 +94,10 @@
 
     	props: {
     		fetchurl: String,
-            autofetch: Boolean
+            autofetch: Boolean,
+            actionable: {
+                default: true,
+            },
     	},
 
     	components: {

@@ -28,12 +28,7 @@ class Role extends SpatieRole
             $item = static::create($vars);
         } else {
             $item->update($vars);
-            foreach ($request->role_has_permissions as $role) {
-                $item->syncPermissions($request->role_has_permissions);
-            }
         }
-
-        
 
         return $item;
     }

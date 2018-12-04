@@ -138,7 +138,6 @@
              * Adds a "Action" column at the end of the table
              */
             actionable: {
-                type: Boolean,
                 default: true
             },
 

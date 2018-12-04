@@ -20,7 +20,12 @@ class CreatePermissionTables extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('guard_name');
+
+            /* Custom Fields */
+            $table->integer('category_id')->nullable();
+            $table->string('label')->nullable();
             $table->text('description')->nullable();
+
             $table->softDeletes();
             $table->timestamps();
         });

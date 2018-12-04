@@ -9,7 +9,11 @@
 			</li>
 		</ol>
 		<br>
-		<a href="{{ route('admin.product.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Product</a>
+	
+		@if ($checker->permission->can(['admin.product.create']))
+			<a href="{{ route('admin.product.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Product</a>
+		@endif
+
 	</section>
 	<section class="content">
 		<div class="row">
@@ -29,6 +33,7 @@
 	                    <div class="tab-pane active" id="pages">
 	                        
 	                        <products-table ref="pages"
+	                        	:actionable="'{{ $checker->permission->can(['admin.product.edit']) }}'"
 								:autofetch="true"
 								:fetchurl="'{{ route('admin.products.fetch') }}'"
 							></products-table>
@@ -37,7 +42,7 @@
 	                    <div class="tab-pane" id="pages-product">
 	                        
 							 <products-table ref="pages-product"
-								:autofetch="false"
+								:actionable="'{{ $checker->permission->can(['admin.product.edit']) }}'"
 								:fetchurl="'{{ route('admin.products.archive') }}'"
 							></products-table>
 
