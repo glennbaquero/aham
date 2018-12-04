@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserProductsTable extends Migration
+class CreateInvoicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateUserProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_products', function (Blueprint $table) {
+        Schema::create('invoices', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
-            $table->integer('product_id')->unsigned()->index();
             $table->string('serial_number')->nullable();
             $table->date('purchase_date');
             $table->string('contract_number');
@@ -24,7 +23,6 @@ class CreateUserProductsTable extends Migration
             $table->date('date_of_purchase');
             $table->date('expiration_date');
             $table->date('applied_date');
-            $table->decimal('amount');
             $table->string('application_number');
             $table->string('pytdet')->nullable();
             $table->string('dcode')->nullable();
@@ -41,6 +39,6 @@ class CreateUserProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_products');
+        Schema::dropIfExists('invoices');
     }
 }

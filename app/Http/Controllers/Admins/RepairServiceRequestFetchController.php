@@ -47,9 +47,9 @@ class RepairServiceRequestFetchController extends FetchController
         foreach($items as $item) {
             array_push($result, array(
                 'id' => $item->id,
-                'model' => $item->userproduct,
+                'model' => $item->invoice,
                 'users' => $item->user,
-                'complaint' => $item->complaint,
+                'requests' => $item,
                 'created_at' => $item->created_at->format('M d, Y (H:i:s)'),
                 'status' => $item->status,
 
@@ -70,15 +70,17 @@ class RepairServiceRequestFetchController extends FetchController
 
         if ($id) {
             $item = RepairServiceRequest::with('user', 'repairman')->withTrashed()->find($id);
-            $userproducts = $item->userproduct()->get();
+            $userproducts = $item->invoice()->get();
         }
         
-        $users = User::with('userdetail', 'userproducts')->get();
+        $users = User::with('invoices')->get();
         $repairmen = RepairMan::all();
+        $statuses = RepairServiceRequest::getStatus();
 
         return response()->json([
             'item' => $item,
             'users' => $users,
+            'statuses' => $statuses,
             'repairmen' => $repairmen,
             'userproducts' => $userproducts !== null ? $userproducts : null,
         ]);

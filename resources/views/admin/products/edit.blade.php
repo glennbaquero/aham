@@ -2,13 +2,13 @@
 @section('content')
 	<div class="content-wrapper">
 	<section class="content-header">
-		<h1>Product</h1>
+		<h1>{{ $product->renderName() }} <small>(Update product information and details)</small></h1>
 		<ol class="breadcrumb">
 			<li>
-				<a href="{{ route('admin.products.index') }}"><i class="fas fa-user-shield"></i> Product</a>
+				<a href="{{ route('admin.products.index') }}"><i class="fas fa-boxes"></i> Product</a>
 			</li>
 			<li class="active">
-				Add
+				{{ $product->renderName() }}
 			</li>
 		</ol>
 </section>

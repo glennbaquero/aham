@@ -19,49 +19,26 @@
                         <!-- Start Row -->
                 		<div class="row">
                             
-                    		<div class="col col-xs-12 col-sm-12 col-md-6">
+                    		<div class="col col-xs-12 col-sm-12 col-md-4">
                     			<div class="form-group">
                     				<label for="">Model</label>
                     				<input v-model="item.model" :disabled="editable" name="model" type="text" class="form-control input-sm" placeholder="Model">
                     			</div>
                     		</div>
 
-                            <div class="col col-xs-12 col-sm-12 col-md-6">
+                            <div class="col col-xs-12 col-sm-12 col-md-4">
                                 <div class="form-group">
                                     <label for="">Name</label>
                                     <input v-model="item.name" :disabled="editable" name="name" type="text" class="form-control input-sm" placeholder="Name">
                                 </div>
                             </div>
 
-                            <div class="col col-xs-12 col-sm-12 col-md-6">
+                            <div class="col col-xs-12 col-sm-12 col-md-4">
                                 <div class="form-group">
                                     <label for="">Extended Amount</label>
                                     <input v-model="item.extended_amount" :disabled="editable" name="extended_amount" type="number" min="1" class="form-control input-sm" placeholder="Extended Amount">
                                 </div>
                             </div>
-
-                            <div class="col col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label for="">Description</label>
-                                    <textarea name="description" class="content">{{ item.description }}</textarea>
-                                    <!-- <input v-model="item.description" :disabled="editable" name="description" type="text" min="1" class="ckeditor form-control input-sm" placeholder="Description"> -->
-                                </div>
-                            </div>
-
-                            <div class="col col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label for="">Specification</label>
-                                    <textarea name="specification" class="content specification" >{{ item.specification }}</textarea>
-                                    <!-- <input v-model="item.specification" :disabled="editable" name="specification" type="text" min="1" class="ckeditor form-control input-sm" placeholder="Specification"> -->
-                                </div>
-                            </div>
-
-                            <!-- <div class="col col-xs-12 col-sm-12 col-md-6">
-                                <div class="form-group">
-                                    <label>Date</label>
-                                    <input :data-value="item.edate" v-model="item.edate" :disabled="editable" name="edate" type="text" class="flatpickr form-control input-sm" placeholder="Date">
-                                </div>
-                            </div> -->
 
                             <div class="col col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
@@ -88,17 +65,39 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col col-xs-12 col-sm-12 col-md-6">
+                            <div class="col col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="">Product Images <small>(allows multiple images)</small></label>
                                     <input type="file" name="images[]" class="form-control input-sm" multiple>
                                 </div>
                             </div>
-
                             
-                            <div class="col col-xs-12 col-sm-12 col-md-12">
+                            <div class="col col-xs-12 col-sm-12 col-md-12 pb-3">
                                 <images :items="item.photos" @on-delete="init"></images>
                             </div>
+
+                            <div class="col col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="">Description</label>
+                                    <textarea name="description" class="content">{{ item.description }}</textarea>
+                                    <!-- <input v-model="item.description" :disabled="editable" name="description" type="text" min="1" class="ckeditor form-control input-sm" placeholder="Description"> -->
+                                </div>
+                            </div>
+
+                            <div class="col col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="">Specification</label>
+                                    <textarea name="specification" class="content specification" >{{ item.specification }}</textarea>
+                                    <!-- <input v-model="item.specification" :disabled="editable" name="specification" type="text" min="1" class="ckeditor form-control input-sm" placeholder="Specification"> -->
+                                </div>
+                            </div>
+
+                            <!-- <div class="col col-xs-12 col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label>Date</label>
+                                    <input :data-value="item.edate" v-model="item.edate" :disabled="editable" name="edate" type="text" class="flatpickr form-control input-sm" placeholder="Date">
+                                </div>
+                            </div> -->
 
                             <!-- <div class="col col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">

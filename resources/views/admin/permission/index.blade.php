@@ -12,7 +12,7 @@
 			</li>
 		</ol>
 		<br>
-		<a href="" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Permission</a>
+		<a href="" class="btn btn-primary"><i class="fas fa-plus"></i> Add Permission</a>
 	</section>
 	<section class="content">
 		<div class="row">

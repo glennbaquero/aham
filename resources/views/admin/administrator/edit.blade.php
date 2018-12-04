@@ -2,13 +2,13 @@
 @section('content')
 	<div class="content-wrapper">
 	<section class="content-header">
-		<h1>Admin</h1>
+		<h1>{{ $admin->renderName() }} <small>(Update admin information and details)</small></h1>
 		<ol class="breadcrumb">
 			<li>
-				<a href="{{ route('admin.administrator') }}"><i class="fas fa-user-shield"></i> Administrator</a>
+				<a href="{{ route('admin.administrator') }}"><i class="fas fa-user-shield"></i> Administrators</a>
 			</li>
 			<li class="active">
-				Add
+				{{ $admin->renderName() }}
 			</li>
 		</ol>
 </section>

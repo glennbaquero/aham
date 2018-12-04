@@ -26,7 +26,7 @@ class AdminRequest extends FormRequest
         return [
             'firstname' => 'required',
             'lastname' => 'required',
-            'email' => 'required',
+            'email' => 'required|email',
 
         ];
     }

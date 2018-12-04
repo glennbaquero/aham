@@ -1,18 +1,16 @@
 @extends('admin-master')
+
 @section('content')
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>Category <small>(Index)</small></h1>
+		<h1>Category <small>(Manage categories)</small></h1>
 		<ol class="breadcrumb">
-			<li>
-				<a href="{{ route('admin.categories.index') }}"><i class="fas fa-user-shield"></i> Administrator</a>
-			</li>
 			<li class="active">
-				Index
+				<a href="{{ route('admin.categories.index') }}"><i class="fas fa-archive"></i> Categories</a>
 			</li>
 		</ol>
 		<br>
-		<a href="{{ route('admin.categories.create') }}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Categories</a>
+		<a href="{{ route('admin.categories.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Category</a>
 	</section>
 	<section class="content">
 		<div class="row">
@@ -21,7 +19,7 @@
 				<div class="box box-widget nav-tabs-custom table-responsive">
 	                <ul class="nav nav-tabs">
 	                    <li class="active">
-	                        <a href="#pages" data-toggle="tab"><h5><b>Category</b></h5></a>
+	                        <a href="#pages" data-toggle="tab"><h5><b>Categories</b></h5></a>
 	                    </li>
 	                    <li>
 	                        <a @click="runDatatable('pages-category')" href="#pages-category" data-toggle="tab"><h5><b>Archive</b></h5></a>

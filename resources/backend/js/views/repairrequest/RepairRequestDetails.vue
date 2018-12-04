@@ -24,7 +24,7 @@
                     				<label for="">Customer Fullname</label>
                                     <select class="form-control" v-model="item.user_id" name="user" @change="customerChange">
                                         <template v-for="user in users">
-                                            <option :value="user.id">{{ user.userdetail.firstname }} {{ user.userdetail.lastname }}</option>
+                                            <option :value="user.id">{{ user.firstname }} {{ user.lastname }}</option>
                                         </template>
                                     </select>
                     			</div>
@@ -33,13 +33,14 @@
                                 <div class="form-group">
                                     <label for="">Customer Registered Product</label>
                                     <select class="form-control select2" multiple name="userproducts[]">
-
+                                        
                                         <template v-for="user in users" v-if="userproducts === null">
-                                            <option v-for="userproduct in user.userproducts" 
-                                                    v-if="userproduct.user_id === item.user_id" 
-                                                    :value="userproduct.id"
-                                                    >{{ userproduct.product.name }}
-                                            </option>
+                                            <template v-for="invoice in user.invoices" v-if="invoice.user_id === item.user_id">
+                                                <option v-for="item in invoice.invoice_items"
+                                                    :value="invoice.id">
+                                                    {{ item.get_product.name }}
+                                                </option>
+                                            </template>
                                         </template>
 
                                         <template v-for="userproduct in userproducts" v-if="userproducts !== null">
@@ -47,6 +48,7 @@
                                                 {{ userproduct.product.name }}
                                             </option>
                                         </template>
+
                                     </select>
                                 </div>
                             </div>
@@ -54,7 +56,7 @@
                                 <div class="form-group">
                                      <template v-for="user in users" v-if="user.id === item.user_id">
                                         <label for="">Address</label>
-                                        <input disabled="false" type="text" class="form-control input-sm" :value="user.userdetail.address">
+                                        <input disabled="false" type="text" class="form-control input-sm" :value="user.address">
                                     </template>
                                 </div>
                             </div>
@@ -111,9 +113,10 @@
                                 <div class="form-group">
                                     <label for="">Status</label>
                                     <select class="form-control" name="status">
-                                        <option value="0" :selected="item.status === 0 ? true : false">PENDING</option>
-                                        <option value="1" :selected="item.status === 1 ? true : false">ON GOING</option>
-                                        <option value="2" :selected="item.status === 2 ? true : false">COMPLETE</option>
+                                        <option v-for="status in statuses" 
+                                            :value="status.value" 
+                                            :selected="status.value ===  item.status ? true : false"
+                                            >{{ status.label }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -164,7 +167,7 @@ export default {
             users: [],
             repairmen: [],
             userproducts: [],
-           
+            statuses: {},
     	}
     },
 
@@ -199,6 +202,7 @@ export default {
     		axios.post(this.fetchurl)
     		.then(response => {
                 const data = response.data;
+                this.statuses = data.statuses;
                 this.item = data.item ? data.item : {};
                 this.users = data.users;
                 this.repairmen = data.repairmen;

@@ -37,7 +37,7 @@ class Type extends Model
      */
 
     public function renderName() {
-        return '#' . $this->id . ' ' . $this->model;
+        return '#' . $this->id . ' ' . $this->name;
     }
 
     public function renderView() {

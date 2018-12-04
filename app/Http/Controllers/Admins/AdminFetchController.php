@@ -60,16 +60,18 @@ class AdminFetchController extends FetchController
     public function fetchItem($id = null)
     {
         $item = null;
+        $roleIds = [];
 
         if ($id) {
             $item = Admin::withTrashed()->find($id);
-            // $item->permissions = $item->permissions()->pluck('id')->toArray();
+            $roleIds = $item->roles()->pluck('id')->toArray();
         }
 
         $roles = Role::all();
 
         return response()->json([
             'item' => $item,
+            'roleIds' => $roleIds,
             'roles' => $roles
         ]);
     }

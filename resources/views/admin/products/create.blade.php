@@ -2,13 +2,13 @@
 @section('content')
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>Role</h1>
+		<h1>Add Product <small>(Make a new product)</small></h1>
 		<ol class="breadcrumb">
 			<li>
-				<a href="{{ route('admin.roles') }}"><i class="fas fa-user-shield"></i> Administrator</a>
+				<a href="{{ route('admin.products.index') }}"><i class="fas fa-boxes"></i> Products</a>
 			</li>
 			<li class="active">
-				Add
+				New Product
 			</li>
 		</ol>
 </section>

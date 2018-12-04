@@ -2,17 +2,14 @@
 @section('content')
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>Slider <small>(Index)</small></h1>
+		<h1>Sliders <small>(Manage Sliders)</small></h1>
 		<ol class="breadcrumb">
-			<li>
-				<a href="{{ route('admin.carousel.index') }}"><i class="fas fa-user-shield"></i> Slider</a>
-			</li>
 			<li class="active">
-				Index
+				<a href="{{ route('admin.carousel.index') }}"><i class="fas fa-images"></i> Sliders</a>
 			</li>
 		</ol>
 		<br>
-		<a href="{{ route('admin.carousel.create') }}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Slider</a>
+		<a href="{{ route('admin.carousel.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Slider</a>
 	</section>
 	<section class="content">
 		<div class="row">

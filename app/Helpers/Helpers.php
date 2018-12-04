@@ -61,4 +61,20 @@ class Helpers
 
         return $text;
     }
+
+    public static function generateRandomString($length = 20, $additionalString = null)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charLength = strlen($characters);
+
+        $randomString = null;
+
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charLength - 1)];
+        }
+
+        $randomString .= $additionalString;
+        
+        return $randomString;
+    }
 }

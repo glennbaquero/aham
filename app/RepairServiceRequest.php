@@ -14,16 +14,20 @@ class RepairServiceRequest extends Model
     protected $guarded = [];
     protected $dates = ['deleted_at'];
 
+    const PENDING = 10;
+    const ONGOING = 20;
+    const COMPLETED = 30;
+
     public function user() {
-    	return $this->belongsTo(User::class)->with('userdetail','requests', 'userproducts');
+    	return $this->belongsTo(User::class);
     }
 
     public function repairman() {
     	return $this->belongsTo(RepairMan::class);
     }
 
-    public function userproduct() {
-        return $this->belongsToMany(UserProduct::class, 'service_request', 'request_id', 'user_product_id')->with('product', 'user');
+    public function invoice() {
+        return $this->belongsToMany(InvoiceItem::class, 'service_request', 'request_id', 'user_product_id')->with('product', 'invoice');
     }
 
     public static function store($request, $item = null) {
@@ -58,21 +62,31 @@ class RepairServiceRequest extends Model
         
         RepairMan::find($request->repair_men_id)->update(['status'=>1]);
 
-        $userproduct = UserProduct::find($request->userproducts);
+        $userproduct = Invoice::find($request->userproducts);
 
         foreach ($request->userproducts as $key) {
-            $item->userproduct()->sync($userproduct);
+            $item->invoice()->sync($userproduct);
         }
         
         return $item;
+    }
+
+    public static function getStatus() {
+        return [
+            ['value' => static::PENDING, 'label' => 'PENDING'],
+            ['value' => static::ONGOING, 'label' => 'ONGOING'],
+            ['value' => static::COMPLETED, 'label' => 'COMPLETED'],
+        ];
     }
 
     /*
      * Render
      */
 
-     public function renderTableImage() {
-        return asset('storage/'.$this->images()->first()['image']);
+     public function renderTableImage($column = 'image') {
+        $path = null;
+        if (count($this->images)) { $path = $this->images()->first()->renderTableImage($column); }
+        return $path;
     }
 
     public function renderName() {

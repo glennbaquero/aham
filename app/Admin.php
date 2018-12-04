@@ -5,9 +5,6 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-use Laravel\Scout\Searchable;
-use App\Traits\ActivityLogTrait;
-
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -15,7 +12,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\ResetPasswordNotification;
 use Spatie\Permission\Traits\HasRoles;
 
-use Hash;
+use Illuminate\Support\Facades\Password;
+use Laravel\Scout\Searchable;
+
+use App\Traits\ActivityLogTrait;
+
+use App\Helpers;
 
 class Admin extends Authenticatable
 {
@@ -24,36 +26,6 @@ class Admin extends Authenticatable
 
     protected $guarded = [];
 	protected $guard_name = 'admin';
-
-	public static function store($request, $item = null) 
-	{
-		$password = Hash::make($request->get('password'));
-
-		$vars = $request->only(['firstname', 'lastname', 'email']);
-
-		if(!$item) {
-			
-			$item = static::create([
-				'firstname' => $request->get('firstname'),
-				'lastname' => $request->get('lastname'),
-				'email' => $request->get('email'),
-				'password' => $password,
-			]);
-		} else {
-			$item->update([
-				'firstname' => $request->get('firstname'),
-				'lastname' => $request->get('lastname')
-			]);
-
-		}
-
-		foreach ($request->roles as $role) {
-			$item->syncRoles($request->roles);
-		}
-		
-		return $item;
-		
-	}
 
     /**
 	 * Send the password reset notification.
@@ -73,6 +45,28 @@ class Admin extends Authenticatable
         ];
     }
 
+    /**
+     * @Methods
+     */
+    public static function store($request, $item = null) 
+	{
+		if(!$item) {
+			$vars = $request->only(['firstname', 'lastname', 'email']);
+			$vars['password'] = Helpers::generateRandomString();
+			$item = static::create($vars);
+			$broker = Password::broker('admins');
+			$broker->sendResetLink($request->only('email'));
+		} else {
+			$vars = $request->only(['firstname', 'lastname']);
+			$item->update($vars);
+		}
+		$roles = Role::whereIn('id', $request->input('roles'))->get();
+		$item->syncRoles($roles);
+
+		return $item;
+		
+	}
+
     /*
      * Renders
      */
@@ -82,7 +76,7 @@ class Admin extends Authenticatable
 	} 
 
     public function renderName() {
-        return '#' . $this->id . ' ' . $this->name;
+        return '#' . $this->id . ' ' . $this->renderFullname();
     }
 
     public function renderView() {

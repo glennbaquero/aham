@@ -17,10 +17,10 @@ class UserProduct extends Model
 
 
     public function user() {
-        return $this->belongsTo(User::class)->with('userdetail');
+        return $this->belongsTo(User::class, 'user_id')->with('userdetail');
     }
 
-    public function product() {
+    public function products() {
     	return $this->belongsTo(Product::class)->with('images');
     }
 

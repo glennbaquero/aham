@@ -41,6 +41,10 @@ class Product extends Model
         $this->product_images()->create($request);
     }
 
+    public function invoice_items() {
+        return $this->hasMany(InvoiceItem::class, 'product_id');
+    }
+
     public static function store($request, $item = null) {
         $vars = $request->only(['name', 'model', 'extended_amount', 'description', 'specification', 'category_id', 'type_id']);
 
@@ -71,16 +75,10 @@ class Product extends Model
         return '#' . $this->id . ' ' . $this->model;
     }
 
-    public function renderTableImage() {
-        return asset('storage/'.$this->images()->first()['image']);
-    }
-
-    public function renderAllImage() {
-        return $this->images()->get();
-    }
-
-    public function renderProductImage() {
-        return $this->image;
+    public function renderFilePath($column = 'image') {
+        $path = null;
+        if (count($this->images)) { $path = $this->images()->first()->renderFilePath($column); }
+        return $path;
     }
 
     public function renderView() {

@@ -54,21 +54,20 @@
 
     			<tbody slot="body">
                     <template v-for="item in items">
-                        <tr  v-for="model in item.model">
+                        <tr v-for="model in item.model">
                             <td>{{ item.id }}</td>
                             <td>
                                 <img v-for="image in model.product.images" class="img-thumbnail" :src="renderImage(image.image)" width="75" height="75">
+                                <br>
                                 {{ model.product.model }}
                             </td>
-                            <td>
-                                {{ item.users.userdetail.firstname }} {{ item.users.userdetail.lastname }}        
-                            </td>
-                            <td>{{ model.serial_number }}</td>
-                            <td>{{ model.contract_number }}</td>
-        					<td v-html="item.complaint"></td>
+                            <td>{{ item.users.firstname + item.users.lastname}}</td>
+                            <td>{{ model.invoice.serial_number }}</td>
+                            <td>{{ model.invoice.contract_number }}</td>
+                            <td>{{ item.requests.complaint }}</td>
                             <td>{{ item.created_at }}</td>
-        					<td>
-                                <span :class="
+                            <td>
+                                  <span :class="
                                             item.status === 0 ? ' badge pull-right btn-danger' : 
                                             ( item.status === 1 ? ' badge pull-right btn-primary' : 
                                             ( item.status === 2 ? ' badge pull-right btn-success' : '' ) )">
@@ -79,8 +78,8 @@
                                     ( item.status === 2 ? 'COMPLETE' : '' ) ) }}
                                     
                                 </span>
-                                
                             </td>
+                            
                             <td>
                                 <center>
                                     <a :href="item.actions.view" 
@@ -89,6 +88,7 @@
                                     </a>
                                 </center>                            
                             </td> 
+                            
                         </tr>
                      </template>                       
     			</tbody>

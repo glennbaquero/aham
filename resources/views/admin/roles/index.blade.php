@@ -2,17 +2,14 @@
 @section('content')
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>Roles <small>(Index)</small></h1>
+		<h1>Roles <small>(Manage roles)</small></h1>
 		<ol class="breadcrumb">
-			<li>
-				<a href="{{ route('admin.roles') }}"><i class="fas fa-user-shield"></i> Administrator</a>
-			</li>
 			<li class="active">
-				Index
+				<a href="{{ route('admin.roles') }}"><i class="fas fa-id-card-alt"></i> Roles</a>
 			</li>
 		</ol>
 		<br>
-		<a href="{{ route('admin.roles.create') }}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Roles</a>
+		<a href="{{ route('admin.roles.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Roles</a>
 	</section>
 	<section class="content">
 		<div class="row">
@@ -20,7 +17,7 @@
 				<div class="box box-widget nav-tabs-custom table-responsive">
 	                <ul class="nav nav-tabs">
 	                    <li class="active">
-	                        <a href="#pages" data-toggle="tab"><h5><b>Slider</b></h5></a>
+	                        <a href="#pages" data-toggle="tab"><h5><b>Roles</b></h5></a>
 	                    </li>
 	                    <li>
 	                        <a @click="runDatatable('pages-carousel')" href="#pages-carousel" data-toggle="tab"><h5><b>Archive</b></h5></a>

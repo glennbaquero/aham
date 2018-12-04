@@ -43,8 +43,7 @@ class ProductFetchController extends FetchController
         foreach($items as $item) {
             array_push($result, array(
                 'id' => $item->id,
-                'image' => $item->renderAllImage(),
-                'tbimage' => $item->renderTableImage(),
+                'image' => $item->renderFilePath(),
                 'model' => $item->model,
                 'name' => $item->name,
                 'extended_amount' => $item->extended_amount,
