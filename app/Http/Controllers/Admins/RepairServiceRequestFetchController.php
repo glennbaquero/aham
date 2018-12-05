@@ -47,8 +47,9 @@ class RepairServiceRequestFetchController extends FetchController
         foreach($items as $item) {
             array_push($result, array(
                 'id' => $item->id,
-                'model' => $item->invoice,
+                'model' => $item->invoice_items,
                 'users' => $item->user,
+                // 'invoices' => $item->user,
                 'requests' => $item,
                 'created_at' => $item->created_at->format('M d, Y (H:i:s)'),
                 'status' => $item->status,
@@ -66,14 +67,14 @@ class RepairServiceRequestFetchController extends FetchController
     {
         $item = null;  
 
-        $userproducts = null;
+        $userproducts = [];
 
         if ($id) {
             $item = RepairServiceRequest::with('user', 'repairman')->withTrashed()->find($id);
-            $userproducts = $item->invoice()->get();
+            $userproducts = $item->invoice_items()->pluck('id')->toArray();
         }
         
-        $users = User::with('invoices')->get();
+        $users = User::select(User::MINIMAL_COLUMNS)->get();
         $repairmen = RepairMan::all();
         $statuses = RepairServiceRequest::getStatus();
 
@@ -82,7 +83,14 @@ class RepairServiceRequestFetchController extends FetchController
             'users' => $users,
             'statuses' => $statuses,
             'repairmen' => $repairmen,
-            'userproducts' => $userproducts !== null ? $userproducts : null,
+            'userproducts' => $userproducts,
+        ]);
+    }
+
+    public function fetchUserInvoiceItems(Request $request) {
+        $invoiceitem = User::getInvoiceItems($request);
+        return response()->json([
+            'invoice_items' => $invoiceitem,
         ]);
     }
 }

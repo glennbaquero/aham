@@ -26,21 +26,21 @@ class RepairServiceRequest extends Model
     	return $this->belongsTo(RepairMan::class);
     }
 
-    public function invoice() {
+    public function invoice_items() {
         return $this->belongsToMany(InvoiceItem::class, 'service_request', 'request_id', 'user_product_id')->with('product', 'invoice');
     }
+
+    // public function repairman() {
+    //     return $this->hasMany(RequestRepairMan::class);
+    // }
 
     public static function store($request, $item = null) {
 
         if(!$item) {
-            $item = static::create([
-                'user_id' => $request->user,
-                'repair_men_id' => $request->repair_men_id,
-                'complaint' => $request->complaint,
-                'solution' => $request->solution,
-                'repair_cost' => $request->repair_cost,
-                'status' => $request->status,
-            ]);
+            $vars = $request->only(['user_id', 'repair_men_id', 'complaint', 'solution', 'repair_cost', 'status']);
+            $item = static::create($vars);
+
+            $products = InvoiceItem::find($request->input('userproducts'));
 
         } else {
 
@@ -48,24 +48,15 @@ class RepairServiceRequest extends Model
                 $request->repair_men_id = $request->repairman;
             }
 
-            $item->update([
-                'repair_men_id' => $request->repair_men_id,
-                'complaint' => $request->complaint,
-                'solution' => $request->solution,
-                'repair_cost' => $request->repair_cost,
-                'status' => $request->status,
-            ]);
-
-            RepairMan::find($request->repairman)->update(['status'=>0]);
+            $vars = $request->only(['repair_men_id', 'complaint', 'solution', 'repair_cost', 'status']);
+            $item->update($vars);
 
         }
         
-        RepairMan::find($request->repair_men_id)->update(['status'=>1]);
-
-        $userproduct = Invoice::find($request->userproducts);
-
-        foreach ($request->userproducts as $key) {
-            $item->invoice()->sync($userproduct);
+        RepairMan::find($request->repair_men_id)->update(['status'=>$request->status]);
+        
+        if ($request->filled('userproducts')) {
+            $item->invoice_items()->sync($request->input('userproducts'));
         }
         
         return $item;
@@ -79,13 +70,24 @@ class RepairServiceRequest extends Model
         ];
     }
 
+    public function getInvoiceItems() {
+        $invoiceItems = [];
+        
+       
+        $user = $this->user;
+        $ids = $user->invoices();
+        // $invoiceItems = InvoiceItem::with('product')->whereIn('invoice_id', $ids)->get();
+        
+        return $ids;
+    }
+
     /*
      * Render
      */
 
-     public function renderTableImage($column = 'image') {
+     public function renderFilePath($column = 'image') {
         $path = null;
-        if (count($this->images)) { $path = $this->images()->first()->renderTableImage($column); }
+        if (count($this->images)) { $path = $this->images()->first()->renderFilePath($column); }
         return $path;
     }
 

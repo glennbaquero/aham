@@ -22,7 +22,7 @@
                     		<div class="col col-xs-12 col-sm-12 col-md-6">
                     			<div class="form-group">
                     				<label for="">Customer Fullname</label>
-                                    <select class="form-control" v-model="item.user_id" name="user" @change="customerChange">
+                                    <select class="form-control" v-model="item.user_id" name="user_id" @change="customerChange">
                                         <template v-for="user in users">
                                             <option :value="user.id">{{ user.firstname }} {{ user.lastname }}</option>
                                         </template>
@@ -32,22 +32,10 @@
                             <div class="col col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Customer Registered Product</label>
-                                    <select class="form-control select2" multiple name="userproducts[]">
-                                        
-                                        <template v-for="user in users" v-if="userproducts === null">
-                                            <template v-for="invoice in user.invoices" v-if="invoice.user_id === item.user_id">
-                                                <option v-for="item in invoice.invoice_items"
-                                                    :value="invoice.id">
-                                                    {{ item.get_product.name }}
-                                                </option>
-                                            </template>
-                                        </template>
-
-                                        <template v-for="userproduct in userproducts" v-if="userproducts !== null">
-                                            <option :value="userproduct.product.id" :selected="userproduct.product.id">
-                                                {{ userproduct.product.name }}
-                                            </option>
-                                        </template>
+                                    <select class="form-control select2" v-model="userproducts" name="userproducts[]" multiple>
+                                        <option v-for="invoiceitem in invoiceitems" :value="invoiceitem.id" >
+                                            {{ invoiceitem.product.name }}
+                                        </option>
 
                                     </select>
                                 </div>
@@ -56,7 +44,7 @@
                                 <div class="form-group">
                                      <template v-for="user in users" v-if="user.id === item.user_id">
                                         <label for="">Address</label>
-                                        <input disabled="false" type="text" class="form-control input-sm" :value="user.address">
+                                        <input disabled="false" type="text" class="form-control input-sm" v-model="user.address">
                                     </template>
                                 </div>
                             </div>
@@ -143,6 +131,7 @@ export default {
 	props: {
         submiturl: String,
         fetchurl: String,
+        fetchinvoiceurl: String,
         disabled: Boolean,
         model: {},
         hide: Boolean,
@@ -168,6 +157,7 @@ export default {
             repairmen: [],
             userproducts: [],
             statuses: {},
+            invoiceitems:[],
     	}
     },
 
@@ -183,6 +173,15 @@ export default {
     },
 
     methods: {
+
+        fetchinvoices(id) {
+            axios.post(this.fetchinvoiceurl, {
+                user_id: this.item.user_id
+            }).then(response=>{
+                this.invoiceitems = response.data.invoice_items;
+            });
+        },
+
     	setup() {
     		if (this.model) {
     			this.item = this.model ? this.model : {};
@@ -204,10 +203,13 @@ export default {
                 const data = response.data;
                 this.statuses = data.statuses;
                 this.item = data.item ? data.item : {};
+                if(this.item) {
+                    this.customerChange();
+                    this.item.repairman = this.item.repair_men_id;
+                }
                 this.users = data.users;
                 this.repairmen = data.repairmen;
                 this.userproducts = data.userproducts;
-                this.item.repairman = data.item.repair_men_id;
     		}).catch(error => {
                 console.log(error);
     		}).then(() => {
@@ -221,7 +223,7 @@ export default {
         },
 
         customerChange() {
-            this.userproducts = null;
+            this.fetchinvoices(this.item.user_id);
         },
     },
 }
