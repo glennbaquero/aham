@@ -18,6 +18,7 @@ class CreateRepairMenTable extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->integer('status')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

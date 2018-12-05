@@ -46,6 +46,22 @@
           </li>
         </ul>
       </li>
+      <li class="treeview">
+          <a href="#">
+            <i class="fas fa-toolbox"></i> <span> Repair Service</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu {{ $checker->route->isActive('admin.request', 'menu-open') }}">
+            <li class="{{ $checker->route->isActive('admin.request') }}"><a href="{{ route('admin.request') }}"><i class="fas fa-hammer"></i> Repair Request</a></li>
+            <li><a href=""><i class="fas fa-history"></i> History</a></li>
+          </ul>
+        </li>
+        <li><a href=""><i class="fa fa-book"></i> <span>Repair Man</span></a></li>
+      <li><a href=""><i class="fa fa-book"></i> <span>Application</span></a></li>
+      <li class="header">SECURITY</li>
+      <li class="active treeview menu-open">
       <li class="{{ $checker->route->isActive('admin.carousel.') }}">
         <a href="{{ route('admin.carousel.index') }}"><i class="fas fa-images"></i> Carousels</a>
       </li>

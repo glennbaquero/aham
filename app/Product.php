@@ -28,9 +28,21 @@ class Product extends Model
     public function images() {
         return $this->hasMany(ProductImage::class);
     }
+
+    public function userproduct() {
+       return $this->hasMany(UserProduct::class);
+    }
+
+    public function user() {
+       return $this->belongsTo(User::class);
+    }
     
     public function product_image($request) {
         $this->product_images()->create($request);
+    }
+
+    public function invoice_items() {
+        return $this->hasMany(InvoiceItem::class, 'product_id');
     }
 
     public static function store($request, $item = null) {
