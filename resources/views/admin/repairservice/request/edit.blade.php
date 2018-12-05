@@ -37,6 +37,7 @@
 
 						<repair-request-details ref="repair-request-details"
 						:fetchurl="'{{ route('admin.request.fetch', $request->id) }}'"
+						:fetchinvoiceurl="'{{ route('admin.request.invoice') }}'"
 						:hide="false">
 						</repair-request-details>
 

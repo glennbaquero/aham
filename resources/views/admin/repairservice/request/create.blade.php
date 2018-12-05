@@ -23,6 +23,7 @@
 
 						<repair-request-details ref="repair-request-details"
 						:fetchurl="'{{ route('admin.request.fetch') }}'"
+						:fetchinvoiceurl="'{{ route('admin.request.invoice') }}'"
 						:hide="true">
 						</repair-request-details>
 

@@ -92,9 +92,7 @@ export default {
     data() {
         return {
             loading: false,
-            item: {
-                tags: [],
-            },
+            item: {},
             tags: []
     	}
     },

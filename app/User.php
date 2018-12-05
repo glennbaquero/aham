@@ -17,6 +17,8 @@ class User extends Authenticatable
      */
     protected $guarded = [];
 
+    const MINIMAL_COLUMNS = ['id', 'firstname', 'lastname'];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -31,11 +33,7 @@ class User extends Authenticatable
     }
 
     public function invoices() {
-        return $this->hasMany(Invoice::class)->with('invoice_items');
-    }
-
-    public function userproducts() {
-        return $this->hasMany(UserProduct::class, 'user_id');
+        return $this->hasMany(Invoice::class);
     }
 
     public function userdetail() {
@@ -44,5 +42,25 @@ class User extends Authenticatable
 
      public function products() {
         return $this->hasMany(Product::class);
+    }
+
+    public static function getInvoiceItems($request) {
+        $invoiceItems = [];
+
+        if($request->filled('user_id')) {
+            $user = User::find($request->input('user_id'));
+            $ids = $user->invoices()->pluck('id')->toArray();
+            $invoiceItems = InvoiceItem::with('product')->whereIn('invoice_id', $ids)->get();
+        }
+        
+        return $invoiceItems;
+    }
+
+    /*
+    *  Renderers
+     */
+
+    public function renderName() {
+        return $this->firstname. ' '. $this->lastname;
     }
 }

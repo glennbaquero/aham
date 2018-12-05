@@ -123,9 +123,16 @@ Vue.mixin({
                 ref.load(true);
             }
 
+            console.log(form)
+
             let data = new FormData(form);
             let method = form.dataset.method;
             let url = form.dataset.action;
+
+            for (var value of data.values()) {
+   console.log(value); 
+}
+            // console.log(data.values())
 
             try {
                 let ckeditor = CKEDITOR.instances;
@@ -228,6 +235,9 @@ Vue.mixin({
          * @return boolean
          */
         isInArray: function(value, array) {
+
+            console.log(value);
+            console.log(array);
 
             var result = false;
 

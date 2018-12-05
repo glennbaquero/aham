@@ -64,18 +64,18 @@
                             <td>{{ item.users.firstname + item.users.lastname}}</td>
                             <td>{{ model.invoice.serial_number }}</td>
                             <td>{{ model.invoice.contract_number }}</td>
-                            <td>{{ item.requests.complaint }}</td>
+                            <td v-html="item.requests.complaint"></td>
                             <td>{{ item.created_at }}</td>
                             <td>
                                   <span :class="
-                                            item.status === 0 ? ' badge pull-right btn-danger' : 
-                                            ( item.status === 1 ? ' badge pull-right btn-primary' : 
-                                            ( item.status === 2 ? ' badge pull-right btn-success' : '' ) )">
+                                            item.status === 10 || item.status === 0 ? ' badge pull-right btn-danger' : 
+                                            ( item.status === 20 ? ' badge pull-right btn-primary' : 
+                                            ( item.status === 30 ? ' badge pull-right btn-success' : '' ) )">
 
                                     {{ 
-                                    item.status === 0 ? 'PENDING' : 
-                                    ( item.status === 1 ? 'ONGOING' : 
-                                    ( item.status === 2 ? 'COMPLETE' : '' ) ) }}
+                                    item.status === 10 || item.status === 0 ? 'PENDING' : 
+                                    ( item.status === 20 ? 'ONGOING' : 
+                                    ( item.status === 30 ? 'COMPLETE' : '' ) ) }}
                                     
                                 </span>
                             </td>
