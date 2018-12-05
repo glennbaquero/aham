@@ -32,8 +32,8 @@
                             <div class="col col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Customer Registered Product</label>
-                                    <select class="form-control select2" v-model="userproducts" name="userproducts[]" multiple>
-                                        <option v-for="invoiceitem in invoiceitems" :value="invoiceitem.id" >
+                                    <select class="form-control select2" v-model="item.userproducts" name="userproducts[]" multiple>
+                                        <option v-for="invoiceitem in invoiceitems" :value="invoiceitem.id">
                                             {{ invoiceitem.product.name }}
                                         </option>
 
@@ -155,7 +155,7 @@ export default {
             },
             users: [],
             repairmen: [],
-            userproducts: [],
+            // userproducts: [],
             statuses: {},
             invoiceitems:[],
     	}
@@ -209,7 +209,7 @@ export default {
                 }
                 this.users = data.users;
                 this.repairmen = data.repairmen;
-                this.userproducts = data.userproducts;
+                // this.userproducts = data.userproducts;
     		}).catch(error => {
                 console.log(error);
     		}).then(() => {

@@ -67,11 +67,9 @@ class RepairServiceRequestFetchController extends FetchController
     {
         $item = null;  
 
-        $userproducts = [];
-
         if ($id) {
             $item = RepairServiceRequest::with('user', 'repairman')->withTrashed()->find($id);
-            $userproducts = $item->invoice_items()->pluck('id')->toArray();
+            $item->userproducts = $item->invoice_items()->pluck('id')->toArray();
         }
         
         $users = User::select(User::MINIMAL_COLUMNS)->get();
@@ -83,7 +81,6 @@ class RepairServiceRequestFetchController extends FetchController
             'users' => $users,
             'statuses' => $statuses,
             'repairmen' => $repairmen,
-            'userproducts' => $userproducts,
         ]);
     }
 
