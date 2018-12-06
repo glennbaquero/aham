@@ -24,9 +24,12 @@ class ServiceRepairRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required',
+            'user_id' => 'required|exists:users,id',
+            'repair_men_id' => 'required|exists:admins,id',
             'complaint' => 'required',
-            'status' => 'required'
+            'status' => 'required',
+            'repair_cost' => 'numeric|min:0',
+            'userproducts' => 'required|min:1'
         ];
     }
 }

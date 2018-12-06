@@ -66,7 +66,7 @@
                             <div class="col col-xs-12 col-sm-12 col-md-4">
                                 <div class="form-group">
                                     <label for="">Repair Cost</label>
-                                    <input v-model="item.cost" :disabled="editable" name="repair_cost" type="number" min="1" class="form-control input-sm">
+                                    <input v-model="item.repair_cost" :disabled="editable" name="repair_cost" type="number" min="0" class="form-control input-sm">
                                 </div>
                             </div>
 
@@ -137,11 +137,11 @@ export default {
             loading: false,
             item: {
                 repairman:null,
-                userproducts:[]
+                userproducts:[],
+                repair_cost: 0,
             },
             users: [],
             repairmen: [],
-            // userproducts: [],
             statuses: {},
             invoiceitems:[],
     	}
