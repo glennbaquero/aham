@@ -44,6 +44,9 @@
           <li class="{{ $checker->route->isActive('admin.page-items.') }}">
             <a href="{{ route('admin.page-items.index') }}"><i class="fas fa-sitemap"></i> Page Items</a>
           </li>
+          <li class="{{ $checker->route->isActive('admin.carousel.') }}">
+            <a href="{{ route('admin.carousel.index') }}"><i class="fas fa-images"></i> Carousels</a>
+          </li>
         </ul>
       </li>
       <li class="treeview">
@@ -60,11 +63,7 @@
         </li>
         <li><a href=""><i class="fa fa-book"></i> <span>Repair Man</span></a></li>
       <li><a href=""><i class="fa fa-book"></i> <span>Application</span></a></li>
-      <li class="header">SECURITY</li>
       <li class="active treeview menu-open">
-      <li class="{{ $checker->route->isActive('admin.carousel.') }}">
-        <a href="{{ route('admin.carousel.index') }}"><i class="fas fa-images"></i> Carousels</a>
-      </li>
 
       <li class="header">Security</li>
       <li class="treeview {{ $checker->route->isActive(['admin.administrator', 'admin.role'], 'menu-open') }}">

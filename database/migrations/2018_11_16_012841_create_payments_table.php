@@ -16,9 +16,7 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('user_prod_id')->unsigned()->index();
-            $table->foreign('user_prod_id')->references('id')->on('user_products')->onDelete('cascade');
+            $table->integer('invoice_id')->unsigned()->index();
             $table->integer('payment_method');
             $table->string('bank');
             $table->string('payment');
@@ -27,6 +25,7 @@ class CreatePaymentsTable extends Migration
             $table->string('discount_code')->nullable();
             $table->decimal('total')->nullable();
             $table->boolean('status')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
