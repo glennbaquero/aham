@@ -128,10 +128,6 @@ Vue.mixin({
             let method = form.dataset.method;
             let url = form.dataset.action;
 
-//             for (var value of data.values()) {
-// }
-            // console.log(data.values())
-
             try {
                 let ckeditor = CKEDITOR.instances;
 

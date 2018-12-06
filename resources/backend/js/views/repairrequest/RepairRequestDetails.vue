@@ -18,7 +18,6 @@
 
                         <!-- Start Row -->
                 		<div class="row">
-                            <template>
                     		<div class="col col-xs-12 col-sm-12 col-md-6">
                     			<div class="form-group">
                     				<label for="">Customer Fullname</label>
@@ -48,20 +47,8 @@
                                     </template>
                                 </div>
                             </div>
-                            <div class="col col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label for="">Complaint</label>
-                                    <textarea class="content" name="complaint">{{ item.complaint }}</textarea>
-                                </div>
-                            </div>
-                            <div class="col col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <label for="">Solution</label>
-                                    <textarea class="content" name="solution">{{ item.solution }}</textarea>
-                                </div>
-                            </div>
                             
-                            <div class="col col-xs-12 col-sm-12 col-md-6">
+                            <div class="col col-xs-12 col-sm-12 col-md-4">
                                 <div class="form-group">
                                     <label for="">Assign Repair Man</label>
                                     <select class="form-control" v-model="item.repair_men_id" name="repair_men_id">
@@ -76,14 +63,14 @@
                                 </div>
                             </div>
 
-                            <div class="col col-xs-12 col-sm-12 col-md-6">
+                            <div class="col col-xs-12 col-sm-12 col-md-4">
                                 <div class="form-group">
                                     <label for="">Repair Cost</label>
                                     <input v-model="item.cost" :disabled="editable" name="repair_cost" type="number" min="1" class="form-control input-sm">
                                 </div>
                             </div>
 
-                            <div class="col col-xs-12 col-sm-12 col-md-6">
+                            <div class="col col-xs-12 col-sm-12 col-md-4">
                                 <div class="form-group">
                                     <label for="">Status</label>
                                     <select class="form-control" name="status">
@@ -94,7 +81,19 @@
                                     </select>
                                 </div>
                             </div>
-                            </template>
+
+                            <div class="col col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="">Complaint</label>
+                                    <textarea class="content" name="complaint">{{ item.complaint }}</textarea>
+                                </div>
+                            </div>
+                            <div class="col col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="">Solution</label>
+                                    <textarea class="content" name="solution">{{ item.solution }}</textarea>
+                                </div>
+                            </div>
                         </div>
                         <!-- End Row -->
                         

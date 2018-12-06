@@ -71,13 +71,15 @@ class RepairServiceRequestFetchController extends FetchController
         $repairmen = Admin::whereAvailableRepairman()->get();
 
         if ($id) {
-            $item = RepairServiceRequest::with('user', 'repairman')->withTrashed()->find($id);
+            $item = RepairServiceRequest::with('user')->withTrashed()->find($id);
             $item->userproducts = $item->invoice_items()->pluck('id')->toArray();
             if ($item->repairman) {
-                $repairmen = collect($item->repairman->admin, $repairmen);
+                $item->repair_men_id = $item->repairman->admin_id;
+                $repairmen =  $repairmen->toArray();
+                array_push($repairmen, $item->repairman->admin->toArray());
             }
         }
-        
+
         $users = User::select(User::MINIMAL_COLUMNS)->get();
         $statuses = RepairServiceRequest::getStatus();
         $repairmanstatus = RepairServiceRequest::all();
