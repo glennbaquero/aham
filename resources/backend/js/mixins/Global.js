@@ -123,15 +123,13 @@ Vue.mixin({
                 ref.load(true);
             }
 
-            console.log(form)
 
             let data = new FormData(form);
             let method = form.dataset.method;
             let url = form.dataset.action;
 
-            for (var value of data.values()) {
-   console.log(value); 
-}
+//             for (var value of data.values()) {
+// }
             // console.log(data.values())
 
             try {
@@ -280,7 +278,7 @@ Vue.mixin({
                         break;
                     default:
                             EventBus.$emit('showModal', {
-                                content: response.statusText,
+                                content: response.data ? response.data.message : response.statusText,
                                 hasErrors: true,
                             });
                         break;

@@ -66,27 +66,13 @@
                                     <label for="">Assign Repair Man</label>
                                     <select class="form-control" v-model="item.repair_men_id" name="repair_men_id">
 
-                                        <template v-for="repairman in repairmen" v-if="repairman.status === 0">
-                                            <option :class="repairman.status === 1 ? 'text-danger' : ''" 
-                                                    :value="repairman.id" 
-                                                    :selected="repairman.status === 1 ? true : false">
-
-                                                    {{ repairman.firstname }} {{ repairman.lastname }} 
-
+                                        <template v-for="repairman in repairmen">
+                                            <option :value="repairman.id">
+                                                {{ repairman.firstname }} {{ repairman.lastname }} 
                                             </option>
                                         </template>
-                                    </select>
 
-                                   <br>
-                
-                                    <label :hidden="hide">Assigned Repair Man</label>
-                                 
-                                    <template v-for="repairman in repairmen">
-                                        <p v-if="item.repairman === repairman.id" :hidden="hide">
-                                            {{ repairman.firstname+' '+repairman.lastname }} 
-                                        </p>
-                                    </template>
-                                    <input type="text" name="repairman" v-model="item.repairman" hidden>
+                                    </select>
                                 </div>
                             </div>
 
@@ -152,6 +138,7 @@ export default {
             loading: false,
             item: {
                 repairman:null,
+                userproducts:[]
             },
             users: [],
             repairmen: [],
@@ -205,11 +192,10 @@ export default {
                 this.item = data.item ? data.item : {};
                 if(this.item) {
                     this.customerChange();
-                    this.item.repairman = this.item.repair_men_id;
+                    // this.item.repairman = this.item.repair_men_id;
                 }
                 this.users = data.users;
                 this.repairmen = data.repairmen;
-                // this.userproducts = data.userproducts;
     		}).catch(error => {
                 console.log(error);
     		}).then(() => {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admins;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ServiceRepairRequest;
 use Illuminate\Http\Request;
 
 use App\RepairServiceRequest;
@@ -36,7 +37,7 @@ class RepairServiceRequestController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ServiceRepairRequest $request)
     {
         DB::beginTransaction();
         $repair = RepairServiceRequest::store($request);        
@@ -79,7 +80,7 @@ class RepairServiceRequestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ServiceRepairRequest $request, $id)
     {
         $repair = RepairServiceRequest::withTrashed()->find($id);
         DB::beginTransaction();

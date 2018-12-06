@@ -27,6 +27,9 @@ class Admin extends Authenticatable
     protected $guarded = [];
 	protected $guard_name = 'admin';
 
+    const DEFAULT = 0;
+    const REPAIRMAN = 1;
+
     /**
 	 * Send the password reset notification.
 	 *
@@ -43,6 +46,24 @@ class Admin extends Authenticatable
             'id' => $this->id,
             'name' => $this->name,
         ];
+    }
+
+    public function scopeWhereAvailableRepairman($query) {
+        $repairmanids = Admin::whereHas('repairman', function($a) {
+            $a->whereHas('request', function($b) {
+                $b->where('status', '!=', RepairServiceRequest::PENDING)->where('status', '!=', RepairServiceRequest::ONGOING);
+            });
+        })->pluck('id')->toArray();
+
+        $adminids = Admin::whereDoesntHave('repairman')->pluck('id')->toArray();
+
+        $ids = array_merge($repairmanids, $adminids);
+
+        return $query->whereIn('id', $ids)->where('type', static::REPAIRMAN);
+    }
+
+    public function repairman() {
+        return $this->hasMany(RepairMan::class, 'admin_id');
     }
 
     /**
@@ -72,6 +93,7 @@ class Admin extends Authenticatable
 
 		return $item;	
 	}
+
 
 	/**
 	 * @Checkers

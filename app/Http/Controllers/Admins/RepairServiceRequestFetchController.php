@@ -10,6 +10,7 @@ use App\User;
 use App\Product;
 use App\UserProduct;
 use App\RepairMan;
+use App\Admin;
 
 class RepairServiceRequestFetchController extends FetchController
 {
@@ -67,20 +68,26 @@ class RepairServiceRequestFetchController extends FetchController
     {
         $item = null;  
 
+        $repairmen = Admin::whereAvailableRepairman()->get();
+
         if ($id) {
             $item = RepairServiceRequest::with('user', 'repairman')->withTrashed()->find($id);
             $item->userproducts = $item->invoice_items()->pluck('id')->toArray();
+            if ($item->repairman) {
+                $repairmen = collect($item->repairman->admin, $repairmen);
+            }
         }
         
         $users = User::select(User::MINIMAL_COLUMNS)->get();
-        $repairmen = RepairMan::all();
         $statuses = RepairServiceRequest::getStatus();
+        $repairmanstatus = RepairServiceRequest::all();
 
         return response()->json([
             'item' => $item,
             'users' => $users,
             'statuses' => $statuses,
             'repairmen' => $repairmen,
+            'repairmanstatus' => $repairmanstatus
         ]);
     }
 

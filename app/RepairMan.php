@@ -10,20 +10,29 @@ use App\Traits\ActivityLogTrait;
 
 class RepairMan extends Model
 {
-    use SoftDeletes, Searchable, ActivityLogTrait;
+    use ActivityLogTrait;
     protected $guarded = [];
-    protected $dates = ['deleted_at'];
 
-    public function request() {
-    	return $this->hasMany(RepairServiceRequest::class);
+    public static function getModelEvents() {
+        return [
+            'created',
+            'updated',
+        ];
     }
 
-    
+    public function request() {
+    	return $this->belongsTo(RepairServiceRequest::class, 'request_id');
+    }
+
+    public function admin() {
+        return $this->belongsTo(Admin::class, 'admin_id');
+    }
+
     /*
      * Renders
      */
 
     public function renderName() {
-        return '#' . $this->id . ' ' . $this->name;
+        return '#' . $this->id;
     }
 }

@@ -13,6 +13,6 @@ class SampleRepairMenTableSeeder extends Seeder
     public function run()
     {
         \DB::table('repair_men')->delete();
-        factory(RepairMan::class, 20)->create();
+        // factory(RepairMan::class, 20)->create();
     }
 }

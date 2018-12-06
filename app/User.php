@@ -17,7 +17,7 @@ class User extends Authenticatable
      */
     protected $guarded = [];
 
-    const MINIMAL_COLUMNS = ['id', 'firstname', 'lastname'];
+    const MINIMAL_COLUMNS = ['id', 'firstname', 'lastname', 'address'];
 
     /**
      * The attributes that should be hidden for arrays.

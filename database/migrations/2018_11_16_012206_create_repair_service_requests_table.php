@@ -16,9 +16,8 @@ class CreateRepairServiceRequestsTable extends Migration
         Schema::create('repair_service_requests', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('repair_men_id')->unsigned()->index();
-            $table->foreign('repair_men_id')->references('id')->on('repair_men')->onDelete('cascade');
+            // $table->integer('repair_men_id')->unsigned()->index();   
+            // $table->integer('request_repair_men_id')->unsigned()->index();
             $table->text('complaint')->nullable();
             $table->text('solution')->nullable();
             $table->string('ro_number')->nullable();

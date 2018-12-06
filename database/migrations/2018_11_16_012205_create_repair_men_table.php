@@ -15,10 +15,8 @@ class CreateRepairMenTable extends Migration
     {
         Schema::create('repair_men', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('firstname');
-            $table->string('lastname');
-            $table->integer('status')->default(0);
-            $table->softDeletes();
+            $table->integer('admin_id')->nullable()->unsigned();
+            $table->integer('request_id')->nullable()->unsigned();
             $table->timestamps();
         });
     }

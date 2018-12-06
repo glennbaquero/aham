@@ -12,5 +12,6 @@ $factory->define(App\UserDetail::class, function (Faker $faker) {
         'bday_day' => $faker->dayOfMonth,
         'bday_year' => $faker->year,
         'address' => $faker->address,
+        'type' => 1
     ];
 });

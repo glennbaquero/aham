@@ -15,8 +15,9 @@ class CreateRequestRepairMenTable extends Migration
     {
         Schema::create('request_repair_men', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('repair_service_request_id');
-            $table->integer('repair_men_id');
+            // $table->integer('repair_service_request_id')->unsigned()->index();
+            $table->integer('admin_id')->unsigned()->index();
+            $table->integer('status')->default(10); // 10 -> pending, 20 -> ongoing, 30 -> complete
             $table->softDeletes();
             $table->timestamps();
         });
