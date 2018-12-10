@@ -48,6 +48,15 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="col col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="">Type <small>(Does not affect the permissions of the admin this is used for filtering purposes only)</small></label>
+                                    <select v-model="item.type" name="type" class="form-control input-sm">
+                                        <option v-for="type in types" :value="type.value">{{ type.label }}</option>
+                                    </select>
+                                </div>
+                            </div>
                             
                         </div>
                         <!-- End Row -->
@@ -93,7 +102,8 @@ export default {
                 role_ids: [],
             },
 
-            roles: []
+            roles: [],
+            types: [],
     	}
     },
 
@@ -131,6 +141,7 @@ export default {
                 this.item = data.item ? data.item : {};
                 this.item.role_ids = data.roleIds;
                 this.roles = data.roles;
+                this.types = data.types;
     		}).catch(error => {
                 console.log(error);
     		}).then(() => {

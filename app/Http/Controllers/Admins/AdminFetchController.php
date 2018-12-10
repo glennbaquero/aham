@@ -61,6 +61,7 @@ class AdminFetchController extends FetchController
     {
         $item = null;
         $roleIds = [];
+        $types = Admin::getTypes();
 
         if ($id) {
             $item = Admin::withTrashed()->find($id);
@@ -72,7 +73,8 @@ class AdminFetchController extends FetchController
         return response()->json([
             'item' => $item,
             'roleIds' => $roleIds,
-            'roles' => $roles
+            'roles' => $roles,
+            'types' => $types,
         ]);
     }
 }

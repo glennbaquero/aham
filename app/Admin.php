@@ -48,6 +48,16 @@ class Admin extends Authenticatable
         ];
     }
 
+    /**
+     * @Relationships
+     */
+    public function repairman() {
+        return $this->hasMany(RepairMan::class, 'admin_id');
+    }
+
+    /**
+     * @Scopes
+     */
     public function scopeWhereAvailableRepairman($query) {
         $repairmanids = Admin::whereHas('repairman', function($a) {
             $a->whereHas('request', function($b) {
@@ -62,8 +72,14 @@ class Admin extends Authenticatable
         return $query->whereIn('id', $ids)->where('type', static::REPAIRMAN);
     }
 
-    public function repairman() {
-        return $this->hasMany(RepairMan::class, 'admin_id');
+    /**
+     * @Getters
+     */
+    public static function getTypes() {
+        return [
+            ['value' => static::DEFAULT, 'label' => 'Default'],
+            ['value' => static::REPAIRMAN, 'label' => 'Repairman'],
+        ];
     }
 
     /**
@@ -72,13 +88,13 @@ class Admin extends Authenticatable
     public static function store($request, $item = null) 
 	{
 		if(!$item) {
-			$vars = $request->only(['firstname', 'lastname', 'email']);
+			$vars = $request->only(['firstname', 'lastname', 'email', 'type']);
 			$vars['password'] = Helpers::generateRandomString();
 			$item = static::create($vars);
 			$broker = Password::broker('admins');
 			$broker->sendResetLink($request->only('email'));
 		} else {
-			$vars = $request->only(['firstname', 'lastname']);
+			$vars = $request->only(['firstname', 'lastname', 'type']);
 			$item->update($vars);
 		}
 
