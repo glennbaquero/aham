@@ -109,6 +109,8 @@ Route::name('admin.')
 	Route::post('product/update/{id}', 'ProductController@update')->name('product.update');
 	Route::delete('product/{id}', 'ProductController@destroy')->name('product.destroy');
 	Route::post('product/restore/{user}', 'ProductController@restore')->name('product.restore');
+	Route::get('product/upload', 'ProductController@upload')->name('product.upload');
+	Route::post('products/upload', 'ProductController@uploadproduct')->name('products.upload');
 
 	Route::post('products/fetch/q', 'ProductFetchController@fetch')->name('products.fetch');
 	Route::post('products/fetch/q?archive=1', 'ProductFetchController@fetch')->name('products.archive');
@@ -125,6 +127,8 @@ Route::name('admin.')
 	Route::post('categories/update/{id}', 'CategoryController@update')->name('categories.update');
 	Route::delete('categories/{id}', 'CategoryController@destroy')->name('categories.destroy');
 	Route::post('categories/restore/{user}', 'CategoryController@restore')->name('categories.restore');
+	Route::get('category/upload', 'CategoryController@upload')->name('category.upload');
+	Route::post('categories/upload', 'CategoryController@uploadcategory')->name('categories.upload');
 
 	Route::post('categories/fetch/q', 'CategoryFetchController@fetch')->name('categories.fetch');
 	Route::post('categories/fetch/q?archive=1', 'CategoryFetchController@fetch')->name('categories.archive');
@@ -141,6 +145,8 @@ Route::name('admin.')
 	Route::post('types/update/{id}', 'TypeController@update')->name('types.update');
 	Route::delete('types/{id}', 'TypeController@destroy')->name('types.destroy');
 	Route::post('types/restore/{user}', 'TypeController@restore')->name('types.restore');
+	Route::get('type/upload', 'TypeController@upload')->name('type.upload');
+	Route::post('types/upload', 'TypeController@uploadtype')->name('types.upload');
 
 	Route::post('types/fetch/q', 'TypeFetchController@fetch')->name('types.fetch');
 	Route::post('types/fetch/q?archive=1', 'TypeFetchController@fetch')->name('types.archive');

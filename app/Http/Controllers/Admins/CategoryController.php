@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use Illuminate\Http\Request;
 
+use App\Imports\CategoriesImport;
+use Maatwebsite\Excel\Facades\Excel;
+
 use App\Category;
 use DB;
 
@@ -124,5 +127,16 @@ class CategoryController extends Controller
         return response()->json([
             'message' => "You have successfully restored {$category->renderName()}",
         ]);
+    }
+
+    public function upload()
+    {
+        return view('admin.uploadmanifests.categories');
+    }
+
+    public function uploadcategory(Request $request)
+    { 
+        Excel::import(new CategoriesImport, $request->file('manifest'));
+        return redirect()->back();
     }
 }

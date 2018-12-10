@@ -10,7 +10,11 @@
 			</li>
 		</ol>
 		<br>
-		<a href="{{ route('admin.categories.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Category</a>
+		@if ($checker->permission->can(['admin.categories.create']))
+			<a href="{{ route('admin.categories.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Category</a>
+			<a href="{{ route('admin.category.upload') }}" class="btn btn-primary"><i class="fas fa-file-upload"></i> Upload Categories</a>
+		@endif
+
 	</section>
 	<section class="content">
 		<div class="row">

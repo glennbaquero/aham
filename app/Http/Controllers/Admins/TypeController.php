@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\TypeRequest;
 use Illuminate\Http\Request;
 
+use App\Imports\TypesImport;
+use Maatwebsite\Excel\Facades\Excel;
+
+
 use App\Type;
 use DB;
 
@@ -126,5 +130,16 @@ class TypeController extends Controller
         return response()->json([
             'message' => "You have successfully restored {$type->renderName()}",
         ]);
+    }
+
+    public function upload()
+    {
+        return view('admin.uploadmanifests.types');
+    }
+
+    public function uploadtype(Request $request)
+    {   
+        Excel::import(new TypesImport, $request->file('manifest'));
+        return redirect()->back();
     }
 }

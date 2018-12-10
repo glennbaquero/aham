@@ -53,7 +53,6 @@ class PageItem extends Model
      * @Methods
      */
     public static function store($request, $item = null) {
-
         $vars = $request->only(['page_id', 'content', 'type']);
         $vars['slug'] = Helpers::slugify($request->input('slug'));
 
