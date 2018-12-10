@@ -6,10 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 
+use App\Imports\ProductImport;
+use Maatwebsite\Excel\Facades\Excel;
+
 use App\Product;
 use App\ProductImage;
 use App\Type;
 use App\Category;
+
 
 use DB;
 
@@ -143,5 +147,19 @@ class ProductController extends Controller
             'message' => "You have successfully restored {$product->renderName()}",
         ]);
     }
+
+    /**
+     * Upload product manifest view
+     */
+    public function upload()
+    {
+        return view('admin.uploadmanifests.products');
+    }
+
+    public function uploadproduct(Request $request) 
+    {   
+        Excel::import(new ProductImport, $request->file('manifest'));
+        return redirect()->back();
+    } 
 
 }
