@@ -3,6 +3,7 @@
   <section class="sidebar">
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
+      
       <li class="header">Warranty</li>
       <li><a href=""><i class="fa fa-book"></i> <span>Application</span></a></li>
       <li class="treeview {{ $checker->route->isActive(['admin.request'], 'menu-open') }}">
@@ -58,6 +59,7 @@
           </li>
         </ul>
       </li>
+
       <li class="header">Security</li>
       <li class="treeview {{ $checker->route->isActive(['admin.administrator', 'admin.role'], 'menu-open') }}">
         <a href="#">
