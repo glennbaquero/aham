@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\View;
 
 use Carbon\Carbon;
 
+use App\GlobalChecker;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -30,6 +32,9 @@ class AppServiceProvider extends ServiceProvider
             }
 
             $view->with('headerAcronym', $acronym);
+
+            /* Add in the public vars */
+            View::share('checker', new GlobalChecker);
         });
     }
 

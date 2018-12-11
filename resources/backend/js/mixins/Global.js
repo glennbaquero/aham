@@ -123,6 +123,7 @@ Vue.mixin({
                 ref.load(true);
             }
 
+
             let data = new FormData(form);
             let method = form.dataset.method;
             let url = form.dataset.action;
@@ -229,6 +230,9 @@ Vue.mixin({
          */
         isInArray: function(value, array) {
 
+            console.log(value);
+            console.log(array);
+
             var result = false;
 
             array.forEach(arr => {
@@ -257,6 +261,8 @@ Vue.mixin({
 
         showErrors(error) {
             const response = error.response;
+
+            console.log(response);
             
             if(response.status) {
                switch (response.status) {
@@ -268,7 +274,7 @@ Vue.mixin({
                         break;
                     default:
                             EventBus.$emit('showModal', {
-                                content: 'Oops.. Something went wrong.. Please try again later.',
+                                content: response.data ? response.data.message : response.statusText,
                                 hasErrors: true,
                             });
                         break;

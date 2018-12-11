@@ -20,10 +20,12 @@ class CreateProductsTable extends Migration
             $table->integer('type_id')->unsigned()->index();
             $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
             $table->string('model');
-            $table->string('name');
-            $table->text('description');
-            $table->text('specification');
-            $table->decimal('extended_amount');
+            $table->string('name')->nullable();
+            $table->text('description')->nullable();
+            $table->text('specification')->nullable();
+            $table->decimal('extended_amount')->nullable();
+            $table->integer('quantity')->nullable();
+            $table->string('brand')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

@@ -57,7 +57,7 @@ Route::get('/signup', function () {
 });
 
 /****************************************
- * SUPER ADMIN ROUTES					*
+ * Login & Register  					*
  ****************************************/
 
 Route::name('admin.')
@@ -74,84 +74,125 @@ Route::name('admin.')
 
 
 /****************************************
- * REGULAR ADMIN ROUTES					*
+ * ADMIN ROUTES 						*
  ****************************************/
-Route::prefix('admin')
+Route::name('admin.')
+->prefix('admin')
 ->middleware('admin_auth')
 ->namespace('Admins')
 ->group(function() {
 
-	Route::name('admin.')
-	->group(function() {
-		Route::get('/', 'DashboardController@index')->name('dashboard');
-		Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+	Route::get('/', 'DashboardController@index')->name('dashboard');
+	Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
-		/****************
-		 * PERMISSION
-		 ****************/
-		Route::get('permission', 'PermissionController@index')->name('permission');
+	/****************
+	 * ADMINISTRATOR
+	 ****************/
+	Route::get('administrators', 'AdminController@index')->name('administrator');
+	Route::get('administrator/create', 'AdminController@create')->name('administrator.create');
+	Route::post('administrator/store', 'AdminController@store')->name('administrator.store');
+	Route::get('administrator/view/edit/{id}', 'AdminController@edit')->name('administrator.edit');
+	Route::post('administrator/update/{id}', 'AdminController@update')->name('administrator.update');
+	Route::delete('administrator/destroy/{id}', 'AdminController@destroy')->name('administrator.destroy');
+	Route::post('administrator/restore/{role}', 'AdminController@restore')->name('administrator.restore');
 
-		Route::get('roles', 'RoleController@index')->name('roles');
-		Route::get('roles/create', 'RoleController@create')->name('roles.create');
-		Route::post('roles/store', 'RoleController@store')->name('roles.store');
-		Route::get('roles/view/edit/{id}', 'RoleController@edit')->name('roles.edit');
-		Route::get('roles/view/{id}', 'RoleController@view')->name('roles.view');
-		Route::post('roles/update/{id}', 'RoleController@update')->name('role.update');
-		Route::post('roles/destroy/{id}', 'RoleController@destroy')->name('role.destroy');
+	Route::post('administrators/fetch/q', 'AdminFetchController@fetch')->name('administrators.fetch');
+	Route::post('administrators/fetch/q?archive=1', 'AdminFetchController@fetch')->name('administrators.archive');
+	Route::post('administrators/fetch/role/{id?}', 'AdminFetchController@fetchItem')->name('administrator.fetch');
 
-		Route::post('roles/fetch', 'RoleFetchController@fetch')->name('roles.fetch');
-		Route::post('roles/fetch/role/{id?}', 'RoleFetchController@fetchItem')->name('role.fetch');
-	});
+	/****************
+	 * PERMISSION
+	 ****************/
+	Route::post('permissions/update/{id}', 'PermissionController@update')->name('permissions.update');
+	Route::post('permission/fetch/role/{id}', 'PermissionFetchController@fetchItem')->name('permissions.fetch');
+
+
+	/****************
+	 * ROLE
+	 ****************/
+	Route::get('roles', 'RoleController@index')->name('roles');
+	Route::get('roles/create', 'RoleController@create')->name('roles.create');
+	Route::post('roles/store', 'RoleController@store')->name('roles.store');
+	Route::get('roles/view/edit/{id}', 'RoleController@edit')->name('roles.edit');
+	Route::post('roles/update/{id}', 'RoleController@update')->name('role.update');
+	Route::delete('roles/destroy/{id}', 'RoleController@destroy')->name('role.destroy');
+	Route::post('roles/restore/{role}', 'RoleController@restore')->name('role.restore');
+
+	Route::post('roles/fetch/q', 'RoleFetchController@fetch')->name('roles.fetch');
+	Route::post('roles/fetch/q?archive=1', 'RoleFetchController@fetch')->name('roles.archive');
+	Route::post('roles/fetch/role/{id?}', 'RoleFetchController@fetchItem')->name('role.fetch');
+
+
+	Route::get('requests', 'RepairServiceRequestController@index')->name('request');
+	Route::get('request/create', 'RepairServiceRequestController@create')->name('request.create');
+	Route::post('request/store', 'RepairServiceRequestController@store')->name('request.store');
+	Route::get('request/view/edit/{id}', 'RepairServiceRequestController@edit')->name('request.edit');
+	Route::post('request/update/{id}', 'RepairServiceRequestController@update')->name('request.update');
+	Route::delete('request/destroy/{id}', 'RepairServiceRequestController@destroy')->name('request.destroy');
+	Route::post('request/restore/{id}', 'RepairServiceRequestController@restore')->name('request.restore');
+
+	Route::post('requests/fetch/q', 'RepairServiceRequestFetchController@fetch')->name('requests.fetch');
+	Route::post('requests/fetch/q?archive=1', 'RepairServiceRequestFetchController@fetch')->name('requests.archive');
+	Route::post('requests/fetch/request/{id?}', 'RepairServiceRequestFetchController@fetchItem')->name('request.fetch');
+	Route::post('requests/fetch/user', 'RepairServiceRequestFetchController@fetchUserInvoiceItems')->name('request.invoice');
+
+
 	/****************
 	 * PRODUCT
 	 ****************/
 	Route::post('product-image/{id}', 'ProductImageController@destroy')->name('product-image.destroy');
 
-	Route::get('products', 'ProductController@index')->name('regular.products.index');
-	Route::get('product/edit/{id}', 'ProductController@edit')->name('regular.product.edit');
-	Route::get('product/create', 'ProductController@create')->name('regular.product.create');
-	Route::post('product/store', 'ProductController@store')->name('regular.product.store');
-	Route::post('product/update/{id}', 'ProductController@update')->name('regular.product.update');
-	Route::delete('product/{id}', 'ProductController@destroy')->name('regular.product.destroy');
-	Route::post('product/restore/{user}', 'ProductController@restore')->name('regular.product.restore');
+	Route::get('products', 'ProductController@index')->name('products.index');
+	Route::get('product/edit/{id}', 'ProductController@edit')->name('product.edit');
+	Route::get('product/create', 'ProductController@create')->name('product.create');
+	Route::post('product/store', 'ProductController@store')->name('product.store');
+	Route::post('product/update/{id}', 'ProductController@update')->name('product.update');
+	Route::delete('product/{id}', 'ProductController@destroy')->name('product.destroy');
+	Route::post('product/restore/{user}', 'ProductController@restore')->name('product.restore');
+	Route::get('product/upload', 'ProductController@upload')->name('product.upload');
+	Route::post('products/upload', 'ProductController@uploadproduct')->name('products.upload');
 
-	Route::post('products/fetch/q', 'ProductFetchController@fetch')->name('regular.products.fetch');
-	Route::post('products/fetch/q?archive=1', 'ProductFetchController@fetch')->name('regular.products.archive');
-	Route::post('products/fetch/{id?}', 'ProductFetchController@fetchItem')->name('regular.product.fetch');
+	Route::post('products/fetch/q', 'ProductFetchController@fetch')->name('products.fetch');
+	Route::post('products/fetch/q?archive=1', 'ProductFetchController@fetch')->name('products.archive');
+	Route::post('products/fetch/{id?}', 'ProductFetchController@fetchItem')->name('product.fetch');
 
 
 	/****************
 	 * CATEGORY
 	 ****************/
-	Route::get('categories', 'CategoryController@index')->name('regular.categories.index');
-	Route::get('categories/edit/{id}', 'CategoryController@edit')->name('regular.categories.edit');
-	Route::get('categories/create', 'CategoryController@create')->name('regular.categories.create');
-	Route::post('categories/store', 'CategoryController@store')->name('regular.categories.store');
-	Route::post('categories/update/{id}', 'CategoryController@update')->name('regular.categories.update');
-	Route::delete('categories/{id}', 'CategoryController@destroy')->name('regular.categories.destroy');
-	Route::post('categories/restore/{user}', 'CategoryController@restore')->name('regular.categories.restore');
+	Route::get('categories', 'CategoryController@index')->name('categories.index');
+	Route::get('categories/edit/{id}', 'CategoryController@edit')->name('categories.edit');
+	Route::get('categories/create', 'CategoryController@create')->name('categories.create');
+	Route::post('categories/store', 'CategoryController@store')->name('categories.store');
+	Route::post('categories/update/{id}', 'CategoryController@update')->name('categories.update');
+	Route::delete('categories/{id}', 'CategoryController@destroy')->name('categories.destroy');
+	Route::post('categories/restore/{user}', 'CategoryController@restore')->name('categories.restore');
+	Route::get('category/upload', 'CategoryController@upload')->name('category.upload');
+	Route::post('categories/upload', 'CategoryController@uploadcategory')->name('categories.upload');
 
-	Route::post('categories/fetch/q', 'CategoryFetchController@fetch')->name('regular.categories.fetch');
-	Route::post('categories/fetch/q?archive=1', 'CategoryFetchController@fetch')->name('regular.categories.archive');
-	Route::post('categories/fetch/{id?}', 'CategoryFetchController@fetchItem')->name('regular.category.fetch');
+	Route::post('categories/fetch/q', 'CategoryFetchController@fetch')->name('categories.fetch');
+	Route::post('categories/fetch/q?archive=1', 'CategoryFetchController@fetch')->name('categories.archive');
+	Route::post('categories/fetch/{id?}', 'CategoryFetchController@fetchItem')->name('category.fetch');
 
 
 	/****************
 	 * TYPE
 	 ****************/
-	Route::get('types', 'TypeController@index')->name('regular.types.index');
-	Route::get('types/edit/{id}', 'TypeController@edit')->name('regular.types.edit');
-	Route::get('types/create', 'TypeController@create')->name('regular.types.create');
-	Route::post('types/store', 'TypeController@store')->name('regular.types.store');
-	Route::post('types/update/{id}', 'TypeController@update')->name('regular.types.update');
-	Route::delete('types/{id}', 'TypeController@destroy')->name('regular.types.destroy');
-	Route::post('types/restore/{user}', 'TypeController@restore')->name('regular.types.restore');
+	Route::get('types', 'TypeController@index')->name('types.index');
+	Route::get('types/edit/{id}', 'TypeController@edit')->name('types.edit');
+	Route::get('types/create', 'TypeController@create')->name('types.create');
+	Route::post('types/store', 'TypeController@store')->name('types.store');
+	Route::post('types/update/{id}', 'TypeController@update')->name('types.update');
+	Route::delete('types/{id}', 'TypeController@destroy')->name('types.destroy');
+	Route::post('types/restore/{user}', 'TypeController@restore')->name('types.restore');
+	Route::get('type/upload', 'TypeController@upload')->name('type.upload');
+	Route::post('types/upload', 'TypeController@uploadtype')->name('types.upload');
 
-	Route::post('types/fetch/q', 'TypeFetchController@fetch')->name('regular.types.fetch');
-	Route::post('types/fetch/q?archive=1', 'TypeFetchController@fetch')->name('regular.types.archive');
-	Route::post('types/fetch/{id?}', 'TypeFetchController@fetchItem')->name('regular.type.fetch');
+	Route::post('types/fetch/q', 'TypeFetchController@fetch')->name('types.fetch');
+	Route::post('types/fetch/q?archive=1', 'TypeFetchController@fetch')->name('types.archive');
+	Route::post('types/fetch/{id?}', 'TypeFetchController@fetchItem')->name('type.fetch');
 
-	Route::post('image/store', 'ProductImageController@store')->name('regular.image.store');
+	Route::post('image/store', 'ProductImageController@store')->name('image.store');
 
 
 	/****************
@@ -167,9 +208,9 @@ Route::prefix('admin')
 
 	Route::post('carousel/{id}', 'CarouselImageController@destroy')->name('carousel.destroy');
 
-	Route::post('carousels/fetch/q', 'CarouselFetchController@fetch')->name('regular.carousels.fetch');
-	Route::post('carousels/fetch/q?archive=1', 'CarouselFetchController@fetch')->name('regular.carousels.archive');
-	Route::post('carousels/fetch/carousel/{id?}', 'CarouselFetchController@fetchItem')->name('regular.carousel.fetch');
+	Route::post('carousels/fetch/q', 'CarouselFetchController@fetch')->name('carousels.fetch');
+	Route::post('carousels/fetch/q?archive=1', 'CarouselFetchController@fetch')->name('carousels.archive');
+	Route::post('carousels/fetch/carousel/{id?}', 'CarouselFetchController@fetchItem')->name('carousel.fetch');
 
 	Route::get('pages', 'PageController@index')->name('pages.index');
 	Route::get('pages/create', 'PageController@create')->name('pages.create');

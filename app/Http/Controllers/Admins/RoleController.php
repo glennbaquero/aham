@@ -3,22 +3,22 @@
 namespace App\Http\Controllers\Admins;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
+use App\Http\Requests\RoleRequest;
 use Illuminate\Http\Request;
 
 use App\Role;
+use DB;
 
 class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
- *
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $roles = Role::paginate(5);
-        return view('admin.superadmin.roles.index', compact('roles'));
+        return view('admin.roles.index');
     }
 
     /**
@@ -28,7 +28,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('admin.superadmin.roles.create');
+        return view('admin.roles.create');
     }
 
     /**
@@ -37,10 +37,18 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RoleRequest $request)
     {
-        Role::create($request->all());
-        return response()->json('success');
+        DB::beginTransaction();
+
+        $role = Role::store($request);
+        
+        DB::commit();
+
+        return response()->json([
+            'message' => 'You have successfully create a new role',
+            'redirect' => $role->renderView(),
+        ]);
     }
 
     /**
@@ -62,15 +70,9 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.superadmin.roles.edit', [
-            'role'=>Role::find($id)
-        ]);
-    }
 
-    public function view($id)
-    {
-        return view('admin.superadmin.roles.edit', [
-            'role'=>Role::find($id)
+        return view('admin.roles.edit', [
+            'role' => Role::withTrashed()->find($id)
         ]);
     }
 
@@ -81,10 +83,17 @@ class RoleController extends Controller
      * @param  \App\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RoleRequest $request, $id)
     {
-        Role::find($id)->update($request->all());
-        return response()->json('success');
+        $role = Role::withTrashed()->find($id);
+
+        DB::beginTransaction();
+        $role = Role::store($request, $role);
+        DB::commit();
+
+        return response()->json([
+            'message' => 'You have successfully updated the role'
+        ]);
     }
 
     /**
@@ -95,7 +104,27 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        Role::destroy($id);
-        return redirect()->back();
+        $role = Role::find($id);
+        $role->delete();
+
+        return response()->json([
+            'message' => "You have successfully archived {$role->renderName()}",
+        ]);
+    }
+
+    /**
+     * Restore the specified resource from storage.
+     *
+     * @param  \App\Role  $role
+     * @return \Illuminate\Http\Response
+     */
+    public function restore($id)
+    {
+        $role = Role::onlyTrashed()->find($id);
+        $role->restore();
+
+        return response()->json([
+            'message' => "You have successfully restored {$role->renderName()}",
+        ]);
     }
 }

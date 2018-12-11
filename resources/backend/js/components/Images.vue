@@ -1,8 +1,11 @@
 <template>
 	<div>
 	    <template v-for="(item, key) in items">
-	    	<div @click="remove(item.url)" class="d-inline pr-3">
-	        	<img :src="item.path" class="img-thumbnail img-responsive d-inline image-remove" width="75" height="75">
+	    	<div class="d-inline pr-3">
+	    		<a :href="item.path" target="_blank">
+		        	<img :src="item.path" class="img-thumbnail img-responsive d-inline image-remove" width="75" height="75">
+	        	</a>
+	        	<button @click.prevent="remove(item.url)" type="button" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></button>
 			</div>
 	    </template>
     </div>

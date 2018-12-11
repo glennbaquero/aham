@@ -21,12 +21,14 @@ class CarouselImage extends Model
     public function update_carousel($path){
         $this->update(['image_path'=>$path]);
     }
-
-    public function renderPath() {
-        return url('/').'/storage/' . $this->image_path;
+    
+    public function renderPath($column = 'image_path') {
+        $path = null;
+        if ($this[$column]) { $path = asset('storage/' . $this[$column]); }
+        return $path;
     }
 
     public function renderDelete() {
-        return route('carousel.destroy', $this->id);
+        return route('admin.carousel.destroy', $this->id);
     }
 }

@@ -41,11 +41,11 @@
     		<!-- DATATABLE -->
     		<datatable ref="datatable"
             :headers="['#', 'Image', 'Model', 'Name', 'Extended Amount', 'Created At']"
-            :columns="['id', 'tbimage', 'model', 'name', 'extended_amount', 'edate', 'created_at']"
+            :columns="['id', null, 'model', 'name', 'extended_amount', 'edate', 'created_at']"
     		:filters="filters"
     		
     		:fetchurl="fetchurl"
-    		:actionable="true"
+    		:actionable="actionable"
     		:selectable="false"
 
     		@loaded="init"
@@ -55,12 +55,12 @@
     			<tbody slot="body">
     				<tr v-for="item in items">
                         <td>{{ item.id }}</td>
-                        <td><img :src="item.tbimage" class="img-thumbnail" width="75" height="75"></td>
+                        <td><img :src="item.image" class="img-thumbnail" width="100"></td>
                         <td>{{ item.model }}</td>
                         <td>{{ item.name }}</td>
     					<td>{{ item.extended_amount }}</td>
     					<td>{{ item.created_at }}</td>
-                        <td>
+                        <td v-show="actionable">
                             <center>
                                 <a :href="item.actions.view" 
                                 class="btn btn-xs btn-primary">
@@ -94,7 +94,10 @@
 
     	props: {
     		fetchurl: String,
-            autofetch: Boolean
+            autofetch: Boolean,
+            actionable: {
+                default: true,
+            },
     	},
 
     	components: {

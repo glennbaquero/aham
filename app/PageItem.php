@@ -53,7 +53,6 @@ class PageItem extends Model
      * @Methods
      */
     public static function store($request, $item = null) {
-
         $vars = $request->only(['page_id', 'content', 'type']);
         $vars['slug'] = Helpers::slugify($request->input('slug'));
 
@@ -86,7 +85,7 @@ class PageItem extends Model
      */
 
     public function renderName() {
-        return '#' . $this->id . ' ' . $this->name;
+        return '#' . $this->id . ' ' . $this->slug;
     }
 
     public function renderRelationshipName($column = 'slug', $relationship = 'page') {
@@ -106,14 +105,14 @@ class PageItem extends Model
     }
 
     public function renderView() {
-        return route('page-items.edit', $this->id);
+        return route('admin.page-items.edit', $this->id);
     }
 
     public function renderDelete() {
-        return route('page-items.destroy', $this->id);
+        return route('admin.page-items.destroy', $this->id);
     }
 
     public function renderRestore() {
-        return route('page-items.restore', $this->id);
+        return route('admin.page-items.restore', $this->id);
     }
 }

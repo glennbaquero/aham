@@ -8,16 +8,30 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 use App\Traits\ActivityLogTrait;
 
-class Role extends Model
+use Spatie\Permission\Models\Role as SpatieRole;
+
+class Role extends SpatieRole
 {
     use SoftDeletes, Searchable, ActivityLogTrait;
-    protected $guarded = [];
     protected $dates = ['deleted_at'];
 
     /**
      * @TNT Search
      */
     public $asYouType = true;
+
+    public static function store($request, $item = null) 
+    {
+        $vars  = $request->only(['name', 'description']);
+
+        if(!$item) {
+            $item = static::create($vars);
+        } else {
+            $item->update($vars);
+        }
+
+        return $item;
+    }
     
     public function toSearchableArray() {
         return [
@@ -35,7 +49,15 @@ class Role extends Model
     }
 
     public function renderView() {
-    	return route('admin.roles.view', $this->id);
+    	return route('admin.roles.edit', $this->id);
+    }
+
+    public function renderDelete() {
+        return route('admin.role.destroy', $this->id);
+    }
+
+    public function renderRestore() {
+        return route('admin.role.restore', $this->id);
     }
 
 }

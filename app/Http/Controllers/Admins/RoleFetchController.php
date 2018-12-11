@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\FetchController;
 
 use App\Role;
+use App\Permission;
 
 class RoleFetchController extends FetchController
 {
@@ -61,10 +62,14 @@ class RoleFetchController extends FetchController
 
         if ($id) {
             $item = Role::withTrashed()->find($id);
+            $item->permissions = $item->permissions()->pluck('id')->toArray();
         }
+
+        $permissions = Permission::all();
 
         return response()->json([
             'item' => $item,
+            'permissions' => $permissions
         ]);
     }
 }

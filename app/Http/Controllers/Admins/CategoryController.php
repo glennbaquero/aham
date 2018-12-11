@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use Illuminate\Http\Request;
 
+use App\Imports\CategoriesImport;
+use Maatwebsite\Excel\Facades\Excel;
+
 use App\Category;
 use DB;
 
@@ -18,7 +21,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.regularadmin.categories.index');
+        return view('admin.categories.index');
     }
 
     /**
@@ -28,7 +31,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.regularadmin.categories.create');
+        return view('admin.categories.create');
     }
 
     /**
@@ -69,7 +72,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.regularadmin.categories.edit',[
+        return view('admin.categories.edit',[
             'category' => Category::withTrashed()->find($id)
         ]);
     }
@@ -124,5 +127,16 @@ class CategoryController extends Controller
         return response()->json([
             'message' => "You have successfully restored {$category->renderName()}",
         ]);
+    }
+
+    public function upload()
+    {
+        return view('admin.uploadmanifests.categories');
+    }
+
+    public function uploadcategory(Request $request)
+    { 
+        Excel::import(new CategoriesImport, $request->file('manifest'));
+        return redirect()->back();
     }
 }

@@ -6,15 +6,27 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 
+use App\Imports\ProductImport;
+use Maatwebsite\Excel\Facades\Excel;
+
 use App\Product;
 use App\ProductImage;
 use App\Type;
 use App\Category;
 
+
 use DB;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('App\Http\Middleware\Admins\Products\ProductIndexMiddleware', ['only' => ['index']]);
+        $this->middleware('App\Http\Middleware\Admins\Products\ProductStoreMiddleware', ['only' => ['create', 'store']]);
+        $this->middleware('App\Http\Middleware\Admins\Products\ProductUpdateMiddleware', ['only' => ['edit', 'update']]);
+        $this->middleware('App\Http\Middleware\Admins\Products\ProductDestroyMiddleware', ['only' => ['destroy', 'restore']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +34,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.regularadmin.products.index');
+        return view('admin.products.index');
     }
 
     /**
@@ -32,7 +44,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.regularadmin.products.create',[
+        return view('admin.products.create',[
             'types' => Type::all(),
             'categories' => Category::all()
         ]);
@@ -77,7 +89,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.regularadmin.products.edit', [
+        return view('admin.products.edit', [
             'categories' => Category::all(),
             'types' => Type::all(),
             'product' => Product::withTrashed()->find($id)
@@ -93,7 +105,6 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, $id)
     {
-        
         $product = Product::withTrashed()->find($id);
        
         DB::beginTransaction();
@@ -136,5 +147,19 @@ class ProductController extends Controller
             'message' => "You have successfully restored {$product->renderName()}",
         ]);
     }
+
+    /**
+     * Upload product manifest view
+     */
+    public function upload()
+    {
+        return view('admin.uploadmanifests.products');
+    }
+
+    public function uploadproduct(Request $request) 
+    {   
+        Excel::import(new ProductImport, $request->file('manifest'));
+        return redirect()->back();
+    } 
 
 }

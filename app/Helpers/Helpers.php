@@ -1,0 +1,80 @@
+<?php
+
+namespace App;
+
+use Carbon\Carbon;
+
+class Helpers
+{
+	public static function isDev() {
+		return config('app.debug') && config('app.env') === 'local';
+	}
+
+	public static function randomFile($dir = 'public/storage/tmp', $required = 10, $extension = 'jpg') {
+		$path = false;
+		$files = glob($dir . '/*.' . $extension);
+
+		if (count($files) > $required) {
+		    $file = array_rand($files);
+		    $path = $files[$file];
+		}
+		
+		return str_replace('public/storage/', '', $path);
+	}
+
+	public static function getRandomDates($number = 2) {
+		$dates = [];
+
+		for ($i = 0; $i < $number; $i++) { 
+			$dates[] = Carbon::now()->addDays($i);
+		}
+
+		return $dates;
+	}
+
+	public static function truncate($string, $end = 120, $start = 0) {
+		return substr($string, $start, $end);
+	}
+
+	public static function slugify($text) {
+        // replace non letter or digits by -
+        $text = preg_replace('~[^\pL\d]+~u', '_', $text);
+
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        // trim
+        $text = trim($text, '-');
+
+        // remove duplicate -
+        $text = preg_replace('~-+~', '-', $text);
+
+        // lowercase
+        $text = strtolower($text);
+
+        if (empty($text)) {
+            return 'n-a';
+        }
+
+        return $text;
+    }
+
+    public static function generateRandomString($length = 20, $additionalString = null)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charLength = strlen($characters);
+
+        $randomString = null;
+
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charLength - 1)];
+        }
+
+        $randomString .= $additionalString;
+        
+        return $randomString;
+    }
+}

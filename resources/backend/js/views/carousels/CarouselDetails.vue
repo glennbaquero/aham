@@ -37,15 +37,15 @@
 
                             <div class="col col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label for="">Content</label>
-                                    <textarea class="content" name="content">{{ item.content }}</textarea>
-                                </div>
-                            </div>
-                        
-                            <div class="col col-xs-12 col-sm-12 col-md-6">
-                                <div class="form-group">
                                     <label for="">Images <small>(allows multiple images)</small></label>
                                     <input type="file" name="images[]" class="form-control input-sm" multiple>
+                                </div>
+                            </div>
+
+                            <div class="col col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="">Content</label>
+                                    <textarea class="content" name="content">{{ item.content }}</textarea>
                                 </div>
                             </div>
                             
@@ -92,9 +92,7 @@ export default {
     data() {
         return {
             loading: false,
-            item: {
-                tags: [],
-            },
+            item: {},
             tags: []
     	}
     },

@@ -152,6 +152,7 @@ export default {
 				this.$emit('loading', false);
 			}).catch(error => {
 				this.loading = false;
+				this.showErrors(error);
 				this.$emit('loading', false);
 			});
 		},

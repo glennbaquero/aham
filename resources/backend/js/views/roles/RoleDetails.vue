@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-12">
                 <!-- Box Start -->
-                <div class="box box-primary">
+                <div class="box box-primary no-border">
                     <div class="box-header with-border">
                         <i class="fa fa-info-circle"></i>
                         <h3 class="box-title">Basic Information</h3>
@@ -19,16 +19,16 @@
                         <!-- Start Row -->
                 		<div class="row">
 
-                    		<div class="col col-xs-12 col-sm-12 col-md-6">
+                    		<div class="col col-xs-12 col-sm-12 col-md-12">
                     			<div class="form-group">
                     				<label for="">Name</label>
                     				<input v-model="item.name" :disabled="editable" name="name" type="text" class="form-control input-sm" placeholder="Name">
                     			</div>
                     		</div>
-                            <div class="col col-xs-12 col-sm-12 col-md-6">
+                            <div class="col col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="">Description</label>
-                                    <input v-model="item.description" :disabled="editable" name="description" type="text" class="form-control input-sm" placeholder="Description">
+                                    <textarea class="content" name="description">{{ item.description }}</textarea>
                                 </div>
                             </div>
                             
@@ -46,6 +46,9 @@
 
 <script>
 import Loader from '../../components/Loader.vue';
+import ckeditor from '../../mixins/ckeditor.js';
+import flatpickr from '../../mixins/flatpickr.js';
+import select2 from '../../mixins/select2.js';
 
 export default {
 	props: {
@@ -59,10 +62,20 @@ export default {
         'loader': Loader
     },
 
+    mixins: [
+        ckeditor,
+        flatpickr,
+        select2,
+    ],
+
     data() {
     	return {
             loading: false,
-            item: {}
+            item: {
+                permissions: [],
+            },
+
+            permissions: []
     	}
     },
 
@@ -82,6 +95,9 @@ export default {
     		if (this.model) {
     			this.item = this.model ? this.model : {};
     		}
+
+            this.ckeditor.init();
+
     	},
 
     	init() {
@@ -95,10 +111,14 @@ export default {
     		.then(response => {
                 const data = response.data;
                 this.item = data.item ? data.item : {};
+                this.item.permissions = data.item ? data.item.permissions : [];
+                this.permissions = data.permissions;
+                console.log(data);
     		}).catch(error => {
                 console.log(error);
     		}).then(() => {
                 this.load(false);
+                this.select2.init('.select2');
             });
     	},
 

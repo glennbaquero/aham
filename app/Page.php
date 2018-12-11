@@ -150,14 +150,14 @@ class Page extends Model
     }
 
     public function renderView() {
-        return route('pages.edit', $this->id);
+        return route('admin.pages.edit', $this->id);
     }
 
     public function renderDelete() {
-        return route('pages.destroy', $this->id);
+        return route('admin.pages.destroy', $this->id);
     }
 
     public function renderRestore() {
-        return route('pages.restore', $this->id);
+        return route('admin.pages.restore', $this->id);
     }
 }

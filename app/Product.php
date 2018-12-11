@@ -28,9 +28,21 @@ class Product extends Model
     public function images() {
         return $this->hasMany(ProductImage::class);
     }
+
+    public function userproduct() {
+       return $this->hasMany(UserProduct::class);
+    }
+
+    public function user() {
+       return $this->belongsTo(User::class);
+    }
     
     public function product_image($request) {
         $this->product_images()->create($request);
+    }
+
+    public function invoice_items() {
+        return $this->hasMany(InvoiceItem::class, 'product_id');
     }
 
     public static function store($request, $item = null) {
@@ -63,28 +75,21 @@ class Product extends Model
         return '#' . $this->id . ' ' . $this->model;
     }
 
+    public function renderFilePath($column = 'image') {
+        $path = null;
+        if (count($this->images)) { $path = $this->images()->first()->renderFilePath($column); }
+        return $path;
+    }
+
     public function renderView() {
-    	return route('regular.product.edit', $this->id);
-    }
-
-    public function renderTableImage() {
-        return asset('storage/'.$this->image()->first()['image']);
-    }
-
-    public function renderAllImage() {
-        return $this->image()->get();
-    }
-
-    public function renderProductImage()
-    {
-        return $this->image;
+        return route('admin.product.edit', $this->id);
     }
 
     public function renderDelete() {
-        return route('regular.product.destroy', $this->id);
+        return route('admin.product.destroy', $this->id);
     }
 
     public function renderRestore() {
-        return route('regular.product.restore', $this->id);
+        return route('admin.product.restore', $this->id);
     }
 }

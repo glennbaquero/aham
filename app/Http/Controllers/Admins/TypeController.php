@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\TypeRequest;
 use Illuminate\Http\Request;
 
+use App\Imports\TypesImport;
+use Maatwebsite\Excel\Facades\Excel;
+
+
 use App\Type;
 use DB;
 
@@ -18,7 +22,7 @@ class TypeController extends Controller
      */
     public function index()
     {
-        return view('admin.regularadmin.types.index');
+        return view('admin.types.index');
     }
 
     /**
@@ -28,7 +32,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        return view('admin.regularadmin.types.create');
+        return view('admin.types.create');
     }
 
     /**
@@ -70,7 +74,7 @@ class TypeController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.regularadmin.types.edit',[
+        return view('admin.types.edit',[
             'type' => Type::withTrashed()->find($id)
         ]);
     }
@@ -88,7 +92,7 @@ class TypeController extends Controller
         $type = Type::withTrashed()->find($id);
 
         DB::beginTransaction();
-            $type = Type::store($request, $type);
+        $type = Type::store($request, $type);
         DB::commit();
 
         return response()->json([
@@ -126,5 +130,16 @@ class TypeController extends Controller
         return response()->json([
             'message' => "You have successfully restored {$type->renderName()}",
         ]);
+    }
+
+    public function upload()
+    {
+        return view('admin.uploadmanifests.types');
+    }
+
+    public function uploadtype(Request $request)
+    {   
+        Excel::import(new TypesImport, $request->file('manifest'));
+        return redirect()->back();
     }
 }

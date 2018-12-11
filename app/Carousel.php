@@ -100,14 +100,14 @@ class Carousel extends Model
     }
 
     public function renderView() {
-    	return route('carousel.edit', $this->id);
+    	return route('admin.carousel.edit', $this->id);
     }
 
     public function renderDelete() {
-        return route('carousel.destroy', $this->id);
+        return route('admin.carousel.destroy', $this->id);
     }
 
     public function renderRestore() {
-        return route('carousel.restore', $this->id);
+        return route('admin.carousel.restore', $this->id);
     }
 }
