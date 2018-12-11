@@ -166,44 +166,83 @@ var app = {
 
     home: function(){
 
-		$('.h__slider-holder').slick({
-			infinite: true,
-			slidesToShow: 1,
-			slidesToScroll: 1,
-			autoplay: true,
-			speed: 500,
-			arrows: false,
-			fade: false,
-			dots: true
-		});
+    		$('.h__slider-holder').slick({
+      			infinite: true,
+      			slidesToShow: 1,
+      			slidesToScroll: 1,
+      			autoplay: true,
+      			speed: 500,
+      			arrows: false,
+      			fade: false,
+      			dots: true
+    		});
 
 
-		$('.top_slider').slick({
-		    dots: true,
-		    infinite: true,
-		    slidesToShow: 1,
-		    slidesToScroll: 1,
-		    autoplay: true,
-		    arrows: false,
-		    speed: 500,
-		});
+    		$('.top_slider').slick({
+    		    dots: true,
+    		    infinite: true,
+    		    slidesToShow: 1,
+    		    slidesToScroll: 1,
+    		    autoplay: true,
+    		    arrows: false,
+    		    speed: 500,
+    		});
 
-		// var $selected_slider = $('.h__slider-holder');
-		// 	$selected_slider.slick(app.slick.default(false, true, '', ''));
+      // Product Category Slider
+      $('.h__prod-category-slider-holder').slick({
+        infinite: true,
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        autoplay: false,
+        speed: 500,
+        arrows: false,
+        dots: false,
+        fade: false,
+        responsive: [
+        {
+          breakpoint: 1200,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 4
+          }   
+        },
+        {
+          breakpoint: 1100,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3
+          }   
+        },
+        {
+          breakpoint: 801,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2
+          }   
+        },
+        {
+          breakpoint: 401,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }   
+        }
+        ]
+      });
     },
 
     about: function(){
 
     	$('.banner__slider-holder').slick({
-			infinite: true,
-			slidesToShow: 1,
-			slidesToScroll: 1,
-			autoplay: true,
-			speed: 500,
-			arrows: false,
-			fade: false,
-			dots: true
-		});
+  			infinite: true,
+  			slidesToShow: 1,
+  			slidesToScroll: 1,
+  			autoplay: true,
+  			speed: 500,
+  			arrows: false,
+  			fade: false,
+  			dots: true
+  		});
 
 		var slider = $('.a-partners__slider'),
 			sliderHolder = $('.a-partners__sliderHolder');

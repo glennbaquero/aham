@@ -26,12 +26,19 @@
 </section>
 
 <section class="aboutpage frame--2 container">
+	<img class="img-fit" src="{{asset('images/2.png') }}">
 	<div class="frame-padding">
 		<div class="vertical-parent">
 			<div class="vertical-align">
 				<div class="a__container">
 					<p class="a__title">Imagine. Inspire. Innovate</p>
 					<div class="a__desc">
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
 
 						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse

@@ -20,7 +20,63 @@
 		</div>
 		
 	</div>
+
 	<div class="h__prod-category-container">
+		<div class="h__prod-category-slider-holder">
+			<a href="{{ url('category') }}" class="h__products">
+				<div class="h__products-img-holder">
+					<img class="img-fit" src="//via.placeholder.com/60x60">
+				</div>
+				<p>Refrigerators</p>
+			</a
+			><a href="{{ url('category') }}" class="h__products">
+				<div class="h__products-img-holder">
+					<img class="img-fit" src="//via.placeholder.com/60x60">
+				</div>
+				<p>Microwaves</p>
+			</a
+			><a href="{{ url('category') }}" class="h__products">
+				<div class="h__products-img-holder">
+					<img class="img-fit" src="//via.placeholder.com/60x60">
+				</div>
+				<p>Washing Machines</p>
+			</a
+			><a href="{{ url('category') }}" class="h__products">
+				<div class="h__products-img-holder">
+					<img class="img-fit" src="//via.placeholder.com/60x60">
+				</div>
+				<p>Air Conditions</p>
+			</a
+			><a href="{{ url('category') }}" class="h__products">
+				<div class="h__products-img-holder">
+					<img class="img-fit" src="//via.placeholder.com/60x60">
+				</div>
+				<p>Televisions</p>
+			</a
+			><a href="{{ url('category') }}" class="h__products">
+				<div class="h__products-img-holder">
+					<img class="img-fit" src="//via.placeholder.com/60x60">
+				</div>
+				<p>Kitchen</p>
+			</a
+			><a href="{{ url('category') }}" class="h__products">
+				<div class="h__products-img-holder">
+					<img class="img-fit" src="//via.placeholder.com/60x60">
+				</div>
+				<p>Televisions</p>
+			</a
+			><a href="{{ url('category') }}" class="h__products">
+				<div class="h__products-img-holder">
+					<img class="img-fit" src="//via.placeholder.com/60x60">
+				</div>
+				<p>Kitchen</p>
+			</a>
+
+		</div>
+	</div>
+
+	{{-- <div class="h__prod-slider-holder">
+		<div class="h__top_slider">
 			<a href="{{ url('category') }}" class="h__products">
 				<div class="h__products-img-holder">
 					<img class="img-fit" src="//via.placeholder.com/60x60">
@@ -58,6 +114,7 @@
 				<p>Kitchen</p>
 			</a>
 		</div>
+	</div> --}}
 </section>
 
 <section class="homepage frame--2 container">
@@ -140,6 +197,7 @@
 </section>
 
 <section class="homepage frame--4 container">
+	<img class="img-fit" src="{{asset('images/1.jpg') }}">
 	<div class="frame-padding">
 		<div class="vertical-parent">
 			<div class="vertical-align">
