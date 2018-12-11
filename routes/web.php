@@ -106,6 +106,16 @@ Route::name('admin.')
 	Route::post('permissions/update/{id}', 'PermissionController@update')->name('permissions.update');
 	Route::post('permission/fetch/role/{id}', 'PermissionFetchController@fetchItem')->name('permissions.fetch');
 
+	/**====================================
+	 * @Activity Log Controllers
+	 ======================================*/
+	Route::get('activity-logs', 'ActivityLogController@index')->name('activity-logs.index');
+
+	/**
+	 * @Acitivity Fetch Controllers
+	 */
+	Route::post('activity-logs/fetch/q', 'ActivityLogFetchController@fetch')->name('activity-logs.fetch');
+
 
 	/****************
 	 * ROLE

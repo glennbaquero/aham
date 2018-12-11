@@ -66,8 +66,8 @@
         <!--[if lt IE 9]>
         <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-        <link rel="stylesheet" type="text/css" href="{{ mix('assets/css/vendor.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ mix('assets/frontend/css/app.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ mix('assets/vendor-backend.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ mix('assets/app-frontend.css') }}">
 
     </head>
     <body>
@@ -150,8 +150,8 @@
         @yield('js')
 
         <!-- App -->
-        <script type="text/javascript" src="{{ asset('assets/frontend/js/manifest.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('assets/frontend/js/vendor.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('assets/frontend/js/app.js') }}"></script>
+        <script type="text/javascript" src="{{ mix('assets/manifest.js') }}"></script>
+        <script type="text/javascript" src="{{ mix('assets/vendor.js') }}"></script>
+        <script type="text/javascript" src="{{ mix('assets/app-frontend.js') }}"></script>
     </body>
 </html>
