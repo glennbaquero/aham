@@ -19,3 +19,4 @@ public/assets
 *.tar.xz
 *.index
 public/mix-manifest.json
+public/images

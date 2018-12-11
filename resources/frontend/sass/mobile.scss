@@ -1,0 +1,2135 @@
+@charset "utf-8";
+
+/* Desktops and laptops ----------- */
+
+.mbl-menu__btn > .mbl-menu,
+.mbl-header,
+.mbl-footer {
+	display: none;
+}
+
+@media only screen and (max-width: 1266px) {
+
+	.footer {
+		.footer--top {
+			.footer__col--1 {
+				.address {
+					i {
+						margin-left: 0;
+					}
+					p {
+						width: 92%;
+					}
+				}
+			}	
+		}
+	}
+
+	.homepage {
+		&.frame--1 {
+
+			.h__text-holder {
+				width: 60%;
+			}
+		}
+
+		&.frame--3 {
+			.h__contact-container {
+				width: 45%;
+			}
+		}
+
+		&.frame--4 {
+			.h__reg-container {
+				width: 50%;
+			}
+		}
+	}
+
+	.productpage {
+		&.frame--1 {
+			.p__container {
+				padding: 20% 0 12%;
+
+				.p__title {
+					width: 50%;
+				}
+
+				.p__desc {
+					width: 40%;
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 1196px) {
+
+	.footer {
+		.footer--top {
+			.footer__col--1 {
+				.footer__logo-holder {
+					height: 70px;
+				}
+			}	
+		}
+	}
+
+	.homepage {
+		&.frame--1 {
+			.h__prod-category-container {
+				transform: translateY(55px);
+
+				.h__products {
+					.h__products-img-holder {
+						display: block;
+						margin: auto;
+						margin-bottom: 10px;
+					}
+
+					p {
+						display: block;
+					}
+				}
+			}
+		}
+
+		&.frame--3 {
+			.h__contact-container {
+				width: 55%;
+			}
+		}
+
+		&.frame--4 {
+			.h__reg-container {
+				width: 55%;
+			}
+		}
+	}
+
+	.product-category-page {
+		&.frame--1 {
+			.pc__container {
+				width: 50%;
+			}
+		}
+	}
+
+	.contactpage {
+		&.frame--1 {
+			.c__container {
+				.c__form {
+					width: 70%;
+					margin: auto;
+				}
+			}
+		}
+
+		&.frame--2 {
+			.c__sc-col {
+				.c__title {
+					font-size: 32px;
+				}
+			}
+		}
+	}
+
+	.selected-productpage {
+		.sp__container {
+			.sp__col--1 {
+				.sp__img-holder {
+					height: 390px;
+					vertical-align: middle;
+				}
+			}
+		}
+	}				
+}
+
+@media only screen and (max-width: 1100px) {
+
+	.homepage {
+		&.frame--4 {
+			.h__reg-container {
+				width: 65%;
+			}
+		}
+	}
+
+	.aboutpage {
+
+		&.frame--1 {
+			.a__container {
+				width: 65%;
+			}
+		}
+	}
+
+	.productpage {
+		&.frame--2 {
+			.p__holder {
+
+				.p__col {
+					width: 32%;
+
+					&:first-child,
+					&:nth-child(4n+1) {
+						margin-left: 2%;
+					}
+
+					&:first-child,
+					&:nth-child(3n+1) {
+						margin-left: 0;
+					}
+				}
+			}
+		}
+	}
+
+	.extendedwarranty {
+		.ew__container {
+			width: 60%;
+		}
+	}
+
+	.contactpage {
+		&.frame--2 {
+			.c__sc-col {
+				.c__title {
+					font-size: 30px;
+				}
+			}
+		}
+	}
+
+	.selected-productpage {
+		padding: 50px 50px 40px;
+
+		.sp__container {
+			.sp__col--1 {
+				.sp__img-holder {
+					height: 370px;
+				}
+
+				.sp__details {
+					vertical-align: middle;
+					padding: 5%;
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 1024px) {
+
+	.header {
+		.header--top,
+		.header--bottom {
+			padding: 6px 20px;
+		}
+
+		.header--bottom {
+			.navigation__set {
+				.navigation__link {
+					margin-right: 25px;
+				}
+			}
+		}
+	}
+
+	.footer {
+		.footer--top {
+			.footer__col--1 {
+				margin-right: 9%;
+
+				.footer__logo-holder {
+					height: 60px;
+				}
+
+				.address {
+					i {
+						width: 10%
+					}
+					p {
+						width: 90%;
+					}
+				}
+			}	
+
+			.footer__col--2 {
+				margin-right: 6%;
+				width: 23%;
+			}
+
+			.footer__col--3 {
+				width: 18%;
+			}
+
+			.footer__col--4 {
+				width: 19%;
+			}
+		}
+	}
+
+	.homepage {
+		&.frame--1 {
+
+			.h__text-holder {
+				width: 65%;
+
+				.h__title {
+					font-size: 45px;
+				}
+
+				.h__desc {
+					font-size: 24px;
+				}
+			}
+
+			.h__prod-category-container {
+				width: 94%;
+			}
+		}
+
+		
+
+		&.frame--3 {
+			.h__contact-container {
+				width: 65%;
+			}
+		}
+	}
+
+	.aboutpage {
+
+		&.frame--1 {
+			.a__container {
+				width: 75%;
+			}
+		}
+	}
+
+	.basicwarranty {
+
+		.bw__container {
+			margin: 20px 0;
+
+			.bw__form {
+				width: 50%;
+			}
+		}
+	}
+
+	.contactpage {
+		&.frame--2 {
+			.c__sc-col {
+				width: 50%;
+
+				&:last-child {
+					width: 50%;
+				}
+				.c__title {
+					font-size: 28px;
+				}
+			}
+		}
+	}
+
+	.rw__container {
+		.rw__form {
+			width: 65%;
+		}
+	}
+}
+
+@media only screen and (max-width: 896px) {
+
+	// GENERAL
+	.frame-padding {
+		padding: 32px 80px;
+	}
+
+	.bg__slider{
+	    height: 550px;
+	}
+
+	.footer {
+		.footer--top {
+			padding: 30px;
+			.footer__col--1 {
+				margin-right: 4%;
+
+				.address {
+					i {
+						width: 12%
+					}
+					p {
+						width: 88%;
+					}
+				}
+			}	
+
+			.footer__col--2 {
+				margin-right: 4%;
+				width: 27%;
+			}
+
+			.footer__col--4 {
+				width: 21%;
+			}
+		}
+	}
+
+	.desktop-header {
+		display: none;
+	}
+
+	.mbl-header {
+		position: fixed;
+		display: block;
+		z-index: 99;
+		width: 100%;
+
+		.header--bottom {
+			.mbl-menu__btn > .mbl-menu,
+			.mbl-menu__btn > .mbl-menu__search {
+				display: block;
+				position: absolute;
+				top: 7px;
+				right: 20px;
+				z-index: 99;
+				font-size: 28px;
+				cursor: pointer;
+				color: $white;
+			}
+
+			.mbl-menu__btn > .mbl-menu__search {
+				top: 10px;
+				right: 60px;
+				font-size: 24px;
+			}
+
+			.header__logo-holder {
+				position: relative;
+				width: 140px;
+				height: 40px;
+				margin-right: 10px;
+			}
+			.header__logo-holder2 {
+				position: relative;
+				width: 40px;
+				height: 35px;
+			}
+		}
+
+		.mbl-menu__link-holder {
+			position: fixed;
+			top: 0;
+			right: 0;
+			z-index: 99;
+			height: 100vh;
+			width: 40%;
+			display: block;
+			background: lighten($blue, 20);
+			transform: translateX(100%);
+			transition: all 500ms ease;
+
+			&.show {
+				transform: translateX(0%);
+			}
+
+			.mbl-menu__btn > .mbl-menu-close {
+				position: absolute;
+				top: 12px;
+				right: 10px;
+				color: $white;
+				font-size: 18px;
+				font-family: $font--2;
+			}
+
+			.mbl-menu__user {
+				width: 100%;
+				background: $black;
+				padding: 20px;
+				margin-bottom: 10px;
+
+				.mbl-menu__user-icon {
+					position: relative;
+					width: 50px;
+					height: 50px;
+					border-radius: 50px;
+					overflow: hidden;
+					margin-right: 10px;
+				}
+
+				.mbl-menu__username {
+					font-size: 20px;
+					color: $white;
+				}
+			}
+
+			.mbl-menu__links {
+				padding: 12px 16px;
+
+				&:hover {
+					background: $blue;
+				}
+
+				.mbl-menu__text {
+					color: $white;
+					font-size: 16px;
+					font-family: $font--2;
+				}
+			}
+
+			.mbl-menu__accordion-list {
+				.mbl-menu__accordion {
+					padding: 12px 16px;
+					cursor: pointer;
+
+					&:hover {
+						background: $blue;
+					}
+
+					.mbl-menu__acc-menu, a {
+						color: $white;
+						font-size: 16px;
+						font-family: $font--2;
+
+						.fa-angle-right,
+						.fa-angle-down {
+							float: right;
+							color: $white;
+						}
+
+						&.active {
+							margin-bottom: 10px;
+						}
+
+
+					}
+
+					.mbl-menu__acc-item {
+						display: none;
+						padding-left: 20px;
+
+						p, a {
+							padding: 8px 12px;
+							color: $white;
+							font-size: 14px;
+						}
+					}
+				}
+			}
+
+			.mbl-menu__contact-details {
+				margin: 15px 0;
+
+				.mbl-menu__contact {
+					padding: 6px 16px;
+
+					i {
+						font-size: 12px;
+						width: 10%;
+						color: $white;
+					}
+					p {
+						font-size: 14px;
+						width: 90%;
+						color: $white;
+					}
+				}
+			}
+
+			.mbl-menu__btn {
+				text-align: center;
+				padding: 0 16px;
+
+				.btn {
+					position: relative;
+					width: 100%;
+				}
+			}
+		}
+	}
+
+	
+
+	
+
+	.header {
+		.header--top {
+			.header__contact {
+				width: 45%;
+			}
+			.header__search {
+				width: 55%;
+			}
+		}
+	}
+
+	.homepage {
+		&.frame--1 {
+
+			.h__text-holder {
+				padding: 25% 0 15%;
+
+				.h__title {
+					font-size: 40px;
+					line-height: normal;
+				}
+
+				.h__desc {
+					font-size: 22px;
+				}
+			}
+		}
+
+		
+		&.frame--3 {
+			.h__contact-container {
+				width: 75%;
+
+				.h__title {
+					font-size: 32px;
+				}
+			}
+		}
+		&.frame--4 {
+			.h__reg-container {
+				width: 70%;
+				margin: auto;
+
+				.h__title,
+				.h__desc {
+					text-align: center;
+				}
+			}
+		}
+	}
+
+	.aboutpage {
+
+		&.frame--1 {
+			.a__container {
+				width: 80%;
+				top: 35vh;
+				height: auto;
+
+				.a__title {
+					font-size: 40px;
+				}
+
+				.a__desc {
+					font-size: 22px;
+				}
+			}
+		}
+
+		&.frame--2 {
+			padding: 30px 0;
+
+			.a__container {
+				width: 90%;
+				margin: auto;
+				text-align: center;
+
+				.a__title {
+					font-size: 40px;
+					margin-top: 20px;
+				}
+			}
+		}
+	}
+
+	.productpage {
+		&.frame--1 {
+			.p__container {
+				.p__desc {
+					font-size: 22px;
+				}
+			}
+		}
+
+		&.frame--2 {
+			.p__title {
+				text-align: center;
+			}
+
+			.p__holder {
+				.p__col {
+					width: 49%;
+					padding: 18px;
+
+					&:first-child,
+					&:nth-child(4n+1) {
+						margin-left: 2%;
+					}
+
+					&:first-child,
+					&:nth-child(3n+1) {
+						margin-left: 2%;
+					}
+
+					&:first-child,
+					&:nth-child(2n+1) {
+						margin-left: 0%;
+					}
+
+					.p__img-holder {
+						.img-fit {
+							left: 50%;
+							transform: translateX(-50%);
+						}
+					}
+
+					.p__details {
+						text-align: center;
+
+						.p__code {
+							font-size: 16px;
+						}
+
+						.p__name {
+							font-size: 16px;
+							margin-bottom: 20px;
+						}
+
+						.p__specs {
+							display: none;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.product-category-page {
+		&.frame--1 {
+			.pc__container {
+				width: 60%;
+			}
+		}
+	}
+
+	.basicwarranty {
+
+		.bw__container {
+			margin: 20px 0;
+
+			.bw__form {
+				width: 60%;
+			}
+		}
+	}
+
+	.extendedwarranty {
+		.ew__container {
+			width: 70%;
+		}
+	}
+
+	.warrantyinfo {
+		&.frame--1 {
+			.wi__container {
+				width: 80%;
+				height: auto;
+				padding: 20% 0 15%;
+				margin-top: 0;
+
+				.wi__title {
+					font-size: 40px;
+				}
+
+				.wi__desc {
+					margin-bottom: 0;
+				}
+			}
+		}
+
+		&.frame--2 {
+			.frame-padding {
+				padding: 40px;
+			}
+		}
+	}
+
+	.contactpage {
+		&.frame--1 {
+			.c__container {
+				margin-top: 60px;
+				.c__form {
+					width: 80%;
+					margin: auto;
+				}
+			}
+		}
+	}
+
+	.selected-productpage {
+		padding: 30px 40px 40px;
+
+		.sp__container {
+			.sp__col--1 {
+				width: 100%;
+				display: block;
+				vertical-align: middle;
+				margin-bottom: 20px;
+
+				.sp__details {
+					.sp__name {
+						font-size: 28px;
+					}
+				}
+			}
+
+			.sp__col--2 {
+				width: 100%;
+				display: block;
+				vertical-align: middle;
+			}
+		}
+	}
+
+	.rw__container {
+		padding: 30px 0;
+
+		.rw__title  {
+			font-size: 32px;
+		}
+
+		.rw__form {
+			width: 75%;
+			margin: auto;
+		}
+	}
+}
+
+@media only screen and (max-width: 823px) {
+
+	.footer {
+		.footer--top {
+			.footer__col--1 {
+				margin-right: 7%;
+				width: 30%;
+			}	
+
+			.footer__col--2 {
+				width: 40%;
+				margin-right: 0;
+			}
+
+			.footer__col--3 {
+				display: none;
+			}
+
+			.footer__col--4 {
+				width: 23%;
+			}
+		}
+	}
+
+	.homepage {
+		&.frame--1 {
+
+			.h__text-holder {
+				width: 70%;
+			}
+		}
+
+		&.frame--4 {
+			.h__reg-container {
+				width: 75%;
+			}
+		}
+	}
+
+	.aboutpage {
+
+		&.frame--1 {
+			.a__container {
+				width: 90%;
+			}
+		}
+	}
+
+	.contactpage {
+		&.frame--1 {
+			padding-bottom: 10px;
+		}
+		&.frame--2 {
+			.c__sc-col {
+				width: 100%;
+				display: block;
+
+				&:last-child {
+					width: 100%;
+					display: block;
+				}
+				.c__title {
+					font-size: 28px;
+					text-align: center;
+					margin-bottom: 20px;
+				}
+				.c__sc-container {
+					.c__sc-holder {
+						&:last-child {
+							margin-bottom: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.selected-productpage {
+		padding: 30px 40px 40px;
+
+		.sp__container {
+			.sp__col--1 {
+				width: 100%;
+				display: block;
+				vertical-align: middle;
+				.sp__img-holder {
+					height: 340px;
+				}
+
+				.sp__details {
+					.sp__name {
+						font-size: 28px;
+					}
+				}
+			}
+
+			.sp__col--2 {
+				width: 100%;
+				display: block;
+				vertical-align: middle;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 768px) {
+
+	// GENERAL
+	.frame-padding {
+		padding: 32px 70px;
+	}
+
+	.mbl-header {
+		.mbl-menu__link-holder {
+			width: 50%;
+		}
+	}
+
+
+
+	.homepage {
+		&.frame--1 {
+
+			.h__text-holder {
+				width: 85%;
+				padding: 26% 0 12%;
+				margin: auto;
+				text-align: center;
+
+				.h__title {
+					font-size: 36px;
+				}
+			}
+			.h__prod-category-container {
+				transform: translateY(95px);
+
+				.h__products {
+					width: 33.333%;
+					border: 1px solid $black;
+
+					.h__products-img-holder {
+						display: inline-block;
+						vertical-align: middle;
+						margin-right: 10px;
+					}
+
+					p {
+						display: inline-block;
+						vertical-align: middle;
+					}
+				}
+			}
+		}
+
+		&.frame--2 {
+			padding: 120px 0 40px;
+
+			.h__f-prod-container {
+				width: 100%;
+
+				.h__slider {
+					position: relative;
+
+					.h__f-prod-col--1 {
+						display: block;
+						width: 100%;
+
+						.h__f-prod-img-holder {
+							margin: auto;
+							margin-bottom: 20px;
+						}
+					}
+
+					.h__f-prod-col--2 {
+						display: block;
+						width: 100%;
+						margin-left: 0%;
+						text-align: center;
+					}				
+				}
+			}
+		}
+		
+		&.frame--3 {
+			padding: 40px 0;
+
+			.h__contact-container {
+				width: 90%;
+
+				.h__title {
+					font-size: 28px;
+				}
+			}
+		}
+
+		&.frame--4 {
+			padding: 40px 0;
+
+			.h__reg-container {
+				width: 85%;
+			}
+		}
+	}
+
+	.aboutpage {
+
+		&.frame--1 {
+			.a__container {
+				width: 100%;
+
+				.a__title {
+					font-size: 36px;
+				}
+			}
+		}
+
+		&.frame--2 {
+			padding: 0;
+
+			.a__container {
+				width: 100%;
+
+				.a__title {
+					font-size: 36px;
+				}
+			}
+		}
+	}
+
+	.productpage {
+		&.frame--1 {
+			.p__container {
+				padding: 20% 0 12%;
+
+				.p__title {
+					width: 61%;
+					font-size: 36px;
+				}
+				
+				.p__desc {
+					width: 61%;
+				}
+			}
+		}
+	}
+
+	.product-category-page {
+		&.frame--1 {
+			.pc__container {
+				width: 60%;
+
+				.pc__title {
+					font-size: 36px;
+				}
+			}
+		}
+	}
+
+	.basicwarranty {
+
+		.bw__container {
+			margin: 20px 0;
+
+			.bw__form {
+				width: 70%;
+			}
+		}
+	}
+
+	.extendedwarranty {
+		.ew__container {
+			width: 80%;
+		}
+	}
+
+	.warrantyinfo {
+		&.frame--1 {
+			.wi__container {
+				width: 90%;
+				padding: 21% 0 16%;
+
+				.wi__title {
+					font-size: 36px;
+				}
+			}
+		}
+	}
+
+	.contactpage {
+		&.frame--1 {
+			.c__container {
+				.c__form {
+					width: 90%;
+					margin: auto;
+				}
+			}
+		}
+	}
+
+	.selected-productpage {
+		padding: 30px 40px 40px;
+
+		.sp__container {
+			.sp__col--1 {
+				width: 100%;
+				display: block;
+				vertical-align: middle;
+				margin-bottom: 20px;
+
+				.sp__img-holder {
+					width: 45%;
+					height: 370px;
+				}
+
+				.sp__details {
+					width: 55%;
+
+					.sp__name {
+						font-size: 28px;
+					}
+				}
+			}
+
+			.sp__col--2 {
+				width: 100%;
+				display: block;
+				vertical-align: middle;
+			}
+		}
+	}
+
+	.rw__container {
+		padding: 20px 0;
+
+		.rw__title  {
+			font-size: 28px;
+		}
+
+		.rw__form {
+			width: 90%;
+			margin: auto;
+		}
+	}
+}
+
+@media only screen and (max-width: 668px) {
+
+	// GENERAL
+	.frame-padding {
+		padding: 32px 60px;
+	}
+
+	.footer {
+		.footer--top {
+			.footer__col--1 {
+				margin-right: 7%;
+				width: 53%;
+			}	
+
+			.footer__col--2 {
+				width: 40%;
+			}
+
+			.footer__col--4 {
+				display: none;
+			}
+		}
+	}
+
+	.homepage {
+		&.frame--1 {
+
+			.h__text-holder {
+				width: 100%;
+				padding: 27% 0 12%;
+			}
+
+			.h__prod-category-container {
+				width: 100%;
+			}
+		}
+
+		&.frame--3 {
+			padding: 30px 0;
+
+			.h__contact-container {
+				width: 100%;
+			}
+		}
+
+		&.frame--4 {
+			padding: 30px 0;
+
+			.h__reg-container {
+				width: 100%;
+			}
+		}
+	}
+
+	.productpage {
+		&.frame--1 {
+			.p__container {
+				.p__desc {
+					font-size: 22px;
+				}
+			}
+		}
+
+		&.frame--2 {
+			.p__holder {
+				.p__col {
+					.p__img-holder {
+						width: 100%;
+						height: 200px;
+					}
+				}
+			}
+		}
+	}
+
+	.product-category-page {
+		&.frame--1 {
+			.pc__container {
+				width: 70%;
+			}
+		}
+	}
+
+	.basicwarranty {
+
+		.bw__container {
+			margin: 20px 0;
+
+			.bw__form {
+				width: 80%;
+			}
+		}
+	}
+
+	.extendedwarranty {
+		.ew__container {
+			width: 90%;
+		}
+	}
+
+	.warrantyinfo {
+		&.frame--1 {
+			.wi__container {
+				width: 100%;
+				padding: 22% 0 17%;
+			}
+		}
+	}
+
+	.contactpage {
+		&.frame--1 {
+			.c__container {
+				.c__form {
+					width: 100%;
+
+					.c__form-row {
+						width: 100%;
+						display: block;
+						margin-left: 0%;
+					}
+				}
+			}
+		}
+	}
+
+	.selected-productpage {
+		padding: 30px 30px 40px;
+
+		.sp__container {
+			.sp__col--1 {
+				width: 100%;
+				display: block;
+				vertical-align: middle;
+				margin-bottom: 20px;
+
+				.sp__img-holder {
+					width: 55%;
+					height: 340px;
+					margin: auto;
+					display: block;
+				}
+
+				.sp__details {
+					width: 100%;
+					display: block;
+					text-align: center;
+
+					.sp__name {
+						font-size: 26px;
+					}
+				}
+			}
+
+			.sp__col--2 {
+				padding: 3%;
+			}
+		}
+	}
+
+	.rw__container {			
+
+		.rw__title  {
+			font-size: 26px;
+			margin-bottom: 30px;
+		}
+
+		.rw__form {
+			width: 100%;
+			margin: auto;
+		}
+	}
+}
+
+@media only screen and (max-width: 568px) {
+
+	// GENERAL
+	.frame-padding {
+		padding: 32px 50px;
+	}
+
+	.mbl-header {
+		.mbl-menu__link-holder {
+			width: 60%;
+		}
+	}
+
+	.homepage {
+		&.frame--1 {
+
+			.h__text-holder {
+				padding: 29% 0 12%;
+
+				.h__title {
+					font-size: 34px;
+					text-shadow: 0px 3px 3px rgba(0,0,0,0.7);
+				}
+				.h__desc {
+					text-shadow: 0px 3px 3px rgba(0,0,0,0.7);
+				}
+			}
+
+			.h__prod-category-container {
+				transform: translateY(108px);
+
+				.h__products {
+					width: 33.333%;
+					border: 1px solid $black;
+
+					.h__products-img-holder {
+						display: block;
+						margin-right: 0;
+						margin: auto;
+						margin-bottom: 5px;
+					}
+
+					p {
+						display: block;
+					}
+				}
+			}
+		}
+
+		
+
+		&.frame--4 {
+			padding: 10px 0;
+
+			.h__reg-container {
+				.select {
+					width: 100%;
+					margin-bottom: 10px;
+				}
+				
+				.info {
+					display: none;
+				}
+
+				.button {
+					a {
+						display: block;
+						width: 100%;
+						margin-left: 0;
+						margin-bottom: 10px;
+					}
+
+					.btn {
+						padding: 10px 0px;
+						text-align: center;
+					}
+				}
+			}
+		}
+	}
+
+	.aboutpage {
+
+		&.frame--1 {
+			.a__container {
+				.a__title {
+					font-size: 34px;
+				}
+			}
+		}
+
+		&.frame--2 {
+			.a__container {
+				.a__title {
+					font-size: 34px;
+				}
+			}
+		}
+
+		&.frame--3 {
+			.a__title {
+				font-size: 34px;
+			}
+
+			.a__accordion__list {
+				.a__accordion {
+					.a__question {
+						.fa-arrow-down {
+							// margin-left: 30px;
+						}
+					}
+
+					.a__answer {
+						font-size: 1.1em;
+						border-left: none;
+						margin-left: 15px;
+					}
+				}
+			}
+		}
+	}
+
+	.productpage {
+		&.frame--1 {
+			.p__container {
+				width: 100%;
+				padding: 26% 2%;
+				text-align: center;
+				margin-left: 0;
+
+				.p__title {
+					width: 100%;
+					font-size: 34px;
+				}
+				
+				.p__desc {
+					width: 100%;
+				}
+			}
+		}
+
+		&.frame--2 {
+			.p__holder {
+				.p__col {
+					padding: 12px;
+
+					.p__img-holder {
+						width: 100%;
+						height: 170px;
+					}
+				}
+			}
+		}
+	}
+
+	.product-category-page {
+		&.frame--1 {
+			.pc__container {
+				width: 100%;
+				text-align: center;
+				padding: 20% 0 5%;
+				.pc__title {
+					font-size: 34px;
+				}
+			}
+		}
+	}
+
+	.basicwarranty {
+
+		.bw__container {
+			margin: 20px 0;
+
+			.bw__form {
+				width: 85%;
+
+				button {
+					display: block;
+					width: 100%;
+					padding: 8px 40px;
+				}
+				.margin {
+					margin-left: 0%;
+				}
+			}
+		}
+	}
+
+	.extendedwarranty {
+		.ew__container {
+			padding: 0px;
+
+			.ew__title {
+				text-align: center;
+				padding: 0;
+				height: auto;
+
+				.img-logo {
+					margin: auto;
+					display: block;
+				}
+				p {
+					display: block;
+					margin-bottom: 10px;
+				}
+			}
+
+			.ew__form {
+				width: 90%;
+			}
+		}
+	}
+
+	.warrantyinfo {
+		&.frame--1 {
+			.wi__container {
+				padding: 26% 0 19%;
+
+				.wi__title {
+					font-size: 34px;
+				}
+			}
+		}
+	}
+
+	.selected-productpage {
+		.sp__container {
+			.sp__col--1 {
+				.sp__img-holder {
+					width: 60%;
+					height: 350px;
+				}
+			}
+
+			.sp__col--2 {
+				padding: 4%;
+			}
+		}
+	}
+
+	.rw__container {			
+
+		.rw__title  {
+			font-size: 26px;
+			margin-bottom: 30px;
+		}
+
+		.rw__form {
+			.rw__form-row {
+				margin-bottom: 10px;
+				
+				.info { display: none; }
+				.button {
+					a {
+						display: block;
+						width: 100%;
+						margin-left: 0%;
+						margin-bottom: 10px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 480px) {
+
+	// GENERAL
+	.frame-padding {
+		padding: 32px 40px;
+	}
+
+	.mbl-header {
+		.mbl-menu__link-holder {
+			width: 70%;
+		}
+	}
+
+	.footer { display: none; }
+	.mbl-footer {
+		display: block;
+
+
+		.footer--top {
+			width: 100%;
+			padding: 30px;
+			background-color: #000;
+
+			.footer__logo-holder {
+				position: relative;
+				width: 100%;
+				height: 70px;
+				margin: auto;
+				margin-bottom: 10px;
+
+				.img-fit {
+					left: 50%;
+					transform: translateX(-50%);
+				}
+			}
+
+			.address {
+				color: $white;
+				margin-bottom: 20px;
+
+				i {
+					width: 10%;
+					font-size: 18px;
+				}
+
+				p {
+					width: 90%;
+					font-size: 16px;
+					line-height: 16px;
+				}
+			}
+
+			.mbl-footer__accordion-list {
+				.mbl-footer__accordion {
+					cursor: pointer;
+					border-bottom: 1px solid $white;
+					margin-bottom: 20px;
+
+					.mbl-footer__acc-menu {
+						color: $white;
+						font-size: 18px;
+						font-family: $font--2;
+
+						.fa-sort-down,
+						.fa-sort-up {
+							float: right;
+							color: $white;
+						}
+
+						&.active {
+							// margin-bottom: 10px;
+						}
+					}
+
+					.mbl-footer__acc-item {
+						display: none;
+						padding-left: 20px;
+
+						p {
+							padding: 8px 12px;
+							color: $white;
+							font-size: 14px;
+						}
+					}
+				}
+			}
+		}
+
+		.footer--bottom {
+			width: 100%;
+			padding: 14px;
+			background-color: $black;
+			text-align: center;
+			color: $white;
+			font-size: 12px;
+		}
+	}
+
+	.homepage {
+		&.frame--1 {
+
+			.h__text-holder {
+				padding: 33% 0 15%;
+			}
+		}
+
+		&.frame--3 {
+			padding: 20px 0;
+		}
+	}
+
+	.productpage {
+		&.frame--2 {
+			.p__holder {
+				.btn {
+					width: 100%;
+				}
+				.p__col {
+					.p__img-holder {
+						width: 100%;
+						height: 150px;
+					}
+				}
+			}
+		}
+	}
+
+	.extendedwarranty {
+		.ew__container {
+			.ew__title {
+				p {
+					font-size: 24px;
+				}
+			}
+
+			.ew__form {
+				width: 90%;
+
+				button, a {
+					width: 100%;
+					margin-right: 0;
+					margin-bottom: 10px;
+				}
+			}
+		}
+	}
+
+	.warrantyinfo {
+		&.frame--1 {
+			.wi__container {
+				padding: 27% 0 20%;
+			}
+		}
+	}
+
+	.contactpage {
+		&.frame--1 {
+			padding-bottom: 10px;
+		}
+		&.frame--2 {
+			.c__sc-col {
+				padding: 26px 0;
+
+				.c__title {
+					font-size: 24px;
+				}
+
+				.c__sc-container {
+					.c__sc-holder {
+						.c__sc-details {
+							.icon {
+								width: 10%;
+							}
+
+							.c__sc-contact {
+								width: 90%;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.selected-productpage {
+		.sp__container {
+			.sp__col--1 {
+				.sp__img-holder {
+					width: 80%;
+					height: 330px;
+					margin-bottom: 30px;
+				}
+				.sp__details {
+					padding: 0;
+					.sp__name {
+						font-size: 24px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 414px) {
+
+	// GENERAL
+	.frame-padding {
+		padding: 32px;
+	}
+
+	.mbl-header {
+		.mbl-menu__link-holder {
+			width: 80%;
+		}
+	}
+
+	.homepage {
+		&.frame--1 {
+
+			.h__text-holder {
+				padding: 35% 0 18%;
+
+				.h__title {
+					font-size: 32px;
+				}
+			}
+
+			.h__prod-category-container {
+				transform: translateY(165px);
+
+				.h__products {
+					width: 50%;
+					border: 1px solid $black;
+				}
+			}
+		}
+
+		&.frame--2 {
+			padding: 170px 0 30px;
+
+			.h__f-prod-container {
+				.h__f-prod-title {
+					font-size: 32px;
+				}
+
+				.h__slider {
+					.h__f-prod-col--1 {
+						.h__f-prod-img-holder {
+							width: 200px;
+							height: 250px;
+						}
+					}
+
+					.h__f-prod-col--2 {
+						.h__slider-desc {
+							.h__f-prod-title {
+								font-size: 32px;
+							}
+						}
+					}				
+				}
+			}
+		}
+
+		
+		&.frame--4 {
+			padding: 10px 0;
+
+			.h__reg-container {
+				.h__title {
+					font-size: 32px;
+					line-height: 36px;
+					margin-bottom: 10px;
+				}
+			}
+		}
+	}
+
+	.aboutpage {
+
+		&.frame--1 {
+			.a__container {
+				.a__title {
+					font-size: 32px;
+				}
+			}
+		}
+
+		&.frame--2 {
+			.a__container {
+				.a__title {
+					font-size: 32px;
+				}
+			}
+		}
+
+		&.frame--3 {
+			.a__title {
+				font-size: 32px;
+			}
+		}
+
+		&.frame--4 {
+			.a__title {
+				font-size: 32px;
+			}
+		}
+	}
+
+	.productpage {
+		&.frame--1 {
+			.p__container {
+				.p__title {
+					font-size: 30px;
+				}
+			}
+		}
+
+		&.frame--2 {
+			.p__holder {
+				.p__col {
+					width: 100%;
+					margin-left: 0;
+					padding: 12px;
+
+					.p__img-holder {
+						width: 100%;
+						height: 170px;
+					}
+				}
+			}
+		}
+	}
+
+	.product-category-page {
+		&.frame--1 {
+			.pc__container {
+				.pc__title {
+					font-size: 32px;
+				}
+			}
+		}
+	}
+
+	.warrantyinfo {
+		&.frame--1 {
+			.wi__container {
+				padding: 31% 0 21%;
+
+				.wi__title {
+					font-size: 30px;
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 375px) {
+
+	// GENERAL
+	.frame-padding {
+		padding: 24px;
+	}
+
+	.mbl-header {
+		.mbl-menu__link-holder {
+			width: 90%;
+		}
+	}
+
+	.homepage {
+		&.frame--1 {
+
+			.h__text-holder {
+				padding: 40% 0 20%;
+
+				.h__title {
+					font-size: 28px;
+				}
+			}
+		}
+
+		&.frame--2 {
+			.h__f-prod-container {
+				.h__f-prod-title {
+					font-size: 28px;
+					margin-bottom: 20px;
+				}
+
+				.h__slider {
+					.h__f-prod-col--1 {
+						.h__f-prod-img-holder {
+							width: 180px;
+							height: 230px;
+						}
+					}
+
+					.h__f-prod-col--2 {
+						.h__slider-desc {
+							.h__f-prod-title {
+								font-size: 28px;
+							}
+						}
+					}				
+				}
+			}
+		}
+
+		&.frame--4 {
+			padding: 10px 0;
+
+			.h__reg-container {
+				.h__title {
+					font-size: 28px;
+				}
+			}
+		}
+	}
+
+	.aboutpage {
+
+		&.frame--1 {
+			.a__container {
+				.a__title {
+					font-size: 28px;
+				}
+			}
+		}
+
+		&.frame--2 {
+			.a__container {
+				.a__title {
+					font-size: 28px;
+				}
+			}
+		}
+
+		&.frame--3 {
+			.a__title {
+				font-size: 28px;
+			}
+		}
+
+		&.frame--4 {
+			.a__title {
+				font-size: 28px;
+			}
+		}
+	}
+
+	.productpage {
+		&.frame--1 {
+			.p__container {
+				.p__title {
+					font-size: 26px;
+				}
+			}
+		}
+
+		&.frame--2 {
+			.p__holder {
+				.p__col {
+					.p__img-holder {
+						width: 100%;
+						height: 120px;
+					}
+				}
+			}
+		}
+	}
+
+	.product-category-page {
+		&.frame--1 {
+			.pc__container {
+				.pc__title {
+					font-size: 28px;
+				}
+			}
+		}
+	}
+
+	.warrantyinfo {
+		&.frame--1 {
+			.wi__container {
+				padding: 35% 0 22%;
+
+				.wi__title {
+					font-size: 28px;
+				}
+			}
+		}
+	}
+
+	.contactpage {
+		&.frame--1 {
+			.c__container {
+				.c__form {
+					.c__form-row {
+						&.textarea {
+							textarea {
+								height: 100px;
+								margin: 10px 0;
+							}
+						}
+					}
+					.btn {
+						width: 100%;
+					}
+				}
+			}
+		}
+	}
+
+	.selected-productpage {
+		.sp__container {
+			.sp__col--1 {
+				.sp__img-holder {
+					width: 90%;
+					height: 280px;
+					margin-bottom: 30px;
+				}
+				.sp__details {
+					padding: 0;
+				}
+			}
+
+			.sp__col--2 {
+				padding: 5%;
+
+				.sp__title {
+					font-size: 24px;
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 320px) {
+
+	.mbl-header {
+		.mbl-menu__link-holder {
+			width: 100%;
+		}
+	}
+}
