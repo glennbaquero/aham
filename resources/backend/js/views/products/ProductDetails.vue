@@ -65,10 +65,19 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col col-xs-12 col-sm-12 col-md-12">
+                            <div class="col col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Product Images <small>(allows multiple images)</small></label>
                                     <input type="file" name="images[]" class="form-control input-sm" multiple>
+                                </div>
+                            </div>
+
+                            <div class="col col-xs-12 col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Tag</label>
+                                    <select class="form-control select2" name="product_tags[]" multiple v-model="item.product_tags">
+                                        <option v-for="tag in tags" :value="tag.id">{{ tag.name }}</option>
+                                    </select>
                                 </div>
                             </div>
                             
@@ -80,7 +89,6 @@
                                 <div class="form-group">
                                     <label for="">Description</label>
                                     <textarea name="description" class="content">{{ item.description }}</textarea>
-                                    <!-- <input v-model="item.description" :disabled="editable" name="description" type="text" min="1" class="ckeditor form-control input-sm" placeholder="Description"> -->
                                 </div>
                             </div>
 
@@ -88,23 +96,8 @@
                                 <div class="form-group">
                                     <label for="">Specification</label>
                                     <textarea name="specification" class="content specification" >{{ item.specification }}</textarea>
-                                    <!-- <input v-model="item.specification" :disabled="editable" name="specification" type="text" min="1" class="ckeditor form-control input-sm" placeholder="Specification"> -->
                                 </div>
                             </div>
-
-                            <!-- <div class="col col-xs-12 col-sm-12 col-md-6">
-                                <div class="form-group">
-                                    <label>Date</label>
-                                    <input :data-value="item.edate" v-model="item.edate" :disabled="editable" name="edate" type="text" class="flatpickr form-control input-sm" placeholder="Date">
-                                </div>
-                            </div> -->
-
-                            <!-- <div class="col col-xs-12 col-sm-12 col-md-6">
-                                <div class="form-group">
-                                    <label for="">Product Images</label>
-                                    <img :src="renderImage(item.image)" class="img-thumbnail" width="75" height="75">
-                                </div>
-                            </div> -->
 
                         </div>
 
@@ -125,6 +118,7 @@ import Loader from '../../components/Loader.vue';
 import flatpickr from '../../mixins/flatpickr.js';
 import ckeditor from '../../mixins/ckeditor.js';
 import dropzone from '../../mixins/dropzone.js';
+import select2 from '../../mixins/select2.js';
 
 export default {
 	props: {
@@ -134,6 +128,7 @@ export default {
         model: {},
         categories: Array,
         types: Array,
+        tags: Array,
         imageurl: String
     },
 
@@ -145,6 +140,7 @@ export default {
         ckeditor,
         flatpickr,
         dropzone,
+        select2,
     ],
 
     data() {
@@ -219,6 +215,7 @@ export default {
     		}).then(() => {
                 this.load(false);
                 this.flatpickr.init('.flatpickr', true);
+                this.select2.init('.select2');
             });
     	},
 

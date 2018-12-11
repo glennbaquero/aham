@@ -93,7 +93,7 @@ class CategoryController extends Controller
         DB::commit();
         
         return response()->json([
-            'message' => 'You have successfully updated the product category'
+            'message' => "You have successfully updated {$category->renderName()}",
         ]);
     }
 
