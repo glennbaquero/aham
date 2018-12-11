@@ -41,6 +41,9 @@ Vue.component('repair-request-details', require('./views/repairrequest/RepairReq
 
 Vue.component('permission-list', require('./views/permission/PermissionsList.vue'));
 
+Vue.component('activity-logs-table', require('./views/activity-logs/ActivityLogsTable.vue'));
+
+
 const app = {
 	init() {
 		this.setupVue();

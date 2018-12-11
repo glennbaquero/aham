@@ -10,8 +10,8 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <meta name="csrf-token" content="{{ csrf_token() }}">
     
-        <link rel="stylesheet" type="text/css" href="{{ mix('assets/css/vendor.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ mix('assets/css/app.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ mix('assets/vendor-backend.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ mix('assets/app-backend.css') }}">
     </head>
 
     <body class="hold-transition skin-blue sidebar-mini">
@@ -25,8 +25,8 @@
         </div>
         @yield('js')
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.11.1/ckeditor.js"></script>
-        <script type="text/javascript" src="{{ mix('assets/js/manifest.js') }}"></script>
-        <script type="text/javascript" src="{{ mix('assets/js/vendor.js') }}"></script>
-        <script type="text/javascript" src="{{ mix('assets/js/app.js') }}"></script>
+        <script type="text/javascript" src="{{ mix('assets/manifest.js') }}"></script>
+        <script type="text/javascript" src="{{ mix('assets/vendor.js') }}"></script>
+        <script type="text/javascript" src="{{ mix('assets/app-backend.js') }}"></script>
     </body>
 </html>

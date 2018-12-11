@@ -77,6 +77,7 @@
           </li>
         </ul>
       </li>
+      <li class="{{ $checker->route->isActive('admin.activity-logs.') }}"><a href="{{ route('admin.activity-logs.index') }}"><i class="fa fa-clipboard-list"></i> <span>Activity Logs</span></a></li>
     </ul>
   </section>
   <!-- /.sidebar -->
