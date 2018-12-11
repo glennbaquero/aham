@@ -27,6 +27,12 @@ class ProductFetchController extends FetchController
      */
     public function filterQuery($query)
     {
+        if($this->request->filled('is_featured')) {
+           $query = $query->whereHas('tags', function($query){
+                $query->where('name', 'Featured Product');
+            });
+        }
+
         return $query;
     }
 
@@ -48,9 +54,11 @@ class ProductFetchController extends FetchController
                 'name' => $item->name,
                 'extended_amount' => $item->extended_amount,
                 'created_at' => $item->created_at->format('M d, Y (H:i:s)'),
+                'tags' => $item->tags()->pluck('name')->toArray(),
 
                 'actions' => array(
-                    'view' => $item->renderView()
+                    'view' => $item->renderView(),
+                    'set_as_featured' => $item->setAsFeatured(),
                 )
             ));
         }
@@ -64,7 +72,6 @@ class ProductFetchController extends FetchController
 
         if ($id) {
             $item = Product::withTrashed()->find($id);
-            ;
             $formatted_images = [];
             foreach($item->images as $image){
                 $formatted_images[] = [
@@ -74,6 +81,7 @@ class ProductFetchController extends FetchController
                 ];
             }
             $item->photos = $formatted_images;
+            $item->product_tags = $item->tags()->pluck('id')->toArray();
         }
 
         return response()->json([

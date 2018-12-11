@@ -42,6 +42,7 @@
 					<product-details ref="product-details"
 					:fetchurl="'{{ route('admin.product.fetch', $product->id) }}'"
 					:categories="{{ $categories }}"
+					:tags="{{ $tags }}"
 					:types="{{ $types }}">
 					</product-details>
 

@@ -161,8 +161,10 @@ Route::name('admin.')
 	Route::post('product/restore/{user}', 'ProductController@restore')->name('product.restore');
 	Route::get('product/upload', 'ProductController@upload')->name('product.upload');
 	Route::post('products/upload', 'ProductController@uploadproduct')->name('products.upload');
+	Route::get('product/featured/{product}', 'ProductController@featuredproduct')->name('product.featured');
 
 	Route::post('products/fetch/q', 'ProductFetchController@fetch')->name('products.fetch');
+	Route::post('/products/fetch/q?is_featured=1', 'ProductFetchController@fetch')->name('products.featured');
 	Route::post('products/fetch/q?archive=1', 'ProductFetchController@fetch')->name('products.archive');
 	Route::post('products/fetch/{id?}', 'ProductFetchController@fetchItem')->name('product.fetch');
 

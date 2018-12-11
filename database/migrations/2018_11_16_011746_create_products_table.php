@@ -26,6 +26,7 @@ class CreateProductsTable extends Migration
             $table->decimal('extended_amount')->nullable();
             $table->integer('quantity')->nullable();
             $table->string('brand')->nullable();
+            $table->boolean('is_featured')->default(0);
 
             $table->softDeletes();
             $table->timestamps();

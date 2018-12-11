@@ -25,6 +25,7 @@
 						:fetchurl="'{{ route('admin.products.fetch') }}'"
 						:imageurl="'{{ route('admin.image.store') }}'"
 						:categories="{{ $categories }}"
+						:tags="{{ $tags }}"
 						:types="{{ $types }}">
 						</product-details>
 
