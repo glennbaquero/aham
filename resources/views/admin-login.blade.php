@@ -25,8 +25,8 @@
         @yield('js')
 
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.11.1/ckeditor.js"></script>
-        <script type="text/javascript" src="{{ mix('assets/js/manifest.js') }}"></script>
-        <script type="text/javascript" src="{{ mix('assets/js/vendor.js') }}"></script>
+        {{-- <script type="text/javascript" src="{{ mix('assets/js/manifest.js') }}"></script> --}}
+        {{-- <script type="text/javascript" src="{{ mix('assets/js/vendor.js') }}"></script> --}}
         <script type="text/javascript" src="{{ mix('assets/js/app.js') }}"></script>
     </body>
 </html>

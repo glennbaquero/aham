@@ -143,7 +143,15 @@
 				}
 			}
 		}
-	}				
+	}			
+
+	.login {
+		.ls__container {
+			.ls__form {
+				width: 45%;
+			}
+		}
+	}	
 }
 
 @media only screen and (max-width: 1100px) {
@@ -218,6 +226,14 @@
 			}
 		}
 	}
+
+	.login {
+		.ls__container {
+			.ls__form {
+				width: 50%;
+			}
+		}
+	}	
 }
 
 @media only screen and (max-width: 1024px) {
@@ -340,6 +356,14 @@
 			width: 65%;
 		}
 	}
+
+	.login {
+		.ls__container {
+			.ls__form {
+				width: 55%;
+			}
+		}
+	}	
 }
 
 @media only screen and (max-width: 896px) {
@@ -803,6 +827,24 @@
 			margin: auto;
 		}
 	}
+
+	.login {
+		.ls__container {
+			margin-top: 30px;
+
+			.ls__desc {
+				font-size: 18px;
+			}
+
+			.ls__form {
+				width: 65%;
+
+				.links {
+					width: 60%;
+				}
+			}
+		}
+	}	
 }
 
 @media only screen and (max-width: 823px) {
@@ -1148,6 +1190,21 @@
 			margin: auto;
 		}
 	}
+
+	.login {
+		.ls__container {
+			.ls__form {
+				width: 75%;
+				
+				.ls__desc {
+					font-size: 16px;
+				}
+				.links {
+					width: 70%;
+				}
+			}
+		}
+	}	
 }
 
 @media only screen and (max-width: 668px) {
@@ -1321,6 +1378,18 @@
 			margin: auto;
 		}
 	}
+
+	.login {
+		.ls__container {
+			.ls__form {
+				width: 85%;
+
+				.links {
+					width: 80%;
+				}
+			}
+		}
+	}	
 }
 
 @media only screen and (max-width: 568px) {
@@ -1586,6 +1655,14 @@
 			}
 		}
 	}
+
+	.login {
+		.ls__container {
+			.ls__form {
+				width: 100%;
+			}
+		}
+	}	
 }
 
 @media only screen and (max-width: 480px) {
@@ -2123,6 +2200,22 @@
 			}
 		}
 	}
+
+	.login {
+		.ls__container {
+			.ls__form {
+				width: 100%;
+
+				button {
+					width: 100%;
+				}
+
+				.links {
+					width: 90%;
+				}
+			}
+		}
+	}	
 }
 
 @media only screen and (max-width: 320px) {
