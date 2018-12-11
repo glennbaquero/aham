@@ -21,6 +21,10 @@ class Product extends Model
     	return $this->belongsTo(Category::class);
     }
 
+    public function tags() {
+        return $this->belongsToMany(ProductTag::class);
+    }
+
     public function type() {
     	return $this->belongsTo(Type::class);
     }
@@ -56,13 +60,15 @@ class Product extends Model
             $item->update($vars);
         }
 
-         if($request->hasFile('images')) {
+        if($request->hasFile('images')) {
             foreach($request->file('images') as $image) {
                 $path = $image->store('product-images', 'public');
 
                 $item->images()->create(['image' => $path]);
             }
         }
+
+        $item->tags()->sync($request->input('product_tags'));
 
         return $item;
     }
@@ -91,5 +97,9 @@ class Product extends Model
 
     public function renderRestore() {
         return route('admin.product.restore', $this->id);
+    }
+
+    public function setAsFeatured() {
+        return route('admin.product.featured', $this->id);
     }
 }

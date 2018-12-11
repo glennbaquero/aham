@@ -57,6 +57,9 @@
           <li class="{{ $checker->route->isActive('admin.page-items.') }}">
             <a href="{{ route('admin.page-items.index') }}"><i class="fas fa-sitemap"></i> Page Items</a>
           </li>
+          <li class="{{ $checker->route->isActive('admin.carousel.') }}">
+            <a href="{{ route('admin.carousel.index') }}"><i class="fas fa-images"></i> Slider</a>
+          </li>
         </ul>
       </li>
 
@@ -77,6 +80,7 @@
           </li>
         </ul>
       </li>
+      <li class="{{ $checker->route->isActive('admin.activity-logs.') }}"><a href="{{ route('admin.activity-logs.index') }}"><i class="fa fa-clipboard-list"></i> <span>Activity Logs</span></a></li>
     </ul>
   </section>
   <!-- /.sidebar -->

@@ -40,8 +40,8 @@
 
     		<!-- DATATABLE -->
     		<datatable ref="datatable"
-            :headers="['#', 'Image', 'Model', 'Name', 'Extended Amount', 'Created At']"
-            :columns="['id', null, 'model', 'name', 'extended_amount', 'edate', 'created_at']"
+            :headers="['#', 'Image', 'Model', 'Name', 'Extended Amount', 'Tags', 'Created At']"
+            :columns="['id', null, 'model', 'name', 'extended_amount', 'edate', 'tag', 'created_at']"
     		:filters="filters"
     		
     		:fetchurl="fetchurl"
@@ -59,7 +59,12 @@
                         <td>{{ item.model }}</td>
                         <td>{{ item.name }}</td>
     					<td>{{ item.extended_amount }}</td>
-    					<td>{{ item.created_at }}</td>
+                        <td>
+                            <a class="btn btn-xs btn-primary" v-for="tag in item.tags">
+                                    <i class="fas fa-thumbtack"></i> {{ tag }}
+                            </a>
+                        </td>
+                        <td>{{ item.created_at }}</td>
                         <td v-show="actionable">
                             <center>
                                 <a :href="item.actions.view" 
