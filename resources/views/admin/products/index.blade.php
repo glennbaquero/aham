@@ -27,6 +27,9 @@
 	                    </li>
 	                    <li>
 	                        <a @click="runDatatable('pages-product')" href="#pages-product" data-toggle="tab"><h5><b>Archive</b></h5></a>
+	                    </li>  
+	                    <li>
+	                        <a @click="runDatatable('featured-product')" href="#featured-product" data-toggle="tab"><h5><b>Featured</b></h5></a>
 	                    </li>                                                   
 	                </ul>
 
@@ -47,7 +50,15 @@
 								:fetchurl="'{{ route('admin.products.archive') }}'"
 							></products-table>
 
-	                    </div>                  
+	                    </div>   
+	                    <div class="tab-pane" id="featured-product">
+	                        
+							 <products-table ref="featured-product"
+								:actionable="'{{ $checker->permission->can(['admin.product.edit']) }}'"
+								:fetchurl="'{{ route('admin.products.featured') }}'"
+							></products-table>
+
+	                    </div>  
 	                </div>
         	    </div>
 

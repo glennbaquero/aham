@@ -13,6 +13,7 @@ use App\Product;
 use App\ProductImage;
 use App\Type;
 use App\Category;
+use App\ProductTag;
 
 
 use DB;
@@ -46,7 +47,8 @@ class ProductController extends Controller
     {
         return view('admin.products.create',[
             'types' => Type::all(),
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'tags' => ProductTag::all(),
         ]);
     }
 
@@ -65,7 +67,7 @@ class ProductController extends Controller
         DB::commit();
 
         return response()->json([
-            'message' => 'You have successfully create a new category',
+            'message' => 'You have successfully create a new product',
             'redirect' => $product->renderView(),
         ]);
     }
@@ -92,6 +94,7 @@ class ProductController extends Controller
         return view('admin.products.edit', [
             'categories' => Category::all(),
             'types' => Type::all(),
+            'tags' => ProductTag::all(),
             'product' => Product::withTrashed()->find($id)
         ]);
     }
@@ -113,7 +116,9 @@ class ProductController extends Controller
 
         DB::commit();
 
-        return 'success';
+        return response()->json([
+            'message' => "You have successfully updated {$product->renderName()}",
+        ]);
     }
 
     /**
@@ -162,4 +167,10 @@ class ProductController extends Controller
         return redirect()->back();
     } 
 
+    public function featuredproduct(Product $product)
+    {
+        // $product->product_tag()->sync()
+
+        return redirect()->back();
+    }
 }
