@@ -10,6 +10,16 @@ class Helpers
 		return config('app.debug') && config('app.env') === 'local';
 	}
 
+    public static function randomOrCreate($class) {
+        if ($class::count()) {
+            $model = $class::get()->random(1)->first();
+        } else {
+            $model = factory($class)->create();
+        }
+
+        return $model;
+    }
+
 	public static function randomFile($dir = 'public/storage/tmp', $required = 10, $extension = 'jpg') {
 		$path = false;
 		$files = glob($dir . '/*.' . $extension);
