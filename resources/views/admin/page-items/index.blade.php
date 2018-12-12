@@ -43,6 +43,7 @@
                             
                             <page-item-table ref="page-items"
                             :filterpages="{{ $pages }}"
+                            :filtertypes="{{ $types }}"
                             :autofetch="true"
                             :fetchurl="'{{ route('admin.page-items.fetch') }}'"
                             ></page-item-table>
@@ -52,6 +53,7 @@
                             
                             <page-item-table ref="page-items-archive"
                             :filterpages="{{ $pages }}"
+                            :filtertypes="{{ $types }}"
                             :autofetch="false"
                             :fetchurl="'{{ route('admin.page-items.fetch.archive') }}'"
                             ></page-item-table>

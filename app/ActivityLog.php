@@ -54,7 +54,12 @@ class ActivityLog extends Model
     public function getAuthModel() {
         $route = null;
         $model = $this->auth_class;
-        $item = $model::withTrashed()->find($this->auth_id);
+
+        if (method_exists($model, 'withTrashed')) {
+            $item = $model::withTrashed()->find($this->auth_id);
+        } else {
+            $item = $model::find($this->auth_id);
+        }
 
         return $item;
     }
@@ -99,7 +104,12 @@ class ActivityLog extends Model
 
     public function getModel() {
         $model = $this->model_class;
-        $item = $model::withTrashed()->find($this->model_id);
+        
+        if (method_exists($model, 'withTrashed')) {
+            $item = $model::withTrashed()->find($this->auth_id);
+        } else {
+            $item = $model::find($this->auth_id);
+        }
 
         return $item;
     }

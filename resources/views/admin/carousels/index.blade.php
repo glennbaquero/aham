@@ -29,6 +29,7 @@
 	                        
 	                        <carousels-table ref="pages"
 								:autofetch="true"
+								:filtertags="{{ $tags }}"
 								:fetchurl="'{{ route('admin.carousels.fetch') }}'"
 							></carousels-table>
 
@@ -37,6 +38,7 @@
 	                        
 							<carousels-table ref="pages-carousel"
 								:autofetch="false"
+								:filtertags="{{ $tags }}"
 								:fetchurl="'{{ route('admin.carousels.archive') }}'"
 							></carousels-table>
 

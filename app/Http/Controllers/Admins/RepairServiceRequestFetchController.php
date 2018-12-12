@@ -32,6 +32,15 @@ class RepairServiceRequestFetchController extends FetchController
      */
     public function filterQuery($query)
     {
+        if ($this->request->filled('search')) {
+            $ids = $this->class::search($this->request->input('search'))->get()->pluck('id')->toArray();
+            $query = $query->whereIn('id', $ids);
+        }
+        
+        if($this->request->filled('status')) {
+           $query = $query->where('status',  $this->request->input('status'));
+        }
+
         return $query;
     }
 
@@ -48,12 +57,16 @@ class RepairServiceRequestFetchController extends FetchController
         foreach($items as $item) {
             array_push($result, array(
                 'id' => $item->id,
-                'model' => $item->invoice_items,
-                'users' => $item->user,
-                // 'invoices' => $item->user,
-                'requests' => $item,
+                'user_name' => $item->user->renderFullname(),
+                'user_link' => $item->user->renderView(),
+                'repairman_name' => $item->repairman->admin->renderFullname(),
+                'repairman_link' => $item->repairman->admin->renderView(),
+                'products' => $item->renderProductList(),
+                'complaint' => $item->complaint,
+                'solution' => $item->solution,
                 'created_at' => $item->created_at->format('M d, Y (H:i:s)'),
-                'status' => $item->status,
+                'status_label' => $item->renderStatusLabel(),
+                'status_class' => $item->renderStatusClass(),
 
                 'actions' => array(
                     'view' => $item->renderView()
@@ -95,6 +108,7 @@ class RepairServiceRequestFetchController extends FetchController
 
     public function fetchUserInvoiceItems(Request $request) {
         $invoiceitem = User::getInvoiceItems($request);
+
         return response()->json([
             'invoice_items' => $invoiceitem,
         ]);

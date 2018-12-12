@@ -84,8 +84,8 @@
 
     import {EventBus} from '../../EventBus.js';
 
-    import DataTable from '../../DataTable.vue';
-    import Loader from '../../Loader.vue';
+    import DataTable from '../../components/DataTable.vue';
+    import Loader from '../../components/Loader.vue';
 
     export default {
 

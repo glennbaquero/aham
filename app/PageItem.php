@@ -43,9 +43,9 @@ class PageItem extends Model
      */
     public static function getTypes() {
         return [
-            ['value' => static::TEXT, 'label' => 'Text/Link/Label'],
-            ['value' => static::CONTENT, 'label' => 'Content/Editor'],
-            ['value' => static::FILE, 'label' => 'Image/File'],
+            ['value' => static::TEXT, 'label' => 'Text/Link/Label', 'class' => 'bg-green'],
+            ['value' => static::CONTENT, 'label' => 'Content/Editor', 'class' => 'bg-blue'],
+            ['value' => static::FILE, 'label' => 'Image/File', 'class' => 'bg-orange'],
         ];
     }
 
@@ -80,6 +80,26 @@ class PageItem extends Model
 
         return $item;
     }
+
+    /**
+     * @Helpers
+     */
+    public function renderConstants($array, $value, $column = null) {
+
+        /* Loop through the array */
+        foreach ($array as $obj) {
+            
+            if($obj['value'] == $value) {
+
+                /* Fetch columm if specified */
+                if($column && isset($obj[$column]))
+                    return $obj[$column];
+
+                return $obj;
+            }
+        }
+    }
+
     /*
      * Renders
      */
@@ -102,6 +122,14 @@ class PageItem extends Model
         $path = null;
         if ($this[$column]) { $path = asset('storage/' . $this[$column]); }
         return $path;
+    }
+
+    public function renderTypeLabel() {
+        return $this->renderConstants(static::getTypes(), $this->type, 'label');
+    }
+
+    public function renderTypeClass() {
+        return $this->renderConstants(static::getTypes(), $this->type, 'class');
     }
 
     public function renderView() {

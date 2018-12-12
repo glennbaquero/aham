@@ -10,31 +10,14 @@
     		<div class="row">
     			<!-- FILTERS -->
     			<div class="col-sm-7 hidden-xs">
-    				<div class="row">
-    					<div class="col-sm-6">
-
-                            <div class=" col-sm-6 hidden-xs form-inline ">
-                                <select v-model="filter"
-                                id="sample-select" class="form-control input-sm">
-                                    <option :value="null" disabled selected>Filter here...</option>
-                                </select>
-                            </div>
-
-    					</div>
-    				</div>
+    				
     			</div>
 
     			<!-- SEARCHBOX -->
     			<div class="col-sm-3 pull-right">
-    				<div class="form-group col-sm-12">
-                        <div class="input-group input-group-sm col-sm-12">
-                            <input type="text" id="sample-searchfield" name="sample-searchfield"
-                            class="form-control input-sm" placeholder="Search here...">
-                            <!-- <i class="fas fa-search"></i> -->
-                            <!-- <i class="fa fa-warning"></i> -->
-                        </div>
-
-    				</div>
+    				<search-box
+                    @onsearch="search"
+                    ></search-box>
     			</div>
     		</div>
 
@@ -75,103 +58,104 @@
 </template>
 <script>
 
-    /**
-     * ==================================================================================
-     * Template component using DataTable.vue
-     * 
-     * ==================================================================================
-     **/
+/**
+ * ==================================================================================
+ * Template component using DataTable.vue
+ * 
+ * ==================================================================================
+ **/
 
-    import {EventBus} from '../../EventBus.js';
+import {EventBus} from '../../EventBus.js';
 
-    import DataTable from '../../DataTable.vue';
-    import Loader from '../../Loader.vue';
+import DataTable from '../../components/DataTable.vue';
+import Loader from '../../components/Loader.vue';
+import SearchBox from '../../components/SearchBox.vue';
 
-    export default {
+export default {
 
-    	props: {
-    		fetchurl: String,
-            autofetch: Boolean
-    	},
+	props: {
+		fetchurl: String,
+        autofetch: Boolean
+	},
 
-    	components: {
-    		'datatable': DataTable,
-    		'loader': Loader,
-    	},
+	components: {
+		'datatable': DataTable,
+        'loader': Loader,
+		'search-box': SearchBox,
+	},
 
-    	data: function() {
-    		return {
+	data: function() {
+		return {
 
-    			loading:false,
-    			initiated:false,
-    			
-    			items: [],
-    			filters: {},
+			loading:false,
+			initiated:false,
+			
+			items: [],
+			filters: {},
 
-    			searchbox:null,
-    			filter:null,
-    		};
-    	},
+			searchbox:null,
+			filter:null,
+		};
+	},
 
-    	watch: {
+	watch: {
 
-    		filter: function(val) {
+		filter: function(val) {
 
-    			this.filters = Object.assign(this.filters, { filter: val });
-    			this.fetch();
-    		},
-    	},
+			this.filters = Object.assign(this.filters, { filter: val });
+			this.fetch();
+		},
+	},
 
-    	methods: {
+	methods: {
 
-    		/**
-    	     * Receives fetched data for rendering.
-    	     */
-    		init: function(val) {
+		/**
+	     * Receives fetched data for rendering.
+	     */
+		init: function(val) {
 
-                /* Initialize default variables */
-    			this.items = val;
-    			this.initiated = true;
+            /* Initialize default variables */
+			this.items = val;
+			this.initiated = true;
 
-                /* Fire off re-init */
-                EventBus.$emit('re-init', { el: this.$el });
-    		},
+            /* Fire off re-init */
+            EventBus.$emit('re-init', { el: this.$el });
+		},
 
 
-            /**
-             * ==================================================================================
-             * @Methods
-             * ==================================================================================
-             **/
+        /**
+         * ==================================================================================
+         * @Methods
+         * ==================================================================================
+         **/
 
-    		/**
-    	     * Search keyword.
-    	     */
-    	    search: function() {
+		/**
+	     * Search keyword.
+	     */
+	    search: function(value) {
+	    	this.filters = Object.assign(this.filters, { search: value });
+	    	this.fetch();
+	    },
 
-    	    	this.filters = Object.assign(this.filters, { search:this.search });
-    	    	this.fetch();
-    	    },
+		/**
+	     * Add filter to request and then fetch.
+	     */
+		fetch: function() {
 
-    		/**
-    	     * Add filter to request and then fetch.
-    	     */
-    		fetch: function() {
+			this.$nextTick(() => {
+				
+				if(this.initiated) {
+					this.$refs.datatable.fetch();
+				}
+			});
+		},
 
-    			this.$nextTick(() => {
-    				
-    				if(this.initiated) {
-    					this.$refs.datatable.fetch();
-    				}
-    			});
-    		},
-
-    		/**
-    	     * Toggles loading animation.
-    	     */
-    		load: function(val) {
-    			this.loading = val;
-    		},
-    	}
-    }
+		/**
+	     * Toggles loading animation.
+	     */
+		load: function(val) {
+			this.loading = val;
+		},
+	}
+}
 </script>

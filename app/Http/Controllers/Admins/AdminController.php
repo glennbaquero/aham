@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRequest;
 
 use App\Admin;
+use App\Role;
 use DB;
 
 class AdminController extends Controller
@@ -17,7 +18,13 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.administrator.index');
+        $types = json_encode(Admin::getTypes());
+        $roles = Role::select(Role::MINIMAL_COLUMN)->get();
+
+        return view('admin.administrator.index', [
+            'types' => $types,
+            'roles' => $roles,
+        ]);
     }
 
     /**

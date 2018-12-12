@@ -87,10 +87,12 @@ class Carousel extends Model
         ));
     }
 
-    public function renderShortContent()
-    {
-        if($this->content)
-        {
+    public function renderTagList() {
+        return implode(', ', $this->tags->pluck('name')->toArray());
+    }
+
+    public function renderShortContent() {
+        if($this->content) {
             return str_limit($this->content, 85);
         }
     }

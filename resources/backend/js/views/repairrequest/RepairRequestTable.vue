@@ -9,39 +9,26 @@
     		
     		<div class="row">
     			<!-- FILTERS -->
-    			<div class="col-sm-7 hidden-xs">
-    				<div class="row">
-    					<div class="col-sm-6">
-
-                            <div class=" col-sm-6 hidden-xs form-inline ">
-                                <select v-model="filter"
-                                id="sample-select" class="form-control input-sm">
-                                    <option :value="null" disabled selected>Filter here...</option>
-                                </select>
-                            </div>
-
-    					</div>
-    				</div>
-    			</div>
+    			<div class="col-sm-6 hidden-xs form-inline">
+                    <filter-box v-show="filterstatus.length > 0"
+                    @onfilter="filterByStatus"
+                    :filters="filterstatus"
+                    :defaultlabel="'Filter by Status'"
+                    ></filter-box>
+                </div>
 
     			<!-- SEARCHBOX -->
     			<div class="col-sm-3 pull-right">
-    				<div class="form-group col-sm-12">
-                        <div class="input-group input-group-sm col-sm-12">
-                            <input type="text" id="sample-searchfield" name="sample-searchfield"
-                            class="form-control input-sm" placeholder="Search here...">
-                            <!-- <i class="fas fa-search"></i> -->
-                            <!-- <i class="fa fa-warning"></i> -->
-                        </div>
-
-    				</div>
-    			</div>
+                    <search-box
+                    @onsearch="search"
+                    ></search-box>
+                </div>
     		</div>
 
     		<!-- DATATABLE -->
     		<datatable ref="datatable"
-            :headers="['#', 'Model', 'Name', 'Serial Number', 'Contract Number', 'Complaint', 'Repair Order Date', 'Status']"
-            :columns="['id', 'model', 'users', 'serial_number', 'contract_number', 'complaint', 'created_at', 'status']"
+            :headers="['#', 'Requested Products', 'Requester', 'Assigned Repairman', 'Complaint', 'Status', 'Created Date']"
+            :columns="['id', null, null, null, 'complaint', 'status', 'created_at']"
     		:filters="filters"
     		
     		:fetchurl="fetchurl"
@@ -53,44 +40,25 @@
     		>
 
     			<tbody slot="body">
-                    <template v-for="item in items">
-                        <tr v-for="model in item.model">
-                            <td>{{ item.id }}</td>
-                            <td>
-                                <img v-for="image in model.product.images" class="img-thumbnail" :src="renderImage(image.image)" width="75" height="75">
-                                <br>
-                                {{ model.product.model }}
-                            </td>
-                            <td>{{ item.users.firstname + item.users.lastname}}</td>
-                            <td>{{ model.invoice.serial_number }}</td>
-                            <td>{{ model.invoice.contract_number }}</td>
-                            <td v-html="item.requests.complaint"></td>
-                            <td>{{ item.created_at }}</td>
-                            <td>
-                                  <span :class="
-                                            item.status === 10 || item.status === 0 ? ' badge pull-right btn-danger' : 
-                                            ( item.status === 20 ? ' badge pull-right btn-primary' : 
-                                            ( item.status === 30 ? ' badge pull-right btn-success' : '' ) )">
-
-                                    {{ 
-                                    item.status === 10 || item.status === 0 ? 'PENDING' : 
-                                    ( item.status === 20 ? 'ONGOING' : 
-                                    ( item.status === 30 ? 'COMPLETE' : '' ) ) }}
-                                    
-                                </span>
-                            </td>
-                            
-                            <td>
-                                <center>
-                                    <a :href="item.actions.view" 
-                                    class="btn btn-xs btn-primary">
-                                        <span class="fa fa-eye"></span>
-                                    </a>
-                                </center>                            
-                            </td> 
-                            
-                        </tr>
-                     </template>                       
+                    <tr v-for="item in items">
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.products }}</td>
+                        <td><a :href="item.user_link" target="_blank">{{ item.user_name }}</a></td>
+                        <td><a :href="item.repairman_link" target="_blank">{{ item.repairman_name }}</a></td>
+                        <td v-html="item.complaint"></td>
+                        <td>
+                              <span class="badge" :class="item.status_class">{{ item.status_label }}</span>
+                        </td>
+                        <td>{{ item.created_at }}</td>
+                        <td>
+                            <center>
+                                <a :href="item.actions.view" 
+                                class="btn btn-xs btn-primary">
+                                    <span class="fa fa-eye"></span>
+                                </a>
+                            </center>                            
+                        </td> 
+                    </tr>
     			</tbody>
 
     		</datatable>
@@ -109,19 +77,24 @@
 
     import {EventBus} from '../../EventBus.js';
 
-    import DataTable from '../../DataTable.vue';
-    import Loader from '../../Loader.vue';
+    import DataTable from '../../components/DataTable.vue';
+    import Loader from '../../components/Loader.vue';
+    import Filter from '../../components/Filter.vue';
+    import SearchBox from '../../components/SearchBox.vue';
 
     export default {
 
     	props: {
     		fetchurl: String,
-            autofetch: Boolean
+            autofetch: Boolean,
+            filterstatus: {},
     	},
 
     	components: {
     		'datatable': DataTable,
-    		'loader': Loader,
+            'loader': Loader,
+            'filter-box': Filter,
+            'search-box': SearchBox,
     	},
 
     	data: function() {
@@ -178,6 +151,11 @@
     	    	this.fetch();
     	    },
 
+            filterByStatus(value) {
+                this.filters = Object.assign(this.filters, { status: value });
+                this.fetch();
+            },
+
     		/**
     	     * Add filter to request and then fetch.
     	     */
@@ -197,10 +175,6 @@
     		load: function(val) {
     			this.loading = val;
     		},
-
-            renderImage(image) {
-                return 'storage/' + image;
-            }
     	}
     }
 </script>

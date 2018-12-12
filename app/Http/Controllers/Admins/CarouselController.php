@@ -20,7 +20,11 @@ class CarouselController extends Controller
      */
     public function index()
     {
-        return view('admin.carousels.index');
+        $tags = CarouselTag::select(CarouselTag::MINIMAL_COLUMN)->get();
+
+        return view('admin.carousels.index', [
+            'tags' => $tags,
+        ]);
     }
 
     /**

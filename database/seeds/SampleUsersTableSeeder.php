@@ -17,12 +17,6 @@ class SampleUsersTableSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('users')->delete();
-        \DB::table('invoices')->delete();
-        \DB::table('invoice_items')->delete();
-
-        factory(User::class, 50)->create();
-        factory(Invoice::class, 50)->create();
-        factory(InvoiceItem::class, 50)->create();
+        factory(User::class, 15)->create();
     }
 }

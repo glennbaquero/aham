@@ -16,7 +16,7 @@ class CreateInvoiceItemsTable extends Migration
         Schema::create('invoice_items', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('product_id')->unsigned()->index();
-            $table->integer('invoice_id')->unsigned()->index();
+            $table->integer('invoice_id')->nullable()->unsigned()->index();
 
             $table->decimal('unit_price', 9, 2)->unsigned();
             $table->decimal('discount', 9, 2)->default(0)->unsigned();

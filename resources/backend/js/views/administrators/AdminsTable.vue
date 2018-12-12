@@ -9,39 +9,34 @@
     		
     		<div class="row">
     			<!-- FILTERS -->
-    			<div class="col-sm-7 hidden-xs">
-    				<div class="row">
-    					<div class="col-sm-6">
+    			<div class="col-sm-6 hidden-xs form-inline">
+                    <filter-box v-show="filterroles.length > 0"
+                    @onfilter="filterByRole"
+                    :filters="filterroles"
+                    :defaultlabel="'Filter by Role'"
+                    :valuecolumn="'id'"
+                    :labelcolumn="'name'"
+                    ></filter-box>
 
-                            <div class=" col-sm-6 hidden-xs form-inline ">
-                                <select v-model="filter"
-                                id="sample-select" class="form-control input-sm">
-                                    <option :value="null" disabled selected>Filter here...</option>
-                                </select>
-                            </div>
+                    <filter-box v-show="filtertypes"
+                    @onfilter="filterByType"
+                    :filters="filtertypes"
+                    :defaultlabel="'Filter by Type'"
+                    ></filter-box>
+                </div>
 
-    					</div>
-    				</div>
-    			</div>
-
-    			<!-- SEARCHBOX -->
-    			<div class="col-sm-3 pull-right">
-    				<div class="form-group col-sm-12">
-                        <div class="input-group input-group-sm col-sm-12">
-                            <input type="text" id="sample-searchfield" name="sample-searchfield"
-                            class="form-control input-sm" placeholder="Search here...">
-                            <!-- <i class="fas fa-search"></i> -->
-                            <!-- <i class="fa fa-warning"></i> -->
-                        </div>
-
-    				</div>
-    			</div>
+                <!-- SEARCHBOX -->
+                <div class="col-sm-3 pull-right">
+                    <search-box
+                    @onsearch="search"
+                    ></search-box>
+                </div>
     		</div>
 
     		<!-- DATATABLE -->
     		<datatable ref="datatable"
-            :headers="['#', 'Name', 'Created At']"
-            :columns="['id', 'name', 'created_at']"
+            :headers="['#', 'Name', 'Roles', 'Created At']"
+            :columns="['id', 'name', null, 'created_at']"
     		:filters="filters"
     		
     		:fetchurl="fetchurl"
@@ -55,7 +50,9 @@
     			<tbody slot="body">
     				<tr v-for="item in items">
                         <td>{{ item.id }}</td>
-    					<td>{{ item.name }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.role_list }}</td>
+    					<td><span class="badge" :class="item.type_class">{{ item.type_label }}</span></td>
     					<td>{{ item.created_at }}</td>
                         <td>
                             <center>
@@ -84,19 +81,25 @@
 
     import {EventBus} from '../../EventBus.js';
 
-    import DataTable from '../../DataTable.vue';
-    import Loader from '../../Loader.vue';
+    import DataTable from '../../components/DataTable.vue';
+    import Loader from '../../components/Loader.vue';
+    import Filter from '../../components/Filter.vue';
+    import SearchBox from '../../components/SearchBox.vue';
 
     export default {
 
     	props: {
-    		fetchurl: String,
+            fetchurl: String,
+            filtertypes: {},
+    		filterroles: {},
             autofetch: Boolean
     	},
 
     	components: {
     		'datatable': DataTable,
-    		'loader': Loader,
+            'loader': Loader,
+            'filter-box': Filter,
+    		'search-box': SearchBox,
     	},
 
     	data: function() {
@@ -147,11 +150,20 @@
     		/**
     	     * Search keyword.
     	     */
-    	    search: function() {
-
-    	    	this.filters = Object.assign(this.filters, { search:this.search });
+    	    search: function(value) {
+    	    	this.filters = Object.assign(this.filters, { search: value });
     	    	this.fetch();
     	    },
+
+            filterByType: function(value) {
+                this.filters = Object.assign(this.filters, { type: value });
+                this.fetch();
+            },
+
+            filterByRole: function(value) {
+                this.filters = Object.assign(this.filters, { role: value });
+                this.fetch();
+            },
 
     		/**
     	     * Add filter to request and then fetch.

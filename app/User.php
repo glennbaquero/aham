@@ -58,9 +58,17 @@ class User extends Authenticatable
 
     /*
     *  Renderers
-     */
+    */
+
+    public function renderFullName() {
+        return $this->firstname . ' '. $this->lastname;
+    }
 
     public function renderName() {
-        return $this->firstname. ' '. $this->lastname;
+        return '#' . $this->id . ' ' . $this->renderFullName();
+    }
+
+    public function renderView() {
+        return '#';
     }
 }

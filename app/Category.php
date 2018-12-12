@@ -12,13 +12,30 @@ use App\Product;
 class Category extends Model
 {
     use SoftDeletes, Searchable, ActivityLogTrait;
+
     protected $guarded = [];
     protected $dates = ['deleted_at'];
 
+
+    /**
+     * @Relationships
+     */
+    
     public function products() {
     	return $this->hasMany(Product::class);
     }
 
+    public function toSearchableArray() {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+        ];
+    }
+
+    /**
+     * @Methods
+     */
+    
     public static function store($request, $item = null) {
         $vars = $request->only('name');
 
@@ -32,7 +49,7 @@ class Category extends Model
     }
 
     /*
-     * Render
+     * @Renders
      */
 
     public function renderName() {
