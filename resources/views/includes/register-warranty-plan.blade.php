@@ -8,7 +8,9 @@
 					<form class="rw__form">
 						<div class="rw__form-row">
 							<select class="select">
-								<option>Model Number</option>
+								@foreach($products as $product)
+									<option value="{{ $product->id }}"> {{ $product->model }} </option>
+								@endforeach
 							</select><div class="info"><img src="{{asset('images/info.png') }}"></div>
 						</div>
 						

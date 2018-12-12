@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\PageItem;
+use App\Page;
+use App\ProductTag;
+
 class HomeController extends Controller
 {
     /**
@@ -14,6 +18,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('public.pages.home');
+    	$page = Page::where('slug', 'home')->first();
+        return view('public.pages.home', 
+        	$page->getData()
+        );
     }
 }

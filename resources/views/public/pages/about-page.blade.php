@@ -4,22 +4,20 @@
 @section('content')
 <section class="aboutpage frame--1 container">
 	<div class="banner__slider-holder">
-		<div class="bg__slider">
-			<div class="a__banner full frame__background size--cover bring--back" style="background-image: url('{{asset('images/bg.jpg') }}');"></div>
-		</div>
-		<div class="bg__slider">
-			<div class="a__banner full frame__background size--cover bring--back" style="background-image: url('{{asset('images/bg.jpg') }}');"></div>
-		</div>
-		<div class="bg__slider">
-			<div class="a__banner full frame__background size--cover bring--back" style="background-image: url('{{asset('images/bg.jpg') }}');"></div>
-		</div>
+		@foreach($carousels_about as $carousel)
+			@foreach($carousel->images as $image)
+				<div class="bg__slider">
+					<div class="a__banner full frame__background size--cover bring--back" style="background-image: url('{{ $image->renderFilePath() }}');"></div>
+				</div>
+			@endforeach
+		@endforeach
 	</div>
 	
 	<div class="a__container">
 		<div class="vertical-parent">
 			<div class="vertical-align">
-				<p class="a__title">Greener Future Together</p>
-				<p class="a__desc">Value creation in the field of society and environment.</p>
+				<p class="a__title">{{ $item->banner_slider_text }}</p>
+				<p class="a__desc">{{ $item->banner_slider_subtext }}</p>
 			</div>
 		</div>
 	</div>
@@ -30,13 +28,9 @@
 		<div class="vertical-parent">
 			<div class="vertical-align">
 				<div class="a__container">
-					<p class="a__title">Imagine. Inspire. Innovate</p>
+					<p class="a__title">{{ $item->about_us_frame2_text }}</p>
 					<div class="a__desc">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+						{!! $item->about_us_frame2_info !!}
 					</div>
 				</div>
 			</div>
@@ -79,21 +73,13 @@
 		<p class="a__title">Our Strategic Partners</p>
 		<div class="a-partners__sliderHolder slider-holder">
 			<div class="a-partners__slider">
-				<div class="a-partners__item">
-					<img class="img-fit" src="https://via.placeholder.com/300x300">
-				</div>
-				<div class="a-partners__item">
-					<img class="img-fit" src="https://via.placeholder.com/300x300">
-				</div>
-				<div class="a-partners__item">
-					<img class="img-fit" src="https://via.placeholder.com/300x300">
-				</div>
-				<div class="a-partners__item">
-					<img class="img-fit" src="https://via.placeholder.com/300x300">
-				</div>
-				<div class="a-partners__item">
-					<img class="img-fit" src="https://via.placeholder.com/300x300">
-				</div>
+				@foreach($carousels as $carousel)
+					@foreach($carousel->images as $image)
+						<div class="a-partners__item">
+							<img class="img-fit" src="{{ $image->renderFilePath() }}">
+						</div>
+					@endforeach
+				@endforeach
 			</div>
 			<div class="slider-arrows">
 				<div id="next" class="slider-arrow--next"><i class="ion-ios-arrow-right"></i></div>

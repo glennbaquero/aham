@@ -13,6 +13,24 @@ class CarouselTagsSeeder extends Seeder
      */
     public function run()
     {
-        factory(CarouselTag::class, 10)->create();
+        \DB::table('carousel_tags')->delete();
+        $tags = [
+            [
+                'name' => 'about'
+            ],
+            [
+                'name' => 'strategic partners'
+            ],
+            [
+                'name' => 'product'
+            ],
+            [
+                'name' => 'warranty'
+            ]
+        ];
+
+        foreach ($tags as $tag) {
+            CarouselTag::create($tag);
+        }
     }
 }
