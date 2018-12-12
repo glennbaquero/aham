@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 use Laravel\Scout\Searchable;
 use App\Traits\ActivityLogTrait;
@@ -78,7 +79,9 @@ class Product extends Model
         if($request->hasFile('images')) {
             foreach($request->file('images') as $image) {
                 $path = $image->store('product-images', 'public');
-
+                if($item && $item->image()->image){
+                    Storage::delete('public/' . $item->image()->image);
+                }
                 $item->images()->create(['image' => $path]);
             }
         }
@@ -117,4 +120,5 @@ class Product extends Model
     public function setAsFeatured() {
         return route('admin.product.featured', $this->id);
     }
+
 }

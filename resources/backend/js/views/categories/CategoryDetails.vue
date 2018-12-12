@@ -25,6 +25,12 @@
                     				<input v-model="item.name" :disabled="editable" name="name" type="text" class="form-control input-sm" placeholder="Name">
                     			</div>
                     		</div>
+                            <div class="col col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="">Image</label>
+                                    <input :disabled="editable" name="image" type="file" class="form-control input-sm" placeholder="Image">
+                                </div>
+                            </div>
                             
                         </div>
                         <!-- End Row -->

@@ -38,7 +38,6 @@ Vue.component('carousel-details', require('./views/carousels/CarouselDetails.vue
 Vue.component('repair-request-table', require('./views/repairrequest/RepairRequestTable.vue'));
 Vue.component('repair-request-details', require('./views/repairrequest/RepairRequestDetails.vue'));
 
-
 Vue.component('permission-list', require('./views/permission/PermissionsList.vue'));
 
 Vue.component('activity-logs-table', require('./views/activity-logs/ActivityLogsTable.vue'));

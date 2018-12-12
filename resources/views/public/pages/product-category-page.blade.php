@@ -19,121 +19,22 @@
 
 <section class="productpage frame--2 container">
 	<div class="frame-padding">
-		<p class="p__title">Refrigerator</p>
+		<p class="p__title">{{ $category->name }}</p>
 		<div class="p__holder">
-			<div class="p__col">
-				<div class="p__img-holder">
-					<img class="img-fit" src="https://via.placeholder.com/200x200">
-				</div>
-				<div class="p__details">
-					<p class="p__code">AWF-10KFZ</p>
-					<p class="p__name">Fully Auto Washer</p>
-					<ul class="p__specs">
-						<li>Polypropylene plastic body</li>
-						<li>Anti-bacteria and anti-mold</li>
-						<li>100% dent and rust free</li>
-					</ul>
-				</div>
-				<a href="" class="btn outline--blue"><p>View Specs</p></a>
-			</div><div class="p__col">
-				<div class="p__img-holder">
-					<img class="img-fit" src="https://via.placeholder.com/200x200">
-				</div>
-				<div class="p__details">
-					<p class="p__code">AWF-10KFZ</p>
-					<p class="p__name">Fully Auto Washer</p>
-					<ul class="p__specs">
-						<li>Polypropylene plastic body</li>
-						<li>Anti-bacteria and anti-mold</li>
-						<li>100% dent and rust free</li>
-					</ul>
-				</div>
-				<a href="" class="btn outline--blue"><p>View Specs</p></a>
-			</div><div class="p__col">
-				<div class="p__img-holder">
-					<img class="img-fit" src="https://via.placeholder.com/200x200">
-				</div>
-				<div class="p__details">
-					<p class="p__code">AWF-10KFZ</p>
-					<p class="p__name">Fully Auto Washer</p>
-					<ul class="p__specs">
-						<li>Polypropylene plastic body</li>
-						<li>Anti-bacteria and anti-mold</li>
-						<li>100% dent and rust free</li>
-					</ul>
-				</div>
-				<a href="" class="btn outline--blue"><p>View Specs</p></a>
-			</div><div class="p__col">
-				<div class="p__img-holder">
-					<img class="img-fit" src="https://via.placeholder.com/200x200">
-				</div>
-				<div class="p__details">
-					<p class="p__code">AWF-10KFZ</p>
-					<p class="p__name">Fully Auto Washer</p>
-					<ul class="p__specs">
-						<li>Polypropylene plastic body</li>
-						<li>Anti-bacteria and anti-mold</li>
-						<li>100% dent and rust free</li>
-					</ul>
-				</div>
-				<a href="" class="btn outline--blue"><p>View Specs</p></a>
-			</div><div class="p__col">
-				<div class="p__img-holder">
-					<img class="img-fit" src="https://via.placeholder.com/200x200">
-				</div>
-				<div class="p__details">
-					<p class="p__code">AWF-10KFZ</p>
-					<p class="p__name">Fully Auto Washer</p>
-					<ul class="p__specs">
-						<li>Polypropylene plastic body</li>
-						<li>Anti-bacteria and anti-mold</li>
-						<li>100% dent and rust free</li>
-					</ul>
-				</div>
-				<a href="" class="btn outline--blue"><p>View Specs</p></a>
-			</div><div class="p__col">
-				<div class="p__img-holder">
-					<img class="img-fit" src="https://via.placeholder.com/200x200">
-				</div>
-				<div class="p__details">
-					<p class="p__code">AWF-10KFZ</p>
-					<p class="p__name">Fully Auto Washer</p>
-					<ul class="p__specs">
-						<li>Polypropylene plastic body</li>
-						<li>Anti-bacteria and anti-mold</li>
-						<li>100% dent and rust free</li>
-					</ul>
-				</div>
-				<a href="" class="btn outline--blue"><p>View Specs</p></a>
-			</div><div class="p__col">
-				<div class="p__img-holder">
-					<img class="img-fit" src="https://via.placeholder.com/200x200">
-				</div>
-				<div class="p__details">
-					<p class="p__code">AWF-10KFZ</p>
-					<p class="p__name">Fully Auto Washer</p>
-					<ul class="p__specs">
-						<li>Polypropylene plastic body</li>
-						<li>Anti-bacteria and anti-mold</li>
-						<li>100% dent and rust free</li>
-					</ul>
-				</div>
-				<a href="" class="btn outline--blue"><p>View Specs</p></a>
-			</div><div class="p__col">
-				<div class="p__img-holder">
-					<img class="img-fit" src="https://via.placeholder.com/200x200">
-				</div>
-				<div class="p__details">
-					<p class="p__code">AWF-10KFZ</p>
-					<p class="p__name">Fully Auto Washer</p>
-					<ul class="p__specs">
-						<li>Polypropylene plastic body</li>
-						<li>Anti-bacteria and anti-mold</li>
-						<li>100% dent and rust free</li>
-					</ul>
-				</div>
-				<a href="" class="btn outline--blue"><p>View Specs</p></a>
-			</div>
+			@foreach($category->products as $product)
+				<div class="p__col">
+					<div class="p__img-holder">
+						<img class="img-fit" src="{{ $product->renderFilePath() }}">
+					</div>
+					<div class="p__details">
+						<p class="p__code">{{ $product->model }}</p>
+						<p class="p__name">{{ $product->name }}</p>
+						<ul class="p__specs">
+							<li> {!! $product->specification !!} </li>
+						</ul>
+					</div>
+					<a href="" class="btn outline--blue"><p>View Specs</p></a>
+				</div>@endforeach
 		</div>
 	</div>
 </section>

@@ -12,29 +12,25 @@
 */
 
 Auth::routes();
-// Route::get('{slug}', 'PageController@show')->nme('slug');
+Route::get('{slug}', 'PageController@show');
 
 Route::get('', 'HomeController@index')->name('home');
 
-Route::get('/products', function () {
-    return view('public.pages.product-page');
-});
+// Route::get('/about', function () {
+//     return view('public.pages.about-page');
+// });
 
-Route::get('/about', function () {
-    return view('public.pages.about-page');
-});
-
-Route::get('/contact', function () {
-    return view('public.pages.contact-page');
-});
+// Route::get('/contact', function () {
+//     return view('public.pages.contact-page');
+// });
 
 Route::get('/selected', function () {
     return view('public.pages.product-selected-page');
 });
 
-Route::get('/category', function () {
-    return view('public.pages.product-category-page');
-});
+// Route::get('/category', function () {
+//     return view('public.pages.product-category-page');
+// });
 
 Route::get('/basic', function () {
     return view('public.pages.basic-warranty-page');
@@ -44,9 +40,9 @@ Route::get('/extended', function () {
     return view('public.pages.extended-warranty-page');
 });
 
-Route::get('/info', function () {
-    return view('public.pages.warranty-info-page');
-});
+// Route::get('/info', function () {
+//     return view('public.pages.warranty-info-page');
+// });
 
 Route::get('/login', function () {
     return view('public.pages.login-page');
@@ -55,6 +51,13 @@ Route::get('/login', function () {
 Route::get('/signup', function () {
     return view('public.pages.signup-page');
 });
+
+
+Route::get('products/view/', 'Admins\ProductController@fetch')->name('all.products');
+Route::get('products/category/{id}', 'Admins\CategoryController@viewAllProduct')->name('category.all.product');
+Route::get('products/view/{id}', 'Admins\ProductController@view')->name('view.product');
+
+// Route::get('/product/fetch', 'ProductController@fetch')->name('products.fetch')
 
 /****************************************
  * Login & Register  					*

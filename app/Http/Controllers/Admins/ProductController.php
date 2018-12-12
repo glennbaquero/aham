@@ -177,4 +177,19 @@ class ProductController extends Controller
 
         return redirect()->back();
     }
+
+    public function fetch(Category $categories)
+    {
+        return response()->json([
+            'categories' => $categories->fetchCategory(),
+        ]);
+    }
+
+    public function view(Product $product, $id)
+    {
+        return view('public.pages.product-selected-page',[
+            'product' => $product->find($id),
+            'products' => $product->all()
+        ]);
+    }
 }
