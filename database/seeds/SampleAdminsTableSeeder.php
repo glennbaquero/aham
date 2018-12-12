@@ -13,9 +13,6 @@ class SampleAdminsTableSeeder extends Seeder
      */
     public function run()
     {
-
-        \DB::table('admins')->delete();
-        
     	$admins = [
         	[
 		        'firstname' => 'Admin',

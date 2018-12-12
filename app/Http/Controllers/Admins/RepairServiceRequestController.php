@@ -18,7 +18,11 @@ class RepairServiceRequestController extends Controller
      */
     public function index()
     {
-        return view('admin.repairservice.request.index');
+        $status = json_encode(RepairServiceRequest::getStatus());
+
+        return view('admin.repairservice.request.index', [
+            'status' => $status,
+        ]);
     }
 
     /**
@@ -84,11 +88,11 @@ class RepairServiceRequestController extends Controller
     {
         $repair = RepairServiceRequest::withTrashed()->find($id);
         DB::beginTransaction();
-        RepairServiceRequest::store($request, $repair);        
+        $repair = RepairServiceRequest::store($request, $repair);     
         DB::commit();
 
         return response()->json([
-            'message' => 'A new request has been updated!',
+            'message' => "You have successfully updated {$repair->renderName()}",
         ]);
     }
 

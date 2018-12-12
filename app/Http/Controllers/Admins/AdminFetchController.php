@@ -28,6 +28,21 @@ class AdminFetchController extends FetchController
      */
     public function filterQuery($query)
     {
+        if ($this->request->filled('search')) {
+            $ids = $this->class::search($this->request->input('search'))->get()->pluck('id')->toArray();
+            $query = $query->whereIn('id', $ids);
+        }
+
+        if ($this->request->filled('role')) {
+            $query = $query->whereHas('roles', function($query) {
+                $query->where('id', $this->request->input('role'));
+            });
+        }
+
+        if ($this->request->filled('type')) {
+            $query = $query->where('type', $this->request->input('type'));
+        }
+
         return $query;
     }
 
@@ -44,8 +59,11 @@ class AdminFetchController extends FetchController
         foreach($items as $item) {
             array_push($result, array(
                 'id' => $item->id,
-                'name' => $item->firstname. ''. $item->lastname,
+                'name' => $item->renderFullname(),
                 'email' => $item->email,
+                'role_list' => $item->renderRoleList(),
+                'type_label' => $item->renderTypeLabel(),
+                'type_class' => $item->renderTypeClass(),
                 'created_at' => $item->created_at->format('M d, Y (H:i:s)'),
 
                 'actions' => array(

@@ -123,7 +123,7 @@
              */
             defaultorder: {
                 type: Boolean,
-                default: null,
+                default: false,
             }, 
 
             /**

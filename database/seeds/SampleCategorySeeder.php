@@ -13,7 +13,6 @@ class SampleCategorySeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('categories')->delete();
         factory(Category::class, 10)->create();
     }
 }

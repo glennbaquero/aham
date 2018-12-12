@@ -27,7 +27,7 @@ class RepairServiceRequest extends Model
     }
 
     public function invoice_items() {
-        return $this->belongsToMany(InvoiceItem::class, 'service_request', 'request_id', 'user_product_id')->with('product', 'invoice');
+        return $this->belongsToMany(InvoiceItem::class, 'service_request', 'request_id', 'user_product_id');
     }
 
     public static function store($request, $item = null) {
@@ -52,34 +52,61 @@ class RepairServiceRequest extends Model
         return $item;
     }
 
+    /**
+     * @Getters
+     */
+
     public static function getStatus() {
         return [
-            ['value' => static::PENDING, 'label' => 'PENDING'],
-            ['value' => static::ONGOING, 'label' => 'ONGOING'],
-            ['value' => static::COMPLETE, 'label' => 'COMPLETE'],
+            ['value' => static::PENDING, 'label' => 'Pending', 'class' => 'bg-red'],
+            ['value' => static::ONGOING, 'label' => 'On-going', 'class' => 'bg-blue'],
+            ['value' => static::COMPLETE, 'label' => 'Complete', 'class' => 'bg-green'],
         ];
     }
 
-    public function getInvoiceItems() {
-       
-        $user = $this->user;
-        $ids = $user->invoices();
-        
-        return $ids;
+    /**
+     * @Helpers
+     */
+    public function renderConstants($array, $value, $column = null) {
+
+        /* Loop through the array */
+        foreach ($array as $obj) {
+            
+            if($obj['value'] == $value) {
+
+                /* Fetch columm if specified */
+                if($column && isset($obj[$column]))
+                    return $obj[$column];
+
+                return $obj;
+            }
+        }
     }
 
     /*
      * Render
      */
 
-     public function renderFilePath($column = 'image') {
+    public function renderFilePath($column = 'image') {
         $path = null;
         if (count($this->images)) { $path = $this->images()->first()->renderFilePath($column); }
         return $path;
     }
 
+    public function renderStatusLabel() {
+        return $this->renderConstants(static::getStatus(), $this->status, 'label');
+    }
+
+    public function renderStatusClass() {
+        return $this->renderConstants(static::getStatus(), $this->status, 'class');
+    }
+
+    public function renderProductList() {
+        return implode(', ', $this->invoice_items->pluck('product.name')->toArray());
+    }
+
     public function renderName() {
-        return '#' . $this->id . ' ' . $this->model;
+        return '#' . $this->id;
     }
 
     public function renderView() {

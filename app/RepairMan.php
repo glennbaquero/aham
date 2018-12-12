@@ -10,7 +10,7 @@ use App\Traits\ActivityLogTrait;
 
 class RepairMan extends Model
 {
-    use ActivityLogTrait;
+    use ActivityLogTrait, SoftDeletes;
     protected $guarded = [];
 
     public static function getModelEvents() {
@@ -25,7 +25,7 @@ class RepairMan extends Model
     }
 
     public function admin() {
-        return $this->belongsTo(Admin::class, 'admin_id');
+        return $this->belongsTo(Admin::class, 'admin_id')->withTrashed();
     }
 
     /*
@@ -34,5 +34,9 @@ class RepairMan extends Model
 
     public function renderName() {
         return '#' . $this->id;
+    }
+
+    public function renderView() {
+        return route('admin.request.edit', $this->request->id);
     }
 }

@@ -27,8 +27,6 @@ class PageFetchController extends FetchController
      */
     public function filterQuery($query)
     {
-        $query = ($this->class)->newQuery();
-
         if ($this->request->filled('search')) {
             $ids = $this->class::search($this->request->input('search'))->get()->pluck('id')->toArray();
             $query = $query->whereIn('id', $ids);

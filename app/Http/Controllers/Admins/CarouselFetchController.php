@@ -28,6 +28,17 @@ class CarouselFetchController extends FetchController
      */
     public function filterQuery($query)
     {
+        if ($this->request->filled('search')) {
+            $ids = $this->class::search($this->request->input('search'))->get()->pluck('id')->toArray();
+            $query = $query->whereIn('id', $ids);
+        }
+        
+        if ($this->request->filled('tag')) {
+            $query = $query->whereHas('tags', function($query) {
+                $query->where('id', $this->request->input('tag'));
+            });
+        }
+
         return $query;
     }
 
@@ -45,6 +56,7 @@ class CarouselFetchController extends FetchController
             array_push($result, array(
                 'id' => $item->id,
                 'name' => $item->name,
+                'tag_list' => $item->renderTagList(),
                 'created_at' => $item->created_at->format('M d, Y (H:i:s)'),
 
                 'actions' => array(

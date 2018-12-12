@@ -35,7 +35,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.products.index');
+        $tags = ProductTag::select(ProductTag::MINIMAL_COLUMN)->get();
+
+        return view('admin.products.index', [
+            'tags' => $tags,
+        ]);
     }
 
     /**

@@ -11,7 +11,7 @@
                 
                 <div class="col-sm-4 hidden-xs form-inline">
 
-                    <filter-box v-show="filterpages"
+                    <filter-box v-show="filterpages.length > 0"
                     @onfilter="filterByPage"
                     :filters="filterpages"
                     :defaultlabel="'Filter by Page Slug'"
@@ -19,18 +19,26 @@
                     :labelcolumn="'slug'"
                     ></filter-box>
 
+                    <filter-box v-show="filtertypes"
+                    @onfilter="filterByType"
+                    :filters="filtertypes"
+                    :defaultlabel="'Filter by Type'"
+                    ></filter-box>
+
                 </div>
 
                 <!-- SEARCHBOX -->
-                <div class="col-sm-3 pull-right">            
-    
+                <div class="col-sm-3 pull-right">       
+                    <search-box
+                    @onsearch="search"
+                    ></search-box>
                 </div>
             </div>
 
             <!-- DATATABLE -->
             <datatable ref="datatable"
-            :headers="['#', 'Page Name', 'Page Slug', 'Slug', 'Created Date']"
-            :columns="['id', false, false,  'slug', 'created_at']"
+            :headers="['#', 'Page Name', 'Page Slug', 'Slug', 'Type', 'Created Date']"
+            :columns="['id', false, false,  'slug', 'type', 'created_at']"
             :filters="filters"
             
             :fetchurl="fetchurl"
@@ -49,6 +57,7 @@
                         <td>{{ item.page_name }}</td>
                         <td>{{ item.page_slug }}</td>
                         <td>{{ item.slug }}</td>
+                        <td><span class="badge" :class="item.type_class">{{ item.type_label }}</span></td>
                         <td>{{ item.created_at }}</td>
                         <td>
                             <center>
@@ -78,20 +87,23 @@
 import {ebi} from '../../EventBus.js';
 
 import Filter from '../../components/Filter.vue';
-import DataTable from '../../DataTable.vue';
-import Loader from '../../Loader.vue';
+import DataTable from '../../components/DataTable.vue';
+import Loader from '../../components/Loader.vue';
+import SearchBox from '../../components/SearchBox.vue';
 
 export default {
 
     props:{
         fetchurl: String,
         filterpages: {},
+        filtertypes: {},
         autofetch: Boolean,
     },
 
     components:{
         'datatable': DataTable,
         'loader': Loader,
+        'search-box': SearchBox,
         'filter-box': Filter,
     },
 
@@ -143,13 +155,17 @@ export default {
          * Search keyword.
          */
         search:function(value) {
-
             this.filters = Object.assign(this.filters, { search: value });
             this.fetch();
         },
 
         filterByPage(value) {
             this.filters = Object.assign(this.filters, { page_id: value });
+            this.fetch();
+        },
+
+        filterByType(value) {
+            this.filters = Object.assign(this.filters, { type: value });
             this.fetch();
         },
 

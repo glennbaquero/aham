@@ -27,9 +27,14 @@ class ProductFetchController extends FetchController
      */
     public function filterQuery($query)
     {
-        if($this->request->filled('is_featured')) {
+        if ($this->request->filled('search')) {
+            $ids = $this->class::search($this->request->input('search'))->get()->pluck('id')->toArray();
+            $query = $query->whereIn('id', $ids);
+        }
+        
+        if($this->request->filled('tag_id')) {
            $query = $query->whereHas('tags', function($query){
-                $query->where('name', 'Featured Product');
+                $query->where('id', $this->request->input('tag_id'));
             });
         }
 

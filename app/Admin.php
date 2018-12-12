@@ -44,7 +44,8 @@ class Admin extends Authenticatable
 	public function toSearchableArray() {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'firstname' => $this->firstname,
+            'lastname' => $this->lastname,
         ];
     }
 
@@ -77,8 +78,8 @@ class Admin extends Authenticatable
      */
     public static function getTypes() {
         return [
-            ['value' => static::DEFAULT, 'label' => 'Default'],
-            ['value' => static::REPAIRMAN, 'label' => 'Repairman'],
+            ['value' => static::DEFAULT, 'label' => 'Default', 'class' => 'bg-green'],
+            ['value' => static::REPAIRMAN, 'label' => 'Repairman', 'class' => 'bg-orange'],
         ];
     }
 
@@ -142,6 +143,25 @@ class Admin extends Authenticatable
         return false;
     }
 
+    /**
+     * @Helpers
+     */
+    public function renderConstants($array, $value, $column = null) {
+
+        /* Loop through the array */
+        foreach ($array as $obj) {
+            
+            if($obj['value'] == $value) {
+
+                /* Fetch columm if specified */
+                if($column && isset($obj[$column]))
+                    return $obj[$column];
+
+                return $obj;
+            }
+        }
+    }
+
     /*
      * Renders
      */
@@ -152,6 +172,25 @@ class Admin extends Authenticatable
 
     public function renderName() {
         return '#' . $this->id . ' ' . $this->renderFullname();
+    }
+
+    public function renderRoleList() {
+        $roles = $this->getRoleNames();
+        $message = 'Super Admin';
+
+        if (count($roles)) {
+            $message = implode(', ', $roles->toArray());
+        }
+
+        return $message;
+    }
+
+    public function renderTypeLabel() {
+        return $this->renderConstants(static::getTypes(), $this->type, 'label');
+    }
+
+    public function renderTypeClass() {
+        return $this->renderConstants(static::getTypes(), $this->type, 'class');
     }
 
     public function renderView() {
