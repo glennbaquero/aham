@@ -128,7 +128,7 @@ class Page extends Model
                 break;
             case 'contact':
                     $data['view'] = "public.pages.contact-page";
-                    $data['warranty_info_sliders'] = $warranty_info_sliders;
+                    // $data['warranty_info_sliders'] = $warranty_info_sliders;
                     $data['products'] = $products;
                 break;
             case 'category':
