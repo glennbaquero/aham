@@ -22,9 +22,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'firstname' => $faker->firstName,
         'lastname' => $faker->lastName,
         'contact' => $faker->phoneNumber,
-        'bday_month' => $faker->month,
-        'bday_day' => $faker->dayOfMonth,
-        'bday_year' => $faker->year,
+        'birthday' => $faker->date($format = 'Y-m-d'),
         'address' => $faker->address,
     ];
 });

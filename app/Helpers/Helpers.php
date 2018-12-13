@@ -3,6 +3,7 @@
 namespace App;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 
 class Helpers
 {
@@ -86,5 +87,14 @@ class Helpers
         $randomString .= $additionalString;
         
         return $randomString;
+    }
+
+    public static function flash(
+        $message = 'The operation has successfully executed',
+        $title = 'Success!',
+        $type= 'success'){
+        session()->flash('status_title', $title);
+        session()->flash('status_message', $message);
+        session()->flash('status_type', $type);
     }
 }

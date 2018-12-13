@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Page;
 use Illuminate\Http\Request;
+Use Alert;
 
 class PageController extends Controller
 {
@@ -22,5 +23,15 @@ class PageController extends Controller
 
         $data = $page->getData();
         return view($data['view'], $data);
+    }
+
+    public function signup()
+    { 
+        return view('public.pages.signup-page');
+    }
+
+    public function login()
+    {
+        return view('public.pages.login-page');
     }
 }

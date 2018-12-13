@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+
+use App\Notifications\VerifyEmailNotification;
+use App\Http\Requests\UserRegistrationRequest;
+
+use App\User;
+use DB;
+use Alert;
 
 class RegisterController extends Controller
 {
@@ -61,12 +68,16 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    public function create(UserRegistrationRequest $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        DB::beginTransaction();
+            $user = User::store($request);
+        DB::commit();
+    
+        $user->notify(new VerifyEmailNotification($user));
+
+        alert()->success('Registration success', 'Check your email to activate the account!');
+
+        return redirect()->route('login');
     }
 }

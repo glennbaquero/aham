@@ -17,6 +17,6 @@ class SampleUsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class, 15)->create();
+        // factory(User::class, 15)->create();
     }
 }
