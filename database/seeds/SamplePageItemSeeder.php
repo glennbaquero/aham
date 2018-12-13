@@ -23,7 +23,7 @@ class SamplePageItemSeeder extends Seeder
 
 	                $item = new PageItem();
 	                $item->page_id = $data[0];
-                    $item->slug = $data[1];
+	                $item->slug = $data[1];
 	                $item->content = $data[2];
                     $item->type = $data[3];
 

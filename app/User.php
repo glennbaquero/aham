@@ -4,7 +4,10 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+
+use App\Helpers;
 
 class User extends Authenticatable
 {
@@ -40,8 +43,29 @@ class User extends Authenticatable
         return $this->hasOne(UserDetail::class);
     }
 
-     public function products() {
+    public function products() {
         return $this->hasMany(Product::class);
+    }
+
+    public static function store($request, $item = null) {
+        $vars = $request->only(['email', 'firstname', 'lastname', 'contact', 'birthday']);
+
+        if(!$item) {
+            $item = static::create([
+                'email' => $request->input('email'),
+                'firstname' => $request->input('firstname'),
+                'lastname' => $request->input('lastname'),
+                'contact' => $request->input('contact'),
+                'birthday' => $request->input('birthday'),
+                'password' => Hash::make($request->input('password')),
+                'email_token' => Helpers::generateRandomString(60),
+            ]);
+        } else {
+
+        }
+
+
+        return $item;
     }
 
     public static function getInvoiceItems($request) {

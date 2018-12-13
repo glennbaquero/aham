@@ -8,10 +8,10 @@
 		<div class="ls__container">
 			<p class="ls__title">Log in to your account</p>
 			<p class="ls__desc">Log in to register new product</p>
-			<form class="ls__form">
+			<form method="POST" action="{{ route('login') }}" class="ls__form">
 				<div class="ls__form-row">
 					<label>Email</label>
-					<input class="input-text" type="email" name="email" required>
+					<input class="input-text" type="email" name="email">
 					<label class="error-label"><i>Email Address is required*</i></label>
 				</div>
 				<div class="ls__form-row">
