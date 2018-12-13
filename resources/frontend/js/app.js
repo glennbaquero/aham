@@ -4,7 +4,6 @@ require('./script');
 
 Vue.component('product-list', require('./views/products/Product.vue'));
 
-
 const app = {
 	init() {
 		this.setupVue();

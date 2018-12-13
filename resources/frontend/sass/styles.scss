@@ -337,6 +337,8 @@
 			z-index: 8;
 
 			.h__products {
+				position: relative;
+				z-index: 8;
 				display: inline-block;
 				vertical-align: middle;
 				width: 16.66%;
@@ -345,9 +347,11 @@
 				background-color: $dark-gray;
 				border-right: 2px solid $black;
 				cursor: pointer;
+				transition: all 300ms ease;
 
-				&:last-child {
-					border-right: none;
+				&:hover {
+					background-color: $blue;
+					transition: all 200ms ease;
 				}
 
 				.h__products-img-holder {
@@ -357,7 +361,6 @@
 					margin-right: 10px;
 					width: 50px;
 					height: 50px;
-					background-color: red;
 					cursor: pointer;
 				}
 
@@ -461,8 +464,20 @@
 	}
 
 	&.frame--4 {
+		position: relative;
 		background-color: $light-gray;
 		padding: 50px 0;
+
+		.img-fit {
+			left: auto;
+			right: 8%;
+		}
+
+		.h__reg-img-holder {
+			position: relative;
+			width: 100%;
+			height: 100px;
+		}
 
 		.h__reg-container {
 			width: 40%;
@@ -766,6 +781,7 @@
 
 	.bw__container {
 		margin: 40px 0;
+		margin-top: 120px;
 
 		.bw__title {
 			text-align: center;
@@ -781,6 +797,7 @@
 			text-align: center;
 
 			.bw__form-row {
+				position: relative;
 				text-align: left;
 				margin-bottom: 10px;
 
@@ -797,6 +814,35 @@
 					padding: 7px 10px;
 				}
 
+				.info {
+					position: absolute;
+					right: -25px;
+					top: 33px;
+					font-size: 18px;
+					color: $blue;
+					display: inline-block;
+					vertical-align: middle;
+					cursor: pointer;
+				}
+
+				input[type=file] {
+					cursor: pointer;
+				  	width: 100%;
+				  	height: 34px;
+				  	overflow: hidden;
+				}
+
+				input[type=file]:before {
+					@extend %input-text;
+				  	content: 'Browse file';
+				  	display: inline-block;
+				  	background: $light-gray;
+				  	text-align: left;
+				}
+
+				input[type=file]::-webkit-file-upload-button {
+				  	visibility: hidden;
+				}
 				
 			}
 
@@ -843,6 +889,7 @@
 		padding-bottom: 20px;
 		background-color: $black;
 		margin: 40px auto;
+		margin-top: 120px;
 
 		.ew__title {
 			position: relative;
@@ -873,6 +920,7 @@
 			text-align: center;
 
 			.ew__form-row {
+				position: relative;
 				text-align: left;
 				margin-bottom: 10px;
 
@@ -891,8 +939,38 @@
 					background-color: $white;
 				}
 
+				.info {
+					position: absolute;
+					right: -25px;
+					top: 33px;
+					font-size: 18px;
+					color: $white;
+					display: inline-block;
+					vertical-align: middle;
+					cursor: pointer;
+				}
+
 				.input-text {
 					background-color: $white;
+				}
+
+				input[type=file] {
+					cursor: pointer;
+				  	width: 100%;
+				  	height: 34px;
+				  	overflow: hidden;
+				}
+
+				input[type=file]:before {
+					@extend %input-text;
+				  	content: 'Browse file';
+				  	display: inline-block;
+				  	background: $light-gray;
+				  	text-align: left;
+				}
+
+				input[type=file]::-webkit-file-upload-button {
+				  	visibility: hidden;
 				}
 			}
 
@@ -901,6 +979,7 @@
 				margin-bottom: 30px;
 				color: $white;
 				display: block;
+				text-align: left;
 			}
 
 			button {
@@ -1005,10 +1084,16 @@
 	}
 
 	&.frame--2 {
+		position: relative;
+
+		.img-fit {
+			left: auto;
+			right: 15%;
+		}
 
 		.a__container {
 			width: 60%;
-			padding-bottom: 60px;
+			padding: 60px 0;
 
 			.a__title {
 				font-family: $font--3;
@@ -1018,9 +1103,12 @@
 			}
 
 			.a__desc {
+				width: 80%;
 				font-family: $font--1;
 				font-size: 16px;
 				color: $black;
+				max-height: 280px;
+				overflow: auto;
 			}
 		}
 	}
@@ -1116,7 +1204,7 @@
 
 		.c__container {
 			text-align: center;
-			margin-top: 150px;
+			margin-top: 120px;
 
 			.c__title {
 				font-family: $font--3;
@@ -1337,6 +1425,7 @@
 
 	.ls__container {
 		padding: 30px 0;
+		margin-top: 90px;
 
 		.ls__title {
 			font-family: $font--3;
