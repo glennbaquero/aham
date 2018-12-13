@@ -5,7 +5,7 @@
 
 
 <section class="basicwarranty container">
-	<div class="bw__container">
+	<div class="bw__container animate-up">
 		<p class="bw__title">Register your new product</p>
 		<form class="bw__form">
 			<div class="bw__form-row">

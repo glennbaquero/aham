@@ -14,7 +14,7 @@
 		
 	</div>
 	
-	<div class="p__container">
+	<div class="p__container animate-up">
 		<div class="vertical-parent">
 			<div class="vertical-align">
 				<p class="p__title">{{ $item->slider_text_header }}</p>
@@ -29,7 +29,7 @@
 </section>
 
 <section class="productpage frame--2 container">
-	<div class="frame-padding">
+	<div class="frame-padding animate-up">
 		<product-list
 			:fetchurl="'{{ route('all.products') }}'"
 			>

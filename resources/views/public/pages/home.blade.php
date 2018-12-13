@@ -7,7 +7,7 @@
 	<div class="frame-padding">
 
 
-		<div class="h__text-holder">
+		<div class="h__text-holder animate-up">
 			<div class="vertical-parent">
 				<div class="vertical-align">
 					<div class="frame-title h__title">
@@ -42,7 +42,7 @@
 	<div class="frame-padding">
 		<div class="vertical-parent">
 			<div class="vertical-align">
-				<div class="h__f-prod-container row center-align">
+				<div class="h__f-prod-container row center-align animate-up">
 					<p class="h__f-prod-title">Featured Products</p>
 					<div class="h__slider-holder">
 						<div class="top_slider">
@@ -78,7 +78,7 @@
 	<div class="frame-padding">
 		<div class="vertical-parent">
 			<div class="vertical-align">
-				<div class="h__contact-container">
+				<div class="h__contact-container animate-up">
 					<p class="h__title">{{ $item->bottom_2_text_header }}</p>
 					<p class="h__desc">{{ $item->bottom_2_text_sub }}</p>
 					<a class="btn btn-blue" href="{{ url('contact') }}"><p>Contact Us</p></a>
@@ -93,7 +93,7 @@
 	<div class="frame-padding">
 		<div class="vertical-parent">
 			<div class="vertical-align">
-				<div class="h__reg-container">
+				<div class="h__reg-container animate-up">
 					<p class="h__title">Register your product now!</p>
 					<p class="h__desc">Register your product to 1 year free basic warranty or try our extended warranty plan! We've got you covered!</p>
 					<select class="select">

@@ -6,7 +6,7 @@
 <section class="warrantyinfo frame--1 container">
 	<div class="frame-banner full frame__background size--cover bring--back" style="background-image: url('{{ $item->warranty_banner }}');"></div>
 	<div class="frame-padding">
-		<div class="wi__container">
+		<div class="wi__container animate-up">
 			<div class="vertical-parent">
 				<div class="vertical-align">
 					<p class="wi__title">{{ $item->banner_header_text }}</p>
@@ -19,9 +19,8 @@
 
 <section class="warrantyinfo frame--2 container">
 	<div class="frame-padding">
-		<p class="wi__title">Warranty Policy</p>
-		<div class="wi__container">
-			
+		<p class="wi__title animate-up">Warranty Policy</p>
+		<div class="wi__container animate-up">
 			<div class="wi__desc">
 				{!! $item->policy !!}
 			</div>

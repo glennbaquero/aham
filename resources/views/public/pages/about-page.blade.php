@@ -13,7 +13,7 @@
 		@endforeach
 	</div>
 	
-	<div class="a__container">
+	<div class="a__container animate-up">
 		<div class="vertical-parent">
 			<div class="vertical-align">
 				<p class="a__title">{{ $item->banner_slider_text }}</p>
@@ -28,7 +28,7 @@
 	<div class="frame-padding">
 		<div class="vertical-parent">
 			<div class="vertical-align">
-				<div class="a__container">
+				<div class="a__container animate-up">
 					<p class="a__title">{{ $item->about_us_frame2_text }}</p>
 					<div class="a__desc">
 						{!! $item->about_us_frame2_info !!}
@@ -40,7 +40,7 @@
 </section>
 
 <section class="aboutpage frame--3 container">
-	<div class="frame-padding">
+	<div class="frame-padding animate-up">
 		<p class="a__title">Frequently Asked Questions</p>
 		<div class="a__accordion__list">
 			<div class="a__accordion">
@@ -70,7 +70,7 @@
 </section>
 
 <section class="aboutpage frame--4 container">
-	<div class="frame-padding">
+	<div class="frame-padding animate-up">
 		<p class="a__title">Our Strategic Partners</p>
 		<div class="a-partners__sliderHolder slider-holder">
 			<div class="a-partners__slider">
