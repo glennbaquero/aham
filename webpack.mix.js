@@ -11,5 +11,14 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
+mix.js(['resources/frontend/js/app.js'], 'public/assets/app-frontend.js');
+
+mix.js([
+	'resources/backend/js/app.js',
+], 'public/assets/app-backend.js')
+	.extract(['vue', 'vuex', 'axios', 'datatables.net-bs', '@fortawesome/fontawesome-free'])
+    .version();
+
+mix.sass('resources/backend/sass/app.scss', 'public/assets/app-backend.css').version();
+mix.sass('resources/backend/sass/vendor.scss', 'public/assets/vendor-backend.css').version();
+mix.sass('resources/frontend/sass/app.scss', 'public/assets/app-frontend.css').version();

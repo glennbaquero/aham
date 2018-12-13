@@ -13,3 +13,10 @@ npm-debug.log
 yarn-error.log
 .env
 .phpunit.result.cache
+public/assets
+*.bak
+*.sql
+*.tar.xz
+*.index
+public/mix-manifest.json
+public/images
