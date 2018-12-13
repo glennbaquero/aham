@@ -13,6 +13,7 @@ use App\Http\Requests\UserRegistrationRequest;
 
 use App\User;
 use DB;
+use Alert;
 
 class RegisterController extends Controller
 {
@@ -74,6 +75,8 @@ class RegisterController extends Controller
         DB::commit();
     
         $user->notify(new VerifyEmailNotification($user));
+
+        alert()->success('Registration success', 'Check your email to activate the account!');
 
         return redirect()->route('login');
     }
