@@ -94,7 +94,6 @@ class Page extends Model
         $products = Product::all();
 
         switch($this->slug) {
-
             case 'home':
                     $data['view'] = "public.pages.home";
                     $data['featured_products'] = Product::whereHas('tags', function($query){

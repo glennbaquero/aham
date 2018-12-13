@@ -28,6 +28,9 @@ Route::get('/extended', function () {
     return view('public.pages.extended-warranty-page');
 });
 
+Route::get('/login', function () {
+    return view('public.pages.login-page');
+});
 
 Route::group(['middleware' => ['guest']],function(){
 		Route::get('user/signup', 'PageController@signup')->name('signup');
@@ -43,7 +46,6 @@ Route::get('user/logout', function(){
     \Auth::logout();
     return redirect()->route('home');
 })->name('user.logout');
-
 
 
 /****************************************
@@ -72,7 +74,7 @@ Route::name('admin.')
 ->namespace('Admins')
 ->group(function() {
 
-	Route::get('/', 'DashboardController@index')->name('dashboard');
+	Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 	Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 	/****************

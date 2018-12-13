@@ -16,8 +16,17 @@ class PageController extends Controller
     public function show($slug)
     {
         $page = Page::where('slug', $slug)->first();
+
         if(!$page) {
-            abort(404);
+            switch ($slug) {
+                case 'admin':
+                        return redirect()->route('admin.login.show');
+                    break;
+                
+                default:
+                        abort(404);
+                    break;
+            }
         }
 
         $data = $page->getData();
