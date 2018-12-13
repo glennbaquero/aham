@@ -87,7 +87,14 @@
 				<a class="navigation__text" href="{{ url('contact') }}">Contact</a>
 			</div>
 			<div class="header__user">
-				<a href="{{ url('signup') }}" class="navigation__text"><i class="icon fa fa-user"></i>Sign Up</a>
+				@if(!Auth::check())
+					<a href="{{ route('signup') }}" class="navigation__text"><i class="icon fa fa-user"></i>Sign Up</a>
+				@else
+					<a href="{{ route('user.logout') }}" class="navigation__text">
+						<i class="icon fa fa-user"></i>
+						{{ Auth::user()->firstname. ' '. Auth::user()->firstname}}
+					</a>
+				@endif
 			</div>
 		</div>
 	</div>

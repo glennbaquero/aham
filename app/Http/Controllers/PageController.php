@@ -23,4 +23,14 @@ class PageController extends Controller
         $data = $page->getData();
         return view($data['view'], $data);
     }
+
+    public function signup()
+    {
+        return view('public.pages.signup-page');
+    }
+
+    public function login()
+    {
+        return view('public.pages.login-page');
+    }
 }
