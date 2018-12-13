@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Page;
 use Illuminate\Http\Request;
+Use Alert;
 
 class PageController extends Controller
 {
@@ -34,7 +35,7 @@ class PageController extends Controller
     }
 
     public function signup()
-    {
+    { 
         return view('public.pages.signup-page');
     }
 
