@@ -6,6 +6,7 @@ use App\Helpers;
 
 $factory->define(App\Invoice::class, function (Faker $faker) {
     return [
+        'user_id' => $faker->numberBetween(1,15),
         'serial_number' => $faker->unique()->regexify('[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}'),
         'purchase_date' => $faker->date('Y-m-d', 'now'),
         'contract_number' => $faker->unique()->numberBetween(1,999),

@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 use App\Traits\ActivityLogTrait;
 
+use DB;
+
 class RepairServiceRequest extends Model
 {
     use SoftDeletes, Searchable, ActivityLogTrait;
@@ -34,7 +36,7 @@ class RepairServiceRequest extends Model
 
         if(!$item) {
 
-        $vars = $request->only(['user_id', 'complaint', 'solution', 'repair_cost', 'status']);
+            $vars = $request->only(['user_id', 'complaint', 'solution', 'repair_cost', 'status']);
             $item = static::create($vars);
             $item->repairman()->create(['admin_id' => $request->input('repair_men_id')]);
 
@@ -46,7 +48,17 @@ class RepairServiceRequest extends Model
             $item->repairman->update(['admin_id' => $request->input('repair_men_id')]);
 
         }
+
+        $all_invoices = User::getInvoiceItems($request)->pluck('id');
+        InvoiceItem::whereIn('id', $all_invoices)->update(['on_repair' => 0]);
+        foreach ($request->get('userproducts') as $key => $value) {
+            $invoice_items = InvoiceItem::find($request->input('userproducts')[$key]);
+            if($request->get('userproducts')[$key]){
+                $invoice_items->update(['on_repair' => 1]);
+            }
+        }
         
+
         $item->invoice_items()->sync($request->input('userproducts'));  
 
         return $item;

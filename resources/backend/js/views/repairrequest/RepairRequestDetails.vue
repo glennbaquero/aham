@@ -28,16 +28,50 @@
                                     </select>
                     			</div>
                     		</div>
-                            <div class="col col-xs-12 col-sm-12 col-md-6">
+                            <div class="col col-xs-12 col-sm-12 col-md-6" v-show="item.user_id">
                                 <div class="form-group">
-                                    <label for="">Customer Registered Product</label>
-                                    <select class="form-control select2" v-model="item.userproducts" name="userproducts[]" multiple>
-                                        <option v-for="invoiceitem in invoiceitems" :value="invoiceitem.id">
-                                            {{ invoiceitem.product.name }}
-                                        </option>
-                                    </select>
+                                    <label for="">Product</label><br>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
+                                        View Product
+                                    </button>
                                 </div>
                             </div>
+
+                            <div class="modal fade" id="modal-default">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title">Default Modal</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                         <table class="table table-bordered table-center">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 10px">#</th>
+                                                    <th>Model</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr v-for="(invoiceitem,key) in invoiceitems">
+                                                    <td>
+                                                        <input type="checkbox" name="userproducts[]" :value="invoiceitem.id" :checked="invoiceitem.on_repair === 0 ? false : true" >
+                                                    </td>
+                                                    <td>
+                                                        {{ invoiceitem.product.model }}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="col col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                      <template v-for="user in users" v-if="user.id === item.user_id">

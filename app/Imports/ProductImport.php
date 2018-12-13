@@ -27,7 +27,7 @@ class ProductImport implements ToModel, WithHeadingRow
             'specification' => $row['specification'],
             'brand' => $row['brand'],
             'extended_amount' => $row['extended_amount'],
-            'quantity' => $row['quantity']
+            // 'quantity' => $row['quantity']
         ]);
     }
 }
