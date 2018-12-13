@@ -12,7 +12,6 @@ class SampleTagSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('product_tags')->delete();
         ProductTag::create(['name' => 'Featured Product']);
     }
 }

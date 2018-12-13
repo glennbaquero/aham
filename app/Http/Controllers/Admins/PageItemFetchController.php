@@ -28,8 +28,6 @@ class PageItemFetchController extends FetchController
      */
     public function filterQuery($query)
     {
-        $query = ($this->class)->newQuery();
-
         if ($this->request->filled('search')) {
             $ids = $this->class::search($this->request->input('search'))->get()->pluck('id')->toArray();
             $query = $query->whereIn('id', $ids);
@@ -38,6 +36,10 @@ class PageItemFetchController extends FetchController
         if($this->request->has('archive')) {
             $ids = $query->onlyTrashed()->pluck('id')->toArray();
             $query = $query->onlyTrashed()->whereIn('id', $ids);
+        }
+
+        if ($this->request->filled('type')) {
+            $query = $query->where('type', $this->request->input('type'));
         }
 
         if($this->request->filled('page_id')) {
@@ -65,6 +67,8 @@ class PageItemFetchController extends FetchController
                 'page_name' => $item->renderRelationshipName('name'),
                 'page_slug' => $item->renderRelationshipName(),
                 'slug' => $item->slug,
+                'type_label' => $item->renderTypeLabel(),
+                'type_class' => $item->renderTypeClass(),
                 'created_at' => $item->created_at->format('M d, Y (H:i:s)'),
                 'deleted' => $item->deleted_at ? true : false,
                 

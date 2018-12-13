@@ -9,6 +9,7 @@ use App\Http\Requests\PagePost;
 use DB;
 
 use App\Page;
+use App\PageItem;
 
 class PageController extends Controller
 {
@@ -72,9 +73,11 @@ class PageController extends Controller
     public function edit($id)
     {
         $page = Page::withTrashed()->find($id);
+        $types = json_encode(PageItem::getTypes());
 
         return view('admin.pages.edit', [
             'page' => $page,
+            'types' => $types,
         ]);
     }
 

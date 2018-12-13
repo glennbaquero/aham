@@ -15,6 +15,11 @@ class Role extends SpatieRole
     use SoftDeletes, Searchable, ActivityLogTrait;
     protected $dates = ['deleted_at'];
 
+    const MINIMAL_COLUMN = [
+        'id',
+        'name',
+    ];
+
     /**
      * @TNT Search
      */

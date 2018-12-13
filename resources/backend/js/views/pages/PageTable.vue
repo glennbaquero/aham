@@ -15,8 +15,9 @@
 
                 <!-- SEARCHBOX -->
                 <div class="col-sm-3 pull-right">
-                            
-    
+                    <search-box
+                    @onsearch="search"
+                    ></search-box>
                 </div>
             </div>
 
@@ -70,8 +71,9 @@
 import {ebi} from '../../EventBus.js';
 
 
-import DataTable from '../../DataTable.vue';
-import Loader from '../../Loader.vue';
+import DataTable from '../../components/DataTable.vue';
+import Loader from '../../components/Loader.vue';
+import SearchBox from '../../components/SearchBox.vue';
 
 export default {
 
@@ -83,6 +85,7 @@ export default {
     components:{
         'datatable': DataTable,
         'loader': Loader,
+        'search-box': SearchBox,
     },
 
     data:function() {

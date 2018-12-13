@@ -66,6 +66,7 @@
 	                        
 	                        <page-item-table ref="page-items"
 	                        :autofetch="false"
+	                        :filtertypes="{{ $types }}"
 	                        :fetchurl="'{{ route('admin.page-items.fetch.page', $page->id) }}'"
 	                        ></page-item-table>
 

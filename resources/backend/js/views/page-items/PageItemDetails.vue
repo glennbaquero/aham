@@ -60,10 +60,10 @@
                             </div>
 
                             <div class="col col-xs-12 col-sm-12 col-md-12">
-                                <div v-show="isText || isFile" class="form-group">
+                                <div v-if="isText || isFile" class="form-group">
                                     <label>Content <a v-show="isFile && item.file" :href="item.file" class="btn btn-xs btn-primary" target="_blank">View File</a></label>
-                                    <input v-show="isText" v-model="item.content" :disabled="editable" name="content" type="text" class="form-control input-sm" placeholder="Content">
-                                    <input v-show="isFile" :disabled="editable" name="content" type="file" class="form-control input-sm">
+                                    <input v-if="isText" v-model="item.content" :disabled="editable" name="content" type="text" class="form-control input-sm" placeholder="Content">
+                                    <input v-if="isFile" :disabled="editable" name="content" type="file" class="form-control input-sm">
                                 </div>
 
                                 <div v-show="isContent" class="form-group">

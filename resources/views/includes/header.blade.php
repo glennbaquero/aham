@@ -74,7 +74,7 @@
 						</a>
 					</div>	
 					<div class="navigation__link" id="1">
-						<a href="{{ url('info') }}" class="navigation__text">
+						<a href="{{ url('warranty_info') }}" class="navigation__text">
 							Warranty Information
 						</a>
 					</div>	

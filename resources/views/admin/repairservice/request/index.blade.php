@@ -2,13 +2,10 @@
 @section('content')
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>Service Request <small>(Index)</small></h1>
+		<h1>Service Request <small>(Manage service requests)</small></h1>
 		<ol class="breadcrumb">
-			<li>
-				<a href="{{ route('admin.request') }}"><i class="fas fa-user-shield"></i> Service Request</a>
-			</li>
 			<li class="active">
-				Index
+				<a href="{{ route('admin.request') }}"><i class="fas fa-hammer"></i> Service Request</a>
 			</li>
 		</ol>
 		<br>
@@ -34,6 +31,7 @@
 	                        <repair-request-table ref="pages"
 								:fetchurl="'{{ route('admin.requests.fetch') }}'"
 								:autofetch="true"
+								:filterstatus="{{ $status }}"
 							></repair-request-table>
 
 	                    </div>
@@ -42,6 +40,7 @@
 							<repair-request-table ref="pages-request"
 								:autofetch="false"
 								:fetchurl="'{{ route('admin.requests.archive') }}'"
+								:filterstatus="{{ $status }}"
 							></repair-request-table>
 
 	                    </div>                  

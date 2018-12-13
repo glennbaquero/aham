@@ -21,9 +21,11 @@ class PageItemController extends Controller
     public function index()
     {
         $pages = Page::select(Page::MINIMAL_COLUMN)->whereHas('page_items')->orderBy('slug', 'asc')->get();
+        $types = json_encode(PageItem::getTypes());
 
         return view('admin.page-items.index', [
             'pages' => $pages,
+            'types' => $types,
         ]);
     }
 

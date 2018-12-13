@@ -35,7 +35,6 @@
                                         <option v-for="invoiceitem in invoiceitems" :value="invoiceitem.id">
                                             {{ invoiceitem.product.name }}
                                         </option>
-
                                     </select>
                                 </div>
                             </div>
@@ -136,8 +135,8 @@ export default {
     	return {
             loading: false,
             item: {
-                repairman:null,
-                userproducts:[],
+                repairman: null,
+                userproducts: [],
                 repair_cost: 0,
             },
             users: [],
@@ -170,7 +169,7 @@ export default {
 
     	setup() {
     		if (this.model) {
-    			this.item = this.model ? this.model : {};
+    			this.item = this.model ? this.model : this.item;
     		}
 
             this.ckeditor.init();

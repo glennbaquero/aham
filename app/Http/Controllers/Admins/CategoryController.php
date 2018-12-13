@@ -10,6 +10,7 @@ use App\Imports\CategoriesImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 use App\Category;
+use App\Product;
 use DB;
 
 class CategoryController extends Controller
@@ -138,5 +139,13 @@ class CategoryController extends Controller
     { 
         Excel::import(new CategoriesImport, $request->file('manifest'));
         return redirect()->back();
+    }
+
+    public function viewAllProduct(Category $category,$id)
+    {
+        return view('public.pages.product-category-page', [
+            // 'products' => Category::with('products')->find($id)
+            'category' => $category->fetchCategory($id)
+        ]);
     }
 }

@@ -35,7 +35,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.products.index');
+        $tags = ProductTag::select(ProductTag::MINIMAL_COLUMN)->get();
+
+        return view('admin.products.index', [
+            'tags' => $tags,
+        ]);
     }
 
     /**
@@ -172,5 +176,20 @@ class ProductController extends Controller
         // $product->product_tag()->sync()
 
         return redirect()->back();
+    }
+
+    public function fetch(Category $categories)
+    {
+        return response()->json([
+            'categories' => $categories->fetchCategory(),
+        ]);
+    }
+
+    public function view(Product $product, $id)
+    {
+        return view('public.pages.product-selected-page',[
+            'product' => $product->find($id),
+            'products' => $product->all()
+        ]);
     }
 }

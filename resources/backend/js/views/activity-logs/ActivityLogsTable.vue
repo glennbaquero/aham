@@ -90,7 +90,7 @@
  **/
 
 import Filter from '../../components/Filter.vue';
-import DataTable from '../../DataTable.vue';
+import DataTable from '../../components/DataTable.vue';
 import Loader from '../../components/Loader.vue';
 
 export default {

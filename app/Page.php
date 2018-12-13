@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
 use App\Traits\ActivityLogTrait;
 
+use App\Product;
+
 class Page extends Model
 {
  	use SoftDeletes, Searchable, ActivityLogTrait;
@@ -51,7 +53,7 @@ class Page extends Model
 
         $data = [
             'page' => $this,
-            'items' => $this->getPageItems(),
+            'item' => $this->getPageItems(),
             'view' => "frontend.{$this->slug}"
         ];
 
@@ -87,16 +89,54 @@ class Page extends Model
      * @return array
      */
     public function getExtraPageData($data) {
+        $arr = [];
+
+        $products = Product::all();
 
         switch($this->slug) {
 
             case 'home':
-                    $arr = [];
-                    $data['view'] = "frontend.home";
+                    $data['view'] = "public.pages.home";
+                    $data['featured_products'] = Product::whereHas('tags', function($query){
+                                                    $query->where('name', 'Featured Product');
+                                                })->get();
+                    $data['products'] = $products;
+                    $data['categories'] = Category::all();;
                 break;
-
-            default:
-                    $arr = [];
+            case 'products':
+                    $data['view'] = "public.pages.product-page";
+                    $data['product_sliders'] = Carousel::with('images')->whereHas('tags', function($query){
+                                                    $query->where('name', 'product');
+                                                })->get();
+                    $data['products'] = $products;
+                break;
+            case 'about':
+                    $data['view'] = "public.pages.about-page";
+                    $data['carousels'] = Carousel::with('images')->whereHas('tags', function($query){
+                                                $query->where('name', 'strategic partners');
+                                            })->get();
+                    $data['carousels_about'] = Carousel::with('images')->whereHas('tags', function($query){
+                                                    $query->where('name', 'about');
+                                                })->get();
+                break;
+            case 'warranty_info':
+                    $data['view'] = "public.pages.warranty-info-page";
+                    $data['warranty_info_sliders'] = Carousel::with('images')->whereHas('tags', function($query){
+                                                            $query->where('name', 'warranty');
+                                                        })->get();
+                    $data['products'] = $products;
+                break;
+            case 'contact':
+                    $data['view'] = "public.pages.contact-page";
+                    $data['warranty_info_sliders'] = $warranty_info_sliders;
+                    $data['products'] = $products;
+                break;
+            case 'category':
+                    $data['view'] = "public.pages.product-category-page";
+                break;
+            case 'selected':
+                    $data['view'] = "public.pages.product-selected-page";
+                    $data['products'] = $products;
                 break;
         }
 

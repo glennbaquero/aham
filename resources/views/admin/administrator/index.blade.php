@@ -29,6 +29,8 @@
 	                        
 	                        <admins-table ref="pages"
 								:autofetch="true"
+								:filterroles="{{ $roles }}"
+								:filtertypes="{{ $types }}"
 								:fetchurl="'{{ route('admin.administrators.fetch') }}'"
 							></admins-table>
 
@@ -37,6 +39,8 @@
 	                        
 							<admins-table ref="pages-admin"
 								:autofetch="false"
+								:filterroles="{{ $roles }}"
+								:filtertypes="{{ $types }}"
 								:fetchurl="'{{ route('admin.administrators.archive') }}'"
 							></admins-table>
 

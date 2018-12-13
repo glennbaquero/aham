@@ -9,39 +9,28 @@
     		
     		<div class="row">
     			<!-- FILTERS -->
-    			<div class="col-sm-7 hidden-xs">
-    				<div class="row">
-    					<div class="col-sm-6">
-
-                            <div class=" col-sm-6 hidden-xs form-inline ">
-                                <select v-model="filter"
-                                id="sample-select" class="form-control input-sm">
-                                    <option :value="null" disabled selected>Filter here...</option>
-                                </select>
-                            </div>
-
-    					</div>
-    				</div>
+    			<div class="col-sm-6 hidden-xs form-inline">
+                    <filter-box v-show="filtertags"
+                    @onfilter="filterByTag"
+                    :filters="filtertags"
+                    :defaultlabel="'Filter by Tag'"
+                    :valuecolumn="'id'"
+                    :labelcolumn="'name'"
+                    ></filter-box>
     			</div>
 
     			<!-- SEARCHBOX -->
     			<div class="col-sm-3 pull-right">
-    				<div class="form-group col-sm-12">
-                        <div class="input-group input-group-sm col-sm-12">
-                            <input type="text" id="sample-searchfield" name="sample-searchfield"
-                            class="form-control input-sm" placeholder="Search here...">
-                            <!-- <i class="fas fa-search"></i> -->
-                            <!-- <i class="fa fa-warning"></i> -->
-                        </div>
-
-    				</div>
+    				<search-box
+                    @onsearch="search"
+                    ></search-box>
     			</div>
     		</div>
 
     		<!-- DATATABLE -->
     		<datatable ref="datatable"
-            :headers="['#', 'Name', 'Created At']"
-            :columns="['id', 'name', 'created_at']"
+            :headers="['#', 'Name', 'Tags', 'Created At']"
+            :columns="['id', 'name', null, 'created_at']"
     		:filters="filters"
     		
     		:fetchurl="fetchurl"
@@ -55,7 +44,8 @@
     			<tbody slot="body">
     				<tr v-for="item in items">
                         <td>{{ item.id }}</td>
-    					<td>{{ item.name }}</td>
+                        <td>{{ item.name }}</td>
+    					<td>{{ item.tag_list }}</td>
     					<td>{{ item.created_at }}</td>
                         <td>
                             <center>
@@ -84,19 +74,24 @@
 
     import {EventBus} from '../../EventBus.js';
 
-    import DataTable from '../../DataTable.vue';
-    import Loader from '../../Loader.vue';
+    import DataTable from '../../components/DataTable.vue';
+    import Loader from '../../components/Loader.vue';
+    import SearchBox from '../../components/SearchBox.vue';
+    import Filter from '../../components/Filter.vue';
 
     export default {
 
     	props: {
-    		fetchurl: String,
+            fetchurl: String,
+    		filtertags: {},
             autofetch: Boolean
     	},
 
     	components: {
     		'datatable': DataTable,
-    		'loader': Loader,
+            'loader': Loader,
+            'search-box': SearchBox,
+    		'filter-box': Filter,
     	},
 
     	data: function() {
@@ -147,11 +142,15 @@
     		/**
     	     * Search keyword.
     	     */
-    	    search: function() {
-
-    	    	this.filters = Object.assign(this.filters, { search:this.search });
+    	    search: function(value) {
+    	    	this.filters = Object.assign(this.filters, { search: value });
     	    	this.fetch();
     	    },
+
+            filterByTag(value) {
+                this.filters = Object.assign(this.filters, { tag: value });
+                this.fetch();
+            },
 
     		/**
     	     * Add filter to request and then fetch.

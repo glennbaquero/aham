@@ -2,7 +2,7 @@
 @section('content')
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>Service Request</h1>
+		<h1>Service Request <small>{{ $request->renderName() }}</small></h1>
 		<ol class="breadcrumb">
 			<li>
 				<a href="{{ route('admin.request') }}"><i class="fas fa-user-shield"></i> Service Request</a>

@@ -27,6 +27,11 @@ class CategoryFetchController extends FetchController
      */
     public function filterQuery($query)
     {
+        if ($this->request->filled('search')) {
+            $ids = $this->class::search($this->request->input('search'))->get()->pluck('id')->toArray();
+            $query = $query->whereIn('id', $ids);
+        }
+        
         return $query;
     }
 

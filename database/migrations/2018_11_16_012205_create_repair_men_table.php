@@ -17,6 +17,7 @@ class CreateRepairMenTable extends Migration
             $table->increments('id');
             $table->integer('admin_id')->nullable()->unsigned();
             $table->integer('request_id')->nullable()->unsigned();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
