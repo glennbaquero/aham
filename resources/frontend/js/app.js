@@ -186,7 +186,7 @@ var app = {
     		    autoplay: true,
     		    arrows: false,
     		    speed: 500,
-    		});
+    		}); 
 
       // Product Category Slider
       $('.h__prod-category-slider-holder').slick({
