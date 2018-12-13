@@ -76,7 +76,7 @@
         <div id="app" class="main">
             
             @yield('content')
-            @include('sweetalert::alert')`
+            @include('sweetalert::alert')
             
         </div>
         @include('includes.footer')

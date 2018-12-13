@@ -29,6 +29,8 @@ Route::get('/extended', function () {
 });
 
 
+
+
 Route::group(['middleware' => ['guest']],function(){
 		Route::get('user/signup', 'PageController@signup')->name('signup');
 		Route::post('user/register', 'Auth\RegisterController@create')->name('register');
