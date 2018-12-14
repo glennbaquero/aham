@@ -39,7 +39,8 @@ Route::group(['middleware' => ['guest']],function(){
 		Route::post('user/register', 'Auth\RegisterController@create')->name('register');
 		Route::get('/user/verification/{token}', 'Admins\UserController@verifyAccount')->name('email.verification');
 		
-		Route::get('products/view/', 'Admins\ProductController@fetch')->name('all.products');
+		Route::post('products/fetch', 'ProductFetchController@fetch')->name('public.products.fetch');
+		Route::post('products/fetch/filters', 'ProductFetchController@fetchFilters')->name('public.products.filters');
 		Route::get('products/category/{id}', 'Admins\CategoryController@viewAllProduct')->name('category.all.product');
 		Route::get('products/view/{id}', 'Admins\ProductController@view')->name('view.product');
 });

@@ -17,6 +17,11 @@ class Category extends Model
     protected $guarded = [];
     protected $dates = ['deleted_at'];
 
+    const MINIMAL_COLUMN = [
+        'id',
+        'name',
+    ];
+
 
     /**
      * @Relationships
