@@ -121,4 +121,8 @@ class Product extends Model
         return route('admin.product.featured', $this->id);
     }
 
+    public function renderPublicView() {
+        return route('view.product', $this->id);
+    }
+
 }

@@ -63,7 +63,7 @@ class ProductFetchController extends FetchController
                 'tags' => $item->tags()->pluck('name')->toArray(),
 
                 'actions' => array(
-                    'view' => $item->renderView(),
+                    'view' => $item->renderPublicView(),
                 )
             ));
         }

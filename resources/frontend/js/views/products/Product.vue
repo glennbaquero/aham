@@ -10,7 +10,7 @@
 				<li v-html="item.specification"></li>
 			</ul>
 		</div>
-		<a href="" class="btn outline--blue"><p>View Specs</p></a>
+		<a :href="item.actions.view" class="btn outline--blue"><p>View Specs</p></a>
 	</div>
 </template>
 
