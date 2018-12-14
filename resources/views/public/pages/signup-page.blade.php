@@ -46,7 +46,7 @@
 				</div>
 				<div class="ls__form-row">
 					<label>Birthdate</label>
-					<input class="input-text" type="date" name="birthday" value="{{ old('birthday') }}">
+					<input class="input-text flatPickr" type="text" name="birthday" value="{{ old('birthday') }}" onFocus="">
 					<label class="error-label"><i>{{ $errors->has('birthday') ? 'Birthday is required*' : ''}}</i></label>
 				</div>
 				<label>Tap the links below and read them carefully. By checking the boxes, you have acknowledge that you read and agree to the following terms.</label>
@@ -75,4 +75,23 @@
 	</div>
 </section>
 
+@endsection
+
+@section('js')
+	<script type="text/javascript">
+		$(function(){
+			$('.flatPickr').focus(function(){
+				var year = (new Date()).getUTCFullYear();
+
+	            $(document).ready(function(){
+	                $('.flatPickr').flatpickr({
+	                    dateFormat:'Y-m-d', 
+	                    allowInput:true,
+	                    maxDate: '01-01-'+year,
+	                });
+	            });
+				
+			})
+		})
+	</script>
 @endsection
