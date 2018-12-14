@@ -42,6 +42,9 @@ Vue.component('permission-list', require('./views/permission/PermissionsList.vue
 
 Vue.component('activity-logs-table', require('./views/activity-logs/ActivityLogsTable.vue'));
 
+Vue.component('applications-table', require('./views/applications/ApplicationsTable.vue'));
+Vue.component('application-details', require('./views/applications/ApplicationDetails.vue'));
+
 
 const app = {
 	init() {

@@ -142,6 +142,20 @@ Route::name('admin.')
 
 
 	/****************
+	 * APPLICATION
+	 ****************/
+	Route::get('applications', 'InvoiceController@index')->name('application');
+	Route::get('application/edit/{id}', 'InvoiceController@edit')->name('application.edit');
+	Route::post('application/update/{id}', 'InvoiceController@update')->name('application.update');
+	Route::delete('application/destroy/{id}', 'InvoiceController@destroy')->name('application.destroy');
+	Route::post('application/restore/{id}', 'InvoiceController@restore')->name('application.restore');
+
+	Route::post('applications/fetch/q', 'InvoiceFetchController@fetch')->name('applications.fetch');
+	Route::post('applications/fetch/q?archive=1', 'InvoiceFetchController@fetch')->name('applications.archive');
+	Route::post('application/fetch/q', 'InvoiceFetchController@fetch')->name('application.fetch');
+	Route::post('application/fetch/application/{id?}', 'InvoiceFetchController@fetchItem')->name('application.fetch');
+
+	/****************
 	 * PRODUCT
 	 ****************/
 	Route::post('product-image/{id}', 'ProductImageController@destroy')->name('product-image.destroy');
