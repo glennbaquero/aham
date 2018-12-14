@@ -15,15 +15,13 @@ class SampleInvoicesTableSeeder extends Seeder
      */
     public function run()
     {
-    	$users = User::all();   
+        $users = User::all();   
 
-    	// foreach ($users as $user) {
-    	// 	$user->invoices()->saveMany(factory(Invoice::class, 1)->create()->each(function($invoice) {
-    	// 		$invoice->invoice_items()->saveMany(factory(InvoiceItem::class, 3)->create());
-    	// 	}));
-    	// }
+    	foreach ($users as $user) {
+    		$user->invoices()->saveMany(factory(Invoice::class, 1)->create()->each(function($invoice) {
+    			$invoice->invoice_items()->saveMany(factory(InvoiceItem::class, 3)->create());
+    		}));
+    	}
         
-        factory(InvoiceItem::class, 15)->create(); 
-        factory(Invoice::class, 15)->create(); 
     }
 }

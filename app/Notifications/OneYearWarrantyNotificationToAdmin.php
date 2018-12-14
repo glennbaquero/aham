@@ -7,21 +7,18 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-use App\User;
-
-class VerifyEmailNotification extends Notification
+class OneYearWarrantyNotificationToAdmin extends Notification
 {
     use Queueable;
 
-    protected $user;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct()
     {
-        $this->user = $user;
+        //
     }
 
     /**
@@ -44,11 +41,10 @@ class VerifyEmailNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject(config('app.name') . ': One Year Warranty Registration')
-                    ->greeting('Hello ' . $notifiable->renderFullname() . ',')
-                    ->line('You are receiving this email because you need to activate your account first.')
-                    ->action('Activate Account', route('email.verification', $this->user->email_token))
-                    ->line('If you activate your account already, no further action is required.');
+                    ->subject(config('app.name') . ': Verify Account')
+                    ->greeting('Hello Admin')
+                    ->line('You are receiving this email because someone has registering a one year warranty for their product.')
+                    ->action('Check details', route('admin.page-items.index'));
     }
 
     /**

@@ -50,14 +50,15 @@ class RepairServiceRequest extends Model
         }
 
         $all_invoices = User::getInvoiceItems($request)->pluck('id');
+
         InvoiceItem::whereIn('id', $all_invoices)->update(['on_repair' => 0]);
+        
         foreach ($request->get('userproducts') as $key => $value) {
             $invoice_items = InvoiceItem::find($request->input('userproducts')[$key]);
             if($request->get('userproducts')[$key]){
                 $invoice_items->update(['on_repair' => 1]);
             }
         }
-        
 
         $item->invoice_items()->sync($request->input('userproducts'));  
 

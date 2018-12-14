@@ -14,20 +14,20 @@
                     </div>
 
                     <!-- Start Box Body -->
-                	<div class="box-body">
+                    <div class="box-body">
 
                         <!-- Start Row -->
-                		<div class="row">
-                    		<div class="col col-xs-12 col-sm-12 col-md-6">
-                    			<div class="form-group">
-                    				<label for="">Customer Fullname</label>
+                        <div class="row">
+                            <div class="col col-xs-12 col-sm-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="">Customer Fullname</label>
                                     <select class="form-control" v-model="item.user_id" name="user_id" @change="customerChange">
                                         <template v-for="user in users">
                                             <option :value="user.id">{{ user.firstname }} {{ user.lastname }}</option>
                                         </template>
                                     </select>
-                    			</div>
-                    		</div>
+                                </div>
+                            </div>
                             <div class="col col-xs-12 col-sm-12 col-md-6" v-show="item.user_id">
                                 <div class="form-group">
                                     <label for="">Product</label><br>
@@ -55,12 +55,14 @@
                                             </thead>
                                             <tbody>
                                                 <tr v-for="(invoiceitem,key) in invoiceitems">
-                                                    <td>
-                                                        <input type="checkbox" name="userproducts[]" :value="invoiceitem.id" :checked="invoiceitem.on_repair === 0 ? false : true" >
-                                                    </td>
-                                                    <td>
-                                                        {{ invoiceitem.product.model }}
-                                                    </td>
+                                                    <template v-if="invoiceitem.product">
+                                                        <td>
+                                                            <input type="checkbox" name="userproducts[]" :value="invoiceitem.id" :checked="invoiceitem.on_repair === 0 ? false : true" >
+                                                        </td>
+                                                        <td>
+                                                            {{ invoiceitem.product.model }}
+                                                        </td>
+                                                    </template>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -71,7 +73,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                      <template v-for="user in users" v-if="user.id === item.user_id">
@@ -146,7 +147,7 @@ import flatpickr from '../../mixins/flatpickr.js';
 import select2 from '../../mixins/select2.js';
 
 export default {
-	props: {
+    props: {
         submiturl: String,
         fetchurl: String,
         fetchinvoiceurl: String,
@@ -166,7 +167,7 @@ export default {
     ],
 
     data() {
-    	return {
+        return {
             loading: false,
             item: {
                 repairman: null,
@@ -177,18 +178,18 @@ export default {
             repairmen: [],
             statuses: {},
             invoiceitems:[],
-    	}
+        }
     },
 
     computed: {
-    	editable() {
-    		return this.disabled;
-    	},
+        editable() {
+            return this.disabled;
+        },
     },
 
     mounted() {
-    	this.setup();
-    	this.init();
+        this.setup();
+        this.init();
     },
 
     methods: {
@@ -201,24 +202,24 @@ export default {
             });
         },
 
-    	setup() {
-    		if (this.model) {
-    			this.item = this.model ? this.model : this.item;
-    		}
+        setup() {
+            if (this.model) {
+                this.item = this.model ? this.model : this.item;
+            }
 
             this.ckeditor.init();
 
-    	},
+        },
 
-    	init() {
-    		this.fetch();
-    	},
+        init() {
+            this.fetch();
+        },
 
-    	fetch() {
+        fetch() {
             this.load(true);
 
-    		axios.post(this.fetchurl)
-    		.then(response => {
+            axios.post(this.fetchurl)
+            .then(response => {
                 const data = response.data;
                 this.statuses = data.statuses;
                 this.item = data.item ? data.item : {};
@@ -228,13 +229,13 @@ export default {
                 }
                 this.users = data.users;
                 this.repairmen = data.repairmen;
-    		}).catch(error => {
+            }).catch(error => {
                 console.log(error);
-    		}).then(() => {
+            }).then(() => {
                 this.load(false);
                 this.select2.init('.select2');
             });
-    	},
+        },
 
         load(value) {
             this.loading = value;

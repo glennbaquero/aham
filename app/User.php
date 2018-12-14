@@ -74,7 +74,7 @@ class User extends Authenticatable
         if($request->filled('user_id')) {
             $user = User::find($request->input('user_id'));
             $ids = $user->invoices()->pluck('id')->toArray();
-            $invoiceItems = InvoiceItem::with('product')->whereIn('invoice_id', $ids)->get();
+            $invoiceItems = InvoiceItem::with(['product', 'invoice'])->whereIn('invoice_id', $ids)->get();
         }
         
         return $invoiceItems;
