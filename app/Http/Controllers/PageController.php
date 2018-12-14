@@ -43,4 +43,10 @@ class PageController extends Controller
     {
         return view('public.pages.login-page');
     }
+
+    public function profile()
+    {
+        return view('public.pages.user-profile-page');
+    }
+
 }

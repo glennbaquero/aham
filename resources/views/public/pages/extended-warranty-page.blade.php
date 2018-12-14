@@ -25,6 +25,7 @@
 			<div class="ew__form-row">
 				<label>Serial Number</label>
 				<input class="input-text" type="text" name="">
+				<i class="info fa fa-question-circle"></i>
 			</div>
 			<div class="ew__form-row">
 				<label>Purchased Date</label>
@@ -32,7 +33,7 @@
 			</div>
 			<div class="ew__form-row">
 				<label>Proof of Purchased</label>
-				<input class="input-text" type="file" name="">
+				<input type="file" name="">
 			</div>
 			<label class="span">*Please upload scanned copy of the bill or invoice</label>
 			<button type="submit" class="btn btn-white">

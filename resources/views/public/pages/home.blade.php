@@ -20,9 +20,11 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</div>
+
 	<div class="h__prod-category-container">
+		<div class="h__prod-category-slider-holder">
 			@foreach($categories as $category)
 			<a href="{{ url('category') }}" class="h__products">
 				<div class="h__products-img-holder">
@@ -32,6 +34,7 @@
 			</a
 			>@endforeach
 		</div>
+	</div>
 </section>
 
 <section class="homepage frame--2 container">
@@ -86,6 +89,7 @@
 </section>
 
 <section class="homepage frame--4 container">
+	<img class="img-fit" src="{{asset('images/1.jpg') }}">
 	<div class="frame-padding">
 		<div class="vertical-parent">
 			<div class="vertical-align">
