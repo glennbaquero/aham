@@ -20,23 +20,19 @@ Route::get('/selected', function () {
     return view('public.pages.product-selected-page');
 });
 
-Route::get('/basic', function () {
-    return view('public.pages.basic-warranty-page');
-});
-
 Route::get('/extended', function () {
     return view('public.pages.extended-warranty-page');
 });
-
-// Route::get('/login', 'PageController@login')->name('login');
-
-
 
 Route::group(['middleware' => ['auth']],function(){
 		Route::get('user/profile', 'PageController@profile')->name('user.profile');
 		Route::get('user/fetch', 'Admins\UserController@fetchDetails')->name('user.fetch.details');
 		Route::post('user/update/{id}', 'Admins\UserController@update')->name('user.update');
 		Route::post('user/update/password/{id}', 'Admins\UserController@updatepassword')->name('user.update.password');
+		Route::get('user/basic', 'PageController@basic')->name('user.basic');
+		Route::get('product/fetch/basic', 'Admins\ProductController@warrantyproductfetch')->name('fetch.product');
+		Route::post('product/warranty/1', 'Admins\UserController@oneyearwarranty')->name('apply.oneyear.warranty');
+		
 });
 
 Route::group(['middleware' => ['guest']],function(){

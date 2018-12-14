@@ -192,4 +192,11 @@ class ProductController extends Controller
             'products' => $product->all()
         ]);
     }
+
+    public function warrantyproductfetch()
+    {
+        return response()->json([
+            'products' => Product::all(),
+        ]);
+    }
 }

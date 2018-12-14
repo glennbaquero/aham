@@ -80,7 +80,7 @@ class Product extends Model
             foreach($request->file('images') as $image) {
                 $path = $image->store('product-images', 'public');
                 if($item && $item->images()->image){
-                    Storage::delete('public/' . $item->image()->image);
+                    Storage::delete('public/' . $item->images()->image);
                 }
                 $item->images()->create(['image' => $path]);
             }

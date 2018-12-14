@@ -49,4 +49,9 @@ class PageController extends Controller
         return view('public.pages.user-profile-page');
     }
 
+    public function basic()
+    {
+        return view('public.pages.basic-warranty-page');
+    }
+
 }

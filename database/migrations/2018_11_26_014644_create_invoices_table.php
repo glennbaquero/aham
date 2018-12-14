@@ -24,6 +24,7 @@ class CreateInvoicesTable extends Migration
             $table->date('expiration_date');
             $table->date('applied_date');
             $table->string('application_number');
+            $table->string('proof_purchase');
             $table->string('pytdet')->nullable();
             $table->string('dcode')->nullable();
             $table->integer('warranty_type');
