@@ -92,7 +92,7 @@
 				@else
 					<a href="{{ route('user.logout') }}" class="navigation__text">
 						<i class="icon fa fa-user"></i>
-						{{ Auth::user()->firstname. ' '. Auth::user()->firstname}}
+						{{ Auth::user()->firstname. ' '. Auth::user()->lastname}}
 					</a>
 				@endif
 			</div>
