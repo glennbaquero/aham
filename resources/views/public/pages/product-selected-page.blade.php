@@ -7,7 +7,7 @@
 </section>
 
 <section class="selected-productpage container">
-	<div class="sp__container">
+	<div class="sp__container animate-up">
 		<div class="sp__col--1">
 			<div class="sp__img-holder">
 				@foreach($product->images as $image)

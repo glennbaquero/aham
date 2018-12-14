@@ -6,7 +6,7 @@
 </section>
 <section class="login container">
 	<div class="frame-padding">
-		<div class="ls__container">
+		<div class="ls__container animate-up">
 			<p class="ls__title">Register your account</p>
 			<p class="ls__desc">Create your account to register your product</p>
 

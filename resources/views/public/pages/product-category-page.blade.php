@@ -6,7 +6,7 @@
 <section class="product-category-page frame--1 container">
 	<div class="frame-banner full frame__background size--cover bring--back" style="background-image: url('{{asset('images/bg5.jpg') }}');"></div>
 	<div class="frame-padding">
-		<div class="pc__container">
+		<div class="pc__container animate-up">
 			<p class="pc__title">Washing Aglow!</p>
 			<p class="pc__desc">Sustainability Standard for Household Clothes Washing Appliances</p>
 		</div>
@@ -18,7 +18,7 @@
 </section>
 
 <section class="productpage frame--2 container">
-	<div class="frame-padding">
+	<div class="frame-padding animate-up">
 		<p class="p__title">{{ $category->name }}</p>
 		<div class="p__holder">
 			@foreach($category->products as $product)

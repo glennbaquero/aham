@@ -5,7 +5,7 @@
 <section class="login breadcrumbs container">s</section>
 <section class="login container">
 	<div class="frame-padding">
-		<div class="ls__container">
+		<div class="ls__container animate-up">
 			<p class="ls__title">Log in to your account</p>
 			<p class="ls__desc">Log in to register new product</p>
 			<form method="POST" action="{{ route('login') }}" class="ls__form">
