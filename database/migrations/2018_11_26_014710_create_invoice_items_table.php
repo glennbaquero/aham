@@ -22,6 +22,8 @@ class CreateInvoiceItemsTable extends Migration
             $table->decimal('discount', 9, 2)->default(0)->unsigned();
             $table->decimal('total_price', 9, 2)->unsigned();
             $table->boolean('status')->default(0);
+
+            $table->boolean('on_repair')->default(0);
             
             $table->softDeletes();
             $table->timestamps();

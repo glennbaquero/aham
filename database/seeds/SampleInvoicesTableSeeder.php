@@ -3,6 +3,8 @@
 use Illuminate\Database\Seeder;
 
 use App\User;
+use App\Invoice;
+use App\InvoiceItem;
 
 class SampleInvoicesTableSeeder extends Seeder
 {
@@ -15,10 +17,13 @@ class SampleInvoicesTableSeeder extends Seeder
     {
     	$users = User::all();   
 
-    	foreach ($users as $user) {
-    		$user->invoices()->saveMany(factory(App\Invoice::class, 1)->create()->each(function($invoice) {
-    			$invoice->invoice_items()->saveMany(factory(App\InvoiceItem::class, 3)->create());
-    		}));
-    	}
+    	// foreach ($users as $user) {
+    	// 	$user->invoices()->saveMany(factory(Invoice::class, 1)->create()->each(function($invoice) {
+    	// 		$invoice->invoice_items()->saveMany(factory(InvoiceItem::class, 3)->create());
+    	// 	}));
+    	// }
+        
+        factory(InvoiceItem::class, 15)->create(); 
+        factory(Invoice::class, 15)->create(); 
     }
 }

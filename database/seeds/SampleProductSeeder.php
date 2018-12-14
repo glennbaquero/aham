@@ -14,8 +14,6 @@ class SampleProductSeeder extends Seeder
      */
     public function run()
     {
-        factory(Product::class, 30)->create()->each(function($item) {
-            $item->images()->saveMany(factory(ProductImage::class, 3)->create());
-        });
+        factory(Product::class, 50)->create();
     }
 }
