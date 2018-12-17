@@ -1,9 +1,9 @@
 <div class="usr__profile">
-	<div class="usr__img-holder">
-		<img class="img-fit" src="https://via.placeholder.com/20x20">
-	</div><p class="usr__name">John Doe</p>
+	<user-image
+	:fetchurl = "'{{ route('user.fetch.details') }}'"
+	></user-image>
 </div>
-<a href="">
+<a href="{{ route('user.profile') }}">
 	<div class="usr__link">
 		<div class="usr__logo-holder">
 			<i class="icon ion-person"></i>

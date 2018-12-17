@@ -1,5 +1,8 @@
 <template>
 	<div>
+		<loader
+        :loading="loading"
+        ></loader>
 		<div class="bw__form form">
 			<div class="bw__form-row">
 				<label>Model Number</label>
@@ -42,17 +45,24 @@
 	</div>
 </template>
 <script>
+    import Loader from '../../components/Loader.vue';
+
 	export default {
 		props : {
 			fetchproducturl: String,
 			oneyearwarranty: String
 		}, 
 
+		components : {
+    		'loader': Loader,
+		},
+
 		data() {
 			return {
 				products:{},
 				request:{},
-				image:null
+				image:null,
+    			loading:false,
 			}
 		},
 
@@ -79,6 +89,7 @@
             },
 
             OneYearWarranty() {
+            	this.loading = true;
 
             	var extension = this.image;
             	var data = new FormData();
@@ -93,7 +104,9 @@
             		.then(response => {
             			console.log(response.data);
             			if(response.data.message == 1){
+            				this.loading = false;
 	            			swal('We are reviewing your application.', 'Thank you for registering your product. To proceed well send you a link through email approving your application.', 'success');
+	            			this.request = {};
             			}
             		});
             },

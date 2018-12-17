@@ -1,5 +1,8 @@
 <template>
 	<div>
+		<loader
+        :loading="loading"
+        ></loader>
 		<div class="inlineBlock-parent">
 			<p class="usr__title">Account Information</p>	
 			<div class="icon" @click="enable()"><i class="fa fa-pen"></i></div>
@@ -60,11 +63,17 @@
 	</div>
 </template>
 <script>
+    import Loader from '../../components/Loader.vue';
+
 	export default {
 		props : {
 			fetchurl: String,
 			updateurl: String,
 			updatepasswordurl: String
+		},
+
+		components : {
+    		'loader': Loader,
 		},
 
 		data() {
@@ -78,7 +87,8 @@
 					password: String,
 					old_password: String,
 					password_confirmation: String
-				}
+				},
+				loading:false
 			}
 		},
 
@@ -109,6 +119,7 @@
 			},
 
 			updatepassword() {
+				this.loading = true;
 				var data = {
 					password: this.password.password,
 					password_confirmation: this.password.password_confirmation,
@@ -118,6 +129,7 @@
 				axios.post(this.updatepasswordurl, data)
 					.then(response => {
 						if(response.data.response === 1){
+							this.loading = false;
 							swal('Password Updated', 'Password is updated', 'success');
 						} else {
 							swal('Ooops', 'Password is not match', 'error');
@@ -127,6 +139,9 @@
 			},
 
 			updatedetails(){
+
+				this.loading = true;
+
 				var data = {
 					email: this.details.email,
 					firstname: this.details.firstname,
@@ -136,6 +151,7 @@
 				}
 				axios.post(this.updateurl, data)
 					.then(response => {
+						this.loading = false;
                         swal('Profile Updated', 'Profile is updated', 'success');
 					})
 					.catch(error => {
