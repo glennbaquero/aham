@@ -84,6 +84,7 @@ class User extends Authenticatable
     *  Renderers
     */
 
+
     public function renderFullName() {
         return $this->firstname . ' '. $this->lastname;
     }

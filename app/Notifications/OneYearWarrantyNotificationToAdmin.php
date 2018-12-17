@@ -41,10 +41,10 @@ class OneYearWarrantyNotificationToAdmin extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject(config('app.name') . ': Verify Account')
+                    ->subject(config('app.name') . ': Requesting One Year Warranty ')
                     ->greeting('Hello Admin')
                     ->line('You are receiving this email because someone has registering a one year warranty for their product.')
-                    ->action('Check details', route('admin.page-items.index'));
+                    ->action('Check details', route('admin.application'));
     }
 
     /**
