@@ -53,6 +53,7 @@ export default {
 	props: {
 		fetchurl: String,
 		filterurl: String,
+		params: {},
 	},
 
 	data() {

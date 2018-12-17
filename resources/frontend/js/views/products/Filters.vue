@@ -2,18 +2,20 @@
 	<div class="filters__container">
 		<button @click.prevent="toggle = !toggle" type="button" class="btn btn-blue">Show Filters</button>
 
-		<div v-show="toggle" class="product__filters__holder">
-			<ul>
-				<p class="bold">Filter by Categories</p>
-				<template v-for="category in categories">
-					<li>
-						<label>
-							<input @change="filter" type="checkbox" name="categories" v-model="selectedCategories" :value="category.id"> {{ category.name }}
-						</label>
-					</li>
-				</template>
-			</ul>
-		</div>
+		<transition name="fade">
+			<div v-show="toggle" class="product__filters__holder">
+				<ul>
+					<p class="bold">Filter by Categories</p>
+					<template v-for="category in categories">
+						<li>
+							<label>
+								<input @change="filter" type="checkbox" name="categories" v-model="selectedCategories" :value="category.id"> {{ category.name }}
+							</label>
+						</li>
+					</template>
+				</ul>
+			</div>
+		</transition>
 	</div>
 </template>
 

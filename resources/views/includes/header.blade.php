@@ -11,9 +11,9 @@
 					<p>info@aham.org</p>
 				</div>
 			</div
-			><form class="header__search right-align inlineBlock-parent">
-				<div class="input-txt">
-					<input type="search" name="" placeholder="Search products..">
+			><form method="GET" action="{{ url('/products') }}" class="header__search right-align inlineBlock-parent">
+				<div class="input-txt color--white">
+					<input type="search" name="search" placeholder="Search products..">
 					<i class="fa fa-search color--white"></i>
 				</div>
 				
