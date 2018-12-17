@@ -14,7 +14,7 @@ class PageController extends Controller
      * @param  \App\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show(Request $request, $slug)
     {
         $page = Page::where('slug', $slug)->first();
 
@@ -30,7 +30,7 @@ class PageController extends Controller
             }
         }
 
-        $data = $page->getData();
+        $data = $page->getData($request);
         return view($data['view'], $data);
     }
 

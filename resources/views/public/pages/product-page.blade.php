@@ -34,7 +34,7 @@
 	<section class="productpage frame--2 container">
 		<div class="frame-padding">
 			<product-page
-			:fetchurl="'{{ route('public.products.fetch') }}'"
+			:fetchurl="'{{ route('public.products.fetch') . '?' . $params }}'"
 			:filterurl="'{{ route('public.products.filters') }}'">
 			</product-page>
 		</div>

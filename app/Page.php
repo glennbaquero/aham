@@ -16,6 +16,8 @@ class Page extends Model
     protected $guarded = [];
     protected $dates = ['deleted_at'];
 
+    protected $request;
+
     const MINIMAL_COLUMN = [
         'id', 
         'name', 'slug',
@@ -49,7 +51,9 @@ class Page extends Model
      * Assemble Page Data
      * @return array Page Data
      */
-    public function getData() {
+    public function getData($request = null) {
+
+        $this->request = $request;
 
         $data = [
             'page' => $this,
@@ -108,6 +112,7 @@ class Page extends Model
                                                     $query->where('name', 'product');
                                                 })->get();
                     $data['products'] = $products;
+                    $data['params'] = http_build_query($this->request->only('search'));
                 break;
             case 'about':
                     $data['view'] = "public.pages.about-page";
