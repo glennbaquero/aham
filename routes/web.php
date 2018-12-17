@@ -43,6 +43,10 @@ Route::group(['middleware' => ['guest']],function(){
 		Route::post('products/fetch/filters', 'ProductFetchController@fetchFilters')->name('public.products.filters');
 		Route::get('products/category/{id}', 'Admins\CategoryController@viewAllProduct')->name('category.all.product');
 		Route::get('products/view/{id}', 'Admins\ProductController@view')->name('view.product');
+		Route::get('user/forgot/password', function(){
+			return view('auth.passwords.email');
+		})->name('forgot.password');
+		Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
 });
 
 Route::get('user/logout', function(){
