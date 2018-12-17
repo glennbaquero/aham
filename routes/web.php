@@ -257,4 +257,20 @@ Route::name('admin.')
 	Route::post('page-items/fetch/q?archive=1', 'PageItemFetchController@fetch')->name('page-items.fetch.archive');
 	Route::post('page-items/fetch/q?page_id={id}', 'PageItemFetchController@fetch')->name('page-items.fetch.page');
 	Route::post('page-items/fetch/page-items/{id?}', 'PageItemFetchController@fetchItem')->name('page-item.fetch');
+
+
+	Route::get('faqs', 'FaqController@index')->name('faqs.index');
+	Route::get('faqs/create', 'FaqController@create')->name('faqs.create');
+	Route::post('faqs/store', 'FaqController@store')->name('faqs.store');
+	Route::get('faqs/{id}', 'FaqController@edit')->name('faqs.edit');
+	Route::post('faqs/{id}', 'FaqController@update')->name('faqs.update');
+	Route::delete('faqs/{id}', 'FaqController@destroy')->name('faqs.destroy');
+	Route::post('faqs/restore/{user}', 'FaqController@restore')->name('faqs.restore');
+
+	Route::post('faqs/fetch/q', 'FaqFetchController@fetch')->name('faqs.fetch');
+	Route::post('faqs/fetch/q?archive=1', 'FaqFetchController@fetch')->name('faqs.archive');
+	Route::post('faqs/fetch/q?faqs={id}', 'FaqFetchController@fetch')->name('faqs.fetch.page');
+	Route::post('faqs/fetch/faqs/{id?}', 'FaqFetchController@fetchItem')->name('faq.fetch');
+
+
 });
