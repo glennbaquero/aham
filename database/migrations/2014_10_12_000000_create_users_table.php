@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->text('address')->nullable();
             $table->boolean('is_verified')->default(0);
             $table->string('email_token')->nullable();
+            $table->string('user_image')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->softDeletes();
