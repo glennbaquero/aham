@@ -5,7 +5,7 @@
     <ul class="sidebar-menu" data-widget="tree">
       
       <li class="header">Warranty</li>
-      <li><a href=""><i class="fa fa-book"></i> <span>Application</span></a></li>
+      <li><a href="{{ route('admin.application') }}"><i class="fa fa-book"></i> <span>Application</span></a></li>
       <li class="treeview {{ $checker->route->isActive(['admin.request'], 'menu-open') }}">
         <a href="#">
           <i class="fas fa-toolbox"></i> <span> Repair Service</span>
