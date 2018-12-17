@@ -35,6 +35,9 @@ Vue.component('admin-details', require('./views/administrators/AdminDetails.vue'
 Vue.component('carousels-table', require('./views/carousels/CarouselsTable.vue'));
 Vue.component('carousel-details', require('./views/carousels/CarouselDetails.vue'));
 
+Vue.component('faqs-table', require('./views/faqs/FAQsTable.vue'));
+Vue.component('faq-details', require('./views/faqs/FAQDetails.vue'));
+
 Vue.component('repair-request-table', require('./views/repairrequest/RepairRequestTable.vue'));
 Vue.component('repair-request-details', require('./views/repairrequest/RepairRequestDetails.vue'));
 

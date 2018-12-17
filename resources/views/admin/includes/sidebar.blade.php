@@ -60,6 +60,9 @@
           <li class="{{ $checker->route->isActive('admin.carousel.') }}">
             <a href="{{ route('admin.carousel.index') }}"><i class="fas fa-images"></i> Slider</a>
           </li>
+          <li class="{{ $checker->route->isActive('admin.faqs.') }}">
+            <a href="{{ route('admin.faqs.index') }}"><i class="fas fa-question"></i> FAQ</a>
+          </li>
         </ul>
       </li>
 

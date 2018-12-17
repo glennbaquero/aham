@@ -5,7 +5,7 @@
 			<h1>{{ $category->renderName() }} <small>(Update product category information and details)</small></h1>
 			<ol class="breadcrumb">
 				<li>
-					<a href="{{ route('admin.categories.index') }}"><i class="fas fa-archive"></i> Categories</a>
+					<a href="{{ route('admin.categories.index') }}"><i class="fas fa-archive"></i> Faq</a>
 				</li>
 				<li class="active">
 					{{ $category->renderName() }}
