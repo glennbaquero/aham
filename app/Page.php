@@ -122,6 +122,7 @@ class Page extends Model
                     $data['carousels_about'] = Carousel::with('images')->whereHas('tags', function($query){
                                                     $query->where('name', 'about');
                                                 })->get();
+                    $data['faqs'] = Faqs::all();
                 break;
             case 'warranty_info':
                     $data['view'] = "public.pages.warranty-info-page";
