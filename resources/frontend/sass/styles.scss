@@ -7,6 +7,7 @@
  * sp__ [ SELECTED PRODUCT PAGE ]
  * bw__ [ BASIC WARRANTY PAGE ]
  * ew__ [ EXTENDED WARRANTY PAGE ]
+ * ch__ [ CHECKOUT PAGE ]
  * wi__ [ WARRANTY INFO PAGE ]
  * a__  [ ABOUT PAGE ]
  * c__  [ CONTACT PAGE ]
@@ -172,6 +173,7 @@
 				    background: $white;
 				    text-align: left;
 				    box-sizing: border-box;
+				    box-shadow: -1px 1px 1px 1px rgba(0,0,0,0.1);
 
 				    &.show {
 				    	position:absolute;
@@ -180,6 +182,12 @@
 				    }
 
 				    .navigation__link {
+				    	margin-bottom: 5px;
+
+				    	&:last-child {
+				    		margin-bottom: 0;
+				    	}
+
 				    	.navigation__text {
 				    		color: $black;
 				    		text-transform: none;
@@ -228,6 +236,7 @@
 				    background: $white;
 				    text-align: left;
 				    box-sizing: border-box;
+				    box-shadow: -1px 1px 1px 1px rgba(0,0,0,0.1);
 
 				    &.show {
 				    	position:absolute;
@@ -245,7 +254,6 @@
 
 				    		.usr__logo-holder {
 								position: relative;
-								height: 30px;
 								display: inline-block;
 								vertical-align: top;
 
@@ -265,10 +273,14 @@
 							}
 
 							.usr__text {
-								font-size: 14px;
 								margin-left: 5%;
 								display: inline-block;
 								vertical-align: top;
+								
+								p {
+									font-weight: bold;
+									font-size: 14px;
+								}
 							}
 				    	}
 				    }
@@ -642,8 +654,10 @@
 
 		.bg__slider {
 			margin-top: 80px;
+			width: 100%;
 			height: 450px;
 		}
+
 		.p__container {
 			position: absolute;
 			top: 60%;
@@ -1088,6 +1102,138 @@
 			button {
 				color: $black;
 				margin-right: 5%;
+			}
+		}
+	}
+}
+
+/** 
+ * CHECKOUT PAGE
+ */
+.checkout {
+
+	.ch__container {
+		padding: 32px 130px;
+		margin-top: 120px;
+
+		.ch__col--1,
+		.ch__col--2 {
+			width: 45%;
+			display: inline-block;
+			vertical-align: top;
+			margin-right: 10%;
+			padding: 24px 0;
+
+			.check-box {
+				
+				input {
+					border: none;
+					background-color: transparent;
+					color: $black;
+					font: 14px $font--1;
+				}
+
+				.checkbox-lbl {
+					display: block;
+					position: relative;
+					padding-left: 20px;
+					cursor: pointer;
+					font-size: 12px;
+						  	
+					input {
+					  	position: absolute;
+					   	opacity: 0;
+					   	cursor: pointer;
+					   	height: 0;
+					   	width: 0;
+					}
+				}
+
+				.checkmark {
+					position: absolute;
+					top: 2px;
+				  	left: 0;
+				  	height: 12px;
+				  	width: 12px;
+				  	border: 1px solid $black;
+				  	border-radius: 4px;
+				}
+				.checkbox-lbl {
+				  	&:hover input ~ .checkmark {
+					    background-color: $white;
+					    border: 1px solid $black;
+				  	}
+				  	input:checked ~ .checkmark {
+					    background-color: $white;
+					    border: 1px solid $black;
+					    color: $black;
+				  	}
+				}
+				.checkmark {
+					&:after {
+						content: "";
+					  	position: absolute;
+					  	display: none;
+					}  	
+				}
+				.checkbox-lbl {
+				  	input:checked ~ .checkmark:after {
+				    	display: block;
+				  	}
+				  	.checkmark:after {
+				  		top: 1px;
+					    left: 3px;
+						width: 4px;
+						height: 6px;
+						border: solid $black;
+						border-width: 0 1px 1px 0;
+						-webkit-transform: rotate(45deg);
+						-ms-transform: rotate(45deg);
+						transform: rotate(45deg);
+				  	}
+				}
+			}
+
+			.ch__title {
+				font-family: $font--2;
+				font-size: 18px;
+				margin-bottom: 15px;
+			}
+
+			.ch__form-row {
+				margin-bottom: 10px;
+
+				label {
+					font-size: 14px;
+					margin-bottom: 3px;
+				}
+
+				&:last-child {
+					margin-bottom: 0px;
+				}
+
+				.input-text {
+					background-color: $white;
+				}
+
+				.ch__title {
+					margin-bottom: 0px;
+					margin-top: 15px;
+				}
+			}
+		}
+
+		.ch__form {
+			background-color: $light-gray;
+			border: 1px solid lighten($dark-gray, 40);
+			padding: 24px 36px;
+		}
+
+		.ch__col--2 {
+			margin-right: 0%;
+
+			.check-box {
+				text-align: center;
 			}
 		}
 	}
@@ -1584,6 +1730,7 @@
 			.links {
 				width: 55%;
 				margin: 20px auto;
+
 				input {
 					border: none;
 					background-color: transparent;
@@ -1670,7 +1817,7 @@
  		position: fixed;
  		margin-top: 100px;
 		width: 19%;
-		height: 100vh;
+		min-height: 100vh;
 		color: $white;
 		background: lighten($blue, 15);
 		display: inline-block;
@@ -1751,13 +1898,87 @@
  		margin-top: 100px;
  		margin-left: 19%;
 		width: 81%;
-		height: 100%;
+		min-height: 100vh;
 		overflow: auto;
 		display: inline-block;
 		vertical-align: top;
 		box-sizing: border-box;
-		background-color: $light-gray;
+		background-color: $white;
 		padding: 42px;
+
+		.usr__search {
+			width: 35%;
+			padding: 6px 12px;
+			border: 1px solid $blue;
+			border-radius: 50px;
+			margin-bottom: 30px;
+
+			i {
+				color: darken($light-gray, 30);
+				margin-right: 5px;
+			}
+
+			.input-text {
+				width: 90%;
+				border: none;
+				padding: 0;
+				font-size: 14px;
+			}
+		}
+
+		table {
+			width: 100%;
+			border: 1px solid lighten($dark-gray,50);
+
+			tr {
+				width: 100%;
+				text-align: center;
+
+				&:nth-child(odd) {
+					background-color: $light-gray;
+				}
+
+				&:first-child {
+					background-color: $blue;
+					color: $white;
+				}
+
+				th, td {
+					text-align: center;
+					padding: 8px 6px;
+					vertical-align: middle;
+					border-right: 1px solid lighten($dark-gray,50);
+					// width: 100%;
+
+					.tbl__img-holder {
+						display: inline-block;
+						vertical-align: middle;
+						position: relative;
+						width: 35px;
+						height: 35px;
+						margin-right: 5px;
+
+						img {
+							position: relative;
+							top: 0;
+							left: 50%;
+							transform: translateX(-50%);
+							max-width: 100%;
+							height: 100%;
+						}
+					}
+
+					p {
+						display: inline-block;
+						vertical-align: middle;
+					}
+
+					a {
+						color: $blue;
+					}
+				}
+			}
+		}
 
 		.usr__container {
 			padding: 36px 42px;
@@ -1788,77 +2009,7 @@
 				}
 			}
 
-			.usr__search {
-				width: 35%;
-				padding: 6px 12px;
-				border: 1px solid $blue;
-				border-radius: 50px;
-				margin-bottom: 30px;
-
-				i {
-					color: darken($light-gray, 30);
-					margin-right: 5px;
-				}
-
-				.input-text {
-					width: 90%;
-					border: none;
-					padding: 0;
-					font-size: 14px;
-				}
-			}
-
-			table {
-				width: 100%;
-				border: 1px solid $black;
-
-				tr {
-					width: 100%;
-					text-align: center;
-
-					&:nth-child(odd) {
-						background-color: $light-gray;
-					}
-
-					&:first-child {
-						background-color: $blue;
-						color: $white;
-					}
-
-					th, td {
-						text-align: center;
-						padding: 8px 6px;
-						vertical-align: middle;
-						// width: 100%;
-
-						.tbl__img-holder {
-							display: inline-block;
-							vertical-align: middle;
-							position: relative;
-							width: 25%;
-							height: 35px;
-
-							img {
-								position: relative;
-								top: 0;
-								left: 50%;
-								transform: translateX(-50%);
-								max-width: 100%;
-								height: 100%;
-							}
-						}
-
-						p {
-							display: inline-block;
-							vertical-align: middle;
-						}
-
-						a {
-							color: $blue;
-						}
-					}
-				}
-			}
+			
 
 			.usr__form {
 
@@ -1903,3 +2054,4 @@
 		}
  	}
  }
+

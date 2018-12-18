@@ -1,5 +1,5 @@
 @extends('master')
-@section('pageTitle', 'Sign Up')
+@section('pageTitle', 'My Products')
 @section('content')
 
 
@@ -10,8 +10,7 @@
 	</div
 
 	><div class="usr__main">
-		<div class="usr__container">
-			<div class="usr__search inlineBlock-parent">
+		<div class="usr__search inlineBlock-parent">
 				<i class="fa fa-search"></i>
 				<input class="input-text" placeholder="Search Model No." type="text" name="">
 			</div>
@@ -82,14 +81,15 @@
 						<p>jkjkj</p>
 					</td>
 					<td>
-						<a href="">Apply for Extended Warranty</a>
+						<div class="tbl__img-holder">
+							<img src="{{ asset('images/logo3.png')}}">
+						</div>
+						<img src="{{ asset('images/green_check.png')}}">
 					</td>
 				</tr>
 
 			</table>
-		</div>
 	</div>
 </section>
-
 
 @endsection
