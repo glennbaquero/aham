@@ -9,9 +9,9 @@
 		</div>
 		<div class="usr__form">
 				
-		<div class="usr__form-row">
-			<label>Email</label>
-					<input class="input-text" type="email" name="email" v-model="details.email" :disabled="disabled">
+			<div class="usr__form-row">
+				<label>Email</label>
+				<input class="input-text" type="email" name="email" v-model="details.email" :disabled="disabled">
 			</div
 			><div class="usr__form-row">
 				<label>Contact</label>
@@ -58,7 +58,6 @@
 					</button>
 				</div>
 			</div>
-		</div>
 		</div>
 	</div>
 </template>

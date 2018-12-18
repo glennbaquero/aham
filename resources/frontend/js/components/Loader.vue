@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
 
     <transition name="fade">
         <div v-if="loading"
@@ -42,4 +42,4 @@
             loading: Boolean
         },
     }
-</script>
+</script> -->
