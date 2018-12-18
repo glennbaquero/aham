@@ -13,7 +13,7 @@
 		</div>
 	</div>
 </a>
-<a href="">
+<a href="{{ route('user.products') }}">
 	<div class="usr__link">
 		<div class="usr__logo-holder">
 			<i class="icon ion-ios-barcode"></i>
