@@ -69,6 +69,12 @@
 			}
 		}
 	}
+
+	.checkout {
+		.ch__container {
+			padding: 32px 110px;
+		}
+	}
 }
 
 @media only screen and (max-width: 1196px) {
@@ -174,6 +180,12 @@
 			}
 		}
 	}	
+
+	.checkout {
+		.ch__container {
+			padding: 32px 90px;
+		}
+	}
 }
 
 @media only screen and (max-width: 1100px) {
@@ -375,6 +387,12 @@
 			.bw__form {
 				width: 50%;
 			}
+		}
+	}
+
+	.checkout {
+		.ch__container {
+			padding: 32px 70px;
 		}
 	}
 
@@ -997,6 +1015,26 @@
 				width: 100%;
 				display: block;
 				vertical-align: middle;
+			}
+		}
+	}
+
+	.checkout {
+		.ch__container {
+			.ch__col--1,
+			.ch__col--2 {
+				width: 100%;
+				display: block;
+				margin-right: 0%;
+
+				.ch__sub-title {
+					margin-top: 20px;
+					margin-bottom: 10px;
+				}
+			}
+
+			.ch__col--2 {
+				margin-top: 20px;
 			}
 		}
 	}
@@ -1679,6 +1717,12 @@
 		}
 	}
 
+	.checkout {
+		.ch__container {
+			padding: 32px 50px;
+		}
+	}
+
 	.warrantyinfo {
 		&.frame--1 {
 			.wi__container {
@@ -1744,6 +1788,16 @@
 	// GENERAL
 	.frame-padding {
 		padding: 32px 40px;
+	}
+
+	.checkout {
+		.ch__container {
+			padding: 32px 40px;
+
+			.ch__form {
+				padding: 24px;
+			}
+		}
 	}
 
 	.mbl-header {
@@ -1953,6 +2007,20 @@
 	// GENERAL
 	.frame-padding {
 		padding: 32px;
+	}
+
+	.checkout {
+		.ch__container {
+			padding: 32px;
+
+			.ch__col--2 {
+				.btn {
+					width: 100%;
+					display: block;
+					margin-bottom: 10px;
+				}
+			}
+		}
 	}
 
 	.mbl-header {

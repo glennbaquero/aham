@@ -1124,8 +1124,14 @@
 			margin-right: 10%;
 			padding: 24px 0;
 
+			.ch__sub-title {
+				font: 18px $font--1;
+				margin-top: 50px;
+				margin-bottom: 10px;
+			}
+
 			.check-box {
-				
+
 				input {
 					border: none;
 					background-color: transparent;
@@ -1196,12 +1202,19 @@
 
 			.ch__title {
 				font-family: $font--2;
-				font-size: 18px;
+				font-size: 20px;
 				margin-bottom: 15px;
 			}
 
 			.ch__form-row {
+				position: relative;
 				margin-bottom: 10px;
+
+				img {
+					position: absolute;
+					right: -18px;
+					top: 32px;
+				}
 
 				label {
 					font-size: 14px;
@@ -1214,11 +1227,16 @@
 
 				.input-text {
 					background-color: $white;
+
+					&.error {
+						border: 1px solid #cc0000;
+					}
 				}
 
 				.ch__title {
 					margin-bottom: 0px;
 					margin-top: 15px;
+					font-size: 18px;
 				}
 			}
 		}
@@ -1227,13 +1245,19 @@
 			background-color: $light-gray;
 			border: 1px solid lighten($dark-gray, 40);
 			padding: 24px 36px;
+			margin-bottom: 10px;
 		}
 
 		.ch__col--2 {
 			margin-right: 0%;
+			padding: 0;
 
 			.check-box {
-				text-align: center;
+				margin-bottom: 20px;
+			}
+
+			button {
+				margin-right: 20px;
 			}
 		}
 	}
