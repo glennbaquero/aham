@@ -18,9 +18,35 @@
 		<form class="ew__form">
 			<div class="ew__form-row">
 				<label>Model Number</label>
-				<select class="input-text select">
-					<option>AWFL-8300B</option>
-				</select>
+				<div class="input-text">
+				    <select name="item">
+				    	<option value=""></option>
+				    </select>
+				    <div class="selected">
+			    		<i class="ion-arrow-down-b"></i>
+			    		<div>Select your product</div>
+			    	</div>
+			    	<div class="select-dropdown">
+			    		<div class="item-holder">
+			    			<div class="items">
+			    				<div class="img-holder">
+			    					<img class="img-fit" src="//via.placeholder.com/40x40">
+			    				</div
+			    				><div class="dropdown-content">
+			    					<div><b>ASD-72B</b></div>
+			    				</div>
+			    			</div>
+			    			<div class="items">
+			    				<div class="img-holder">
+			    					<img class="img-fit" src="//via.placeholder.com/40x40">
+			    				</div
+			    				><div class="dropdown-content">
+			    					<div><b>AWF-M8016</b></div>
+			    				</div>
+			    			</div>
+			    		</div>
+			    	</div>
+				</div>
 			</div>
 			<div class="ew__form-row">
 				<label>Serial Number</label>
