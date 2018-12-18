@@ -5,7 +5,7 @@
 
 
 <section class="extendedwarranty container">
-	<div class="ew__container">
+	<div class="ew__container animate-up">
 
 		<div class="ew__title">
 			<div class="vertical-parent">

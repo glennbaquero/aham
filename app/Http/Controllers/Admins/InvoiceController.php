@@ -2,8 +2,16 @@
 
 namespace App\Http\Controllers\Admins;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
+use App\Notifications\ApprovedWarrantyNotification;
+
 use App\Invoice;
+use App\InvoiceItem;
+use App\User;
+
+use DB;
 
 class InvoiceController extends Controller
 {
@@ -14,7 +22,7 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.applications.index');
     }
 
     /**
@@ -55,9 +63,11 @@ class InvoiceController extends Controller
      * @param  \App\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function edit(Invoice $invoice)
+    public function edit($id)
     {
-        //
+        return view('admin.applications.edit', [
+            'invoice' => Invoice::find($id)
+        ]);
     }
 
     /**
@@ -67,9 +77,19 @@ class InvoiceController extends Controller
      * @param  \App\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Invoice $invoice)
+    public function update(Request $request, $id)
     {
-        //
+        DB::beginTransaction();
+            $invoice_item = InvoiceItem::find($id);
+            $invoice_item->update(['status' => 1]);
+            $user = User::find($request->get('id'));
+        DB::commit();  
+
+        $user->notify(new ApprovedWarrantyNotification($user));
+
+        return response()->json([
+            'message' => 'You have successfully approved this request',
+        ]);
     }
 
     /**
@@ -78,8 +98,29 @@ class InvoiceController extends Controller
      * @param  \App\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Invoice $invoice)
+    public function destroy($id)
     {
-        //
+        $invoice_item = InvoiceItem::find($id);
+        $invoice_item->delete();
+
+        return response()->json([
+            'message' => "You have successfully archived this request",
+        ]);
+    }
+
+    /**
+     * Restore the specified resource from storage.
+     *
+     * @param  \App\Product  $product
+     * @return \Illuminate\Http\Response
+     */
+    public function restore($id)
+    {
+        $invoice_item = InvoiceItem::onlyTrashed()->find($id);
+        $invoice_item->restore();
+
+        return response()->json([
+            'message' => "You have successfully restored this request",
+        ]);
     }
 }

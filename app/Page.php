@@ -16,6 +16,8 @@ class Page extends Model
     protected $guarded = [];
     protected $dates = ['deleted_at'];
 
+    protected $request;
+
     const MINIMAL_COLUMN = [
         'id', 
         'name', 'slug',
@@ -49,7 +51,9 @@ class Page extends Model
      * Assemble Page Data
      * @return array Page Data
      */
-    public function getData() {
+    public function getData($request = null) {
+
+        $this->request = $request;
 
         $data = [
             'page' => $this,
@@ -94,7 +98,6 @@ class Page extends Model
         $products = Product::all();
 
         switch($this->slug) {
-
             case 'home':
                     $data['view'] = "public.pages.home";
                     $data['featured_products'] = Product::whereHas('tags', function($query){
@@ -109,6 +112,7 @@ class Page extends Model
                                                     $query->where('name', 'product');
                                                 })->get();
                     $data['products'] = $products;
+                    $data['params'] = http_build_query($this->request->only('search'));
                 break;
             case 'about':
                     $data['view'] = "public.pages.about-page";
@@ -118,6 +122,7 @@ class Page extends Model
                     $data['carousels_about'] = Carousel::with('images')->whereHas('tags', function($query){
                                                     $query->where('name', 'about');
                                                 })->get();
+                    $data['faqs'] = Faqs::all();
                 break;
             case 'warranty_info':
                     $data['view'] = "public.pages.warranty-info-page";

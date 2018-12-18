@@ -35,12 +35,21 @@ Vue.component('admin-details', require('./views/administrators/AdminDetails.vue'
 Vue.component('carousels-table', require('./views/carousels/CarouselsTable.vue'));
 Vue.component('carousel-details', require('./views/carousels/CarouselDetails.vue'));
 
+Vue.component('faqs-table', require('./views/faqs/FAQsTable.vue'));
+Vue.component('faq-details', require('./views/faqs/FAQDetails.vue'));
+
 Vue.component('repair-request-table', require('./views/repairrequest/RepairRequestTable.vue'));
 Vue.component('repair-request-details', require('./views/repairrequest/RepairRequestDetails.vue'));
 
 Vue.component('permission-list', require('./views/permission/PermissionsList.vue'));
 
 Vue.component('activity-logs-table', require('./views/activity-logs/ActivityLogsTable.vue'));
+
+Vue.component('applications-table', require('./views/applications/ApplicationsTable.vue'));
+Vue.component('application-details', require('./views/applications/ApplicationDetails.vue'));
+
+Vue.component('contact-us-table', require('./views/contactus/ContactUsTable.vue'));
+Vue.component('contact-us-details', require('./views/contactus/ContactUsDetails.vue'));
 
 
 const app = {

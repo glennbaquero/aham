@@ -54,6 +54,12 @@ return [
             'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
+            'options' => (env('MYSQL_SSL')) ? [
+                PDO::MYSQL_ATTR_SSL_KEY    => env('MYSQL_SSL_KEY'),  // /path/to/key.pem
+                PDO::MYSQL_ATTR_SSL_CERT   => env('MYSQL_SSL_CERT'), // /path/to/cert.pem
+                PDO::MYSQL_ATTR_SSL_CA     => env('MYSQL_SSL_CA'),   // /path/to/ca.pem
+                PDO::MYSQL_ATTR_SSL_CIPHER => env('MYSQL_SSL_CIPHER')
+            ] : []
         ],
 
         'pgsql' => [

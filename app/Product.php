@@ -80,7 +80,7 @@ class Product extends Model
             foreach($request->file('images') as $image) {
                 $path = $image->store('product-images', 'public');
                 if($item && $item->images()->image){
-                    Storage::delete('public/' . $item->image()->image);
+                    Storage::delete('public/' . $item->images()->image);
                 }
                 $item->images()->create(['image' => $path]);
             }
@@ -119,6 +119,10 @@ class Product extends Model
 
     public function setAsFeatured() {
         return route('admin.product.featured', $this->id);
+    }
+
+    public function renderPublicView() {
+        return route('view.product', $this->id);
     }
 
 }

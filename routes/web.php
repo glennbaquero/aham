@@ -20,30 +20,39 @@ Route::get('/selected', function () {
     return view('public.pages.product-selected-page');
 });
 
-Route::get('/basic', function () {
-    return view('public.pages.basic-warranty-page');
-});
-
 Route::get('/extended', function () {
     return view('public.pages.extended-warranty-page');
 });
 
+Route::group(['middleware' => ['auth']],function(){
+		Route::get('user/profile', 'PageController@profile')->name('user.profile');
+		Route::get('user/fetch', 'Admins\UserController@fetchDetails')->name('user.fetch.details');
+		Route::post('user/update/{id}', 'Admins\UserController@update')->name('user.update');
+		Route::post('user/update/password/{id}', 'Admins\UserController@updatepassword')->name('user.update.password');
+		Route::get('user/basic', 'PageController@basic')->name('user.basic');
+		Route::get('product/fetch/basic', 'Admins\ProductController@warrantyproductfetch')->name('fetch.product');
+		Route::post('product/warranty/1', 'Admins\UserController@oneyearwarranty')->name('apply.oneyear.warranty');
+});
 
 Route::group(['middleware' => ['guest']],function(){
 		Route::get('user/signup', 'PageController@signup')->name('signup');
 		Route::post('user/register', 'Auth\RegisterController@create')->name('register');
 		Route::get('/user/verification/{token}', 'Admins\UserController@verifyAccount')->name('email.verification');
 		
-		Route::get('products/view/', 'Admins\ProductController@fetch')->name('all.products');
+		Route::post('products/fetch', 'ProductFetchController@fetch')->name('public.products.fetch');
+		Route::post('products/fetch/filters', 'ProductFetchController@fetchFilters')->name('public.products.filters');
 		Route::get('products/category/{id}', 'Admins\CategoryController@viewAllProduct')->name('category.all.product');
 		Route::get('products/view/{id}', 'Admins\ProductController@view')->name('view.product');
+		Route::get('user/forgot/password', function(){
+			return view('auth.passwords.email');
+		})->name('forgot.password');
+		Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
 });
 
 Route::get('user/logout', function(){
     \Auth::logout();
     return redirect()->route('home');
 })->name('user.logout');
-
 
 
 /****************************************
@@ -72,7 +81,7 @@ Route::name('admin.')
 ->namespace('Admins')
 ->group(function() {
 
-	Route::get('/', 'DashboardController@index')->name('dashboard');
+	Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 	Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 	/****************
@@ -136,6 +145,20 @@ Route::name('admin.')
 	Route::post('requests/fetch/request/{id?}', 'RepairServiceRequestFetchController@fetchItem')->name('request.fetch');
 	Route::post('requests/fetch/user', 'RepairServiceRequestFetchController@fetchUserInvoiceItems')->name('request.invoice');
 
+
+	/****************
+	 * APPLICATION
+	 ****************/
+	Route::get('applications', 'InvoiceController@index')->name('application');
+	Route::get('application/edit/{id}', 'InvoiceController@edit')->name('application.edit');
+	Route::post('application/update/{id}', 'InvoiceController@update')->name('application.update');
+	Route::delete('application/destroy/{id}', 'InvoiceController@destroy')->name('application.destroy');
+	Route::post('application/restore/{id}', 'InvoiceController@restore')->name('application.restore');
+
+	Route::post('applications/fetch/q', 'InvoiceFetchController@fetch')->name('applications.fetch');
+	Route::post('applications/fetch/q?archive=1', 'InvoiceFetchController@fetch')->name('applications.archive');
+	Route::post('application/fetch/q', 'InvoiceFetchController@fetch')->name('application.fetch');
+	Route::post('application/fetch/application/{id?}', 'InvoiceFetchController@fetchItem')->name('application.fetch');
 
 	/****************
 	 * PRODUCT
@@ -238,4 +261,35 @@ Route::name('admin.')
 	Route::post('page-items/fetch/q?archive=1', 'PageItemFetchController@fetch')->name('page-items.fetch.archive');
 	Route::post('page-items/fetch/q?page_id={id}', 'PageItemFetchController@fetch')->name('page-items.fetch.page');
 	Route::post('page-items/fetch/page-items/{id?}', 'PageItemFetchController@fetchItem')->name('page-item.fetch');
+
+
+	Route::get('faqs', 'FaqController@index')->name('faqs.index');
+	Route::get('faqs/create', 'FaqController@create')->name('faqs.create');
+	Route::post('faqs/store', 'FaqController@store')->name('faqs.store');
+	Route::get('faqs/{id}', 'FaqController@edit')->name('faqs.edit');
+	Route::post('faqs/{id}', 'FaqController@update')->name('faqs.update');
+	Route::delete('faqs/{id}', 'FaqController@destroy')->name('faqs.destroy');
+	Route::post('faqs/restore/{user}', 'FaqController@restore')->name('faqs.restore');
+
+	Route::post('faqs/fetch/q', 'FaqFetchController@fetch')->name('faqs.fetch');
+	Route::post('faqs/fetch/q?archive=1', 'FaqFetchController@fetch')->name('faqs.archive');
+	Route::post('faqs/fetch/q?faqs={id}', 'FaqFetchController@fetch')->name('faqs.fetch.page');
+	Route::post('faqs/fetch/faqs/{id?}', 'FaqFetchController@fetchItem')->name('faq.fetch');
+
+
+
+	Route::get('contacts', 'ContactUsController@index')->name('contacts.index');
+	Route::get('contacts/create', 'ContactUsController@create')->name('contacts.create');
+	Route::post('contacts/store', 'ContactUsController@store')->name('contacts.store');
+	Route::get('contacts/{id}', 'ContactUsController@edit')->name('contacts.edit');
+	Route::post('contacts/{id}', 'ContactUsController@update')->name('contacts.update');
+	Route::delete('contacts/{id}', 'ContactUsController@destroy')->name('contacts.destroy');
+	Route::post('contacts/restore/{user}', 'ContactUsController@restore')->name('contacts.restore');
+
+	Route::post('contacts/fetch/q', 'ContactUsFetchController@fetch')->name('contacts.fetch');
+	Route::post('contacts/fetch/q?archive=1', 'ContactUsFetchController@fetch')->name('contacts.archive');
+	Route::post('contacts/fetch/q?contacts={id}', 'ContactUsFetchController@fetch')->name('contacts.fetch.page');
+	Route::post('contacts/fetch/contacts/{id?}', 'ContactUsFetchController@fetchItem')->name('contact.fetch');
+
+
 });

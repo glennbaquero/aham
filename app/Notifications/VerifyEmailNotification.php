@@ -44,7 +44,7 @@ class VerifyEmailNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject(config('app.name') . ': Verify Account')
+                    ->subject(config('app.name') . ': Activate Account To AHAM')
                     ->greeting('Hello ' . $notifiable->renderFullname() . ',')
                     ->line('You are receiving this email because you need to activate your account first.')
                     ->action('Activate Account', route('email.verification', $this->user->email_token))

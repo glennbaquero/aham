@@ -14,14 +14,23 @@ class PageController extends Controller
      * @param  \App\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show(Request $request, $slug)
     {
         $page = Page::where('slug', $slug)->first();
+
         if(!$page) {
-            abort(404);
+            switch ($slug) {
+                case 'admin':
+                        return redirect()->route('admin.login.show');
+                    break;
+                
+                default:
+                        abort(404);
+                    break;
+            }
         }
 
-        $data = $page->getData();
+        $data = $page->getData($request);
         return view($data['view'], $data);
     }
 
@@ -33,5 +42,15 @@ class PageController extends Controller
     public function login()
     {
         return view('public.pages.login-page');
+    }
+
+    public function profile()
+    {
+        return view('public.pages.user-profile-page');
+    }
+
+    public function basic()
+    {
+        return view('public.pages.basic-warranty-page');
     }
 }

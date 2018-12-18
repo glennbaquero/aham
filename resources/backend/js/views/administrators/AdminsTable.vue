@@ -35,8 +35,8 @@
 
     		<!-- DATATABLE -->
     		<datatable ref="datatable"
-            :headers="['#', 'Name', 'Roles', 'Created At']"
-            :columns="['id', 'name', null, 'created_at']"
+            :headers="['#', 'Name', 'Roles', 'Type', 'Created At']"
+            :columns="['id', 'firstname', null, 'type', 'created_at']"
     		:filters="filters"
     		
     		:fetchurl="fetchurl"

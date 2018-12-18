@@ -80,6 +80,7 @@ class RepairServiceRequestFetchController extends FetchController
     public function fetchItem($id = null)
     {
         $item = null;  
+        $item = RepairServiceRequest::with('user')->withTrashed()->get();
 
         $repairmen = Admin::whereAvailableRepairman()->get();
 
@@ -92,7 +93,7 @@ class RepairServiceRequestFetchController extends FetchController
                 array_push($repairmen, $item->repairman->admin->toArray());
             }
         }
-
+        
         $users = User::select(User::MINIMAL_COLUMNS)->get();
         $statuses = RepairServiceRequest::getStatus();
         $repairmanstatus = RepairServiceRequest::all();
@@ -102,7 +103,7 @@ class RepairServiceRequestFetchController extends FetchController
             'users' => $users,
             'statuses' => $statuses,
             'repairmen' => $repairmen,
-            'repairmanstatus' => $repairmanstatus
+            'repairmanstatus' => $repairmanstatus,
         ]);
     }
 

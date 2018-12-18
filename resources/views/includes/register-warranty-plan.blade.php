@@ -3,7 +3,7 @@
 	<div class="frame-padding">
 		<div class="vertical-parent">
 			<div class="vertical-align">
-				<div class="rw__container center-align">
+				<div class="rw__container center-align animate-up">
 					<p class="rw__title">Not yet registered to a warranty plan?</p>
 					<form class="rw__form">
 						<div class="rw__form-row">

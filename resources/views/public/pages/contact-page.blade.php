@@ -5,7 +5,7 @@
 
 <section  class="contactpage frame--1 container">
 	<div class="frame-padding">
-		<div class="c__container">
+		<div class="c__container animate-up">
 			<p class="c__title">Let's get in touch.</p>
 			<p class="c__desc">Contact us and we will be more than happy to assists you.</p>
 			<form class="c__form">
@@ -35,7 +35,7 @@
 </section>
 
 <section class="contactpage frame--2 container">
-	<div class="c__sc-row">
+	<div class="c__sc-row animate-up">
 		<div class="c__sc-col">
 			<p class="c__title">Authorized Service Centers</p>
 			
