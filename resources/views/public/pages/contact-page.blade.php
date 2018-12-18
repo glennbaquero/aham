@@ -8,28 +8,8 @@
 		<div class="c__container animate-up">
 			<p class="c__title">Let's get in touch.</p>
 			<p class="c__desc">Contact us and we will be more than happy to assists you.</p>
-			<form class="c__form">
-				<div class="c__form-row">
-					<label>Firstname</label>
-					<input class="input-text" type="text" name="fname">
-				</div
-				><div class="c__form-row">
-					<label>Lastname</label>
-					<input class="input-text" type="text" name="lname">
-				</div
-				><div class="c__form-row">
-					<label>Email</label>
-					<input class="input-text" type="email" name="email">
-				</div
-				><div class="c__form-row">
-					<label>Phone Number</label>
-					<input class="input-text" type="text" name="num">
-				</div>
-				<div class="c__form-row textarea">
-					<textarea class="textarea" placeholder="Message"></textarea>
-				</div>
-				<button class="btn btn-blue">Send</button>
-			</form>
+			<contact-us
+			:url="'{{ route('contactus.message') }}'"></contact-us>
 		</div>
 	</div>
 </section>
