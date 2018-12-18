@@ -86,6 +86,15 @@ class Product extends Model
             }
         }
 
+        if($request->hasFile('manual_path')) {
+            $path = $request->file('manual_path')->store('product-manual', 'public');
+            if($item && $item->manual_path){
+                Storage::delete('public/' . $item->manual_path);
+            }
+            $item->manual_path =  $path;
+            $item->save();
+        }
+
         $item->tags()->sync($request->input('product_tags'));
 
         return $item;
