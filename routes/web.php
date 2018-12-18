@@ -43,6 +43,10 @@ Route::group(['middleware' => ['guest']],function(){
 		Route::post('products/fetch/filters', 'ProductFetchController@fetchFilters')->name('public.products.filters');
 		Route::get('products/category/{id}', 'Admins\CategoryController@viewAllProduct')->name('category.all.product');
 		Route::get('products/view/{id}', 'Admins\ProductController@view')->name('view.product');
+		Route::get('user/forgot/password', function(){
+			return view('auth.passwords.email');
+		})->name('forgot.password');
+		Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
 });
 
 Route::get('user/logout', function(){
@@ -271,6 +275,21 @@ Route::name('admin.')
 	Route::post('faqs/fetch/q?archive=1', 'FaqFetchController@fetch')->name('faqs.archive');
 	Route::post('faqs/fetch/q?faqs={id}', 'FaqFetchController@fetch')->name('faqs.fetch.page');
 	Route::post('faqs/fetch/faqs/{id?}', 'FaqFetchController@fetchItem')->name('faq.fetch');
+
+
+
+	Route::get('contacts', 'ContactUsController@index')->name('contacts.index');
+	Route::get('contacts/create', 'ContactUsController@create')->name('contacts.create');
+	Route::post('contacts/store', 'ContactUsController@store')->name('contacts.store');
+	Route::get('contacts/{id}', 'ContactUsController@edit')->name('contacts.edit');
+	Route::post('contacts/{id}', 'ContactUsController@update')->name('contacts.update');
+	Route::delete('contacts/{id}', 'ContactUsController@destroy')->name('contacts.destroy');
+	Route::post('contacts/restore/{user}', 'ContactUsController@restore')->name('contacts.restore');
+
+	Route::post('contacts/fetch/q', 'ContactUsFetchController@fetch')->name('contacts.fetch');
+	Route::post('contacts/fetch/q?archive=1', 'ContactUsFetchController@fetch')->name('contacts.archive');
+	Route::post('contacts/fetch/q?contacts={id}', 'ContactUsFetchController@fetch')->name('contacts.fetch.page');
+	Route::post('contacts/fetch/contacts/{id?}', 'ContactUsFetchController@fetchItem')->name('contact.fetch');
 
 
 });

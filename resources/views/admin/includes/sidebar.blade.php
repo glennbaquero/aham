@@ -50,7 +50,7 @@
             <i class="fa fa-angle-left pull-right"></i>
           </span>
         </a>
-        <ul class="treeview-menu {{ $checker->route->isActive(['admin.pages.', 'admin.page-items.', 'admin.carousel.']) }}">
+        <ul class="treeview-menu {{ $checker->route->isActive(['admin.pages.', 'admin.page-items.', 'admin.carousel.', 'admin.faqs']) }}">
           <li class="{{ $checker->route->isActive('admin.pages.') }}">
             <a href="{{ route('admin.pages.index') }}"><i class="fas fa-boxes"></i> Page</a>
           </li>
@@ -62,6 +62,9 @@
           </li>
           <li class="{{ $checker->route->isActive('admin.faqs.') }}">
             <a href="{{ route('admin.faqs.index') }}"><i class="fas fa-question"></i> FAQ</a>
+          </li>
+          <li class="{{ $checker->route->isActive('admin.contacts.') }}">
+            <a href="{{ route('admin.contacts.index') }}"><i class="fas fa-question"></i> Contact Us</a>
           </li>
         </ul>
       </li>

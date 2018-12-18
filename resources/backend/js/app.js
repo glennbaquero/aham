@@ -48,6 +48,9 @@ Vue.component('activity-logs-table', require('./views/activity-logs/ActivityLogs
 Vue.component('applications-table', require('./views/applications/ApplicationsTable.vue'));
 Vue.component('application-details', require('./views/applications/ApplicationDetails.vue'));
 
+Vue.component('contact-us-table', require('./views/contactus/ContactUsTable.vue'));
+Vue.component('contact-us-details', require('./views/contactus/ContactUsDetails.vue'));
+
 
 const app = {
 	init() {
