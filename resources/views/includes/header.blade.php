@@ -90,10 +90,44 @@
 				@if(!Auth::check())
 					<a href="{{ route('signup') }}" class="navigation__text"><i class="icon fa fa-user"></i>Sign Up</a>
 				@else
-					<a href="{{ route('user.logout') }}" class="navigation__text">
+					<p  data-dropdown-id="dropdown-3" class="dropdown-icon navigation__text">
 						<i class="icon fa fa-user"></i>
 						{{ Auth::user()->firstname. ' '. Auth::user()->lastname}}
-					</a>
+					</p>
+					{{-- Dropdown --}}
+					<div id="dropdown-3" class="navigation__drop-down">
+					<p class="tip"></p>
+					<div class="navigation__link" id="1">
+						<a href="{{ route('user.profile') }}" class="navigation__text">
+							<div class="usr__logo-holder">
+								<i class="icon ion-person"></i>
+							</div
+							><div class="usr__text">
+								<p>My Profile</p>
+							</div>
+						</a>
+					</div>	
+					<div class="navigation__link" id="1">
+						<a href="" class="navigation__text">
+							<div class="usr__logo-holder">
+								<i class="icon ion-ios-barcode"></i>
+							</div
+							><div class="usr__text">
+								<p>My Products</p>
+							</div>
+						</a>
+					</div>	
+					<div class="navigation__link" id="1">
+						<a href="{{ route('user.logout') }}" class="navigation__text">
+							<div class="usr__logo-holder">
+								<i class="icon ion-log-out"></i>
+							</div
+							><div class="usr__text">
+								<p>Logout</p>
+							</div>
+						</a>
+					</div>	
+				</div>
 				@endif
 			</div>
 		</div>
