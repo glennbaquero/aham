@@ -20,9 +20,12 @@ Route::get('/selected', function () {
     return view('public.pages.product-selected-page');
 });
 
+
 Route::get('user/extended', function () {
     return view('public.pages.extended-warranty-page');
 });
+
+
 
 Route::post('contactus/message', 'MessageController@sendmessage')->name('contactus.message');
 
@@ -34,6 +37,10 @@ Route::group(['middleware' => ['auth']],function(){
 		Route::get('user/basic', 'PageController@basic')->name('user.basic');
 		Route::get('product/fetch/basic', 'Admins\ProductController@warrantyproductfetch')->name('fetch.product');
 		Route::post('product/warranty/1', 'Admins\UserController@oneyearwarranty')->name('apply.oneyear.warranty');
+		Route::get('user/products', 'Admins\UserController@userproduct')->name('user.products');
+		Route::get('user/products/fetch', 'UserProductFetchController@fetch')->name('user.products.fetch');
+		Route::get('user/checkout/{id}', 'Admins\InvoiceController@checkout')->name('checkout');
+		Route::get('checkout/fetch/{id}', 'Admins\InvoiceController@checkoutfetch')->name('checkout.fetch');
 });
 
 Route::group(['middleware' => ['guest']],function(){

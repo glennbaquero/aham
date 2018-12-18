@@ -66,7 +66,7 @@ class InvoiceController extends Controller
     public function edit($id)
     {
         return view('admin.applications.edit', [
-            'invoice' => Invoice::find($id)
+            'invoice' => InvoiceItem::find($id)
         ]);
     }
 
@@ -122,5 +122,27 @@ class InvoiceController extends Controller
         return response()->json([
             'message' => "You have successfully restored this request",
         ]);
+    }
+
+    public function checkout($id) {
+        $invoice_item = InvoiceItem::find($id);
+        if(auth()->user()->id === $invoice_item->invoice->id) {
+            return view('public.pages.checkout-page', [
+                'invoice_item' => $invoice_item
+            ]);
+        }
+        return back();
+    }
+
+    public function checkoutfetch($id) {
+        $invoice_item = InvoiceItem::find($id);
+        $invoice_item->invoice;
+        $invoice_item->product;
+
+        $item = [
+            'invoice_item' => $invoice_item,
+        ];
+
+        return $item;
     }
 }

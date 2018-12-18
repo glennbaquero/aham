@@ -103,7 +103,6 @@ class UserController extends Controller
 
 
         $admins = Admin::where('type', 0)->get();
-        // dd($admin->email);
         foreach ($admins as $admin) {
             $admin->notify(new OneYearWarrantyNotificationToAdmin($admin->email));
         }
@@ -112,5 +111,10 @@ class UserController extends Controller
         return response()->json([
             'message' => 1
         ]);
+    }
+
+    public function userproduct()
+    {
+        return view('public.pages.user-products-page');
     }
 }
