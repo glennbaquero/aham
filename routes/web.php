@@ -20,7 +20,7 @@ Route::get('/selected', function () {
     return view('public.pages.product-selected-page');
 });
 
-Route::get('/extended', function () {
+Route::get('user/extended', function () {
     return view('public.pages.extended-warranty-page');
 });
 
@@ -45,6 +45,7 @@ Route::group(['middleware' => ['guest']],function(){
 		Route::post('products/fetch/filters', 'ProductFetchController@fetchFilters')->name('public.products.filters');
 		Route::get('products/category/{id}', 'Admins\CategoryController@viewAllProduct')->name('category.all.product');
 		Route::get('products/view/{id}', 'Admins\ProductController@view')->name('view.product');
+		Route::get('product/manual/{id}', 'Admins\ProductController@downloadmanual')->name('download.manual');
 		Route::get('user/forgot/password', function(){
 			return view('auth.passwords.email');
 		})->name('forgot.password');

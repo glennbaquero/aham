@@ -65,14 +65,21 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col col-xs-12 col-sm-12 col-md-6">
+                            <div class="col col-xs-12 col-sm-12 col-md-4">
                                 <div class="form-group">
                                     <label for="">Product Images <small>(allows multiple images)</small></label>
                                     <input type="file" name="images[]" class="form-control input-sm" multiple>
                                 </div>
                             </div>
 
-                            <div class="col col-xs-12 col-sm-12 col-md-6">
+                            <div class="col col-xs-12 col-sm-12 col-md-4">
+                                <div class="form-group">
+                                    <label for="">Manual</label>
+                                    <input type="file" name="manual_path" class="form-control input-sm">
+                                </div>
+                            </div>
+
+                            <div class="col col-xs-12 col-sm-12 col-md-4">
                                 <div class="form-group">
                                     <label for="">Tag</label>
                                     <select class="form-control select2" name="product_tags[]" multiple v-model="item.product_tags">

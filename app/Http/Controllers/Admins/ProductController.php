@@ -199,4 +199,13 @@ class ProductController extends Controller
             'products' => Product::all(),
         ]);
     }
+
+    public function downloadmanual($id) {
+        $product = Product::withTrashed()->find($id);
+        $file = 'storage/'.$product->manual_path;
+
+        $headers = array('Content-Type: application/pdf');
+        $explode = explode('/', $product->manual_path);
+        return response()->download($file, $explode[1]);
+    }
 }
