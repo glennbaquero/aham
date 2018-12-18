@@ -43,28 +43,14 @@
 	<div class="frame-padding animate-up">
 		<p class="a__title">Frequently Asked Questions</p>
 		<div class="a__accordion__list">
+			@foreach($faqs as $faq)
 			<div class="a__accordion">
-				<p class="a__question">What is extended warranty plan?<i class="fa fa-arrow-down"></i></p>
+				<p class="a__question">{{ $faq->question }}<i class="fa fa-arrow-down"></i></p>
 				<div class="a__answer">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					{!! $faq->answer !!}
 				</div>
 			</div>
-			<div class="a__accordion">
-				<p class="a__question">What is covered by an extended warranty?<i class="fa fa-arrow-down"></i></p>
-				<div class="a__answer">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-					consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-					cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-				</div>
-			</div>				
+			@endforeach		
 		</div>
 	</div>
 </section>
