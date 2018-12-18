@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\ContactUs;
+use App\Message;
 
 use DB;
 
@@ -131,4 +132,5 @@ class ContactUsController extends Controller
             'message' => "You have successfully restored this contact information",
         ]);
     }
+
 }

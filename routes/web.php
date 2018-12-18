@@ -24,6 +24,8 @@ Route::get('/extended', function () {
     return view('public.pages.extended-warranty-page');
 });
 
+Route::post('contactus/message', 'MessageController@sendmessage')->name('contactus.message');
+
 Route::group(['middleware' => ['auth']],function(){
 		Route::get('user/profile', 'PageController@profile')->name('user.profile');
 		Route::get('user/fetch', 'Admins\UserController@fetchDetails')->name('user.fetch.details');

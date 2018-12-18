@@ -49,7 +49,7 @@ class InvoiceFetchController extends FetchController
             array_push($result, array(
                 'id' => $item->id,
                 'invoice' => $item->invoice,
-                'model' => $item->product->model,
+                // 'model' => $item->product->model,
                 'serial_number' => $item->invoice->serial_number,
                 'contract_number' => $item->invoice->contract_number,
                 'file_extension' => $item->invoice->file_extension,
