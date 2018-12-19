@@ -1,19 +1,22 @@
 <template>
-<div class="ch__container animate-up">
+<div class="ch__container animate-up" id="form">
+	<loader
+    :loading="loading"
+    ></loader>
 	<div class="ch__col--1">
 		<p class="ch__title">Checkout</p>
 			<div class="ch__form-row">
 				<label>Application Number</label>
-				<input class="input-text" type="text" name="" >
+				<input class="input-text" type="text" name="" v-model="item.invoice.application_number">
 				<img src="">
 			</div>
 			<div class="ch__form-row">
 				<label>Payment</label>
-				<input class="input-text" type="text" name="">
+				<input class="input-text" type="text" name="" v-model="item.payment">
 			</div>
 			<div class="ch__form-row">
 				<label>Bank</label>
-				<input class="input-text" type="text" name="">
+				<input class="input-text" type="text" name="" v-model="item.bank">
 				<img src="">
 			</div>
 		<p class="ch__sub-title">Payment Method</p>
@@ -29,15 +32,16 @@
 			<p class="ch__title">Your Product</p>
 			<div class="ch__form-row">
 				<label>Model Number</label>
-				<input class="input-text" type="text" name="">
+				<input class="input-text" type="text" name="model" v-model="item.product.model">
+				<input class="input-text" type="hidden" name="invoice_id" v-model="item.invoice.id">
 			</div>
 			<div class="ch__form-row">
 				<label>Serial Number</label>
-				<input class="input-text" type="text" name="">
+				<input class="input-text" type="text" name="" v-model="item.invoice.serial_number">
 			</div>
 			<div class="ch__form-row">
 				<label>Contact Number</label>
-				<input class="input-text" type="text" name="">
+				<input class="input-text" type="text" name="" v-model="item.invoice.contract_number">
 			</div>
 			<div class="ch__form-row">
 				<label>Discount Code</label>
@@ -48,7 +52,7 @@
 					<p class="ch__title">Total:</p>	
 				</div
 				><div class="right-align">
-					<p class="ch__title">P 1,200.00</p>
+					<p class="ch__title">{{ item.product.extended_amount }}</p>
 				</div>
 			</div>
 		</div>
@@ -59,21 +63,35 @@
 			</label>
 		</div>
 		<div class="center-align">
-			<button class="btn btn-blue"><p>Submit</p></button>
+			<button class="btn btn-blue" @click="submit()"><p>Submit</p></button>
 			<a href="" class="btn outline--blue"><p>Back</p></a>
 		</div>
-	</div>		
+	</div>	
+
+	<ipayform ref="ipayform"
+	:id="'ipayform'">
+	</ipayform>	
 </div>
 </template>
 <script>
+    import Loader from '../../components/Loader.vue';
+	import ipayform from '../ecommerce/iPayForm';
+
 	export default {
 		props : {
-			fetchurl: String
+			fetchurl: String,
+			checkouturl: String
+		},
+
+		components: {
+			ipayform,
+			'loader': Loader,
 		},
 
 		data() {
 			return {
-				item: {}
+				item: {},
+    			loading:false,
 			}
 		},
 
@@ -89,9 +107,40 @@
 			fetch() {
 				axios.get(this.fetchurl)
 					.then(response => {
-						this.item.product = response.data.product;
-						this.item.invoice = response.data.invoice;
-						this.item.invoice_item = response.data.invoice_item;
+						this.item = response.data.invoice_item;
+					})
+			},
+
+			submit() {
+				if(this.loading) return;
+
+				this.loading = true;
+
+				let formData = new FormData();
+
+				formData.append('invoice_id', this.item.invoice.id);
+				formData.append('model', this.item.product.model);
+				formData.append('serial_number', this.item.invoice.serial_number);
+				formData.append('contract_number', this.item.invoice.contract_number);
+				formData.append('amount', this.item.product.extended_amount);
+
+				axios.post(this.checkouturl, formData)
+					.then(response => {
+						const data = response.data;
+
+						swal('Success!', data.message, 'success');
+
+						if(data.redirectUrl) {
+							window.location.href = data.redirectUrl;
+						}
+
+						let invoice = data.invoice;
+						let user = data.user;
+						this.$refs.ipayform.init(data.gateway, invoice, user);
+		    			this.loading = false;
+					}).catch(errors => {
+						this.loading = false;
+						swal('Error!', errors, 'error');
 					})
 			}
 		}

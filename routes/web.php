@@ -41,6 +41,9 @@ Route::group(['middleware' => ['auth']],function(){
 		Route::get('user/products/fetch', 'UserProductFetchController@fetch')->name('user.products.fetch');
 		Route::get('user/checkout/{id}', 'Admins\InvoiceController@checkout')->name('checkout');
 		Route::get('checkout/fetch/{id}', 'Admins\InvoiceController@checkoutfetch')->name('checkout.fetch');
+		Route::post('checkout/process', 'CheckoutController@processCheckout')->name('checkout.process');
+		Route::post('ipay/process', 'CheckoutController@ipayProcess')->name('ipay.process');
+		Route::post('ipay/return', 'CheckoutController@ipayReturn')->name('ipay.return');
 });
 
 Route::group(['middleware' => ['guest']],function(){

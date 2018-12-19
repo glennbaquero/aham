@@ -15,12 +15,36 @@ class Invoice extends Model
 	protected $guarded = [];
     protected $dates = ['deleted_at'];
 	
+    const GATEWAY_IPAY = 1;
+
+    const BASIC = 0;
+    const EXTENDED = 1;
+
 	public function user() {
 		return $this->belongsTo(User::class);
 	}
 
     public function invoice_items() {
         return $this->hasMany(InvoiceItem::class, 'invoice_id');
+    }
+
+    /*
+     * Renders
+     */
+
+    public function renderRawTotal() {
+
+        $total = 0;
+
+        foreach($this->invoice_items as $item) {
+            $total += $item->renderTotal();
+        }
+
+        return $total;
+    }
+
+    public function renderTotal() {
+        return number_format($this->renderRawTotal(), 2, '.', '');
     }
 
     public function renderFilePath($column = 'proof_purchase') {
