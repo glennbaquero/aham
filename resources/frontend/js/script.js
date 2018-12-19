@@ -122,6 +122,16 @@ var app = {
             }
         });
 
+        $('.selected').on('click', function() {
+          $(this).next().toggleClass('opened');
+        });
+
+        $('.items').on('click', function() {
+          var txt = $(this).find('.dropdown-content > div:first-child b').text();
+          $(this).parent().parent().parent().find('.selected div').html(txt);
+          $(this).parent().parent().parent().find('.opened').removeClass('opened');
+        });
+
     },
 
     animation: function() {
