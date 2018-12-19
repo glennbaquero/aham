@@ -108,7 +108,7 @@
 						</a>
 					</div>	
 					<div class="navigation__link" id="1">
-						<a href="" class="navigation__text">
+						<a href="{{route('user.products')}}" class="navigation__text">
 							<div class="usr__logo-holder">
 								<i class="icon ion-ios-barcode"></i>
 							</div

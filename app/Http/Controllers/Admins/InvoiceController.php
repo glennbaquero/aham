@@ -131,7 +131,7 @@ class InvoiceController extends Controller
                 'invoice_item' => $invoice_item
             ]);
         }
-        return back();
+        
     }
 
     public function checkoutfetch($id) {

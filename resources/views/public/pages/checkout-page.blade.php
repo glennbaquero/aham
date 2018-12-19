@@ -6,6 +6,8 @@
 
 <section class="checkout container">
 	<checkout
-	:fetchurl="'{{ route('checkout.fetch', $invoice_item->id) }}'"></checkout>
+	:fetchurl="'{{ route('checkout.fetch', $invoice_item->id) }}'"
+	:checkouturl="'{{ route('checkout.process') }}'">
+	</checkout>
 </section>
 @endsection
