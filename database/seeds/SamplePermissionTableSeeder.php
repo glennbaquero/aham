@@ -32,6 +32,29 @@ class SamplePermissionTableSeeder extends Seeder
                         'name' => 'admin.product.destroy',
                         'label' => 'Remove Product',
                     ],
+                    [
+                        'name' => 'admin.product.upload',
+                        'label' => 'Upload Product',
+                    ],
+                ],
+            ],
+            [
+                'name' => 'Application',
+                'description' => 'Manage Customer Application',
+                'icon' => 'fa fa-boxes',
+                'items' => [
+                    [
+                        'name' => 'admin.application.edit',
+                        'label' => 'Edit Application',
+                    ],
+                    [
+                        'name' => 'admin.application.create',
+                        'label' => 'Add Application',
+                    ],
+                    [
+                        'name' => 'admin.application.destroy',
+                        'label' => 'Remove Application',
+                    ],
                 ],
             ],
             [
@@ -50,6 +73,156 @@ class SamplePermissionTableSeeder extends Seeder
                     [
                         'name' => 'admin.service.decline',
                         'label' => 'Decline Warranty',
+                    ],
+                ],
+            ],
+            [
+                'name' => 'Repairs',
+                'description' => 'Manage repair services request',
+                'icon' => 'fa fa-wrench',
+                'items' => [
+                    [
+                        'name' => 'admin.service.assign-repair',
+                        'label' => 'Assign Repair Man'
+                    ],
+                    [
+                        'name' => 'admin.service.approve',
+                        'label' => 'Approve Warranty',
+                    ],
+                    [
+                        'name' => 'admin.service.decline',
+                        'label' => 'Decline Warranty',
+                    ],
+                ],
+            ],
+            [
+                'name' => 'Content Management',
+                'description' => 'Manage CMS',
+                'icon' => 'fa fa-wrench',
+                'items' => [
+                    [
+                        'name' => 'admin.carousel.create',
+                        'label' => 'Adding new slide'
+                    ],
+                    [
+                        'name' => 'admin.carousel.edit',
+                        'label' => 'Editing slide',
+                    ],
+                    [
+                        'name' => 'admin.carousel.destroy',
+                        'label' => 'Removing of slide',
+                    ],
+                    [
+                        'name' => 'admin.page-items.create',
+                        'label' => 'Adding new content to the page',
+                    ],
+                    [
+                        'name' => 'admin.page-items.edit',
+                        'label' => 'Editing content to the page',
+                    ],
+                    [
+                        'name' => 'admin.page-items.destroy',
+                        'label' => 'Removing content to the page',
+                    ],
+                    [
+                        'name' => 'admin.faqs.create',
+                        'label' => 'Creating FAQ',
+                    ],
+                    [
+                        'name' => 'admin.faqs.edit',
+                        'label' => 'Updating FAQ',
+                    ],
+                    [
+                        'name' => 'admin.faqs.destroy',
+                        'label' => 'Removing FAQ',
+                    ],
+                    [
+                        'name' => 'admin.contacts.create',
+                        'label' => 'Creating Contact Information',
+                    ],
+                    [
+                        'name' => 'admin.contacts.edit',
+                        'label' => 'Updating Contact Information',
+                    ],
+                    [
+                        'name' => 'admin.contacts.destroy',
+                        'label' => 'Removing Contact Information',
+                    ],
+                ],
+            ],
+            [
+                'name' => 'Discount',
+                'description' => 'Manage Customer Discount',
+                'icon' => 'fa fa-wrench',
+                'items' => [
+                    [
+                        'name' => 'admin.discount.create',
+                        'label' => 'Creating new Discount information'
+                    ],
+                    [
+                        'name' => 'admin.discount.approve',
+                        'label' => 'Updating Discount information',
+                    ],
+                    [
+                        'name' => 'admin.discount.destroy',
+                        'label' => 'Removing Discount information',
+                    ],
+                ],
+            ],
+            [
+                'name' => 'Type',
+                'description' => 'Manage Product Type',
+                'icon' => 'fa fa-wrench',
+                'items' => [
+                    [
+                        'name' => 'admin.types.create',
+                        'label' => 'Creating new product type'
+                    ],
+                    [
+                        'name' => 'admin.types.edit',
+                        'label' => 'Updating product type',
+                    ],
+                    [
+                        'name' => 'admin.types.destroy',
+                        'label' => 'Removing product type',
+                    ],
+                ],
+            ],
+            [
+                'name' => 'Categgory',
+                'description' => 'Manage Product Category',
+                'icon' => 'fa fa-wrench',
+                'items' => [
+                    [
+                        'name' => 'admin.categories.create',
+                        'label' => 'Creating new product category'
+                    ],
+                    [
+                        'name' => 'admin.categories.edit',
+                        'label' => 'Updating product category',
+                    ],
+                    [
+                        'name' => 'admin.categories.destroy',
+                        'label' => 'Removing product category',
+                    ],
+                ],
+            ],
+            [
+                'name' => 'Permission And Roles',
+                'description' => 'Manage Permission and Roles',
+                'icon' => 'fa fa-boxes',
+                'items' => [
+                    [
+                        'name' => 'admin.roles.edit',
+                        'label' => 'Edit Roles',
+                    ],
+                    [
+                        'name' => 'admin.roles.create',
+                        'label' => 'Add Roles',
+                    ],
+                    [
+                        'name' => 'admin.roles.destroy',
+                        'label' => 'Remove Roles',
                     ],
                 ],
             ],
