@@ -8,7 +8,7 @@
 	    <input type="hidden" name="BackendURL" :value="gateway.backend_url">
 	    <input type="hidden" name="Lang" value="UTF-8">
 
-		<input type="hidden" name="RefNo" :value="invoice.reference_code">
+		<input type="hidden" name="RefNo" :value="invoice.application_number">
 	    <input type="hidden" name="Amount" :value="gateway.amount">
 	    <input type="hidden" name="UserName" :value="user.firstname + '' + user.lastname">
 	    <input type="hidden" name="UserEmail" :value="user.email">
@@ -34,7 +34,7 @@ export default {
 			invoice: {
 				extra: {}
 			},
-			user: {}
+			user: {},
 		}
 	},
 
@@ -53,7 +53,7 @@ export default {
 			this.user = user;
 
 			this.$nextTick(() => {
-				this.form.submit();
+				// this.form.submit();
 			});
 		},
 	},

@@ -21,12 +21,6 @@ Route::get('/selected', function () {
 });
 
 
-Route::get('user/extended', function () {
-    return view('public.pages.extended-warranty-page');
-});
-
-
-
 Route::post('contactus/message', 'MessageController@sendmessage')->name('contactus.message');
 
 Route::group(['middleware' => ['auth']],function(){
@@ -36,7 +30,7 @@ Route::group(['middleware' => ['auth']],function(){
 		Route::post('user/update/password/{id}', 'Admins\UserController@updatepassword')->name('user.update.password');
 		Route::get('user/basic', 'PageController@basic')->name('user.basic');
 		Route::get('product/fetch/basic', 'Admins\ProductController@warrantyproductfetch')->name('fetch.product');
-		Route::post('product/warranty/1', 'Admins\UserController@oneyearwarranty')->name('apply.oneyear.warranty');
+		Route::post('product/basic', 'Admins\UserController@oneyearwarranty')->name('apply.oneyear.warranty');
 		Route::get('user/products', 'Admins\UserController@userproduct')->name('user.products');
 		Route::get('user/products/fetch', 'UserProductFetchController@fetch')->name('user.products.fetch');
 		Route::get('user/checkout/{id}', 'Admins\InvoiceController@checkout')->name('checkout');
@@ -44,21 +38,25 @@ Route::group(['middleware' => ['auth']],function(){
 		Route::post('checkout/process', 'CheckoutController@processCheckout')->name('checkout.process');
 		Route::post('ipay/process', 'CheckoutController@ipayProcess')->name('ipay.process');
 		Route::post('ipay/return', 'CheckoutController@ipayReturn')->name('ipay.return');
+		Route::get('user/extended', 'PageController@extended')->name('user.extended');
+		Route::post('user/extended', 'Admins\UserController@extendedwarranty')->name('apply.extended.warranty');
 });
+
+Route::get('products/view/{id}', 'Admins\ProductController@view')->name('view.product');
+Route::post('products/fetch', 'ProductFetchController@fetch')->name('public.products.fetch');
+Route::post('products/fetch/filters', 'ProductFetchController@fetchFilters')->name('public.products.filters');
+Route::get('products/category/{id}', 'Admins\CategoryController@viewAllProduct')->name('category.all.product');
+Route::get('product/manual/{id}', 'Admins\ProductController@downloadmanual')->name('download.manual');
 
 Route::group(['middleware' => ['guest']],function(){
 		Route::get('user/signup', 'PageController@signup')->name('signup');
 		Route::post('user/register', 'Auth\RegisterController@create')->name('register');
 		Route::get('/user/verification/{token}', 'Admins\UserController@verifyAccount')->name('email.verification');
 		
-		Route::post('products/fetch', 'ProductFetchController@fetch')->name('public.products.fetch');
-		Route::post('products/fetch/filters', 'ProductFetchController@fetchFilters')->name('public.products.filters');
-		Route::get('products/category/{id}', 'Admins\CategoryController@viewAllProduct')->name('category.all.product');
-		Route::get('products/view/{id}', 'Admins\ProductController@view')->name('view.product');
-		Route::get('product/manual/{id}', 'Admins\ProductController@downloadmanual')->name('download.manual');
 		Route::get('user/forgot/password', function(){
 			return view('auth.passwords.email');
 		})->name('forgot.password');
+
 		Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.reset');
 });
 

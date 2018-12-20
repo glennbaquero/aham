@@ -21,14 +21,12 @@ class CheckoutController extends Controller
         $redirectUrl = false;
 
         $invoice = Invoice::find($request->invoice_id);
-
         switch ($request->input('payment_method')) {
             case Invoice::GATEWAY_IPAY:
                     $gateway = new iPayProcessor;
                     $gateway->process($invoice);
                 break;
         }
-
         return response()->json([
             'invoice' => $invoice,
             'gateway' => $gateway,
@@ -59,8 +57,7 @@ class CheckoutController extends Controller
         Log::info('Running ' . __function__);
         Log::info($request);
 
-        Helpers::flash($request->input('ErrDesc'), 'iPay88 Error', 'error');
-
+    // Helpers::flash($request->input('ErrDesc'), 'iPay88 Error', 'error');
         if($request->input('Status') == 1) {
             // Helpers::flash('Thank you for your order! You will receive a confirmation via email shortly.');
         }

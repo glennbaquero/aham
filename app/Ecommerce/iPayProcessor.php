@@ -70,13 +70,13 @@ class iPayProcessor
     private function setSignatureData() {
         $this->amount = $this->invoice->renderTotal();
         $this->currency = 'PHP';
-        $this->reference_code = $this->invoice->contract_number;
-        // $this->paymentId =  1;
+        $this->reference_code = $this->invoice->application_number;
+        $this->paymentId =  1;
 
         Log::info($this->invoice->renderRawTotal());
 
         $this->signature = $this->buildSignature($this->amount, $this->currency, $this->reference_code);
-
+        Log::info($this->amount. ' - ' .$this->currency. ' - ' .$this->reference_code);
     }
 
     private function buildSignature($amount, $currency, $reference, $warranty_type = null, $paymentId = null) {
