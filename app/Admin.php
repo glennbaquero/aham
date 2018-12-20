@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Password;
 use Laravel\Scout\Searchable;
 
 use App\Traits\ActivityLogTrait;
+use Route;
 
 use App\Helpers;
 
@@ -29,6 +30,31 @@ class Admin extends Authenticatable
 
     const DEFAULT = 0;
     const REPAIRMAN = 1;
+
+    /**
+     * Boot All Model Events
+     * @return void
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        foreach (static::getModelEvents() as $event) {
+            static::$event(function($model) use ($event) {
+                $name = Route::currentRouteName();
+
+                switch ($name) {
+                    case 'admin.logout':
+                    
+                        break;
+                    
+                    default:
+                            $model->addActivity($event);
+                        break;
+                }
+            });
+        }
+    }
 
     /**
 	 * Send the password reset notification.

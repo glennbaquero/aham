@@ -50,14 +50,14 @@
       
       @if ($checker->permission->can(['admin.carousel.edit', 'admin.carousel.create', 'admin.carousel.destroy', 'admin.page-items.edit', 'admin.page-items.create', 'admin.page-items.destroy']))
       <li class="header">Content Management</li>
-      <li class="treeview {{ $checker->route->isActive(['admin.pages.', 'admin.page-items.', 'admin.carousel.'], 'menu-open') }}">
+      <li class="treeview {{ $checker->route->isActive(['admin.pages.', 'admin.page-items.', 'admin.carousel.', 'admin.locations.', 'admin.contact'], 'menu-open') }}">
         <a href="#">
           <i class="fas fa-puzzle-piece"></i> <span>Page Management</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
         </a>
-        <ul class="treeview-menu {{ $checker->route->isActive(['admin.pages.', 'admin.page-items.', 'admin.carousel.', 'admin.faqs']) }}">
+        <ul class="treeview-menu {{ $checker->route->isActive(['admin.pages.', 'admin.page-items.', 'admin.carousel.', 'admin.faqs', 'admin.locations.', 'admin.contact']) }}">
           <li class="{{ $checker->route->isActive('admin.pages.') }}">
             <a href="{{ route('admin.pages.index') }}"><i class="fas fa-boxes"></i> Page</a>
           </li>
@@ -71,7 +71,10 @@
             <a href="{{ route('admin.faqs.index') }}"><i class="fas fa-question"></i> FAQ</a>
           </li>
           <li class="{{ $checker->route->isActive('admin.contacts.') }}">
-            <a href="{{ route('admin.contacts.index') }}"><i class="fas fa-question"></i> Contact Us</a>
+            <a href="{{ route('admin.contacts.index') }}"><i class="fas fa-phone"></i> Contact Us</a>
+          </li>
+          <li class="{{ $checker->route->isActive('admin.locations.') }}">
+            <a href="{{ route('admin.locations.index') }}"><i class="fas fa-map"></i> Locations</a>
           </li>
         </ul>
       </li>

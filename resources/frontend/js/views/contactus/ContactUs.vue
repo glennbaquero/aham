@@ -1,6 +1,5 @@
 <template>
 	<div>
-			
 		<loader
         :loading="loading"
         ></loader>
@@ -28,49 +27,50 @@
 		</div>
 	</div>
 </template>
+
 <script>
-    import Loader from '../../components/Loader.vue';
-	export default {
-		props : {
-			url: String
-		}, 
+import Loader from '../../components/Loader.vue';
+export default {
+	props : {
+		url: String
+	}, 
 
-		components : {
-    		'loader': Loader,
-		},
+	components : {
+		'loader': Loader,
+	},
 
-		data() {
-			return {
-				info:{},
-				loading: false
-			}
-		},
+	data() {
+		return {
+			info:{},
+			loading: false
+		}
+	},
 
-		mounted() {
+	mounted() {
 
-		}, 
+	}, 
 
-		methods : {
-			send() {
-            	this.loading = true;
-            	var data = new FormData();
+	methods : {
+		send() {
+        	this.loading = true;
+        	var data = new FormData();
 
-            	data.append('firstname', this.info.firstname);
-            	data.append('lastname', this.info.lastname);
-            	data.append('email', this.info.email);
-            	data.append('phonenumber', this.info.phonenumber);
-            	data.append('message', this.info.message);
+        	data.append('firstname', this.info.firstname);
+        	data.append('lastname', this.info.lastname);
+        	data.append('email', this.info.email);
+        	data.append('phonenumber', this.info.phonenumber);
+        	data.append('message', this.info.message);
 
-            	axios.post(this.url, data)
-            		.then(response => {
-            			if(response.data.message === 1) {
-	            			this.loading = false;
-	            			swal('We are reviewing your message.', 'Thank you for messaging us. To give you a feedback we will send you a message through email or phone number.', 'success');
-	            			this.info = {};
-            			}
-            		})
+        	axios.post(this.url, data)
+    		.then(response => {
+    			if(response.data.message === 1) {
+        			this.loading = false;
+        			swal('We are reviewing your message.', 'Thank you for messaging us. To give you a feedback we will send you a message through email or phone number.', 'success');
+        			this.info = {};
+    			}
+    		});
 
-			}
 		}
 	}
+}
 </script>
