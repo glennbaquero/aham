@@ -273,7 +273,6 @@ Route::name('admin.')
 	Route::post('page-items/fetch/q?page_id={id}', 'PageItemFetchController@fetch')->name('page-items.fetch.page');
 	Route::post('page-items/fetch/page-items/{id?}', 'PageItemFetchController@fetchItem')->name('page-item.fetch');
 
-
 	Route::get('faqs', 'FaqController@index')->name('faqs.index');
 	Route::get('faqs/create', 'FaqController@create')->name('faqs.create');
 	Route::post('faqs/store', 'FaqController@store')->name('faqs.store');
@@ -287,8 +286,6 @@ Route::name('admin.')
 	Route::post('faqs/fetch/q?faqs={id}', 'FaqFetchController@fetch')->name('faqs.fetch.page');
 	Route::post('faqs/fetch/faqs/{id?}', 'FaqFetchController@fetchItem')->name('faq.fetch');
 
-
-
 	Route::get('contacts', 'ContactUsController@index')->name('contacts.index');
 	Route::get('contacts/create', 'ContactUsController@create')->name('contacts.create');
 	Route::post('contacts/store', 'ContactUsController@store')->name('contacts.store');
@@ -301,6 +298,19 @@ Route::name('admin.')
 	Route::post('contacts/fetch/q?archive=1', 'ContactUsFetchController@fetch')->name('contacts.archive');
 	Route::post('contacts/fetch/q?contacts={id}', 'ContactUsFetchController@fetch')->name('contacts.fetch.page');
 	Route::post('contacts/fetch/contacts/{id?}', 'ContactUsFetchController@fetchItem')->name('contact.fetch');
+
+	Route::get('discounts', 'DiscountController@index')->name('discounts');
+	Route::get('discount/create', 'DiscountController@create')->name('discount.create');
+	Route::post('discount/store', 'DiscountController@store')->name('discount.store');
+	Route::get('discount/{id}', 'DiscountController@edit')->name('discount.edit');
+	Route::post('discount/{id}', 'DiscountController@update')->name('discount.update');
+	Route::delete('discount/{id}', 'DiscountController@destroy')->name('discount.destroy');
+	Route::post('discount/restore/{user}', 'DiscountController@restore')->name('discount.restore');
+
+	Route::post('discounts/fetch/q', 'DiscountFetchController@fetch')->name('discounts.fetch');
+	Route::post('discounts/fetch/q?archive=1', 'DiscountFetchController@fetch')->name('discounts.archive');
+	Route::post('discount/fetch/q?discount={id}', 'DiscountFetchController@fetch')->name('discount.fetch.page');
+	Route::post('discount/fetch/discount/{id?}', 'DiscountFetchController@fetchItem')->name('discount.fetch');
 
 
 });

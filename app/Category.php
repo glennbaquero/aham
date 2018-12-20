@@ -31,6 +31,10 @@ class Category extends Model
     	return $this->hasMany(Product::class);
     }
 
+    public function discount() {
+        return $this->belongsTo(Discount::class);
+    }
+
     public function toSearchableArray() {
         return [
             'id' => $this->id,

@@ -45,14 +45,16 @@
 			</div>
 			<div class="ch__form-row">
 				<label>Discount Code</label>
-				<input class="input-text error" type="text" name=""><img src="">
+				<input class="input-text error discount_code" type="text" name=""><i class="info fas fa-check-circle" @click="validate"></i><img src="">
 			</div>
 			<div class="ch__form-row inlineBlock-parent by-2">
 				<div>
 					<p class="ch__title">Total:</p>	
 				</div
 				><div class="right-align">
-					<p class="ch__title">{{ item.product.extended_amount }}</p>
+					<p class="ch__title">{{ item.product.extended_amount - discounted_amount }}</p>
+					<input type="hidden" name="total_price" readonly :value="item.product.extended_amount - discounted_amount">
+					<input type="hidden" name="discount" readonly :value="discounted_amount">
 				</div>
 			</div>
 		</div>
@@ -91,8 +93,10 @@
 		data() {
 			return {
 				item: {},
+				discount_available:{},
     			loading:false,
-    			payment_method: 1
+    			payment_method: 1,
+    			discounted_amount: 0,
 			}
 		},
 
@@ -109,6 +113,7 @@
 				axios.get(this.fetchurl)
 					.then(response => {
 						this.item = response.data.invoice_item;
+						this.discount_available = response.data.discounts;
 					})
 			},
 
@@ -125,6 +130,8 @@
 				formData.append('contract_number', this.item.invoice.contract_number);
 				formData.append('amount', this.item.product.extended_amount);
 				formData.append('payment_method', this.payment_method);
+				formData.append('total_price', this.item.product.extended_amount - this.discounted_amount);
+				formData.append('discount', this.discounted_amount);
 
 				axios.post(this.checkouturl, formData)
 					.then(response => {
@@ -136,12 +143,33 @@
 
 						let invoice = data.invoice;
 						let user = data.user;
-						this.$refs.ipayform.init(data.gateway, invoice, user);
+						this.$refs.ipayform.init(data.gateway, invoice, user, this.item.product.extended_amount);
 		    			this.loading = false;
 					}).catch(errors => {
 						this.loading = false;
 						swal('Error!', errors, 'error');
 					})
+			},
+
+			validate() {
+				var $this = this,
+					total = this.discounted_amount;
+				if(!this.discount_amount) {
+					$this.discount_available.forEach(function(e){
+
+						if(e.discount_code === $('.discount_code').val()) {
+							swal('Discount Code Match!', 'Discount code is match to your credentials', 'success');
+							$this.discounted_amount = e.discount_amount;
+						} else if ($('.discount_code').val() === '') {
+							swal('Oooops!', 'Enter code!', 'error');
+						} else {
+							swal('Oooops!', 'Discount code is not match to your credentials', 'error');
+						}
+
+					});
+				} 
+
+				return this.discounted_amount;
 			}
 		}
 	}

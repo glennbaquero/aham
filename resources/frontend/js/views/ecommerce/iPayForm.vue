@@ -53,7 +53,7 @@ export default {
 			this.user = user;
 
 			this.$nextTick(() => {
-				// this.form.submit();
+				this.form.submit();
 			});
 		},
 	},
