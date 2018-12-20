@@ -3,10 +3,14 @@
   <section class="sidebar">
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
-      
+      @if ($checker->permission->can(['admin.application.edit', 'admin.application.create', 'admin.application.destroy']))
       <li class="header">Warranty</li>
       <li><a href="{{ route('admin.application') }}"><i class="fa fa-book"></i> <span>Application</span></a></li>
+      @endif
+      @if ($checker->permission->can(['admin.discount.edit', 'admin.discount.create', 'admin.discount.destroy']))
       <li><a href="{{ route('admin.discounts') }}"><i class="fa fa-book"></i> <span>Discount</span></a></li>
+      @endif
+      @if ($checker->permission->can(['admin.request.edit', 'admin.request.create', 'admin.request.destroy']))
       <li class="treeview {{ $checker->route->isActive(['admin.request'], 'menu-open') }}">
         <a href="#">
           <i class="fas fa-toolbox"></i> <span> Repair Service</span>
@@ -19,6 +23,7 @@
           <li><a href=""><i class="fas fa-history"></i> History</a></li>
         </ul>
       </li>
+      @endif
       
       @if ($checker->permission->can(['admin.product.edit', 'admin.product.create', 'admin.product.destroy']))
         <li class="header">Products</li>
@@ -42,7 +47,8 @@
           </ul>
         </li>
       @endif
-
+      
+      @if ($checker->permission->can(['admin.carousel.edit', 'admin.carousel.create', 'admin.carousel.destroy', 'admin.page-items.edit', 'admin.page-items.create', 'admin.page-items.destroy']))
       <li class="header">Content Management</li>
       <li class="treeview {{ $checker->route->isActive(['admin.pages.', 'admin.page-items.', 'admin.carousel.'], 'menu-open') }}">
         <a href="#">
@@ -69,7 +75,9 @@
           </li>
         </ul>
       </li>
-
+      @endif
+      
+      @if ($checker->permission->can(['admin.roles.edit', 'admin.roles.create', 'admin.roles.destroy']))
       <li class="header">Security</li>
       <li class="treeview {{ $checker->route->isActive(['admin.administrator', 'admin.role'], 'menu-open') }}">
         <a href="#">
@@ -88,6 +96,7 @@
         </ul>
       </li>
       <li class="{{ $checker->route->isActive('admin.activity-logs.') }}"><a href="{{ route('admin.activity-logs.index') }}"><i class="fa fa-clipboard-list"></i> <span>Activity Logs</span></a></li>
+      @endif
     </ul>
   </section>
   <!-- /.sidebar -->
