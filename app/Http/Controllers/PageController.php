@@ -53,4 +53,9 @@ class PageController extends Controller
     {
         return view('public.pages.basic-warranty-page');
     }
+
+    public function extended()
+    {
+        return view('public.pages.extended-warranty-page');
+    }
 }

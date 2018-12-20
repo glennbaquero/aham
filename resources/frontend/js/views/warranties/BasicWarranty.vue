@@ -1,15 +1,15 @@
 <template>
 	<div>
-		<loader
-        :loading="loading"
-        ></loader>
 		<div class="bw__form form">
+			<loader
+	        :loading="loading"
+	        ></loader>
 			<div class="bw__form-row">
 				<label>Model Number</label>
 				<select class="input-text select"  v-model="request.product">
 					<!-- <option>AWFL-8300B</option> -->
-					<option class="inlineBlock-parent by-2" v-for="product in products":value="product.id">
-						<div class="left-align">s
+					<option class="inlineBlock-parent by-2" v-for="product in products" :value="product.id">
+						<div class="left-align">
 							<img src="http://via.placeholder.com/30x30">
 						</div
 						><div class="right-align">
@@ -60,9 +60,12 @@
 		data() {
 			return {
 				products:{},
-				request:{},
+				request:{
+					price: null
+				},
 				image:null,
     			loading:false,
+				extend:'user/checkout/',
 			}
 		},
 

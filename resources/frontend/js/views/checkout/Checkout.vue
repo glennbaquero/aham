@@ -22,7 +22,7 @@
 		<p class="ch__sub-title">Payment Method</p>
 		<div class="check-box">
 			<label class="checkbox-lbl font--2">iPay88
-				<input type="checkbox" name="agree">
+				<input type="radio" name="payment_method" v-model="payment_method" :value="payment_method">
 				<span class="checkmark"></span>
 			</label>
 		</div>
@@ -92,6 +92,7 @@
 			return {
 				item: {},
     			loading:false,
+    			payment_method: 1
 			}
 		},
 
@@ -123,12 +124,11 @@
 				formData.append('serial_number', this.item.invoice.serial_number);
 				formData.append('contract_number', this.item.invoice.contract_number);
 				formData.append('amount', this.item.product.extended_amount);
+				formData.append('payment_method', this.payment_method);
 
 				axios.post(this.checkouturl, formData)
 					.then(response => {
 						const data = response.data;
-
-						swal('Success!', data.message, 'success');
 
 						if(data.redirectUrl) {
 							window.location.href = data.redirectUrl;

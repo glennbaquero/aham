@@ -23,6 +23,18 @@ class InvoiceItem extends Model
     	return $this->belongsTo(Product::class, 'product_id')->withTrashed();
     }
     
+    /*
+     * Renders
+     */
+
+    public function renderRawTotal() {
+        return $this->unit_price;
+    }
+
+    public function renderTotal() {
+        return number_format($this->renderRawTotal(), 2, '.', '');
+    }
+    
     public function renderName() {
         return '#' . $this->id . ' ' . $this->model;
     }	
