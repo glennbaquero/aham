@@ -18,15 +18,19 @@
 				</product-box>
 
 	    	</template>
+			
+			<template v-if="items.length > 0">
+				
+		    	<pagination ref="page"
+		        :fetchurl="url"
+		        :autofetch="true"
+		        :visible="true"
 
-	    	<pagination ref="page"
-	        :fetchurl="url"
-	        :autofetch="true"
-	        :visible="true"
+		        @total="init"
+		        @paginate="fetch"
+		        ></pagination>
 
-	        @total="init"
-	        @paginate="fetch"
-	        ></pagination>
+			</template>
 
 	    	<p v-show="items.length < 1">No products found.</p>
 		</div>
@@ -115,12 +119,16 @@ export default {
                 /* Emit data for parent component to render */
                 this.items = response.data.items;
 
-                /* Update pagination */
-                this.$refs.page.pagination = response.data.pagination;
+                if (this.items.length > 0) {
+	                /* Update pagination */
+	                this.$refs.page.pagination = response.data.pagination;
+                }
                 /* Check item length */
-                this.empty = items.length ? false : true;
+                this.empty = this.items.length ? false : true;
             }).catch(error => {
             	console.log(error);
+            }).then(() => {
+            	this.loading = false;
             });
         },
 

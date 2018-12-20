@@ -2,6 +2,8 @@ require('./bootstrap');
 window.Vue = require('vue');
 require('./script');
 
+Vue.component('map-selector', require('./views/MapSelector.vue'));
+
 Vue.component('product-page', require('./views/products/ProductPage.vue'));
 Vue.component('user-profile', require('./views/userprofile/UserProfile.vue'));
 Vue.component('user-image', require('./views/userprofile/SidebarImage.vue'));

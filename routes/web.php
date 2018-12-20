@@ -21,6 +21,11 @@ Route::get('/selected', function () {
 });
 
 
+Route::get('user/extended', function () {
+    return view('public.pages.extended-warranty-page');
+});
+
+Route::post('locations/fetch', 'LocationFetchController@fetch')->name('public.locations.fetch');
 Route::post('contactus/message', 'MessageController@sendmessage')->name('contactus.message');
 
 Route::group(['middleware' => ['auth']],function(){
@@ -299,6 +304,20 @@ Route::name('admin.')
 	Route::post('contacts/fetch/q?contacts={id}', 'ContactUsFetchController@fetch')->name('contacts.fetch.page');
 	Route::post('contacts/fetch/contacts/{id?}', 'ContactUsFetchController@fetchItem')->name('contact.fetch');
 
+	Route::get('locations', 'LocationController@index')->name('locations.index');
+	Route::get('locations/create', 'LocationController@create')->name('locations.create');
+	Route::post('locations/store', 'LocationController@store')->name('locations.store');
+	Route::get('locations/{id}', 'LocationController@edit')->name('locations.edit');
+	Route::post('locations/{id}', 'LocationController@update')->name('locations.update');
+	Route::delete('locations/{id}', 'LocationController@destroy')->name('locations.destroy');
+	Route::post('locations/restore/{user}', 'LocationController@restore')->name('locations.restore');
+
+	Route::post('locations/fetch/q', 'LocationFetchController@fetch')->name('locations.fetch');
+	Route::post('locations/fetch/positions', 'LocationFetchController@fetchPositions')->name('locations.fetch-positions');
+	Route::post('locations/fetch/q?archive=1', 'LocationFetchController@fetch')->name('locations.fetch.archive');
+	Route::post('locations/fetch/q?page_id={id}', 'LocationFetchController@fetch')->name('locations.fetch.page');
+	Route::post('locations/fetch/locations/{id?}', 'LocationFetchController@fetchItem')->name('location.fetch');
+
 	Route::get('discounts', 'DiscountController@index')->name('discounts');
 	Route::get('discount/create', 'DiscountController@create')->name('discount.create');
 	Route::post('discount/store', 'DiscountController@store')->name('discount.store');
@@ -311,6 +330,4 @@ Route::name('admin.')
 	Route::post('discounts/fetch/q?archive=1', 'DiscountFetchController@fetch')->name('discounts.archive');
 	Route::post('discount/fetch/q?discount={id}', 'DiscountFetchController@fetch')->name('discount.fetch.page');
 	Route::post('discount/fetch/discount/{id?}', 'DiscountFetchController@fetchItem')->name('discount.fetch');
-
-
 });
