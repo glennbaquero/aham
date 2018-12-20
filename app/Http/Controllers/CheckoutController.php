@@ -10,6 +10,7 @@ use App\Ecommerce\iPayProcessor;
 
 use Carbon\Carbon;
 use App\Invoice;
+use App\InvoiceItem;
 use Alert;
 
 class CheckoutController extends Controller
@@ -21,12 +22,17 @@ class CheckoutController extends Controller
         $redirectUrl = false;
 
         $invoice = Invoice::find($request->invoice_id);
+        
+        $item = $invoice->invoice_items()->update($request->only(['total_price', 'discount']));
+        
         switch ($request->input('payment_method')) {
             case Invoice::GATEWAY_IPAY:
                     $gateway = new iPayProcessor;
                     $gateway->process($invoice);
                 break;
         }
+
+
         return response()->json([
             'invoice' => $invoice,
             'gateway' => $gateway,
@@ -58,6 +64,7 @@ class CheckoutController extends Controller
         Log::info($request);
 
     // Helpers::flash($request->input('ErrDesc'), 'iPay88 Error', 'error');
+
         if($request->input('Status') == 1) {
             // Helpers::flash('Thank you for your order! You will receive a confirmation via email shortly.');
         }

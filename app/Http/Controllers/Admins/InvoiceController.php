@@ -141,8 +141,11 @@ class InvoiceController extends Controller
         $invoice_item->invoice;
         $invoice_item->product;
 
+        $discounts = auth()->user()->discounts;
+
         $item = [
             'invoice_item' => $invoice_item,
+            'discounts' => $discounts,
         ];
 
         return $item;

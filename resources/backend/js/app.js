@@ -51,6 +51,9 @@ Vue.component('application-details', require('./views/applications/ApplicationDe
 Vue.component('contact-us-table', require('./views/contactus/ContactUsTable.vue'));
 Vue.component('contact-us-details', require('./views/contactus/ContactUsDetails.vue'));
 
+Vue.component('discounts-table', require('./views/discounts/DiscountsTable.vue'));
+Vue.component('discount-details', require('./views/discounts/DiscountDetails.vue'));
+
 
 const app = {
 	init() {

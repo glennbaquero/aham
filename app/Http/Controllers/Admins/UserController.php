@@ -101,7 +101,7 @@ class UserController extends Controller
             'product_id' => $request->product_id,
             'unit_price' => $product->extended_amount,
             'discount' => 0,
-            'total_price' => 0,
+            'total_price' => $product->extended_amount,
         ]);
 
 
@@ -144,7 +144,7 @@ class UserController extends Controller
             'product_id' => $request->product_id,
             'unit_price' => $product->extended_amount,
             'discount' => 0,
-            'total_price' => 0,
+            'total_price' => $product->extended_amount,
         ]);
 
 
