@@ -15,6 +15,15 @@ use DB;
 
 class TypeController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('App\Http\Middleware\Admins\ProductTypes\TypeIndexMiddleware', ['only' => ['index']]);
+        $this->middleware('App\Http\Middleware\Admins\ProductTypes\TypeStoreMiddleware', ['only' => ['create', 'store']]);
+        $this->middleware('App\Http\Middleware\Admins\ProductTypes\TypeUpdateMiddleware', ['only' => ['edit', 'update']]);
+        $this->middleware('App\Http\Middleware\Admins\ProductTypes\TypeDestroyMiddleware', ['only' => ['destroy', 'restore']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

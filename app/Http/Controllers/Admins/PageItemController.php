@@ -13,6 +13,15 @@ use App\Page;
 
 class PageItemController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('App\Http\Middleware\Admins\PageItems\PageItemIndexMiddleware', ['only' => ['index']]);
+        $this->middleware('App\Http\Middleware\Admins\PageItems\PageItemStoreMiddleware', ['only' => ['create', 'store']]);
+        $this->middleware('App\Http\Middleware\Admins\PageItems\PageItemUpdateMiddleware', ['only' => ['edit', 'update']]);
+        $this->middleware('App\Http\Middleware\Admins\PageItems\PageItemDestroyMiddleware', ['only' => ['destroy', 'restore']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -11,6 +11,15 @@ use DB;
 
 class RoleController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('App\Http\Middleware\Admins\RolesAndPermissions\RolesPermissionsIndexMiddleware', ['only' => ['index']]);
+        $this->middleware('App\Http\Middleware\Admins\RolesAndPermissions\RolesPermissionsStoreMiddleware', ['only' => ['create', 'store']]);
+        $this->middleware('App\Http\Middleware\Admins\RolesAndPermissions\RolesPermissionsUpdateMiddleware', ['only' => ['edit', 'update']]);
+        $this->middleware('App\Http\Middleware\Admins\RolesAndPermissions\RolesPermissionsDestroyMiddleware', ['only' => ['destroy', 'restore']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

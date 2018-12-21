@@ -12,6 +12,15 @@ use DB;
 
 class ContactUsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('App\Http\Middleware\Admins\ContactUs\ContactUsIndexMiddleware', ['only' => ['index']]);
+        $this->middleware('App\Http\Middleware\Admins\ContactUs\ContactUsStoreMiddleware', ['only' => ['create', 'store']]);
+        $this->middleware('App\Http\Middleware\Admins\ContactUs\ContactUsUpdateMiddleware', ['only' => ['edit', 'update']]);
+        $this->middleware('App\Http\Middleware\Admins\ContactUs\ContactUsDestroyMiddleware', ['only' => ['destroy', 'restore']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
