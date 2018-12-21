@@ -30,7 +30,16 @@ class InvoiceFetchController extends FetchController
      */
     public function filterQuery($query)
     {
-        return $query->where('status', 0);
+        if ($this->request->filled('search')) {
+            $ids = $this->class::search($this->request->input('search'))->get()->pluck('id')->toArray();
+            $query = $query->whereIn('id', $ids);
+        }
+        
+        if($this->request->filled('status')) {
+           $query = $query->where('status',  $this->request->input('status'));
+        }
+
+        return $query;
     }
 
     /**
@@ -44,16 +53,15 @@ class InvoiceFetchController extends FetchController
         $result = [];
 
         foreach($items as $item) {
-        	// $product = $item->invoice_items->pluck('product_id');
-        	// $products = Product::find($product);
             array_push($result, array(
                 'id' => $item->id,
                 'invoice' => $item->invoice,
-                // 'model' => $item->product->model,
                 'serial_number' => $item->invoice->serial_number,
                 'contract_number' => $item->invoice->contract_number,
                 'file_extension' => $item->invoice->file_extension,
                 'application_number' => $item->invoice->application_number,
+                'status_label' => $item->renderStatusLabel(),
+                'status_class' => $item->renderStatusClass(),
                 'created_at' => $item->created_at->format('M d, Y (H:i:s)'),
 
                 'actions' => array(

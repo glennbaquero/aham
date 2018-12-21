@@ -23,7 +23,11 @@ class CheckoutController extends Controller
 
         $invoice = Invoice::find($request->invoice_id);
         
-        $item = $invoice->invoice_items()->update($request->only(['total_price', 'discount']));
+        $item = $invoice->invoice_items()->update([
+            'total_price' => $request->total_price,
+            'discount' => $request->discount,
+            'status' => InvoiceItem::INVOICE_APPROVED
+        ]);
         
         switch ($request->input('payment_method')) {
             case Invoice::GATEWAY_IPAY:

@@ -22,7 +22,10 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        return view('admin.applications.index');
+        $status = json_encode(InvoiceItem::getStatus());
+        return view('admin.applications.index', [
+            'status' => $status,
+        ]);
     }
 
     /**
@@ -81,7 +84,7 @@ class InvoiceController extends Controller
     {
         DB::beginTransaction();
             $invoice_item = InvoiceItem::find($id);
-            $invoice_item->update(['status' => 1]);
+            $invoice_item->update(['status' => InvoiceItem::APP_APPROVED]);
             $user = User::find($request->get('id'));
         DB::commit();  
 
