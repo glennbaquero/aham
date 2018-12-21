@@ -16,6 +16,12 @@
  * usr__[ USER PROFILE PAGE ]
  * ======================= */
 
+.y-scrollable {
+	max-height: 100%;
+	-ms-overflow-y: auto;
+	    overflow-y: auto;
+}
+
 .filters__container {
 	margin-top: 180px;
 	margin-bottom: 40px;

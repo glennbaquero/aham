@@ -17,7 +17,7 @@
 					<i class="fa fa-search color--white"></i>
 				</div>
 				
-				<a href="" class="search-btn">
+				<a href="{{ route('user.extended') }}" class="search-btn">
 					<button class="" type="submit">Extended Warranty</button>
 				</a>
 			</form>
@@ -33,30 +33,6 @@
 			</div>
 			<div class="navigation__link">
 				<a class="navigation__text" href="{{ url('products') }}">Products</a>
-				<i class="dropdown-icon icon fa fa-angle-down" data-dropdown-id="dropdown-2"></i>
-				<div id="dropdown-2" class="navigation__drop-down">
-					<p class="tip"></p>
-					<div class="navigation__link" id="1">
-						<a href="#" class="navigation__text">
-							Refrigerators
-						</a>
-					</div>	
-					<div class="navigation__link" id="1">
-						<a href="#" class="navigation__text">
-							Kitchen
-						</a>
-					</div>	
-					<div class="navigation__link" id="1">
-						<a href="#" class="navigation__text">
-							Aircons
-						</a>
-					</div>	
-					<div class="navigation__link" id="1">
-						<a href="#" class="navigation__text">
-							Small Appliances
-						</a>
-					</div>	
-				</div>
 			</div>
 			<div class="navigation__link inlineBlock-parent">
 				<p data-dropdown-id="dropdown-1" class="dropdown-icon navigation__text">Warranties <i class="icon fa fa-angle-down"></i></p>
@@ -86,13 +62,17 @@
 			<div class="navigation__link">
 				<a class="navigation__text" href="{{ url('contact') }}">Contact</a>
 			</div>
+			@if (!Auth::check())
+				<div class="navigation__link">
+					<a class="navigation__text" href="{{ route('signup') }}"><i class="icon fa fa-user mr-2"></i> Sign Up</a>
+					<a class="navigation__text" href="{{ route('login') }}"><i class="icon fa fa-user mr-2"></i> Login</a>
+				</div>
+			@endif
 			<div class="header__user">
-				@if(!Auth::check())
-					<a href="{{ route('signup') }}" class="navigation__text"><i class="icon fa fa-user"></i>Sign Up</a>
-				@else
+				@if(Auth::check())
 					<p  data-dropdown-id="dropdown-3" class="dropdown-icon navigation__text">
 						<i class="icon fa fa-user"></i>
-						{{ Auth::user()->firstname. ' '. Auth::user()->lastname}}
+						{{ Auth::user()->renderFullname() }}
 					</p>
 					{{-- Dropdown --}}
 					<div id="dropdown-3" class="navigation__drop-down">
@@ -150,33 +130,32 @@
 		</div>
 	</div>
 
-	<div class="mbl-menu__link-holder">
+	<div class="mbl-menu__link-holder y-scrollable pb-5">
 		<div class="mbl-menu__btn">
 			<i name="close" class="mbl-menu-close ion-android-close" role="img" aria-label="close"></i>
 		</div>
 		<div class="mbl-menu__user inlineBlock-parent">
-			<div class="mbl-menu__user-icon">
-				<img class="img-fit" src="https://via.placeholder.com/50x50">
-			</div>
-			<p class="mbl-menu__username">John Doe</p>
+			@if (Auth::check())
+				<div class="mbl-menu__user-icon">
+					<img class="img-fit" src="{{ Auth::user()->renderFilePath() }}">
+				</div>
+				<p class="mbl-menu__username">{{ Auth::user()->renderFullname() }}</p>
+			@endif
 		</div>
+		
 		<div class="mbl-menu__links">
 			<a href="{{ route('home') }}"><p class="mbl-menu__text">Home</p></a>
 		</div>
+		<div class="mbl-menu__links">
+			<a href="{{ url('products') }}"><p class="mbl-menu__text">Products</p></a>
+		</div>
 		<div class="mbl-menu__accordion-list">
-			<div class="mbl-menu__accordion">
-				<p class="mbl-menu__acc-menu"><a href="{{ url('products') }}">Products</a><i class="fa fa-angle-right"></i></p>
-				<div class="mbl-menu__acc-item">
-					<p>Refrigerator</p>
-					<p>Washing Machine</p>
-				</div>
-			</div>
 			<div class="mbl-menu__accordion">
 				<p class="mbl-menu__acc-menu">Warranties<i class="fa fa-angle-right"></i></p>
 				<div class="mbl-menu__acc-item">
-					<p>Basic Warranty</p>
-					<p>Extended Warranty</p>
-					<p>Warranty Information</p>
+					<a class="d-block" href="{{ route('user.basic') }}">Basic Warranty</a>
+					<a class="d-block" href="{{ route('user.extended') }}">Extended Warranty</a>
+					<a class="d-block" href="{{ url('warranty_info') }}">Warranty Information</a>
 				</div>
 			</div>				
 		</div>
@@ -194,8 +173,26 @@
 				<i class="fa fa-envelope"></i><p>info@aham.org</p>
 			</div>
 		</div>
+		@if(!Auth::check())
+			<div class="mbl-menu__links">
+				<a href="{{ route('login') }}"><p class="mbl-menu__text">Login</p></a>
+			</div>
+			<div class="mbl-menu__links">
+				<a href="{{ route('signup') }}"><p class="mbl-menu__text">Sign Up</p></a>
+			</div>
+		@else
+			<div class="mbl-menu__links">
+				<a href="{{ route('user.profile') }}"><p class="mbl-menu__text">My Profile</p></a>
+			</div>
+			<div class="mbl-menu__links">
+				<a href="{{ route('user.products') }}"><p class="mbl-menu__text">My Products</p></a>
+			</div>
+			<div class="mbl-menu__links">
+				<a href="{{ route('user.logout') }}"><p class="mbl-menu__text">Logout</p></a>
+			</div>
+		@endif
 		<div class="mbl-menu__btn">
-			<a href="{{ url('extended') }}" class="btn btn-white"><p>Extended Warranty</p></a>
+			<a href="{{ route('user.extended') }}" class="btn btn-white"><p>Extended Warranty</p></a>
 		</div>
 	</div>	
 </header>

@@ -104,6 +104,12 @@ class User extends Authenticatable
         return $this->firstname . ' '. $this->lastname;
     }
 
+    public function renderFilePath($column = 'user_image') {
+        $path = null;
+        if ($this[$column]) { $path = asset('storage/' . $this[$column]); }
+        return $path;
+    }
+
     public function renderName() {
         return '#' . $this->id . ' ' . $this->renderFullName();
     }
