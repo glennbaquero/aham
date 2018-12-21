@@ -6,7 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ServiceRepairRequest;
 use Illuminate\Http\Request;
 
+use App\Notifications\AssignedTechnicianNotification;
+
 use App\RepairServiceRequest;
+use App\Admin;
+use App\RepairMan;
+
 use DB;
 
 class RepairServiceRequestController extends Controller
@@ -46,6 +51,10 @@ class RepairServiceRequestController extends Controller
         DB::beginTransaction();
         $repair = RepairServiceRequest::store($request);        
         DB::commit();
+
+        $repair_man = Admin::find($request->repair_men_id);
+
+        $repair_man->notify(new AssignedTechnicianNotification($repair_man));
 
         return response()->json([
             'message' => 'A new request has been created!',
@@ -90,6 +99,13 @@ class RepairServiceRequestController extends Controller
         DB::beginTransaction();
         $repair = RepairServiceRequest::store($request, $repair);     
         DB::commit();
+
+        $repairman = $repair->repairman;
+        
+        if($repairman->wasChanged()) {
+            $repair_man = Admin::find($request->repair_men_id);
+            $repair_man->notify(new AssignedTechnicianNotification($repair_man));
+        }
 
         return response()->json([
             'message' => "You have successfully updated {$repair->renderName()}",
