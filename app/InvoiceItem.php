@@ -15,6 +15,11 @@ class InvoiceItem extends Model
 	protected $guarded = [];
     protected $dates = ['deleted_at'];
 
+    const APP_PENDING = 0;
+    const APP_APPROVED = 1;
+    const INVOICE_PENDING = 2;
+    const INVOICE_APPROVED = 3;
+
     public function invoice() {
     	return $this->belongsTo(Invoice::class, 'invoice_id');
     }
@@ -22,10 +27,51 @@ class InvoiceItem extends Model
     public function product() {
     	return $this->belongsTo(Product::class, 'product_id')->withTrashed();
     }
+
+    /**
+     * @Getters
+     */
+
+    public static function getStatus() {
+        return [
+            ['value' => static::APP_PENDING, 'label' => 'PENDING APPLICATION', 'class' => 'bg-red'],
+            ['value' => static::APP_APPROVED, 'label' => 'APPROVED APPLICATION', 'class' => 'bg-blue'],
+            ['value' => static::INVOICE_PENDING, 'label' => 'PENDING INVOICE', 'class' => 'bg-red'],
+            ['value' => static::INVOICE_APPROVED, 'label' => 'APPROVED INVOICE', 'class' => 'bg-blue'],
+        ];
+    }
+    
+    /**
+     * @Helpers
+     */
+    public function renderConstants($array, $value, $column = null) {
+
+        /* Loop through the array */
+        foreach ($array as $obj) {
+            
+            if($obj['value'] == $value) {
+
+                /* Fetch columm if specified */
+                if($column && isset($obj[$column]))
+                    return $obj[$column];
+
+                return $obj;
+            }
+        }
+    }
     
     /*
      * Renders
      */
+
+    
+    public function renderStatusLabel() {
+        return $this->renderConstants(static::getStatus(), $this->status, 'label');
+    }
+
+    public function renderStatusClass() {
+        return $this->renderConstants(static::getStatus(), $this->status, 'class');
+    }
 
     public function renderRawTotal() {
         return $this->unit_price;

@@ -8,10 +8,14 @@
             ></loader>
     		
     		<div class="row">
-    			<!-- FILTERS -->
-    			<div class="col-sm-6 hidden-xs form-inline">
-    			
-    			</div>
+                <!-- FILTERS -->
+                <div class="col-sm-6 hidden-xs form-inline">
+                    <filter-box v-show="filterstatus.length > 0"
+                    @onfilter="filterByStatus"
+                    :filters="filterstatus"
+                    :defaultlabel="'Filter by Status'"
+                    ></filter-box>
+                </div>
 
     			<!-- SEARCHBOX -->
     			<div class="col-sm-3 pull-right">
@@ -23,8 +27,8 @@
 
     		<!-- DATATABLE -->
     		<datatable ref="datatable"
-            :headers="['#', 'Model', 'Serial Number', 'Contract #', 'Application Number', 'File Extension', 'Created At']"
-            :columns="['id', 'model', 'serial_number', 'contract_number', 'application_number', 'file_extension', 'created_at']"
+            :headers="['#', 'Model', 'Serial Number', 'Contract #', 'Application Number', 'File Extension', 'Status', 'Created At']"
+            :columns="['id', 'model', 'serial_number', 'contract_number', 'application_number', 'file_extension', 'status', 'created_at']"
     		:filters="filters"
     		
     		:fetchurl="fetchurl"
@@ -43,7 +47,10 @@
                         <td>{{ item.serial_number }}</td>
                         <td>{{ item.contract_number }}</td>
                         <td>{{ item.application_number }}</td>
-    					<td>{{ item.file_extension }}</td>
+                        <td>{{ item.file_extension }}</td>
+    					<td>
+                              <span class="badge" :class="item.status_class">{{ item.status_label }}</span>
+                        </td>
                         <td>{{ item.created_at }}</td>     
                         <td v-show="actionable">
                             <center>
@@ -85,7 +92,7 @@
             actionable: {
                 default: true,
             },
-            filtertags: {},
+            filterstatus: {},
     	},
 
     	components: {
@@ -148,11 +155,11 @@
                 this.fetch();
             },
 
-            filterByTag(value) {
-                this.filters = Object.assign(this.filters, { tag_id: value });
+            filterByStatus(value) {
+                this.filters = Object.assign(this.filters, { status: value });
                 this.fetch();
             },
-
+            
     		/**
     	     * Add filter to request and then fetch.
     	     */

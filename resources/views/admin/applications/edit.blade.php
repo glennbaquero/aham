@@ -42,12 +42,14 @@
 					<application-details ref="application-details"
 					:fetchurl="'{{ route('admin.application.fetch', $invoice->id) }}'">
 					</application-details>
-
+					
+					@if($invoice->status === 0)
 					<div class="row">
 						<div class="col col-xs-12">
 							<button type="submit" class="btn btn-success pull-right"><span class="fa fa-times"></span>Approved</button>
 						</div>
 					</div>
+					@endif
 				</form>
 			<!-- /.box-body -->
 			</div>

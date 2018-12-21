@@ -16,7 +16,7 @@
 				<div class="box box-widget nav-tabs-custom table-responsive">
 	                <ul class="nav nav-tabs">
 	                    <li class="active">
-	                        <a href="#invoices" data-toggle="tab"><h5><b>Admins</b></h5></a>
+	                        <a href="#invoices" data-toggle="tab"><h5><b>Application</b></h5></a>
 	                    </li>
 	                    <li>
 	                        <a @click="runDatatable('invoices-admin')" href="#invoices-admin" data-toggle="tab"><h5><b>Archive</b></h5></a>
@@ -29,6 +29,7 @@
 	                        <applications-table ref="invoices"
 								:autofetch="true"
 								:fetchurl="'{{ route('admin.applications.fetch') }}'"
+								:filterstatus="{{ $status }}"
 							></applications-table>
 
 	                    </div>
