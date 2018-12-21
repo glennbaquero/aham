@@ -103,10 +103,24 @@
         </ul>
       </li>
       @endif
+      
+      @if ($checker->permission->can(['admin.users.show', 'admin.users.destroy']))
+        <li class="{{ $checker->route->isActive('admin.users.') }}">
+          <a href="{{ route('admin.users.index') }}"><i class="fa fa-users"></i>
+            Users
+          </a>
+        </li>
+      @endif
 
       @if ($checker->permission->can(['admin.activity-logs.index']))
-      <li class="{{ $checker->route->isActive('admin.activity-logs.') }}"><a href="{{ route('admin.activity-logs.index') }}"><i class="fa fa-clipboard-list"></i> <span>Activity Logs</span></a></li>
+        <li class="{{ $checker->route->isActive('admin.activity-logs.') }}">
+          <a href="{{ route('admin.activity-logs.index') }}">
+            <i class="fa fa-clipboard-list"></i>
+            <span>Activity Logs</span>
+          </a>
+        </li>
       @endif
+
     </ul>
   </section>
   <!-- /.sidebar -->

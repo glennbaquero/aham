@@ -57,6 +57,9 @@ Vue.component('location-details', require('./views/locations/LocationDetails.vue
 Vue.component('discounts-table', require('./views/discounts/DiscountsTable.vue'));
 Vue.component('discount-details', require('./views/discounts/DiscountDetails.vue'));
 
+Vue.component('user-table', require('./views/users/UserTable.vue'));
+Vue.component('user-details', require('./views/users/UserDetails.vue'));
+
 const app = {
 	init() {
 		this.setupVue();

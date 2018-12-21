@@ -30,13 +30,13 @@ Route::post('contactus/message', 'MessageController@sendmessage')->name('contact
 
 Route::group(['middleware' => ['auth']],function(){
 		Route::get('user/profile', 'PageController@profile')->name('user.profile');
-		Route::get('user/fetch', 'Admins\UserController@fetchDetails')->name('user.fetch.details');
-		Route::post('user/update/{id}', 'Admins\UserController@update')->name('user.update');
-		Route::post('user/update/password/{id}', 'Admins\UserController@updatepassword')->name('user.update.password');
+		Route::get('user/fetch', 'UserController@fetchDetails')->name('user.fetch.details');
+		Route::post('user/update/{id}', 'UserController@update')->name('user.update');
+		Route::post('user/update/password/{id}', 'UserController@updatepassword')->name('user.update.password');
 		Route::get('user/basic', 'PageController@basic')->name('user.basic');
 		Route::get('product/fetch/basic', 'Admins\ProductController@warrantyproductfetch')->name('fetch.product');
-		Route::post('product/basic', 'Admins\UserController@oneyearwarranty')->name('apply.oneyear.warranty');
-		Route::get('user/products', 'Admins\UserController@userproduct')->name('user.products');
+		Route::post('product/basic', 'UserController@oneyearwarranty')->name('apply.oneyear.warranty');
+		Route::get('user/products', 'UserController@userproduct')->name('user.products');
 		Route::get('user/products/fetch', 'UserProductFetchController@fetch')->name('user.products.fetch');
 		Route::get('user/checkout/{id}', 'Admins\InvoiceController@checkout')->name('checkout');
 		Route::get('checkout/fetch/{id}', 'Admins\InvoiceController@checkoutfetch')->name('checkout.fetch');
@@ -44,7 +44,7 @@ Route::group(['middleware' => ['auth']],function(){
 		Route::post('ipay/process', 'CheckoutController@ipayProcess')->name('ipay.process');
 		Route::post('ipay/return', 'CheckoutController@ipayReturn')->name('ipay.return');
 		Route::get('user/extended', 'PageController@extended')->name('user.extended');
-		Route::post('user/extended', 'Admins\UserController@extendedwarranty')->name('apply.extended.warranty');
+		Route::post('user/extended', 'UserController@extendedwarranty')->name('apply.extended.warranty');
 });
 
 Route::get('products/view/{id}', 'Admins\ProductController@view')->name('view.product');
@@ -56,7 +56,7 @@ Route::get('product/manual/{id}', 'Admins\ProductController@downloadmanual')->na
 Route::group(['middleware' => ['guest']],function(){
 		Route::get('user/signup', 'PageController@signup')->name('signup');
 		Route::post('user/register', 'Auth\RegisterController@create')->name('register');
-		Route::get('/user/verification/{token}', 'Admins\UserController@verifyAccount')->name('email.verification');
+		Route::get('/user/verification/{token}', 'UserController@verifyAccount')->name('email.verification');
 		
 		Route::get('user/forgot/password', function(){
 			return view('auth.passwords.email');
@@ -330,4 +330,14 @@ Route::name('admin.')
 	Route::post('discounts/fetch/q?archive=1', 'DiscountFetchController@fetch')->name('discounts.archive');
 	Route::post('discount/fetch/q?discount={id}', 'DiscountFetchController@fetch')->name('discount.fetch.page');
 	Route::post('discount/fetch/discount/{id?}', 'DiscountFetchController@fetchItem')->name('discount.fetch');
+
+	Route::get('users', 'UserController@index')->name('users.index');
+	Route::get('users/create', 'UserController@create')->name('users.create');
+	Route::get('users/{id}', 'UserController@edit')->name('users.edit');
+	Route::delete('users/{id}', 'UserController@destroy')->name('users.destroy');
+	Route::post('users/restore/{user}', 'UserController@restore')->name('users.restore');
+
+	Route::post('users/fetch/q', 'UserFetchController@fetch')->name('users.fetch');
+	Route::post('users/fetch/q?archive=1', 'UserFetchController@fetch')->name('users.fetch.archive');
+	Route::post('users/fetch/users/{id?}', 'UserFetchController@fetchItem')->name('user.fetch');
 });
