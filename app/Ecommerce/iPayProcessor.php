@@ -5,8 +5,8 @@ namespace App\Ecommerce;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-// use App\Notifications\UserPaid;
-// use App\Notifications\InvoicePaid;
+use App\Notifications\UserPaid;
+use App\Notifications\InvoicePaid;
 
 use App\Invoice;
 use App\User;
@@ -51,8 +51,8 @@ class iPayProcessor
 
         if($this->checkResponse()) {
             $this->processInvoice();
-            // $this->notifyAdmin();
-            // $this->notifyUser();
+            $this->notifyAdmin();
+            $this->notifyUser();
 
             $action = 'RECEIVEOK';
         }
@@ -140,17 +140,14 @@ class iPayProcessor
 
     private function notifyUser()
     {
-        // $this->invoice->user->notify(new UserPaid($this->invoice));
+        $this->invoice->user->notify(new InvoicePaid($this->invoice));
     }
 
     private function notifyAdmin()
     {
-        // $admins = Helpers::getNotifiableAdmins('invoices');
-
-        // foreach ($admins as $admin) {
-        //     $admin->notify(new InvoicePaid($this->invoice));
-
-        // }
+        foreach ($admins as $admin) {
+            $admin->notify(new UserPaid($this->invoice));
+        }
     }
 
 }

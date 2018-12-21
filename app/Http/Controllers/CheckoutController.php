@@ -32,6 +32,8 @@ class CheckoutController extends Controller
                 break;
         }
 
+        $invoice->update(['warranty_type' => 1]);
+
 
         return response()->json([
             'invoice' => $invoice,
