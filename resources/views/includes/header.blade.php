@@ -64,12 +64,12 @@
 				<div id="dropdown-1" class="navigation__drop-down">
 					<p class="tip"></p>
 					<div class="navigation__link" id="1">
-						<a href="{{ url('basic') }}" class="navigation__text">
+						<a href="{{ route('user.basic') }}" class="navigation__text">
 							Basic Warranty
 						</a>
 					</div>	
 					<div class="navigation__link" id="1">
-						<a href="{{ url('extended') }}" class="navigation__text">
+						<a href="{{ route('user.extended') }}" class="navigation__text">
 							Extended Warranty
 						</a>
 					</div>	

@@ -36,7 +36,7 @@
 				<span>I want</span>
 				<p>1 Year Free Warranty</p>
 			</button
-			><button type="submit" class="margin btn btn-gray">
+			><button type="submit" class="margin btn btn-gray" @click="ExtendedWarranty()">
 				<span>I want</span>
 				<p>Extended Warranty</p>
 			</button>
@@ -50,7 +50,8 @@
 	export default {
 		props : {
 			fetchproducturl: String,
-			oneyearwarranty: String
+			oneyearwarranty: String,
+			extendedurl: String
 		}, 
 
 		components : {
@@ -110,8 +111,46 @@
             				this.loading = false;
 	            			swal('We are reviewing your application.', 'Thank you for registering your product. To proceed well send you a link through email approving your application.', 'success');
 	            			this.request = {};
+            			} else {
+            				this.loading = false;
             			}
+            		})
+            		.catch(error => {
+            			this.loading = false;
+            			swal('Ooops!', 'Fill up all the fields with correct data!', 'error');
             		});
+            },
+
+            ExtendedWarranty() {
+            	this.loading = true;
+            	var data = new FormData();
+
+            	data.append('product_id', this.request.product);
+            	data.append('serial_number', this.request.serial_number);
+            	data.append('purchase_date', this.request.purchase_date);
+            	data.append('proof_purchase', this.image);
+            	data.append('application_number', Math.random().toString(36).substr(2));
+
+				axios.post(this.extendedurl, data)
+					.then(response => {
+            			console.log(response.data);
+            			if(response.data.message == 1){
+            				this.loading = false;
+	            			swal('We are reviewing your application.', 
+	            				'Thank you for registering your product. To proceed you need to complete the transaction.',
+	            				'success')
+								.then(function(){
+			            			window.location.href = response.data.redirect;
+		            			});
+	            			this.request = {};
+            			} else {
+							this.loading = false;
+            			}
+            		})
+            		.catch(error => {
+            			this.loading = false;
+            			swal('Ooops!', 'Fill up all the fields with correct data!', 'error');
+            		});;
             },
 
             productImage(e) {

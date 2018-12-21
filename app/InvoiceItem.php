@@ -102,7 +102,7 @@ class InvoiceItem extends Model
     }
 
     public function renderView() {
-        return route('admin.application.edit', $this->id);
+        return route('admin.application.approve', $this->id);
     }
 
     public function renderDelete() {

@@ -44,12 +44,8 @@ class SamplePermissionTableSeeder extends Seeder
                 'icon' => 'fa fa-boxes',
                 'items' => [
                     [
-                        'name' => 'admin.application.edit',
+                        'name' => 'admin.application.approve',
                         'label' => 'Edit Application',
-                    ],
-                    [
-                        'name' => 'admin.application.create',
-                        'label' => 'Add Application',
                     ],
                     [
                         'name' => 'admin.application.destroy',

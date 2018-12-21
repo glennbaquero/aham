@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth']],function(){
 		Route::get('user/profile', 'PageController@profile')->name('user.profile');
 		Route::get('user/fetch', 'UserController@fetchDetails')->name('user.fetch.details');
 		Route::post('user/update/{id}', 'UserController@update')->name('user.update');
-		Route::post('user/update/password/{id}', 'UserController@updatepassword')->name('user.update.password');
+		Route::post('user/updatepassword/{id}', 'UserController@updatepassword')->name('user.update.password');
 		Route::get('user/basic', 'PageController@basic')->name('user.basic');
 		Route::get('product/fetch/basic', 'Admins\ProductController@warrantyproductfetch')->name('fetch.product');
 		Route::post('product/basic', 'UserController@oneyearwarranty')->name('apply.oneyear.warranty');
@@ -166,7 +166,7 @@ Route::name('admin.')
 	 * APPLICATION
 	 ****************/
 	Route::get('applications', 'InvoiceController@index')->name('application');
-	Route::get('application/edit/{id}', 'InvoiceController@edit')->name('application.edit');
+	Route::get('application/edit/{id}', 'InvoiceController@edit')->name('application.approve');
 	Route::post('application/update/{id}', 'InvoiceController@update')->name('application.update');
 	Route::delete('application/destroy/{id}', 'InvoiceController@destroy')->name('application.destroy');
 	Route::post('application/restore/{id}', 'InvoiceController@restore')->name('application.restore');

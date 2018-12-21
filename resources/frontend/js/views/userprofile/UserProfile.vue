@@ -11,23 +11,23 @@
 				
 			<div class="usr__form-row">
 				<label>Email</label>
-				<input class="input-text" type="email" name="email" v-model="details.email" :disabled="disabled">
+				<input class="input-text" type="email"  v-model="details.email" disabled="true">
 			</div
 			><div class="usr__form-row">
 				<label>Contact</label>
-				<input class="input-text" type="text" name="contact" v-model="details.contact" :disabled="disabled">
+				<input class="input-text" type="text" name="contact" v-model="details.contact" :disabled="disabled" required>
 			</div
 			><div class="usr__form-row">
 				<label>Firstname</label>
-				<input class="input-text" type="text" name="firstname" v-model="details.firstname" :disabled="disabled">
+				<input class="input-text" type="text" name="firstname" v-model="details.firstname" :disabled="disabled" required>
 			</div
 			><div class="usr__form-row">
 				<label>Birthdate</label>
-				<input class="input-text flatPickr" type="text" name="birthday" id="date" v-model="details.birthday" @focus="showDatePicker()" :disabled="disabled">
+				<input class="input-text flatPickr" type="text" name="birthday" id="date" v-model="details.birthday" @focus="showDatePicker()" :disabled="disabled" placeholder="Y-M-D" required>
 			</div
 			><div class="usr__form-row">
 				<label>Lastname</label>
-				<input class="input-text" type="text" name="lastname" v-model="details.lastname" :disabled="disabled">
+				<input class="input-text" type="text" name="lastname" v-model="details.lastname" :disabled="disabled" required>
 			</div
 			><div class="usr__form-row" v-show="show">
 				<button class="btn btn-blue" @click="updatedetails">
@@ -42,15 +42,15 @@
 				</div>
 				<div class="usr__form-row">
 					<label>Old Password</label>
-					<input class="input-text" type="password" name="old_password" v-model="password.old_password" :disabled="disabledpassword">
+					<input class="input-text" type="password" name="old_password" v-model="password.old_password" :disabled="disabledpassword" required>
 				</div>
 				<div class="usr__form-row">
 					<label>New Password</label>
-					<input class="input-text" type="password" name="password" v-model="password.password" :disabled="disabledpassword">
+					<input class="input-text" type="password" name="password" v-model="password.password" :disabled="disabledpassword" required>
 				</div>
 				<div class="usr__form-row">
 					<label>Repeat Password</label>
-					<input class="input-text" type="password" name="password_confirmation" v-model="password.password_confirmation" :disabled="disabledpassword">
+					<input class="input-text" type="password" name="password_confirmation" v-model="password.password_confirmation" :disabled="disabledpassword" required>
 				</div
 				><div class="usr__form-row right-align" v-show="show_password_button">
 					<button class="btn btn-blue" @click="updatepassword()">
@@ -131,8 +131,13 @@
 							this.loading = false;
 							swal('Password Updated', 'Password is updated', 'success');
 						} else {
+							this.loading = false;
 							swal('Ooops', 'Password is not match', 'error');
 						}
+					})
+					.catch(error => {
+						this.loading = false;
+						swal('Ooops', 'Fill up all field and correct data', 'error');
 					});
 
 			},
@@ -142,7 +147,6 @@
 				this.loading = true;
 
 				var data = {
-					email: this.details.email,
 					firstname: this.details.firstname,
 					lastname: this.details.lastname,
 					contact: this.details.contact,
@@ -154,7 +158,8 @@
                         swal('Profile Updated', 'Profile is updated', 'success');
 					})
 					.catch(error => {
-
+						this.loading = false;
+						swal('Ooops', 'Fill up all field and correct data', 'error');
 					});
 			},
 
@@ -166,6 +171,7 @@
 			disabled_password() {
 				this.disabledpassword = false;
 				this.show_password_button = true;
+				this.password = {};
 			}
 		}
 	}
