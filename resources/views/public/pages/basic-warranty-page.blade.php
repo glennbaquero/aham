@@ -11,6 +11,7 @@
 		<basic-warranty
 			:fetchproducturl="'{{ route('fetch.product') }}'"
 			:oneyearwarranty="'{{ route('apply.oneyear.warranty') }}'"
+			:extendedurl="'{{ route('apply.extended.warranty') }}'"
 		></basic-warranty>
 		
 	</div>

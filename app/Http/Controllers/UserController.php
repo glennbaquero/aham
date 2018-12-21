@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
+use App\Http\Requests\UpdateUserDetailsRequest;
+use App\Http\Requests\UserChangePasswordRequest;
+use App\Http\Requests\BasicWarrantyRequest;
+
 use App\Notifications\OneYearWarrantyNotificationToAdmin;
 
 use App\User;
@@ -40,29 +44,23 @@ class UserController extends Controller
     	]);
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateUserDetailsRequest $request, $id)
     {
-        User::find($id)->update([
-            'email' => $request->input('email'),
-            'firstname' => $request->input('firstname'),
-            'lastname' => $request->input('lastname'),
-            'contact' => $request->input('contact'),
-            'birthday' => $request->input('birthday'),
-        ]);
+        User::find($id)->update($request->all());
 
         return response()->json([
             'response' => 'Success'
         ]);
     }
 
-    public function updatepassword(Request $request, $id)
+    public function updatepassword(UserChangePasswordRequest $request, $id)
     {
 
         $response;
         $user = User::find($id);
 
         if(Hash::check($request->input('old_password'), $user->password)){
-            $user->update = Hash::make($request->input('password'));
+            $user->update(['password' => Hash::make($request->input('password'))]);
             $response = 1;
         } else {
             $response = 404;
@@ -73,7 +71,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function oneyearwarranty(Request $request) 
+    public function oneyearwarranty(BasicWarrantyRequest $request) 
     {
         $today = Carbon::today();
         $explode = explode('-',$today->toDateString());
@@ -116,7 +114,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function extendedwarranty(Request $request)
+    public function extendedwarranty(BasicWarrantyRequest $request)
     {
         $today = Carbon::today();
         $explode = explode('-',$today->toDateString());

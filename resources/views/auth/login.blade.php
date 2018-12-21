@@ -26,7 +26,7 @@
                     <input class="input-text" type="password" name="password">
                 </div>
                 <button class="btn btn-blue font--2">Login</button>
-                <p class="signup">Don't have an account? <a href="{{ url('signup') }}">Sign up</a></p>
+                <p class="signup">Don't have an account? <a href="{{ route('signup') }}">Sign up</a></p>
                 <p class="signup">I forgot my password <a href="{{ route('forgot.password') }}">Forgot Password</a></p>
             </form>
         </div>
