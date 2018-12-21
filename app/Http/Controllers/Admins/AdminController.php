@@ -11,6 +11,15 @@ use DB;
 
 class AdminController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('App\Http\Middleware\Admins\Administrator\AdministratorIndexMiddleware', ['only' => ['index']]);
+        $this->middleware('App\Http\Middleware\Admins\Administrator\AdministratorStoreMiddleware', ['only' => ['create', 'store']]);
+        $this->middleware('App\Http\Middleware\Admins\Administrator\AdministratorUpdateMiddleware', ['only' => ['edit', 'update']]);
+        $this->middleware('App\Http\Middleware\Admins\Administrator\AdministratorDestroyMiddleware', ['only' => ['destroy', 'restore']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

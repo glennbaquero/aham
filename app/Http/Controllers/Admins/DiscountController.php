@@ -13,6 +13,14 @@ use DB;
 
 class DiscountController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('App\Http\Middleware\Admins\Discounts\DiscountIndexMiddleware', ['only' => ['index']]);
+        $this->middleware('App\Http\Middleware\Admins\Discounts\DiscountStoreMiddleware', ['only' => ['create', 'store']]);
+        $this->middleware('App\Http\Middleware\Admins\Discounts\DiscountUpdateMiddleware', ['only' => ['edit', 'update']]);
+        $this->middleware('App\Http\Middleware\Admins\Discounts\DiscountDestroyMiddleware', ['only' => ['destroy', 'restore']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

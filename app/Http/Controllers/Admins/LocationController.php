@@ -12,6 +12,15 @@ use App\Location;
 
 class LocationController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('App\Http\Middleware\Admins\Locations\LocationIndexMiddleware', ['only' => ['index']]);
+        $this->middleware('App\Http\Middleware\Admins\Locations\LocationStoreMiddleware', ['only' => ['create', 'store']]);
+        $this->middleware('App\Http\Middleware\Admins\Locations\LocationUpdateMiddleware', ['only' => ['edit', 'update']]);
+        $this->middleware('App\Http\Middleware\Admins\Locations\LocationDestroyMiddleware', ['only' => ['destroy', 'restore']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

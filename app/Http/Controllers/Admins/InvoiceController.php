@@ -15,6 +15,14 @@ use DB;
 
 class InvoiceController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('App\Http\Middleware\Admins\Applications\ApplicationIndexMiddleware', ['only' => ['index']]);
+        $this->middleware('App\Http\Middleware\Admins\Applications\DestroyingApplicationMiddleware', ['only' => ['destroy', 'restore']]);
+        $this->middleware('App\Http\Middleware\Admins\Applications\ApprovingApplicationMiddleware', ['only' => ['edit', 'update']]);
+    }
+    
     /**
      * Display a listing of the resource.
      *

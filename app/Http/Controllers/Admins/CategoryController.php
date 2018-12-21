@@ -15,6 +15,15 @@ use DB;
 
 class CategoryController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('App\Http\Middleware\Admins\ProductCategories\CategoryIndexMiddleware', ['only' => ['index']]);
+        $this->middleware('App\Http\Middleware\Admins\ProductCategories\CategoryStoreMiddleware', ['only' => ['create', 'store']]);
+        $this->middleware('App\Http\Middleware\Admins\ProductCategories\CategoryUpdateMiddleware', ['only' => ['edit', 'update']]);
+        $this->middleware('App\Http\Middleware\Admins\ProductCategories\CategoryDestroyMiddleware', ['only' => ['destroy', 'restore']]);
+    }
+    
     /**
      * Display a listing of the resource.
      *

@@ -16,6 +16,13 @@ use DB;
 
 class RepairServiceRequestController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('App\Http\Middleware\Admins\RepairRequest\RepairRequestIndexMiddleware', ['only' => ['index']]);
+        $this->middleware('App\Http\Middleware\Admins\RepairRequest\RepairRequestStoreMiddleware', ['only' => ['create', 'store']]);
+        $this->middleware('App\Http\Middleware\Admins\RepairRequest\RepairRequestUpdateMiddleware', ['only' => ['edit', 'update']]);
+        $this->middleware('App\Http\Middleware\Admins\RepairRequest\RepairRequestDestroyMiddleware', ['only' => ['destroy', 'restore']]);
+    }
     /**
      * Display a listing of the resource.
      *

@@ -10,6 +10,15 @@ use DB;
 
 class FaqController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('App\Http\Middleware\Admins\FAQs\FAQIndexMiddleware', ['only' => ['index']]);
+        $this->middleware('App\Http\Middleware\Admins\FAQs\FAQStoreMiddleware', ['only' => ['create', 'store']]);
+        $this->middleware('App\Http\Middleware\Admins\FAQs\FAQUpdateMiddleware', ['only' => ['edit', 'update']]);
+        $this->middleware('App\Http\Middleware\Admins\FAQs\FAQDestroyMiddleware', ['only' => ['destroy', 'restore']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

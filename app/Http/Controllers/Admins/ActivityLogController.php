@@ -12,6 +12,11 @@ use App\User;
 
 class ActivityLogController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('App\Http\Middleware\Admins\Logs\ActivityLogIndexMiddleware', ['only' => ['index']]);
+
     /**
      * Display a listing of the resource.
      *

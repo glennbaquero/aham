@@ -11,6 +11,15 @@ use App\User;
 
 class UserController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('App\Http\Middleware\Admins\Users\UsersIndexMiddleware', ['only' => ['index']]);
+        $this->middleware('App\Http\Middleware\Admins\Users\UsersViewMiddleware', ['only' => ['edit']]);
+        $this->middleware('App\Http\Middleware\Admins\Users\UsersDestroyMiddleware', ['only' => ['destroy', 'restore']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
