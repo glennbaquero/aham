@@ -15,6 +15,8 @@ class InvoiceItem extends Model
 	protected $guarded = [];
     protected $dates = ['deleted_at'];
 
+    public $asYouType = true;
+
     const APP_PENDING = 0;
     const APP_APPROVED = 1;
     const INVOICE_PENDING = 2;
@@ -26,6 +28,14 @@ class InvoiceItem extends Model
     
     public function product() {
     	return $this->belongsTo(Product::class, 'product_id')->withTrashed();
+    }
+
+    public function toSearchableArray() {
+        return [
+            'id' => $this->id,
+            'serial' => $this->invoice['serial_number'],
+            'unit_price' => $this->unit_price,
+        ];
     }
 
     /**
@@ -83,6 +93,12 @@ class InvoiceItem extends Model
     
     public function renderName() {
         return '#' . $this->id . ' ' . $this->model;
+    }
+
+    public function renderFilePath() {
+        if ($this->product) {
+            return $this->product->renderFilePath();
+        }
     }
 
     public function renderView() {

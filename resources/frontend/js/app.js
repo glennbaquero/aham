@@ -1,5 +1,6 @@
 require('./bootstrap');
 window.Vue = require('vue');
+require('./settings');
 require('./script');
 
 Vue.component('map-selector', require('./views/MapSelector.vue'));
