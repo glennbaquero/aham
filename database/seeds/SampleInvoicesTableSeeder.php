@@ -18,8 +18,8 @@ class SampleInvoicesTableSeeder extends Seeder
         $users = User::all();   
 
     	foreach ($users as $user) {
-    		$user->invoices()->saveMany(factory(Invoice::class, 1)->create()->each(function($invoice) {
-    			$invoice->invoice_items()->saveMany(factory(InvoiceItem::class, 3)->create());
+    		$user->invoices()->saveMany(factory(Invoice::class, 20)->create()->each(function($invoice) {
+    			$invoice->invoice_items()->saveMany(factory(InvoiceItem::class, 1)->create());
     		}));
     	}
         

@@ -37,7 +37,7 @@ Route::group(['middleware' => ['auth']],function(){
 		Route::get('product/fetch/basic', 'Admins\ProductController@warrantyproductfetch')->name('fetch.product');
 		Route::post('product/basic', 'UserController@oneyearwarranty')->name('apply.oneyear.warranty');
 		Route::get('user/products', 'UserController@userproduct')->name('user.products');
-		Route::get('user/products/fetch', 'UserProductFetchController@fetch')->name('user.products.fetch');
+		Route::post('user/products/fetch', 'UserProductFetchController@fetch')->name('user.products.fetch');
 		Route::get('user/checkout/{id}', 'Admins\InvoiceController@checkout')->name('checkout');
 		Route::get('checkout/fetch/{id}', 'Admins\InvoiceController@checkoutfetch')->name('checkout.fetch');
 		Route::post('checkout/process', 'CheckoutController@processCheckout')->name('checkout.process');

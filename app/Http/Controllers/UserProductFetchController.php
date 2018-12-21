@@ -34,6 +34,12 @@ class UserProductFetchController extends FetchController
 	    		$query->where('user_id', auth()->user()->id);
 	    	});
     	}
+
+        if ($this->request->filled('search')) {
+            $ids = $this->class::search($this->request->input('search'))->get()->pluck('id')->toArray();
+            $query = $query->whereIn('id', $ids);
+        }
+
         return $query;
     }
 
@@ -52,7 +58,7 @@ class UserProductFetchController extends FetchController
                 'id' => $item->id,
                 'product' => $item->product,
                 'invoice' => $item->invoice,
-                'product_image' => $item->product->renderFilePath(),
+                'product_image' => $item->renderFilePath(),
                 'created_at' => $item->created_at->format('M d, Y (H:i:s)'),
                 'actions' => array(
                     // 'view' => $item->renderPublicView(),
