@@ -83,7 +83,7 @@ class InvoiceItem extends Model
     
     public function renderName() {
         return '#' . $this->id . ' ' . $this->model;
-    }	
+    }
 
     public function renderView() {
         return route('admin.application.edit', $this->id);

@@ -6,12 +6,13 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 use App\Helpers;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes, Searchable;
 
     /**
      * The attributes that are mass assignable.
@@ -49,6 +50,17 @@ class User extends Authenticatable
 
     public function discounts() {
         return $this->hasMany(Discount::class);
+    }
+
+    public function toSearchableArray() {
+        return [
+            'id' => $this->id,
+            'firstname' => $this->firstname,
+            'lastname' => $this->lastname,
+            'contact' => $this->contact,
+            'birthday' => $this->birthday,
+            'email' => $this->email,
+        ];
     }
 
     public static function store($request, $item = null) {
@@ -97,6 +109,14 @@ class User extends Authenticatable
     }
 
     public function renderView() {
-        return '#';
+        return route('admin.users.edit', $this->id);
+    }
+
+    public function renderDelete() {
+        return route('admin.users.destroy', $this->id);
+    }
+
+    public function renderRestore() {
+        return route('admin.users.restore', $this->id);
     }
 }

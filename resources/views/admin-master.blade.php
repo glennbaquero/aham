@@ -20,7 +20,7 @@
             @include('admin.includes.header')      
             @yield('content')
             @include('admin.includes.sidebar')
-            @include('admin.includes.footer') 
+            @include('admin.includes.footer')
             <prx-alert></prx-alert>
         </div>
         @yield('js')

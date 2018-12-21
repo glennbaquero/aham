@@ -220,7 +220,7 @@ class SamplePermissionTableSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'Administrator',
+                'name' => 'Administrators',
                 'description' => 'Manage Admin',
                 'icon' => 'fas fa-user-shield',
                 'items' => [
@@ -235,6 +235,21 @@ class SamplePermissionTableSeeder extends Seeder
                     [
                         'name' => 'admin.administrator.destroy',
                         'label' => 'Remove Administrator',
+                    ],
+                ],
+            ],
+            [
+                'name' => 'Users',
+                'description' => 'Manage Users',
+                'icon' => 'fa fa-users',
+                'items' => [
+                    [
+                        'name' => 'admin.users.show',
+                        'label' => 'View Users',
+                    ],
+                    [
+                        'name' => 'admin.users.destroy',
+                        'label' => 'Remove\Restore Users',
                     ],
                 ],
             ],
