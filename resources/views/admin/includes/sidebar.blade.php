@@ -80,7 +80,7 @@
       </li>
       @endif
       
-      @if ($checker->permission->can(['admin.roles.edit', 'admin.roles.create', 'admin.roles.destroy']))
+      @if ($checker->permission->can(['admin.administrator.edit', 'admin.administrator.create', 'admin.administrator.destroy', 'admin.roles.edit', 'admin.roles.create', 'admin.roles.destroy']))
       <li class="header">Security</li>
       <li class="treeview {{ $checker->route->isActive(['admin.administrator', 'admin.role'], 'menu-open') }}">
         <a href="#">
@@ -90,14 +90,21 @@
           </span>
         </a>
         <ul class="treeview-menu {{ $checker->route->isActive(['admin.administrator.', 'admin.role']) }}">
+          @if ($checker->permission->can(['admin.administrator.edit', 'admin.administrator.create', 'admin.administrator.destroy']))
           <li class="{{ $checker->route->isActive('admin.administrator') }}">
             <a href="{{ route('admin.administrator') }}"><i class="fas fa-user-shield"></i> Administrator</a>
           </li>
-          <li class="{{ $checker->route->isActive(['admin.role']) }}">
-            <a href="{{ route('admin.roles') }}"><i class="fas fa-id-card-alt"></i> Roles &amp; Permissions</a>
-          </li>
+          @endif
+          @if ($checker->permission->can(['admin.roles.edit', 'admin.roles.create', 'admin.roles.destroy']))
+            <li class="{{ $checker->route->isActive(['admin.role']) }}">
+              <a href="{{ route('admin.roles') }}"><i class="fas fa-id-card-alt"></i> Roles &amp; Permissions</a>
+            </li>
+          @endif
         </ul>
       </li>
+      @endif
+
+      @if ($checker->permission->can(['admin.activity-logs.index']))
       <li class="{{ $checker->route->isActive('admin.activity-logs.') }}"><a href="{{ route('admin.activity-logs.index') }}"><i class="fa fa-clipboard-list"></i> <span>Activity Logs</span></a></li>
       @endif
     </ul>

@@ -98,8 +98,20 @@ class SamplePermissionTableSeeder extends Seeder
             [
                 'name' => 'Content Management',
                 'description' => 'Manage CMS',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fas fa-sitemap',
                 'items' => [
+                    [
+                        'name' => 'admin.pages.create',
+                        'label' => 'Adding new page'
+                    ],
+                    [
+                        'name' => 'admin.pages.edit',
+                        'label' => 'Editing page',
+                    ],
+                    [
+                        'name' => 'admin.pages.destroy',
+                        'label' => 'Removing of page',
+                    ],
                     [
                         'name' => 'admin.carousel.create',
                         'label' => 'Adding new slide'
@@ -153,7 +165,7 @@ class SamplePermissionTableSeeder extends Seeder
             [
                 'name' => 'Discount',
                 'description' => 'Manage Customer Discount',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fas fa-money-bill-alt',
                 'items' => [
                     [
                         'name' => 'admin.discount.create',
@@ -172,7 +184,7 @@ class SamplePermissionTableSeeder extends Seeder
             [
                 'name' => 'Type',
                 'description' => 'Manage Product Type',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fas fa-th-large',
                 'items' => [
                     [
                         'name' => 'admin.types.create',
@@ -189,9 +201,9 @@ class SamplePermissionTableSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'Categgory',
+                'name' => 'Category',
                 'description' => 'Manage Product Category',
-                'icon' => 'fa fa-wrench',
+                'icon' => 'fas fa-archive',
                 'items' => [
                     [
                         'name' => 'admin.categories.create',
@@ -208,9 +220,28 @@ class SamplePermissionTableSeeder extends Seeder
                 ],
             ],
             [
+                'name' => 'Administrator',
+                'description' => 'Manage Admin',
+                'icon' => 'fas fa-user-shield',
+                'items' => [
+                    [
+                        'name' => 'admin.administrator.edit',
+                        'label' => 'Edit Administrator',
+                    ],
+                    [
+                        'name' => 'admin.administrator.create',
+                        'label' => 'Add Administrator',
+                    ],
+                    [
+                        'name' => 'admin.administrator.destroy',
+                        'label' => 'Remove Administrator',
+                    ],
+                ],
+            ],
+            [
                 'name' => 'Permission And Roles',
                 'description' => 'Manage Permission and Roles',
-                'icon' => 'fa fa-boxes',
+                'icon' => 'fas fa-shield-alt',
                 'items' => [
                     [
                         'name' => 'admin.roles.edit',
@@ -223,6 +254,17 @@ class SamplePermissionTableSeeder extends Seeder
                     [
                         'name' => 'admin.roles.destroy',
                         'label' => 'Remove Roles',
+                    ],
+                ],
+            ],
+            [
+                'name' => 'Logs',
+                'description' => 'Viewing all activity in the system',
+                'icon' => 'fa fa-clipboard-list',
+                'items' => [
+                    [
+                        'name' => 'admin.activity-logs.index',
+                        'label' => 'View Activity Logs',
                     ],
                 ],
             ],
