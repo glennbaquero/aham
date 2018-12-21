@@ -2,6 +2,8 @@
 
 use Faker\Generator as Faker;
 
+use App\Helpers;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -24,5 +26,6 @@ $factory->define(App\User::class, function (Faker $faker) {
         'contact' => $faker->phoneNumber,
         'address' => $faker->address,
         'birthday' => $faker->date($format = 'Y-m-d'),
+        'user_image' => Helpers::randomFile() ? Helpers::randomFile() : $faker->image('public/storage/tmp',400,300, null, false),
     ];
 });
