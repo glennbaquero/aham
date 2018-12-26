@@ -9,7 +9,9 @@
 			</li>
 		</ol>
 		<br>
+    @if ($checker->permission->can(['admin.contacts.create']))
 		<a href="{{ route('admin.contacts.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Contact</a>
+	@endif
 	</section>
 	<section class="content">
 		<div class="row">

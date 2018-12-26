@@ -59,35 +59,20 @@ class SamplePermissionTableSeeder extends Seeder
                 'icon' => 'fa fa-wrench',
                 'items' => [
                     [
-                        'name' => 'admin.service.assign-repair',
-                        'label' => 'Assign Repair Man'
+                        'name' => 'admin.request',
+                        'label' => 'Repair Request'
                     ],
                     [
-                        'name' => 'admin.service.approve',
-                        'label' => 'Approve Warranty',
+                        'name' => 'admin.request.create',
+                        'label' => 'Creating Request',
                     ],
                     [
-                        'name' => 'admin.service.decline',
-                        'label' => 'Decline Warranty',
-                    ],
-                ],
-            ],
-            [
-                'name' => 'Repairs',
-                'description' => 'Manage repair services request',
-                'icon' => 'fa fa-wrench',
-                'items' => [
-                    [
-                        'name' => 'admin.service.assign-repair',
-                        'label' => 'Assign Repair Man'
+                        'name' => 'admin.request.edit',
+                        'label' => 'Edit Request',
                     ],
                     [
-                        'name' => 'admin.service.approve',
-                        'label' => 'Approve Warranty',
-                    ],
-                    [
-                        'name' => 'admin.service.decline',
-                        'label' => 'Decline Warranty',
+                        'name' => 'admin.request.destroy',
+                        'label' => 'Destroy Request',
                     ],
                 ],
             ],
