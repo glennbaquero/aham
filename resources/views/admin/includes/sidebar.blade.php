@@ -50,7 +50,7 @@
       
       @if ($checker->permission->can(['admin.carousel.edit', 'admin.carousel.create', 'admin.carousel.destroy', 'admin.page-items.edit', 'admin.page-items.create', 'admin.page-items.destroy']))
       <li class="header">Content Management</li>
-      <li class="treeview {{ $checker->route->isActive(['admin.pages.', 'admin.page-items.', 'admin.carousel.', 'admin.locations.', 'admin.contact'], 'menu-open') }}">
+      <li class="treeview {{ $checker->route->isActive(['admin.pages.', 'admin.page-items.', 'admin.carousel.', 'admin.locations.', 'admin.contact', 'admin.faqs.'], 'menu-open') }}">
         <a href="#">
           <i class="fas fa-puzzle-piece"></i> <span>Page Management</span>
           <span class="pull-right-container">

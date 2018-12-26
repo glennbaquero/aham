@@ -35,9 +35,9 @@ class ProductFetchController extends FetchController
             $query = $query->whereIn('id', $ids);
         }
         
-        if(count($this->request->input('categories'))) {
-           $query = $query->whereIn('category_id', $this->request->input('categories'));
-        }
+        // if(count($this->request->input('categories'))) {
+        //    $query = $query->whereIn('category_id', $this->request->input('categories'));
+        // }
 
         return $query;
     }
