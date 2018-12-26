@@ -17,7 +17,7 @@ class TypeIndexMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.types.create', 'admin.types.edit', 'admin.types.destroy'])) {
+        if (!$user->hasAnyPermission(['admin.types.create', 'admin.types.edit', 'admin.types.destroy', 'admin.types.upload'])) {
             abort(401);
         }
 

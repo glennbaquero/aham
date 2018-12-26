@@ -26,6 +26,7 @@ class ProductController extends Controller
         $this->middleware('App\Http\Middleware\Admins\Products\ProductStoreMiddleware', ['only' => ['create', 'store']]);
         $this->middleware('App\Http\Middleware\Admins\Products\ProductUpdateMiddleware', ['only' => ['edit', 'update']]);
         $this->middleware('App\Http\Middleware\Admins\Products\ProductDestroyMiddleware', ['only' => ['destroy', 'restore']]);
+        $this->middleware('App\Http\Middleware\Admins\Products\ProductUploadMiddleware', ['only' => ['upload', 'uploadproduct']]);
     }
 
     /**

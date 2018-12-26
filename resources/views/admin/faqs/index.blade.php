@@ -5,11 +5,11 @@
 		<h1>FAQ</h1>
 		<ol class="breadcrumb">
 			<li class="active">
-				<a href="{{ route('admin.discount.index') }}"><i class="fas fa-images"></i> FAQs</a>
+				<a href="{{ route('admin.faqs.index') }}"><i class="fas fa-images"></i> FAQs</a>
 			</li>
 		</ol>
 		<br>
-		<a href="{{ route('admin.discount.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add FAQ</a>
+		<a href="{{ route('admin.faqs.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add FAQ</a>
 	</section>
 	<section class="content">
 		<div class="row">

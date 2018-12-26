@@ -14,10 +14,10 @@ class AdminController extends Controller
 
     public function __construct()
     {
-        $this->middleware('App\Http\Middleware\Admins\Administrator\AdministratorIndexMiddleware', ['only' => ['index']]);
-        $this->middleware('App\Http\Middleware\Admins\Administrator\AdministratorStoreMiddleware', ['only' => ['create', 'store']]);
-        $this->middleware('App\Http\Middleware\Admins\Administrator\AdministratorUpdateMiddleware', ['only' => ['edit', 'update']]);
-        $this->middleware('App\Http\Middleware\Admins\Administrator\AdministratorDestroyMiddleware', ['only' => ['destroy', 'restore']]);
+        $this->middleware('App\Http\Middleware\Admins\Administrators\AdministratorStoreMiddleware', ['only' => ['create', 'store']]);
+        $this->middleware('App\Http\Middleware\Admins\Administrators\AdministratorIndexMiddleware', ['only' => ['index']]);
+        $this->middleware('App\Http\Middleware\Admins\Administrators\AdministratorUpdateMiddleware', ['only' => ['edit', 'update']]);
+        $this->middleware('App\Http\Middleware\Admins\Administrators\AdministratorDestroyMiddleware', ['only' => ['destroy', 'restore']]);
     }
 
     /**

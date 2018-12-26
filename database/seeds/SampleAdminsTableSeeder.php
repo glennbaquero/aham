@@ -39,6 +39,6 @@ class SampleAdminsTableSeeder extends Seeder
     		}
         }
 
-        factory(Admin::class, 10)->create();
+     //    factory(Admin::class, 10)->create();
     }
 }
