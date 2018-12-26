@@ -1,5 +1,5 @@
-<section class="register container">
-	<div class="reg__banner full frame__background size--cover bring--back" style="background-image: url('{{asset('images/bg3.jpg') }}');"></div>
+{{-- <section class="register container">
+	<div class="reg__banner full frame__background size--cover bring--back" style="background-image: url('{{ $item->register_product }}');"></div>
 	<div class="frame-padding">
 		<div class="vertical-parent">
 			<div class="vertical-align">
@@ -25,4 +25,4 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> --}}
