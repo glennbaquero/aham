@@ -22,6 +22,7 @@ class TypeController extends Controller
         $this->middleware('App\Http\Middleware\Admins\ProductTypes\TypeStoreMiddleware', ['only' => ['create', 'store']]);
         $this->middleware('App\Http\Middleware\Admins\ProductTypes\TypeUpdateMiddleware', ['only' => ['edit', 'update']]);
         $this->middleware('App\Http\Middleware\Admins\ProductTypes\TypeDestroyMiddleware', ['only' => ['destroy', 'restore']]);
+        $this->middleware('App\Http\Middleware\Admins\ProductTypes\TypeUploadMiddleware', ['only' => ['upload', 'uploadtype']]);
     }
 
     /**

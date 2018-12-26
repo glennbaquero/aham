@@ -22,6 +22,7 @@ class CategoryController extends Controller
         $this->middleware('App\Http\Middleware\Admins\ProductCategories\CategoryStoreMiddleware', ['only' => ['create', 'store']]);
         $this->middleware('App\Http\Middleware\Admins\ProductCategories\CategoryUpdateMiddleware', ['only' => ['edit', 'update']]);
         $this->middleware('App\Http\Middleware\Admins\ProductCategories\CategoryDestroyMiddleware', ['only' => ['destroy', 'restore']]);
+        $this->middleware('App\Http\Middleware\Admins\ProductCategories\CategoryUploadMiddleware', ['only' => ['upload', 'uploadcategory']]);
     }
     
     /**

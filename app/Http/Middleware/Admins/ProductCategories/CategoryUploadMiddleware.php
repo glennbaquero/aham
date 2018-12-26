@@ -4,7 +4,7 @@ namespace App\Http\Middleware\Admins\ProductCategories;
 
 use Closure;
 
-class CategoryIndexMiddleware
+class CategoryUploadMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class CategoryIndexMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.categories.create', 'admin.categories.edit', 'admin.categories.destroy', 'admin.category.upload'])) {
+        if (!$user->hasAnyPermission(['admin.category.upload'])) {
             abort(401);
         }
 

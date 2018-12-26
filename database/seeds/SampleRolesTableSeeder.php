@@ -13,6 +13,25 @@ class SampleRolesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Role::class, 10)->create();
+    	$roles = [
+        	[
+		        'name' => 'Repair Man',
+		    ],
+            [
+                'name' => 'Super Admin',
+            ],
+            [
+                'name' => 'Regular Admin',
+            ],
+        ];
+
+    	foreach ($roles as $role) {
+    		$exist = Role::where('name', $role['name'])->first();
+    		if (!$exist) {
+	        	Role::create($role);
+    		}
+        }
+
+        // factory(Role::class, 10)->create();
     }
 }
