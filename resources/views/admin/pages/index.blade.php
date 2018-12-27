@@ -18,9 +18,12 @@
 
         <div class="row mb-4">
             <div class="col-md-12">
-                <a href="{{ route('admin.pages.create') }}" class="btn btn-primary btn-sm">
-                    <i class="fa fa-plus mr-1"></i> Add Page
-                </a>
+
+                @if ($checker->permission->can(['admin.pages.create']))
+                    <a href="{{ route('admin.pages.create') }}" class="btn btn-primary btn-sm">
+                        <i class="fa fa-plus mr-1"></i> Add Page
+                    </a>
+                @endif
             </div>
         </div>
 

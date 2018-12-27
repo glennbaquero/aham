@@ -17,7 +17,7 @@ class ContactUsIndexMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.contacts.create', 'admin.contacts.edit', 'admin.contacts.destroy'])) {
+        if (!$user->hasAnyPermission(['admin.contacts.index'])) {
             abort(401);
         }
 

@@ -115,6 +115,7 @@
             			console.log(response.data);
             			if(response.data.message == 1){
             				this.loading = false;
+            				this.hidden = true;
 	            			swal('We are reviewing your application.', 
 	            				'Thank you for registering your product. To proceed you need to complete the transaction.',
 	            				'success')
@@ -124,6 +125,7 @@
 	            			this.request = {};
             			} else {
 							this.loading = false;
+							this.hidden = true;
             			}
             		})
             		.catch(error => {

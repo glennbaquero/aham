@@ -17,7 +17,7 @@ class PageItemIndexMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.page-items.create', 'admin.page-items.edit', 'admin.page-items.destroy'])) {
+        if (!$user->hasAnyPermission(['admin.page-items.index'])) {
             abort(401);
         }
 

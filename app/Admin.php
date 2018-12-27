@@ -15,6 +15,8 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Password;
 use Laravel\Scout\Searchable;
 
+use App\Notifications\NewAdminNotification;
+
 use App\Traits\ActivityLogTrait;
 use Route;
 
@@ -118,8 +120,9 @@ class Admin extends Authenticatable
 			$vars = $request->only(['firstname', 'lastname', 'email', 'type']);
 			$vars['password'] = Helpers::generateRandomString();
 			$item = static::create($vars);
-			$broker = Password::broker('admins');
-			$broker->sendResetLink($request->only('email'));
+            $item->notify(new NewAdminNotification($item));
+            $broker = Password::broker('admins');
+            $broker->sendResetLink($request->only('email'));
 		} else {
 			$vars = $request->only(['firstname', 'lastname', 'type']);
 			$item->update($vars);
@@ -127,7 +130,7 @@ class Admin extends Authenticatable
 
 		if ($request->filled('roles')) {
 			$roles = Role::whereIn('id', $request->input('roles'))->get();
-			$item->syncRoles($roles);
+            $item->syncRoles($roles);
 		} else {
 			foreach ($item->roles as $role) {
 				$item->removeRole($role);

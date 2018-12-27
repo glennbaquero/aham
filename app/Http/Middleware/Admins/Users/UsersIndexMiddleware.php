@@ -17,7 +17,7 @@ class UsersIndexMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.edit.edit', 'admin.users.destroy'])) {
+        if (!$user->hasAnyPermission(['admin.users.index'])) {
             abort(401);
         }
 

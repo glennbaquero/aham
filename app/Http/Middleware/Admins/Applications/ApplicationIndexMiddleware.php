@@ -17,7 +17,7 @@ class ApplicationIndexMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.application.approve', 'admin.application.destroy'])) {
+        if (!$user->hasAnyPermission(['admin.application'])) {
             abort(401);
         }
 

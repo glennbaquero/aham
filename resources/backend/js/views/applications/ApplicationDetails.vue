@@ -21,8 +21,9 @@
 
                     		<div class="col col-xs-12 col-sm-12 col-md-6">
                     			<div class="form-group">
-                    				<label for="">Customer</label>
-                                    <input :value="item.user.firstname + ' ' + item.user.lastname" name="name" type="text" class="form-control input-sm" placeholder="Name" disabled>
+                    				<label>Customer</label><br>
+                                    <a :href="redirect+item.user.id"> {{ item.user.firstname + ' ' + item.user.lastname }}</a>
+                                    <!-- <input :value="item.user.firstname + ' ' + item.user.lastname" name="name" type="text" class="form-control input-sm" placeholder="Name" disabled> -->
                     				<input :value="item.user.id" name="id" type="hidden">
                     			</div>
                     		</div>
@@ -63,7 +64,7 @@
                              <div class="col col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Proof Of Purchase</label><br>
-                                    <img :src="renderImage(item.proof_purchase)" width="50%" height="50%">
+                                    <img :src="renderImage(item.invoice.proof_purchase)" width="50%" height="50%">
                                 </div>
                             </div>
 
@@ -113,7 +114,8 @@ export default {
         return {
             loading: false,
             item: {},
-            tags: []
+            tags: [],
+            redirect: 'admin/users/'
     	}
     },
 

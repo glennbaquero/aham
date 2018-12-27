@@ -12,9 +12,12 @@
 	
 		@if ($checker->permission->can(['admin.product.create']))
 			<a href="{{ route('admin.product.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Product</a>
-			<a href="{{ route('admin.product.upload') }}" class="btn btn-primary"><i class="fas fa-file-upload"></i> Upload Product</a>
 		@endif
 
+		@if ($checker->permission->can(['admin.product.upload']))
+			<a href="{{ route('admin.product.upload') }}" class="btn btn-primary"><i class="fas fa-file-upload"></i> Upload Product</a>
+		@endif
+		
 	</section>
 	<section class="content">
 		<div class="row">

@@ -17,7 +17,7 @@ class LocationIndexMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.locations.create', 'admin.locations.edit', 'admin.locations.destroy'])) {
+        if (!$user->hasAnyPermission(['admin.locations.index'])) {
             abort(401);
         }
 

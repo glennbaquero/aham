@@ -2,7 +2,7 @@
 	<div class="footer--top">
 		<div class="footer__col--1">
 			<div class="footer__logo-holder">
-				<a href=""><img class="img-fit" src="{{asset('images/logo2.png') }}"></a>
+				<a href=""><img class="img-fit" src="{{asset('storage/logo3.png') }}"></a>
 			</div>
 			<div class="inlineBlock-parent top-align address">
 				<i class="fa fa-map-marker-alt"></i
@@ -13,22 +13,22 @@
 			<p class="menu-title">Contact Us</p>
 			<div class="contact-col">
 				<p class="menu-title">Service</p>
-				<p class="menu-item">376 2287-90</p>
-				<p class="menu-item">351-2269</p>
-				<p class="menu-item">351-2267</p>
+				@foreach($contacts->where('type', 1) as  $contact)
+					<p class="menu-item">{{ $contact->contact }}</p>
+				@endforeach
 			</div
 			><div class="contact-col">
 				<p class="menu-title">Sales</p>
-				<p class="menu-item">374 5567-74</p>
-				<p class="menu-item">351-3388</p>
-				<p class="menu-item">351-33678</p>
+				@foreach($contacts->where('type', 0) as  $contact)
+					<p class="menu-item">{{ $contact->contact }}</p>
+				@endforeach
 			</div>
 		</div
 		><div class="footer__col--3">
 			<p class="menu-title">About AHAM</p>
 			<a class="menu-item" href="{{ route('home') }}"><p>Home</p></a>
 			<a class="menu-item" href="{{ url('products') }}"><p>Products</p></a>
-			<a class="menu-item" href="{{ url('home') }}"><p>Warranties</p></a>
+			<a class="menu-item" href="{{ url('warranty_info') }}"><p>Warranties</p></a>
 			<a class="menu-item" href="{{ url('about') }}"><p>About Us</p></a>
 			<a class="menu-item" href="{{ url('contact') }}"><p>Contact Us</p></a>
 		</div
