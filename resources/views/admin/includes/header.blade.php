@@ -23,24 +23,23 @@
         <li class="dropdown messages-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-envelope"></i>
-            <span class="label label-success">4</span>
+            <span class="label label-success">{{ $messages->count() }}</span>
           </a>
           <ul class="dropdown-menu">
-            <li class="header">You have 4 messages</li>
+            <li class="header">You have {{ $messages->count() }} {{ $messages->count() <= 1 ? 'message' : 'messages' }} </li>
             <li>
               <ul class="menu">
-                <li><!-- start message -->
-                  <a href="#">
-                    <div class="pull-left">
-                      <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                    </div>
-                    <h4>
-                      Support Team
-                      <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                    </h4>
-                    <p>Why not buy a new awesome theme?</p>
-                  </a>
-                </li>
+                @foreach($messages as $message)
+                  <li><!-- start message -->
+                    <a href="#" data-toggle="modal" data-target="#modal-default{{ $message->id }}">
+                      <h4>
+                        {{ $message->firstname. ' '. $message->lastname }}
+                        <small><i class="fa fa-clock-o"></i> {{ $message->created_at->diffForHumans() }}</small>
+                      </h4>
+                      <p>{{ $message->message }}</p>
+                    </a>
+                  </li>
+                @endforeach
               </ul>
             </li>
           </ul>
@@ -59,3 +58,25 @@
   </nav>
 
 </header>
+
+@foreach($messages as $message)
+<div class="modal fade" id="modal-default{{$message->id}}">
+  <div class="modal-dialog">
+      <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Message From {{ $message->firstname. ' '. $message->lastname }}</h4>
+      </div>
+      <div class="modal-body">
+        {{ $message->message }}
+      </div>
+      <div class="modal-footer">
+        <div class="row">
+          {{-- <reply-message></reply-message> --}}
+        </div>
+      </div>
+      </div>
+  </div>
+</div>
+@endforeach
