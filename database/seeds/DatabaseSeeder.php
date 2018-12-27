@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SampleUsersTableSeeder::class);
         $this->call(SampleRolesTableSeeder::class);
         $this->call(SamplePermissionTableSeeder::class);
-        $this->call(SampleInvoicesTableSeeder::class);
+        // $this->call(SampleInvoicesTableSeeder::class);
         $this->call(SampleContactUsTableSeeder::class);
     }
 }

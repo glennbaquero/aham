@@ -21,6 +21,7 @@ class CreateInvoiceItemsTable extends Migration
             $table->decimal('unit_price', 9, 2)->unsigned();
             $table->decimal('discount', 9, 2)->default(0)->unsigned();
             $table->decimal('total_price', 9, 2)->unsigned();
+            
             $table->integer('status')->default(0);
 
             $table->boolean('on_repair')->default(0);
