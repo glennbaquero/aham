@@ -8,6 +8,8 @@ Vue.component('std-remove-image', require('./components/RemoveImage.vue'));
 Vue.component('images', require('./components/Images.vue'));
 Vue.component('prx-alert', require('./components/Alert.vue'));
 
+Vue.component('reply-message', require('./views/messages/ReplyMessage.vue'));
+
 Vue.component('roles-table', require('./views/roles/RolesTable.vue'));
 Vue.component('roles-details', require('./views/roles/RoleDetails.vue'));
 

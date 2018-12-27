@@ -12,6 +12,7 @@ use App\GlobalChecker;
 
 use App\Category;
 use App\ContactUs;
+use App\Message;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -41,6 +42,10 @@ class AppServiceProvider extends ServiceProvider
 
             View::composer('includes.footer',  function($view) {
                 $view->with('contacts', ContactUs::all());
+            });
+
+            View::composer('admin.includes.header',  function($view) {
+                $view->with('messages', Message::latest()->get());
             });
 
             $categories = Category::select(Category::MINIMAL_COLUMN)->get();
