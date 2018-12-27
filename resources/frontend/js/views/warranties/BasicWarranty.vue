@@ -20,7 +20,7 @@
 			</div>
 			<div class="bw__form-row">
 				<label>Serial Number</label>
-				<input class="input-text" type="text" v-model="request.serial_number" name="serial_number">
+				<input class="input-text error" type="text" v-model="request.serial_number" name="serial_number" maxlength="15" @keyup="validate">
 				<i class="info fa fa-question-circle"></i>
 			</div>
 			<div class="bw__form-row">
@@ -31,6 +31,7 @@
 				<label>Proof of Purchased</label>
 				<input type="file" name="proof_purchase" @change="productImage">
 			</div>
+			<img id="img" width="75px" height="75px" :hidden="hidden">
 			<label class="span">*Please upload scanned copy of the bill or invoice</label>
 			<button class="btn btn-blue" @click="OneYearWarranty()">
 				<span>I want</span>
@@ -67,6 +68,7 @@
 				image:null,
     			loading:false,
 				extend:'user/checkout/',
+				hidden: true,
 			}
 		},
 
@@ -75,6 +77,7 @@
 		},
 
 		methods : {
+
 			fetch() {
 				axios.get(this.fetchproducturl)
 					.then(response => {
@@ -154,13 +157,33 @@
             },
 
             productImage(e) {
+
 	            var files = e.target.files || e.dataTransfer.files;
 
 	            if(!files.length)
 	                return;
 
 	            this.image = files[0];
+
+	            var filereader = new FileReader();
+		        filereader.readAsDataURL(files[0]);
+
+		        filereader.onload = function (event) {
+		            document.getElementById("img").src = event.target.result;
+		        };
+
+		        this.hidden = false;
 	        },
+	        
+	        validate(e) {
+	        	var len = this.request.serial_number;
+	        	if(len.length === 15) {
+	        		$('.error').css('border', '1px solid #ff0000');
+	        	} else {
+	        		$('.error').css('border', '1px solid #737272');
+	        	}
+	        }
+
 		}
 	}
 </script>
