@@ -39,7 +39,7 @@
 				</div>
 				<div class="ew__form-row">
 					<label>Serial Number</label>
-					<input class="input-text" type="text" name="" v-model="request.serial_number">
+					<input class="input-text error" type="text" name="" maxlength="15" v-model="request.serial_number" @keyup="validate">
 					<i class="info fa fa-question-circle"></i>
 				</div>
 				<div class="ew__form-row">
@@ -50,6 +50,7 @@
 					<label>Proof of Purchased</label>
 					<input type="file" name="proof_purchase" @change="proofOfPurchased">
 				</div>
+				<img id="img" width="75px" height="75px" :hidden="hidden">
 				<label class="span">*Please upload scanned copy of the bill or invoice</label>
 				<button type="submit" class="btn btn-white" @click="submit">
 					<p class="font--2">Register</p>
@@ -78,7 +79,8 @@
 				items:{},
 				request: {},
 				image:null,
-				loading: false
+				loading: false,
+				hidden: true,
 			}
 		},
 
@@ -151,7 +153,26 @@
 	                return;
 
 	            this.image = files[0];
+
+
+	            var filereader = new FileReader();
+		        filereader.readAsDataURL(files[0]);
+
+		        filereader.onload = function (event) {
+		            document.getElementById("img").src = event.target.result;
+		        };
+		        
+	            this.hidden = false;
 	        },
+
+	        validate(e) {
+	        	var len = this.request.serial_number;
+	        	if(len.length === 15) {
+	        		$('.error').css('border', '1px solid #ff0000');
+	        	} else {
+	        		$('.error').css('border', '1px solid #737272');
+	        	}
+	        }
 		}
 	}
 </script>
