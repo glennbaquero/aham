@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use App\GlobalChecker;
 
 use App\Category;
+use App\ContactUs;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -37,6 +38,10 @@ class AppServiceProvider extends ServiceProvider
 
             /* Add in the public vars */
             View::share('checker', new GlobalChecker);
+
+            View::composer('includes.footer',  function($view) {
+                $view->with('contacts', ContactUs::all());
+            });
 
             $categories = Category::select(Category::MINIMAL_COLUMN)->get();
 

@@ -9,7 +9,11 @@
 			</li>
 		</ol>
 		<br>
-		<a href="{{ route('admin.faqs.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add FAQ</a>
+		
+	    @if ($checker->permission->can(['admin.faqs.create']))
+			<a href="{{ route('admin.faqs.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add FAQ</a>
+		@endif
+
 	</section>
 	<section class="content">
 		<div class="row">

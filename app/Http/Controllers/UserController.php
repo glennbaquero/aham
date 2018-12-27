@@ -17,6 +17,7 @@ use App\Admin;
 use App\Invoice;
 use App\InvoiceItem;
 use App\Product;
+use App\GlobalChecker;
 
 use Carbon\Carbon;
 
@@ -78,7 +79,7 @@ class UserController extends Controller
         
         $path = $request->file('proof_purchase')->store('proof-purchase', 'public');
 
-        // dd( $explode[0].$explode[1].$explode[2]);
+        $file_extension = explode('.', $path);
         
         $invoice = auth()->user()->invoices()->create([
             'serial_number' => $request->serial_number,
@@ -87,7 +88,7 @@ class UserController extends Controller
             'application_number' => $request->application_number,
             'warranty_type' => 0,
             'contract_number' => $explode[0].$explode[1].$explode[2],
-            'file_extension' => 'jpeg',
+            'file_extension' => $file_extension[1],
             'date_of_purchase' => Carbon::now(),
             'applied_date' => Carbon::now(),
             'expiration_date' => Carbon::now()->addYears(1),
@@ -105,7 +106,9 @@ class UserController extends Controller
 
         $admins = Admin::where('type', 0)->get();
         foreach ($admins as $admin) {
-            $admin->notify(new OneYearWarrantyNotificationToAdmin($admin->email));
+            if($admin->hasAnyPermission(['admin.application.edit', 'admin.application.create', 'admin.application.destroy'])) {
+                $admin->notify(new OneYearWarrantyNotificationToAdmin($admin->email));
+            }
         }
 
 
@@ -120,6 +123,8 @@ class UserController extends Controller
         $explode = explode('-',$today->toDateString());
         
         $path = $request->file('proof_purchase')->store('proof-purchase', 'public');
+
+        $file_extension = explode('.', $path);
         
         $invoice = auth()->user()->invoices()->create([
             'serial_number' => $request->serial_number,
@@ -128,7 +133,7 @@ class UserController extends Controller
             'application_number' => $request->application_number,
             'warranty_type' => 0,
             'contract_number' => $explode[0].$explode[1].$explode[2],
-            'file_extension' => 'jpeg',
+            'file_extension' => $file_extension[1],
             'date_of_purchase' => Carbon::now(),
             'applied_date' => Carbon::now(),
             'expiration_date' => Carbon::now()->addYears(1),
@@ -148,7 +153,9 @@ class UserController extends Controller
 
         $admins = Admin::where('type', 0)->get();
         foreach ($admins as $admin) {
-            $admin->notify(new OneYearWarrantyNotificationToAdmin($admin->email));
+            if($admin->hasAnyPermission(['admin.application.edit', 'admin.application.create', 'admin.application.destroy'])) {
+                $admin->notify(new OneYearWarrantyNotificationToAdmin($admin->email));
+            }
         }
 
         return response()->json([

@@ -17,7 +17,7 @@ class CategoryIndexMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.categories.create', 'admin.categories.edit', 'admin.categories.destroy', 'admin.category.upload'])) {
+        if (!$user->hasAnyPermission(['admin.categories.index'])) {
             abort(401);
         }
 

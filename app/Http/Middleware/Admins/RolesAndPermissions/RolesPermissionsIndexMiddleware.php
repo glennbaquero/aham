@@ -17,7 +17,7 @@ class RolesPermissionsIndexMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.roles.create', 'admin.roles.edit', 'admin.role.destroy'])) {
+        if (!$user->hasAnyPermission(['admin.roles'])) {
             abort(401);
         }
 

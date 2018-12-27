@@ -21,6 +21,10 @@ class SamplePermissionTableSeeder extends Seeder
                 'icon' => 'fa fa-boxes',
                 'items' => [
                     [
+                        'name' => 'admin.products.index',
+                        'label' => 'Showing All Product',
+                    ],
+                    [
                         'name' => 'admin.product.edit',
                         'label' => 'Edit Product',
                     ],
@@ -44,6 +48,10 @@ class SamplePermissionTableSeeder extends Seeder
                 'icon' => 'fa fa-boxes',
                 'items' => [
                     [
+                        'name' => 'admin.application',
+                        'label' => 'Showing All Application',
+                    ],
+                    [
                         'name' => 'admin.application.approve',
                         'label' => 'Edit Application',
                     ],
@@ -60,7 +68,7 @@ class SamplePermissionTableSeeder extends Seeder
                 'items' => [
                     [
                         'name' => 'admin.request',
-                        'label' => 'Repair Request'
+                        'label' => 'Showing All Repair Request',
                     ],
                     [
                         'name' => 'admin.request.create',
@@ -82,6 +90,10 @@ class SamplePermissionTableSeeder extends Seeder
                 'icon' => 'fas fa-sitemap',
                 'items' => [
                     [
+                        'name' => 'admin.pages.index',
+                        'label' => 'Showing All Pages',
+                    ],
+                    [
                         'name' => 'admin.pages.create',
                         'label' => 'Adding new page'
                     ],
@@ -94,16 +106,8 @@ class SamplePermissionTableSeeder extends Seeder
                         'label' => 'Removing of page',
                     ],
                     [
-                        'name' => 'admin.carousel.create',
-                        'label' => 'Adding new slide'
-                    ],
-                    [
-                        'name' => 'admin.carousel.edit',
-                        'label' => 'Editing slide',
-                    ],
-                    [
-                        'name' => 'admin.carousel.destroy',
-                        'label' => 'Removing of slide',
+                        'name' => 'admin.page-items.index',
+                        'label' => 'Showing All Page Items',
                     ],
                     [
                         'name' => 'admin.page-items.create',
@@ -117,29 +121,97 @@ class SamplePermissionTableSeeder extends Seeder
                         'name' => 'admin.page-items.destroy',
                         'label' => 'Removing content to the page',
                     ],
+                ],
+            ],
+            [
+                'name' => 'Image Slider',
+                'description' => 'Manage image slider most likely image slider for banner',
+                'icon' => 'fas fa-images',
+                'items' => [
                     [
-                        'name' => 'admin.faqs.create',
-                        'label' => 'Creating FAQ',
+                        'name' => 'admin.carousel.index',
+                        'label' => 'Showing All Image Slider',
                     ],
                     [
-                        'name' => 'admin.faqs.edit',
-                        'label' => 'Updating FAQ',
+                        'name' => 'admin.carousel.create',
+                        'label' => 'Add new slide'
                     ],
                     [
-                        'name' => 'admin.faqs.destroy',
-                        'label' => 'Removing FAQ',
+                        'name' => 'admin.carousel.edit',
+                        'label' => 'Edit slide',
+                    ],
+                    [
+                        'name' => 'admin.carousel.destroy',
+                        'label' => 'Destroy of slide',
+                    ],
+                ],
+            ],
+            [
+                'name' => 'Contact Information',
+                'description' => 'Manage contact information',
+                'icon' => 'fas fa-phone',
+                'items' => [
+                    [
+                        'name' => 'admin.contacts.index',
+                        'label' => 'Showing All Contact Information',
                     ],
                     [
                         'name' => 'admin.contacts.create',
-                        'label' => 'Creating Contact Information',
+                        'label' => 'Add Contact Information',
                     ],
                     [
                         'name' => 'admin.contacts.edit',
-                        'label' => 'Updating Contact Information',
+                        'label' => 'Edit Contact Information',
                     ],
                     [
                         'name' => 'admin.contacts.destroy',
-                        'label' => 'Removing Contact Information',
+                        'label' => 'Destroy Contact Information',
+                    ],
+                ],
+            ],
+            [
+                'name' => 'Frequently Ask Question',
+                'description' => 'Manage FAQ',
+                'icon' => 'fas fa-question',
+                'items' => [
+                    [
+                        'name' => 'admin.faqs.index',
+                        'label' => 'Showing All FAQ',
+                    ],
+                    [
+                        'name' => 'admin.faqs.create',
+                        'label' => 'Add FAQ',
+                    ],
+                    [
+                        'name' => 'admin.faqs.edit',
+                        'label' => 'Edit FAQ',
+                    ],
+                    [
+                        'name' => 'admin.faqs.destroy',
+                        'label' => 'Destroy FAQ',
+                    ],
+                ],
+            ],
+            [
+                'name' => 'Location',
+                'description' => 'Manage Location',
+                'icon' => 'fas fa-question',
+                'items' => [
+                    [
+                        'name' => 'admin.locations.index',
+                        'label' => 'Showing All Location',
+                    ],
+                    [
+                        'name' => 'admin.locations.create',
+                        'label' => 'Add Location',
+                    ],
+                    [
+                        'name' => 'admin.locations.edit',
+                        'label' => 'Edit Location',
+                    ],
+                    [
+                        'name' => 'admin.locations.destroy',
+                        'label' => 'Destroy Location',
                     ],
                 ],
             ],
@@ -148,6 +220,10 @@ class SamplePermissionTableSeeder extends Seeder
                 'description' => 'Manage Customer Discount',
                 'icon' => 'fas fa-money-bill-alt',
                 'items' => [
+                    [
+                        'name' => 'admin.discounts',
+                        'label' => 'Showing All Discount',
+                    ],
                     [
                         'name' => 'admin.discount.create',
                         'label' => 'Creating new Discount information'
@@ -168,6 +244,10 @@ class SamplePermissionTableSeeder extends Seeder
                 'icon' => 'fas fa-th-large',
                 'items' => [
                     [
+                        'name' => 'admin.types.index',
+                        'label' => 'Showing All Product Type',
+                    ],
+                    [
                         'name' => 'admin.types.create',
                         'label' => 'Creating new product type'
                     ],
@@ -186,6 +266,10 @@ class SamplePermissionTableSeeder extends Seeder
                 'description' => 'Manage Product Category',
                 'icon' => 'fas fa-archive',
                 'items' => [
+                    [
+                        'name' => 'admin.categories.index',
+                        'label' => 'Showing All Product Categories',
+                    ],
                     [
                         'name' => 'admin.categories.create',
                         'label' => 'Creating new product category'
@@ -206,6 +290,10 @@ class SamplePermissionTableSeeder extends Seeder
                 'icon' => 'fas fa-user-shield',
                 'items' => [
                     [
+                        'name' => 'admin.administrator',
+                        'label' => 'Showing All Admin',
+                    ],
+                    [
                         'name' => 'admin.administrator.edit',
                         'label' => 'Edit Administrator',
                     ],
@@ -225,6 +313,10 @@ class SamplePermissionTableSeeder extends Seeder
                 'icon' => 'fa fa-users',
                 'items' => [
                     [
+                        'name' => 'admin.users.index',
+                        'label' => 'Showing All Users',
+                    ],
+                    [
                         'name' => 'admin.users.show',
                         'label' => 'View Users',
                     ],
@@ -239,6 +331,10 @@ class SamplePermissionTableSeeder extends Seeder
                 'description' => 'Manage Permission and Roles',
                 'icon' => 'fas fa-shield-alt',
                 'items' => [
+                    [
+                        'name' => 'admin.roles',
+                        'label' => 'Showing All Roles',
+                    ],
                     [
                         'name' => 'admin.roles.edit',
                         'label' => 'Edit Roles',

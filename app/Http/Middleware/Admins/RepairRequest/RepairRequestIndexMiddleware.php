@@ -17,7 +17,7 @@ class RepairRequestIndexMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.request.create', 'admin.request.edit', 'admin.request.destroy'])) {
+        if (!$user->hasAnyPermission(['admin.request'])) {
             abort(401);
         }
 

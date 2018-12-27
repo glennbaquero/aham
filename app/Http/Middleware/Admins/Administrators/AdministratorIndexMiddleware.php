@@ -17,7 +17,7 @@ class AdministratorIndexMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.administrator.create', 'admin.administrator.edit', 'admin.administrator.destroy'])) {
+        if (!$user->hasAnyPermission(['admin.administrator'])) {
             abort(401);
         }
 

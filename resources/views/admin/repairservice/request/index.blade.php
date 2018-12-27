@@ -9,7 +9,11 @@
 			</li>
 		</ol>
 		<br>
-		<a href="{{ route('admin.request.create') }}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Request</a>
+
+		@if ($checker->permission->can(['admin.request.create']))
+			<a href="{{ route('admin.request.create') }}" class="btn btn-primary"><i class="fas fa-user-plus"></i> Add Request</a>
+		@endif
+		
 	</section>
 	<section class="content">
 		<div class="row">

@@ -114,12 +114,15 @@
             				this.loading = false;
 	            			swal('We are reviewing your application.', 'Thank you for registering your product. To proceed well send you a link through email approving your application.', 'success');
 	            			this.request = {};
+	            			this.hidden = true;
             			} else {
             				this.loading = false;
+	            			this.hidden = true;
             			}
             		})
             		.catch(error => {
             			this.loading = false;
+            			this.hidden = true;
             			swal('Ooops!', 'Fill up all the fields with correct data!', 'error');
             		});
             },
@@ -146,12 +149,15 @@
 			            			window.location.href = response.data.redirect;
 		            			});
 	            			this.request = {};
+	            			this.hidden = true;
             			} else {
 							this.loading = false;
+	            			this.hidden = true;
             			}
             		})
             		.catch(error => {
             			this.loading = false;
+	            			this.hidden = true;
             			swal('Ooops!', 'Fill up all the fields with correct data!', 'error');
             		});;
             },

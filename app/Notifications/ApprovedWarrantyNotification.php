@@ -9,7 +9,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 
 use App\User;
 
-class ApprovedWarrantyNotification extends Notification
+class ApprovedWarrantyNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

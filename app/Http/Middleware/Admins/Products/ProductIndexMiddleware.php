@@ -17,7 +17,7 @@ class ProductIndexMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.product.create', 'admin.product.edit', 'admin.product.destroy', 'admin.product.upload'])) {
+        if (!$user->hasAnyPermission(['admin.products.index'])) {
             abort(401);
         }
 

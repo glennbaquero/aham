@@ -17,7 +17,7 @@ class CarouselIndexMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.carousel.create', 'admin.carousel.edit', 'admin.carousel.destroy'])) {
+        if (!$user->hasAnyPermission(['admin.carousel.index'])) {
             abort(401);
         }
 

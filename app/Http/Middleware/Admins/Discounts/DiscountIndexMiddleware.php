@@ -17,7 +17,7 @@ class DiscountIndexMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.discount.create', 'admin.discount.edit', 'admin.discount.destroy'])) {
+        if (!$user->hasAnyPermission(['admin.discounts'])) {
             abort(401);
         }
 

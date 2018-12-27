@@ -17,7 +17,7 @@ class PageIndexMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.pages.create', 'admin.pages.edit', 'admin.pages.destroy'])) {
+        if (!$user->hasAnyPermission(['admin.pages.index'])) {
             abort(401);
         }
 

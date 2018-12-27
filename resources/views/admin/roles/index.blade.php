@@ -9,7 +9,9 @@
 			</li>
 		</ol>
 		<br>
-		<a href="{{ route('admin.roles.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Roles</a>
+		@if ($checker->permission->can(['admin.roles.create']))
+			<a href="{{ route('admin.roles.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Roles</a>
+		@endif
 	</section>
 	<section class="content">
 		<div class="row">

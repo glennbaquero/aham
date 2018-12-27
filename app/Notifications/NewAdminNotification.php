@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class InvoicePaid extends Notification implements ShouldQueue
+class NewAdminNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -16,9 +16,9 @@ class InvoicePaid extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($invoice)
+    public function __construct()
     {
-        $this->invoice = $invoice;
+        //
     }
 
     /**
@@ -41,10 +41,10 @@ class InvoicePaid extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject(config('app.name') . ': Invoice Paid')
-                    ->greeting('Greetings ' . $notifiable->renderFullname() . ',')
-                    ->line('This is know that we have received the payment with a reference #' . $this->invoice->application_number . ' - ' . 'via iPay88')
-                    // ->action('View Invoice', route('invoice.transaction-history', $this->invoice->id))
+                    ->subject(config('app.name') . ': New Admin')
+                    ->greeting('Hello ' . $notifiable->renderFullname() . ',')
+                    ->line('You are receiving this email because you been register as a new admin in AHAM.')
+                    ->line('We send you a link to setup your password, thank you!');
     }
 
     /**
@@ -56,7 +56,7 @@ class InvoicePaid extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            //
+            'message' => 'New admin has been created.',
         ];
     }
 }

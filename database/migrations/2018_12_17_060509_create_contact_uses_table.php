@@ -16,7 +16,7 @@ class CreateContactUsesTable extends Migration
         Schema::create('contactuses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('contact')->nullable();
-            $table->boolean('services')->default(1);
+            $table->boolean('type')->default(1);
             $table->softDeletes();
             $table->timestamps();
         });

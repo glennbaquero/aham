@@ -17,7 +17,7 @@ class FAQIndexMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.faqs.create', 'admin.faqs.edit', 'admin.faqs.destroy'])) {
+        if (!$user->hasAnyPermission(['admin.faqs.index'])) {
             abort(401);
         }
 
