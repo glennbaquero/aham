@@ -18,6 +18,7 @@ use App\Invoice;
 use App\InvoiceItem;
 use App\Product;
 use App\GlobalChecker;
+use App\Helpers;
 
 use Carbon\Carbon;
 
@@ -87,7 +88,7 @@ class UserController extends Controller
             'proof_purchase' => $path,
             'application_number' => $request->application_number,
             'warranty_type' => 0,
-            'contract_number' => $explode[0].$explode[1].$explode[2],
+            'contract_number' => $explode[0].$explode[1].$explode[2]. '-' .rand(100000000, 999999999),
             'file_extension' => $file_extension[1],
             'date_of_purchase' => Carbon::now(),
             'applied_date' => Carbon::now(),
@@ -132,7 +133,7 @@ class UserController extends Controller
             'proof_purchase' => $path,
             'application_number' => $request->application_number,
             'warranty_type' => 0,
-            'contract_number' => $explode[0].$explode[1].$explode[2],
+            'contract_number' => $explode[0].$explode[1].$explode[2]. '-' .rand(100000000, 999999999),
             'file_extension' => $file_extension[1],
             'date_of_purchase' => Carbon::now(),
             'applied_date' => Carbon::now(),

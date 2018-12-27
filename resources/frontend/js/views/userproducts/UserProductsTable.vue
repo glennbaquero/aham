@@ -43,6 +43,7 @@
 					</td>
 					<td>
 						<a :href="extend+item.id" v-if="item.invoice.warranty_type === 0">Apply for Extended Warranty</a>
+						<img :src="renderImage()" v-if="item.invoice.warranty_type === 1">
 					</td>
 				</tr>
 
@@ -143,6 +144,10 @@ export default {
             	this.loading = false;
             });
         },
+
+        renderImage() {
+        	return 'storage/logo3.png';
+        }
 	} 
 }
 </script>
