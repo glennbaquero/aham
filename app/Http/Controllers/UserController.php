@@ -11,6 +11,7 @@ use App\Http\Requests\UserChangePasswordRequest;
 use App\Http\Requests\BasicWarrantyRequest;
 
 use App\Notifications\OneYearWarrantyNotificationToAdmin;
+use App\Notifications\ExtendedWarrantyNotification;
 
 use App\User;
 use App\Admin;
@@ -132,12 +133,12 @@ class UserController extends Controller
             'purchase_date' => $request->purchase_date,
             'proof_purchase' => $path,
             'application_number' => $request->application_number,
-            'warranty_type' => 0,
+            'warranty_type' => 1,
             'contract_number' => $explode[0].$explode[1].$explode[2]. '-' .rand(100000000, 999999999),
             'file_extension' => $file_extension[1],
             'date_of_purchase' => Carbon::now(),
             'applied_date' => Carbon::now(),
-            'expiration_date' => Carbon::now()->addYears(1),
+            'expiration_date' => Carbon::now()->addYears(2),
         ]);
 
         $invoice_item = Invoice::find($invoice);
@@ -149,19 +150,20 @@ class UserController extends Controller
             'unit_price' => $product->extended_amount,
             'discount' => 0,
             'total_price' => $product->extended_amount,
+            'status' => 2
         ]);
 
 
         $admins = Admin::where('type', 0)->get();
         foreach ($admins as $admin) {
             if($admin->hasAnyPermission(['admin.application.edit', 'admin.application.create', 'admin.application.destroy'])) {
-                $admin->notify(new OneYearWarrantyNotificationToAdmin($admin->email));
+                $admin->notify(new ExtendedWarrantyNotification($admin->email));
             }
         }
 
         return response()->json([
             'message' => 1,
-            'redirect' => route('checkout', $invoiceitem->id)
+            // 'redirect' => route('checkout', $invoiceitem->id)
         ]);
     }
 

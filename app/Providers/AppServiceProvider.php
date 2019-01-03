@@ -13,6 +13,7 @@ use App\GlobalChecker;
 use App\Category;
 use App\ContactUs;
 use App\Message;
+use App\Invoice;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-
+        
         View::composer('*', function ($view) {
             $view->with('carbon', new Carbon);
 

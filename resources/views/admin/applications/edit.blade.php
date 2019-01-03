@@ -44,7 +44,7 @@
 					</application-details>
 					
 				  	@if ($checker->permission->can(['admin.application.approve']))
-						@if($invoice->status === 0)
+						@if($invoice->status === 0 || $invoice->status === 2)
 							<div class="row">
 								<div class="col col-xs-12">
 									<button type="submit" class="btn btn-success pull-right"><span class="fa fa-times"></span>Approved</button>

@@ -28,6 +28,7 @@ class CreateInvoicesTable extends Migration
             $table->string('pytdet')->nullable();
             $table->string('dcode')->nullable();
             $table->integer('warranty_type');
+            $table->boolean('has_notified')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });
