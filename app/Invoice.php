@@ -9,16 +9,29 @@ use Illuminate\Support\Facades\Storage;
 use Laravel\Scout\Searchable;
 use App\Traits\ActivityLogTrait;
 
+use Notification;
+use App\Notifications\UserExpiredWarrantyNotification;
+
+use Carbon\Carbon;
+
 class Invoice extends Model
 {
     use SoftDeletes, Searchable, ActivityLogTrait;
 	protected $guarded = [];
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'expiration_date'];
 	
     const GATEWAY_IPAY = 1;
 
     const BASIC = 0;
     const EXTENDED = 1;
+
+    public function toSearchableArray() {
+        return [
+            'id' => $this->id,
+            'serial_number' => $this->serial_number,
+            'application_number' => $this->application_number,
+        ];
+    }
 
 	public function user() {
 		return $this->belongsTo(User::class);
@@ -26,6 +39,19 @@ class Invoice extends Model
 
     public function invoice_items() {
         return $this->hasMany(InvoiceItem::class, 'invoice_id');
+    }
+
+    public static function sendExpirationNotifications() {
+        $invoices = Invoice::select(['id', 'user_id', 'expiration_date', 'has_notified'])->where('has_notified', false)->get();
+        $now = Carbon::now();
+
+        foreach ($invoices as $invoice) {
+            if ($invoice->user && $invoice->expiration_date->lt($now)) {
+                $invoice->has_notified = true;
+                $invoice->save();
+                $invoice->user->notify(new UserExpiredWarrantyNotification());
+            }
+        }
     }
 
     /*

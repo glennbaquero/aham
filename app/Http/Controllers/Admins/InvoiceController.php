@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Notifications\ApprovedWarrantyNotification;
+use App\Notifications\ExtendedPaymentURLNotification;
 
 use App\Invoice;
 use App\InvoiceItem;
@@ -92,11 +93,17 @@ class InvoiceController extends Controller
     {
         DB::beginTransaction();
             $invoice_item = InvoiceItem::find($id);
-            $invoice_item->update(['status' => InvoiceItem::APP_APPROVED]);
             $user = User::find($request->get('id'));
+
+            if($invoice_item->invoice->warranty_type == 0){
+                $invoice_item->update(['status' => InvoiceItem::APP_APPROVED]);
+                $user->notify(new ApprovedWarrantyNotification($user));
+            } else {
+                $invoice_item->update(['status' => InvoiceItem::INVOICE_PENDING_PAYMENT]);
+                $user->notify(new ExtendedPaymentURLNotification($invoice_item));
+            }
         DB::commit();  
 
-        $user->notify(new ApprovedWarrantyNotification($user));
 
         return response()->json([
             'message' => 'You have successfully approved this request',
@@ -137,7 +144,7 @@ class InvoiceController extends Controller
 
     public function checkout($id) {
         $invoice_item = InvoiceItem::find($id);
-        if(auth()->user()->id === $invoice_item->invoice->user_id) {
+        if(auth()->user()->id === $invoice_item->invoice->user_id && $invoice_item->status === 4) {
             return view('public.pages.checkout-page', [
                 'invoice_item' => $invoice_item
             ]);

@@ -21,6 +21,7 @@ class InvoiceItem extends Model
     const APP_APPROVED = 1;
     const INVOICE_PENDING = 2;
     const INVOICE_APPROVED = 3;
+    const INVOICE_PENDING_PAYMENT = 4;
 
     public function invoice() {
     	return $this->belongsTo(Invoice::class, 'invoice_id');
@@ -47,6 +48,7 @@ class InvoiceItem extends Model
             ['value' => static::APP_PENDING, 'label' => 'PENDING APPLICATION', 'class' => 'bg-red'],
             ['value' => static::APP_APPROVED, 'label' => 'APPROVED APPLICATION', 'class' => 'bg-blue'],
             ['value' => static::INVOICE_PENDING, 'label' => 'PENDING INVOICE', 'class' => 'bg-red'],
+            ['value' => static::INVOICE_PENDING_PAYMENT, 'label' => 'PENDING INVOICE (PAYMENT)', 'class' => 'bg-red'],
             ['value' => static::INVOICE_APPROVED, 'label' => 'APPROVED INVOICE', 'class' => 'bg-blue'],
         ];
     }

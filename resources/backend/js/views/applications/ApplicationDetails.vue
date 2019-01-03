@@ -35,7 +35,7 @@
                             </div>
                             <div class="col col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label for="">One Year Warranty Request</label><br>
+                                    <label for="">{{ item.warranty_type === 0 ? 'One Year Warranty' : 'Extended Warranty' }}</label><br>
                                      <table class="table table-bordered table-center">
                                             <thead>
                                                 <tr>
