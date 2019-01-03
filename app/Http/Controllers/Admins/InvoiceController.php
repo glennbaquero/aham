@@ -144,7 +144,7 @@ class InvoiceController extends Controller
 
     public function checkout($id) {
         $invoice_item = InvoiceItem::find($id);
-        if(auth()->user()->id === $invoice_item->invoice->user_id && $invoice_item->status === 4) {
+        if(auth()->user()->id === $invoice_item->invoice->user_id && $invoice_item->status === 4 || 1 && $invoice_item->invoice->has_notified) {
             return view('public.pages.checkout-page', [
                 'invoice_item' => $invoice_item
             ]);

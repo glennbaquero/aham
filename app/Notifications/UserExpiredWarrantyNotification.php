@@ -7,18 +7,22 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
+use App\Invoice;
+
 class UserExpiredWarrantyNotification extends Notification implements ShouldQueue
 {
     use Queueable;
+
+    protected $invoice;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Invoice $invoice)
     {
-        //
+        $this->invoice = $invoice;
     }
 
     /**
@@ -44,7 +48,7 @@ class UserExpiredWarrantyNotification extends Notification implements ShouldQueu
                     ->subject(config('app.name') . ': Warranty Expired')
                     ->greeting('Hello ' . $notifiable->renderFullname() . ',')
                     ->line('We like to inform you that your product warranty has expired. Click the button to extend.')
-                    ->action('Extend warranty', route('home'));
+                    ->action('Extend warranty', route('checkout', $this->invoice->id));
     }
 
     /**

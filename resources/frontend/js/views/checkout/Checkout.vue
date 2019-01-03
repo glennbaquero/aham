@@ -156,8 +156,8 @@
 					total = this.discounted_amount;
 				if(!this.discount_amount) {
 					$this.discount_available.forEach(function(e){
-
-						if(e.discount_code === $('.discount_code').val()) {
+						console.log(e.discount_code);
+						if(e.discount_code == $('.discount_code').val()) {
 							swal('Discount Code Match!', 'Discount code is match to your credentials', 'success');
 							$this.discounted_amount = e.discount_amount;
 						} else if ($('.discount_code').val() === '') {

@@ -49,7 +49,7 @@ class Invoice extends Model
             if ($invoice->user && $invoice->expiration_date->lt($now)) {
                 $invoice->has_notified = true;
                 $invoice->save();
-                $invoice->user->notify(new UserExpiredWarrantyNotification());
+                $invoice->user->notify(new UserExpiredWarrantyNotification($invoice));
             }
         }
     }

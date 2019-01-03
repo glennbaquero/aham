@@ -12,6 +12,8 @@ use App\Invoice;
 use App\User;
 use App\InvoiceItem;
 
+use Carbon\Carbon;
+
 class iPayProcessor
 {
     public  $code;
@@ -51,8 +53,11 @@ class iPayProcessor
 
         if($this->checkResponse()) {
             $this->processInvoice();
-            $this->notifyAdmin();
-            $this->notifyUser();
+
+            if(!$this->invoice->has_notified) {
+                $this->notifyAdmin();
+                $this->notifyUser();
+            }
 
             $action = 'RECEIVEOK';
         }
@@ -131,10 +136,17 @@ class iPayProcessor
         \DB::beginTransaction();
 
         $this->invoice->warranty_type = Invoice::EXTENDED;
+
+        if($this->invoice->has_notified){
+            $this->invoice->date_of_purchase = Carbon::now();
+            $this->invoice->applied_date = Carbon::now();
+            $this->invoice->expiration_date = Carbon::now()->addYears(2);
+            $this->invoice->has_notified = false;
+        }
+        
         $this->invoice->save();
 
         \DB::commit();
-
 
     }
 

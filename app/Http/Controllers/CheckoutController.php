@@ -36,7 +36,16 @@ class CheckoutController extends Controller
                 break;
         }
 
-        $invoice->update(['warranty_type' => 1]);
+        $invoice->warranty_type = Invoice::EXTENDED;
+
+         if($invoice->has_notified){
+            $invoice->date_of_purchase = Carbon::now();
+            $invoice->applied_date = Carbon::now();
+            $invoice->expiration_date = Carbon::now()->addYears(2);
+            $invoice->has_notified = false;
+        }
+
+        $invoice->save();
 
 
         return response()->json([
