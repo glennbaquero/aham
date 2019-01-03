@@ -41,9 +41,13 @@
 					<td>
 						<p>{{ item.invoice.warranty_type === 1 ? 'Extended Warranty' : 'Basic Warranty' }}</p>
 					</td>
-					<td>
+					<td v-if="!item.invoice.has_notified">
 						<a :href="extend+item.id" v-if="item.invoice.warranty_type === 0">Apply for Extended Warranty</a>
 						<img :src="renderImage()" v-if="item.invoice.warranty_type === 1">
+					</td>
+					<td v-else>
+						<img :src="renderExpiredImage()" v-if="item.invoice.warranty_type === 1" height="75"><br>
+						<a :href="extend+item.id" v-if="item.invoice.warranty_type === 0 || item.invoice.has_notified">Apply for Extended Warranty</a>
 					</td>
 				</tr>
 
@@ -147,6 +151,10 @@ export default {
 
         renderImage() {
         	return 'storage/logo3.png';
+        },
+
+        renderExpiredImage() {
+        	return 'storage/expired.jpg';
         }
 	} 
 }
