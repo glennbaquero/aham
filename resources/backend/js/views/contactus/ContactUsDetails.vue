@@ -29,7 +29,7 @@
                             <div class="col col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Contact Info</label>
-                                    <select name="services" class="form-control input-sm">
+                                    <select name="type" class="form-control input-sm">
                                         <option value="0">SALES</option>
                                         <option value="1">SERVICES</option>
                                     </select>

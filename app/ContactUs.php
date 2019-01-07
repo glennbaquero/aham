@@ -24,7 +24,7 @@ class ContactUs extends Model
     	if(!$item) {
     		$item = static::create($request->all());
     	} else {
-    		$item->update($request);
+    		$item->update($request->all());
     	}
 
     	return $item;

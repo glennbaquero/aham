@@ -25,7 +25,7 @@
 	</div>
 	<div class="header--bottom inlineBlock-parent">
 		<div class="header__logo-holder">
-			<a href=""><img class="header__logo" src="{{asset('storage/logo-white.png') }}"></a>
+			<a href=""><img class="header__logo" src="{{ $headerLogo->aham_logo }}"></a>
 		</div
 		><div class="navigation__set inlineBlock-parent right-align">
 			<div class="navigation__link">

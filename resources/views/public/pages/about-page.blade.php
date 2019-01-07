@@ -16,8 +16,8 @@
 	<div class="a__container animate-up">
 		<div class="vertical-parent">
 			<div class="vertical-align">
-				<p class="a__title">{{ $item->banner_slider_text }}</p>
-				<p class="a__desc">{{ $item->banner_slider_subtext }}</p>
+				<p class="a__title">{!! $item->banner_slider_text !!}</p>
+				<p class="a__desc">{!! $item->banner_slider_subtext !!}</p>
 			</div>
 		</div>
 	</div>
@@ -29,7 +29,7 @@
 		<div class="vertical-parent">
 			<div class="vertical-align">
 				<div class="a__container animate-up">
-					<p class="a__title">{{ $item->about_us_frame2_text }}</p>
+					<p class="a__title">{!! $item->about_us_frame2_text !!}</p>
 					<div class="a__desc">
 						{!! $item->about_us_frame2_info !!}
 					</div>
@@ -45,7 +45,7 @@
 		<div class="a__accordion__list">
 			@foreach($faqs as $faq)
 			<div class="a__accordion">
-				<p class="a__question">{{ $faq->question }}<i class="fa fa-arrow-down"></i></p>
+				<p class="a__question">{!! $faq->question !!}<i class="fa fa-arrow-down"></i></p>
 				<div class="a__answer">
 					{!! $faq->answer !!}
 				</div>
