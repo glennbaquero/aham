@@ -142,6 +142,10 @@ class Page extends Model
                     $data['view'] = "public.pages.product-selected-page";
                     $data['products'] = $products;
                 break;
+            case 'logo':
+                $data['aham_logo'] = "includes.footer";
+                $data['aham_logo'] = "includes.header";
+                break;
         }
 
         return array_merge($data, $arr);

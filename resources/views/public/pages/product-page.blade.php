@@ -20,8 +20,8 @@
 		<div class="p__container">
 			<div class="vertical-parent">
 				<div class="vertical-align">
-					<p class="p__title">{{ $item->slider_text_header }}</p>
-					<p class="p__desc">{{ $item->slider_text_sub }}</p>
+					<p class="p__title">{!! $item->slider_text_header !!}</p>
+					<p class="p__desc">{!! $item->slider_text_sub !!}</p>
 				</div>
 			</div>
 		</div>
