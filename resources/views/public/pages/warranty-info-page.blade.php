@@ -10,7 +10,7 @@
 			<div class="vertical-parent">
 				<div class="vertical-align">
 					<p class="wi__title">{{ $item->banner_header_text }}</p>
-					<p class="wi__desc">{{ $item->banner_sub_text }}</p>
+					<p class="wi__desc">{!! $item->banner_sub_text !!}</p>
 				</div>
 			</div>
 		</div>
@@ -41,7 +41,7 @@
 								@foreach($products as $product)
 									<option value="{{ $product->id }}"> {{ $product->model }} </option>
 								@endforeach
-							</select><div class="info"><img src="{{asset('images/info.png') }}"></div>
+							</select><div class="tool-tip register" data-tooltip-title="Content here" data-tooltip-position="right"><i class="color--red fa fa-exclamation-circle"></i></div>
 						</div>
 						
 						<div class="rw__form-row">

@@ -1,10 +1,10 @@
 <template>
-	<div class="usr__container">
+	<div class="">
 		<div class="usr__search inlineBlock-parent">
 			<i @click.prevent="search" class="fa fa-search"></i>
 			<input @keydown.enter="search" v-model="search_value" class="input-text" placeholder="Search Model No." type="text" name="">
 		</div>
-		<div class="mb-5">
+		<div class="mb-5 usr__tbl-holder">
 			<table>
 				<tr>
 					<th>Appliance</th>

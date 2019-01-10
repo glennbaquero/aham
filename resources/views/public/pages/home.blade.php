@@ -58,9 +58,9 @@
 	
 									<div class="h__slider-desc vertical-parent">
 										<div class="vertical-align">
-											<p class="h__f-prod-title">{{ $featured->model }}</p>
+											<h2 class="h__f-prod-title">{{ $featured->model }}</h2>
 											<p class="h__f-prod-desc">{!! $featured->description !!}</p>
-											<a class="btn btn-white font--1" href="{{ route('view.product', $featured->id) }}"><p>View Specs</p></a>
+											<a class="btn btn-white font--1" href="{{ route('view.product', $featured->id) }}">View Specs</a>
 										</div>
 									</div>
 								</div>
@@ -102,7 +102,7 @@
 							<option value="{{ $product->id }}">{{ $product->model }}</option>
 						@endforeach
 					</select>
-					<img class="info" src="">
+					<div class="tool-tip home" data-tooltip-title="Content here" data-tooltip-position="right"><i class="color--red fa fa-exclamation-circle"></i></div>
 					<div class="button">
 						<a class="btn btn-blue" href=""><p>Basic Warranty</p></a>
 						<a class="btn outline--blue" href=""><p>Extended Warranty</p></a>

@@ -21,6 +21,9 @@
 .color--darkgray {
 	color: $dark-gray;
 }
+.color--red {
+	color: #cd0000;
+}
 
 /**********************
  * FONTS
@@ -312,3 +315,83 @@
 	}
 }
 
+
+.tool-tip {
+	position: absolute;
+  	top: 34px;
+  	right: -25px;
+  	cursor: pointer;
+  	display: inline-block;
+
+  	i {
+  		font-size: 18px;
+  	}
+
+  	&.home {
+  		top: 60%;
+  		right: 0px;
+
+  		i {
+  			font-size: 1.6em;
+  		}
+  	}
+
+  	&.register {
+  		top: 20%;
+
+  		i {
+  			font-size: 1.4em;
+  		}
+  	}
+}
+
+.tool-tip::after {
+  	background-color: $dark-gray;
+  	border-radius: 2px;
+  	color: $white;
+  	content: attr(data-tooltip-title) " ";
+  	min-width: 100px;
+  	max-width: 300px;
+  	padding: 5px 8px;
+}
+
+.tool-tip::before {
+  	width: 0;
+  	height: 0;
+  	content: "";
+}
+
+.tool-tip::before,
+.tool-tip::after {
+  	position: absolute;
+  	transition: opacity 250ms ease 0ms, transform 250ms ease 0ms;
+  	transform-style: preserve-3d;
+  	opacity: 0;
+  	z-index: -1;
+}
+
+.tool-tip[data-tooltip-position="right"]::after {
+  	top: 50%;
+  	transform: translate3d(-10px, -50%, 0);
+  	left: calc(100% + 10px);
+}
+
+.tool-tip[data-tooltip-position="right"]::before {
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  top: 50%;
+  transform: translate3d(-10px, -50%, 0);
+  border-right: 7px solid $dark-gray;
+  left: calc(100% + 3px);
+}
+
+.tool-tip:hover::before,
+.tool-tip:hover::after {
+  	opacity: 1;
+  	z-index: 100;
+}
+
+.tool-tip[data-tooltip-position="right"]:hover::before,
+.tool-tip[data-tooltip-position="right"]:hover::after {
+  transform: translate3d(0px, -50%, 0);
+}
