@@ -135,6 +135,7 @@
 			<i name="close" class="mbl-menu-close ion-android-close" role="img" aria-label="close"></i>
 		</div>
 		<div class="mbl-menu__user inlineBlock-parent">
+
 			@if (Auth::check())
 				<div class="mbl-menu__user-icon">
 					<img class="img-fit" src="{{ Auth::user()->renderFilePath() }}">

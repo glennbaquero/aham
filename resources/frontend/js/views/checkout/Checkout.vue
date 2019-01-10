@@ -45,7 +45,10 @@
 			</div>
 			<div class="ch__form-row">
 				<label>Discount Code</label>
-				<input class="input-text error discount_code" type="text" name=""><i class="info fas fa-check-circle" @click="validate"></i><img src="">
+				<input class="input-text error discount_code" type="text" name="">
+				<div class="right-align">
+					<p @click="validate" class="btn btn-gray">Check Discount Code</p>
+				</div>
 			</div>
 			<div class="ch__form-row inlineBlock-parent by-2">
 				<div>

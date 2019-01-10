@@ -11,7 +11,7 @@
 								@foreach($products as $product)
 									<option value="{{ $product->id }}"> {{ $product->model }} </option>
 								@endforeach
-							</select><div class="info"><img src="{{asset('images/info.png') }}"></div>
+							</select><div class="tool-tip register" data-tooltip-title="Content here" data-tooltip-position="right"><i class="color--red fa fa-exclamation-circle"></i></div>
 						</div>
 						
 						<div class="rw__form-row">
