@@ -1,0 +1,25 @@
+<?php
+
+use Illuminate\Database\Seeder;
+
+class ProductionSeeder extends Seeder
+{
+    /**
+     * Seed the application's database.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $this->call(SampleLocationsTableSeeder::class);
+        $this->call(SampleAdminsTableSeeder::class);
+        $this->call(SamplePageSeeder::class);
+        $this->call(SamplePageItemSeeder::class);
+        $this->call(SampleCarouselTagsSeeder::class);
+        $this->call(SampleTagSeeder::class);
+        $this->call(SampleUsersTableSeeder::class);
+        $this->call(SampleRolesTableSeeder::class);
+        $this->call(SamplePermissionTableSeeder::class);
+        $this->call(SampleContactUsTableSeeder::class);
+    }
+}

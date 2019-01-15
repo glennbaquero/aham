@@ -12,26 +12,18 @@
                         <i class="fa fa-info-circle"></i>
                         <h3 class="box-title">Product Upload</h3>
                     </div>
-
                     <!-- Start Box Body -->
                 	<div class="box-body">
-
                         <!-- Start Row -->
                 		<div class="row">
-
                             <div class="col col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="">Select Manifest</label>
                                     <input name="manifest" type="file" class="form-control input-sm">
                                 </div>
                             </div>
-
-
                         </div>
-
-                        
                         <!-- End Row -->
-                        
                     </div>
                     <!-- Box End -->
                 </div>
