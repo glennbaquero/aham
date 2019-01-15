@@ -76,11 +76,14 @@ class Product extends Model
             $item->update($vars);
         }
 
+
         if($request->hasFile('images')) {
             foreach($request->file('images') as $image) {
                 $path = $image->store('product-images', 'public');
-                if($item && $item->images()->image){
-                    Storage::delete('public/' . $item->images()->image);
+                if($item && $item->images()->count()){
+                    foreach ($item->images() as $value) {
+                        Storage::delete('public/' . $item->images()->value);
+                    }
                 }
                 $item->images()->create(['image' => $path]);
             }
