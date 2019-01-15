@@ -58,8 +58,8 @@
 						
 						<div class="rw__form-row">
 							<div class="button">
-								<a class="btn btn-white" href=""><p>Basic Warranty</p></a
-								><a class="btn outline--white" href=""><p>Extended Warranty</p></a>
+								<a class="btn btn-white" href="{{ route('user.basic') }}"><p>Basic Warranty</p></a
+								><a class="btn outline--white" href="{{ route('user.extended') }}"><p>Extended Warranty</p></a>
 							</div>
 						</div>
 					</form>

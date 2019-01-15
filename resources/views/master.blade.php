@@ -10,10 +10,10 @@
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />
         <meta property="og:image" content="{{ asset('image/logo.png') }}">
-        <meta property="og:title" content="TMG Loyalty">
-        <meta property="og:description" content="TMG Loyalty">
+        <meta property="og:title" content="AHAM">
+        <meta property="og:description" content="AHAM">
         <meta property="og:url" content="">
-        <meta property="og:site_name" content="TMG Loyalty">
+        <meta property="og:site_name" content="AHAM">
         <meta property="og:type" content="website">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 

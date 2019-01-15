@@ -18,10 +18,17 @@
                 		<div class="row">
                             <div class="col col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label for="">Select Manifest</label>
+                                    <label for="">Select Manifest <small>(Product)</small></label>
                                     <input name="manifest" type="file" class="form-control input-sm">
                                 </div>
                             </div>
+
+                           <!--  <div class="col col-xs-12 col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <label for="">Select Images<small>(Product Image)</small></label>
+                                    <input name="images[]" type="file" class="form-control input-sm" multiple>
+                                </div>
+                            </div> -->
                         </div>
                         <!-- End Row -->
                     </div>

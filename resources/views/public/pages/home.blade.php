@@ -104,8 +104,8 @@
 					</select>
 					<div class="tool-tip home" data-tooltip-title="Content here" data-tooltip-position="right"><i class="color--red fa fa-exclamation-circle"></i></div>
 					<div class="button">
-						<a class="btn btn-blue" href=""><p>Basic Warranty</p></a>
-						<a class="btn outline--blue" href=""><p>Extended Warranty</p></a>
+						<a class="btn btn-blue" href="{{ route('user.basic') }}"><p>Basic Warranty</p></a>
+						<a class="btn outline--blue" href="{{ route('user.extended') }}"><p>Extended Warranty</p></a>
 					</div>
 				</div>
 			</div>

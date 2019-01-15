@@ -27,9 +27,8 @@
 		</div>
 	</div>
 </section>
-
 <section class="register container">
-	<div class="reg__banner full frame__background size--cover bring--back" style="background-image: url('{{ $item->warranty_product_register }}');"></div>
+	<div class="reg__banner full frame__background size--cover bring--back" style="background-image: url('{{ $item->register_product }}');"></div>
 	<div class="frame-padding">
 		<div class="vertical-parent">
 			<div class="vertical-align">
@@ -46,8 +45,8 @@
 						
 						<div class="rw__form-row">
 							<div class="button">
-								<a class="btn btn-white" href=""><p>Basic Warranty</p></a
-								><a class="btn outline--white" href=""><p>Extended Warranty</p></a>
+								<a class="btn btn-white" href="{{ route('user.basic') }}"><p>Basic Warranty</p></a
+								><a class="btn outline--white" href="{{ route('user.extended') }}"><p>Extended Warranty</p></a>
 							</div>
 						</div>
 					</form>
