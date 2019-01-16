@@ -52,7 +52,7 @@ class ProductImport implements ToModel, WithHeadingRow
         if($images) {
             foreach ($images as $image) {
                     $failed_img = $image;
-                // ProductImage::create(['product_id' => $product->id, 'image' => $image]);
+                ProductImage::create(['product_id' => $product->id, 'image' => $image]);
             }
         }
 
