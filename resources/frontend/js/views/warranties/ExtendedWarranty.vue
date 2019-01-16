@@ -21,13 +21,13 @@
 					    </select> -->
 					    <div class="selected">
 				    		<i class="ion-arrow-down-b"></i>
-				    		<div>Select your product</div>
+				    		<div>{{ request.product > 0 ? items[request.product - 1].model : 'Select Product'}}</div>
 				    	</div>
 				    	<div class="select-dropdown">
 				    		<div class="item-holder">
 				    			<div class="items" v-for="item in items" @click="choose(item.id, item.model)">
 				    				<div class="img-holder">
-				    					<img class="img-fit" src="//via.placeholder.com/40x40">
+				    					<img class="img-fit" :src="renderImage(item.images[0].image)">
 				    				</div
 				    				><div class="dropdown-content">
 				    					<div><b>{{ item.model }}</b></div>
@@ -77,7 +77,9 @@
 		data() {
 			return {
 				items:{},
-				request: {},
+				request: {
+					product: 0
+				},
 				image:null,
 				loading: false,
 				hidden: true,
@@ -91,6 +93,7 @@
 		methods : {
 			init() {
 				this.fetch();
+				this.urlsegment();
 			},
 
 			fetch() {
@@ -171,6 +174,21 @@
 	        	} else {
 	        		$('.error').css('border', '1px solid #737272');
 	        	}
+	        },
+
+	        urlsegment() {
+				var pathname = window.location.pathname.split('/');
+				var segment = pathname.pop() || pathname.pop();
+
+				if(!segment) {
+					this.request.product = 0;
+				} else {
+					this.request.product = parseInt(segment);
+				}
+	        },
+
+	        renderImage(image) {
+	        	return 'storage/' + image;
 	        }
 		}
 	}

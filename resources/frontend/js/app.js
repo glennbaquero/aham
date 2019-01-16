@@ -13,6 +13,7 @@ Vue.component('extended-warranty', require('./views/warranties/ExtendedWarranty.
 Vue.component('contact-us', require('./views/contactus/ContactUs.vue'));
 Vue.component('checkout', require('./views/checkout/Checkout.vue'));
 Vue.component('user-products-table', require('./views/userproducts/UserProductsTable.vue'));
+Vue.component('products-registration', require('./views/includes/RegisterProduct.vue'));
 
 const app = {
 	init() {

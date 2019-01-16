@@ -29,6 +29,7 @@ class UserProductFetchController extends FetchController
      */
     public function filterQuery($query)
     {
+
     	if(auth()->check()) {
 	    	$query = $query->whereHas('invoice', function($query) {
 	    		$query->where('user_id', auth()->user()->id);
@@ -40,8 +41,8 @@ class UserProductFetchController extends FetchController
             $query = $query->whereIn('id', $ids);
         }
 
-        return $query->where('status', 1)
-                    ->orWhere('status', 3);
+
+        return $query->whereIn('status', [1, 3]);
     }
 
     /**

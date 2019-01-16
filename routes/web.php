@@ -33,7 +33,8 @@ Route::group(['middleware' => ['auth']],function(){
 		Route::get('user/fetch', 'UserController@fetchDetails')->name('user.fetch.details');
 		Route::post('user/update/{id}', 'UserController@update')->name('user.update');
 		Route::post('user/updatepassword/{id}', 'UserController@updatepassword')->name('user.update.password');
-		Route::get('user/basic', 'PageController@basic')->name('user.basic');
+		Route::get('user/basic/', 'PageController@basic')->name('user.basic');
+		Route::get('user/basic/{id}', 'PageController@basic')->name('user.basic.id');
 		Route::get('product/fetch/basic', 'Admins\ProductController@warrantyproductfetch')->name('fetch.product');
 		Route::post('product/basic', 'UserController@oneyearwarranty')->name('apply.oneyear.warranty');
 		Route::get('user/products', 'UserController@userproduct')->name('user.products');
@@ -44,6 +45,7 @@ Route::group(['middleware' => ['auth']],function(){
 		Route::post('ipay/process', 'CheckoutController@ipayProcess')->name('ipay.process');
 		Route::post('ipay/return', 'CheckoutController@ipayReturn')->name('ipay.return');
 		Route::get('user/extended', 'PageController@extended')->name('user.extended');
+		Route::get('user/extended/{id}', 'PageController@extended')->name('user.extended.id');
 		Route::post('user/extended', 'UserController@extendedwarranty')->name('apply.extended.warranty');
 });
 

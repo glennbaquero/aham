@@ -11,10 +11,10 @@
 			<div class="vertical-parent">
 				<div class="vertical-align">
 					<div class="frame-title h__title">
-						<p class="font--3 blah">{!! $item->banner_text_header !!}</p>
+						<p class="font--3 blah">{{ $item->banner_text_header }}</p>
 					</div>
 					<div class="frame-title h__desc">
-						<p class="font--2">{!! $item->banner_sub_text_header !!}</p>
+						<p class="font--2">{{ $item->banner_sub_text_header }}</p>
 					</div>
 					<a href="{{ url('about') }}" class="btn btn-blue">Learn More</a>
 				</div>
@@ -59,7 +59,7 @@
 									<div class="h__slider-desc vertical-parent">
 										<div class="vertical-align">
 											<h2 class="h__f-prod-title">{{ $featured->model }}</h2>
-											<p class="h__f-prod-desc">{!! $featured->description !!}</p>
+											<p class="h__f-prod-desc">{{ $featured->description }}</p>
 											<a class="btn btn-white font--1" href="{{ route('view.product', $featured->id) }}">View Specs</a>
 										</div>
 									</div>
@@ -92,23 +92,10 @@
 	<img class="img-fit" src="{{ $item->product_register }}">
 	<div class="frame-padding">
 		<div class="vertical-parent">
-			<div class="vertical-align">
-				<div class="h__reg-container animate-up">
-					<p class="h__title">Register your product now!</p>
-					<p class="h__desc">Register your product to 1 year free basic warranty or try our extended warranty plan! We've got you covered!</p>
-					<select class="select">
-						<option>Model Number</option>
-						@foreach($products as $product)
-							<option value="{{ $product->id }}">{{ $product->model }}</option>
-						@endforeach
-					</select>
-					<div class="tool-tip home" data-tooltip-title="Content here" data-tooltip-position="right"><i class="color--red fa fa-exclamation-circle"></i></div>
-					<div class="button">
-						<a class="btn btn-blue" href="{{ route('user.basic') }}"><p>Basic Warranty</p></a>
-						<a class="btn outline--blue" href="{{ route('user.extended') }}"><p>Extended Warranty</p></a>
-					</div>
-				</div>
-			</div>
+			<products-registration
+			:products="{{ $products }}"
+			:basicurl="'{{ route('user.basic') }}'"
+			:extendedurl="'{{ route('user.extended') }}'"></products-registration>
 		</div>
 	</div>
 </section>
