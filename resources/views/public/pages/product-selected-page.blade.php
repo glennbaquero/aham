@@ -24,10 +24,21 @@
 		><div class="sp__col--2">
 			<p class="sp__title">Specification</p>
 			<ul class="sp__specs">
-				<li> {!! $product->specification !!} </li>
+				<li> {{ $product->specification }} </li>
 			</ul>
 		</div>
 	</div>
 </section>
-@include('includes.register-warranty-plan')
+<section class="homepage frame--4 container">
+	<img class="img-fit" src="">
+	<div class="frame-padding">
+		<div class="vertical-parent">
+			<products-registration
+			:products="{{ $products }}"
+			:basicurl="'{{ route('user.basic') }}'"
+			:extendedurl="'{{ route('user.extended') }}'"></products-registration>
+		</div>
+	</div>
+</section>
+
 @endsection

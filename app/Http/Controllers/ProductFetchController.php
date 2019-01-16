@@ -58,6 +58,7 @@ class ProductFetchController extends FetchController
                 'image' => $item->renderFilePath(),
                 'model' => $item->model,
                 'name' => $item->name,
+                'specification' => $item->specification,
                 'extended_amount' => $item->extended_amount,
                 'created_at' => $item->created_at->format('M d, Y (H:i:s)'),
                 'tags' => $item->tags()->pluck('name')->toArray(),

@@ -14,11 +14,13 @@
 			><form method="GET" action="{{ url('/products') }}" class="header__search right-align inlineBlock-parent">
 				<div class="input-txt color--white">
 					<input type="search" name="search" placeholder="Search products..">
-					<i class="fa fa-search color--white"></i>
+					<button class="" type="submit" style="border: none; background: transparent;">
+						<i class="fa fa-search color--white"></i>
+					</button>
 				</div>
 				
 				<a href="{{ route('user.extended') }}" class="search-btn">
-					<button class="" type="submit">Extended Warranty</button>
+					<button class="" type="button">Extended Warranty</button>
 				</a>
 			</form>
 		</div>
@@ -117,10 +119,10 @@
 <header class="mbl-header header">
 	<div class="header--bottom inlineBlock-parent">
 		<div class="header__logo-holder">
-			<a href=""><img class="img-fit" src="{{asset('images/logo2.png') }}"></a>
+			<a href=""><img class="img-fit" src="{{ $headerLogo->aham_logo }}"></a>
 		</div>
 		<div class="header__logo-holder2">
-			<img class="img-fit" src="{{asset('images/logo-white.png') }}">
+			<a href="{{ route('user.extended') }}"><img class="img-fit" src="{{asset('storage/819byteslogo.png') }}"></a>
 		</div>
 		<div class="mbl-menu__btn">
 			<i class="mbl-menu__search ion-android-search"></i>

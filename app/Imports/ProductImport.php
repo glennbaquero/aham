@@ -16,16 +16,16 @@ use App\Type;
 
 class ProductImport implements ToModel, WithHeadingRow
 {
-    // protected $images;
+    protected $images, $failed_img;
 
-    // public $errors = [];
+    public $errors = [];
 
 
-    // public function __construct($images)
-    // {
-    //     $this->images = $images;
-    //     // $this->errors = $errors;
-    // }
+    public function __construct($images)
+    {
+        $this->images = $images;
+        // $this->errors = $errors;
+    }
     /**
     * @param array $row
     *
@@ -51,18 +51,19 @@ class ProductImport implements ToModel, WithHeadingRow
 
         if($images) {
             foreach ($images as $image) {
-                // foreach ($this->images as $filename) {
-                //     if($filename->getClientOriginalName() != $image) {
-                //         $this->errors[] = [
-                //             'model' => $product->model,
-                //             'manifest_image_name' => $image,
-                //             'compability_error' => $filename->getClientOriginalName(),
-                //         ];
-                //     }
-                // }
-                ProductImage::create(['product_id' => $product->id, 'image' => $image]);
+                    $failed_img = $image;
+                // ProductImage::create(['product_id' => $product->id, 'image' => $image]);
             }
         }
+
+        foreach ($this->images as $filename) {
+                    if($filename->getClientOriginalName() != $failed_img) {
+                        $this->errors[] = [
+                            'model' => $product->model,
+                            'manifest_image_name' => $failed_img,
+                        ];
+                    }
+                }
         // dd($this->errors);
         return $product; 
     }
