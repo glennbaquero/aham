@@ -168,7 +168,7 @@ class ProductController extends Controller
 
     public function uploadproduct(Request $request) 
     {   
-        $result = Excel::import(new ProductImport($request->file('images')), $request->file('manifest'));
+        $result = Excel::import(new ProductImport, $request->file('manifest'));
         // $result = Excel::import(new ProductImport($request->file('images')), $request->file('manifest'));
         // dd($result->errors);
         return redirect()->back();
