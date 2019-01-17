@@ -27,16 +27,6 @@
 				    	</div>
 				    </div>
 				</div>
-				<!-- <select class="input-text select"  v-model="request.product">
-					<option class="inlineBlock-parent by-2" v-for="product in products" :value="product.id">
-						<div class="left-align">
-							<img src="http://via.placeholder.com/30x30">
-						</div
-						><div class="right-align">
-							<p>{{ product.model }}</p>
-						</div>
-					</option>
-				</select> -->
 			</div>
 			<div class="bw__form-row">
 				<label>Serial Number</label>

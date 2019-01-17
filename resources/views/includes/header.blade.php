@@ -28,17 +28,10 @@
 	<div class="header--bottom inlineBlock-parent">
 		<div class="header__logo-holders inlineBlock-parent">
 			<div class="header__logo-holder1">
-<<<<<<< HEAD
-				{{-- <a href=""><img class="header__logo" src="{{ $headerLogo->aham_logo }}"></a> --}}
-			</div
-			><div class="header__logo-holder2">
-				<a href="{{ route('user.extended') }}"><img class="header__logo" src="{{ asset('storage/819byteslogo.png') }}"></a>
-=======
 				<a href=""><img class="header__logo" src="{{ $headerLogo->aham_logo }}"></a>
 			</div
 			><div class="header__logo-holder2">
 				<a href="{{ route('user.extended') }}"><img class="header__logo" src="{{ asset('images/logo-white.png') }}"></a>
->>>>>>> c495ba123ce55218b0c578f38872b483f6c50e6d
 			</div>
 		</div
 		><div class="navigation__set inlineBlock-parent right-align">
