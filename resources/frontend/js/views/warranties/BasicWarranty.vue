@@ -7,9 +7,9 @@
 			<div class="bw__form-row">
 				<label>Model Number</label>
 				<div class="input-text">
-					<!-- <select name="item">
+					<select name="item">
 					    <option value=""></option>
-					</select> -->
+					</select>
 					<div class="selected">
 				    	<i class="ion-arrow-down-b"></i>
 				    	<div>{{ request.product > 0 ? items[request.product - 1].model : 'Select Product'}}</div>

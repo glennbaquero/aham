@@ -114,27 +114,33 @@
 	&.btn-blue{
 		background-color: $blue;
 		color: $white;
+		border: 2px solid $blue;
 
 		&:hover {
 			background-color: $light-blue;
+			border: 2px solid $light-blue;
 		}
 	}
 
 	&.btn-white {
 		background-color: $white;
-		color: $blue;	
+		color: $blue;
+		border: 2px solid $white;	
 
 		&:hover {
 			background-color: darken($light-gray,10);
+			border: 2px solid darken($light-gray,10);
 		}
 	}
 
 	&.btn-gray {
 		background-color: $black;
 		color: $white;
+		border: 2px solid $black;
 
 		&:hover {
 			background-color: #000;
+			border: 2px solid #000;
 		}
 	}
 
@@ -205,8 +211,8 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	right: 0;
 	bottom: 0;
+	right: 0;
 	max-width: 100%;
 	height: 100%;
 }

@@ -10,7 +10,10 @@
 			<div class="tool-tip home" data-tooltip-title="Content here" data-tooltip-position="right"><i class="color--red fa fa-exclamation-circle"></i></div>
 			<div class="button">
 				<a class="btn btn-blue" @click="redirect(product)"><p>Basic Warranty</p></a>
-				<a class="btn outline--blue" @click="redirect(product, 1)"><p>Extended Warranty</p></a>
+				<!-- <a class="btn outline--blue" @click="redirect(product, 1)"><p>Extended Warranty</p></a> -->
+				<a class="rw__btn btn outline--blue inlineBlock-parent relative" @click="redirect(product, 1)" href="">
+					<div><img class="img-fit" src=""></div><p>Extended Warranty</p>
+				</a>
 			</div>
 		</div>
 	</div>

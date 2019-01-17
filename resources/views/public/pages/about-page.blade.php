@@ -24,7 +24,7 @@
 </section>
 
 <section class="aboutpage frame--2 container">
-	<img class="img-fit" src="{{asset('images/2.png') }}">
+	<img class="img-fit" src="{{ asset('images/2.png') }}">
 	<div class="frame-padding">
 		<div class="vertical-parent">
 			<div class="vertical-align">
