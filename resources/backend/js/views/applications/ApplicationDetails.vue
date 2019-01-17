@@ -49,12 +49,12 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                        <td> {{ item.invoice_id }} </td>
-                                                        <td> {{ item.model }} </td>
-                                                        <td> {{ item.serial_number }} </td>
-                                                        <td> {{ item.contract_number }} </td>
-                                                        <td> {{ item.application_number }} </td>
-                                                        <td> {{ item.purchase_date }} </td>
+                                                    <td> {{ item.invoice_id }} </td>
+                                                    <td> {{ item.model }} </td>
+                                                    <td> {{ item.serial_number }} </td>
+                                                    <td> {{ item.contract_number }} </td>
+                                                    <td> {{ item.application_number }} </td>
+                                                    <td> {{ item.purchase_date }} </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -63,7 +63,9 @@
 
                              <div class="col col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
-                                    <label for="">Proof Of Purchase</label><br>
+                                    <label for="">Proof Of Purchase
+                                        <a :href="renderImage(item.invoice.proof_purchase)" class="btn btn-xs btn-primary" target="_blank">View File</a>
+                                    </label><br>
                                     <img :src="renderImage(item.invoice.proof_purchase)" width="50%" height="50%">
                                 </div>
                             </div>

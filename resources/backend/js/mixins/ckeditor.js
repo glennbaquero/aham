@@ -16,6 +16,7 @@ export default {
 
 					$(inputName).each(function() {
 		                CKEDITOR.replace(this);
+		                CKEDITOR.config.autoParagraph = false;
 			        });
 				},
 			}

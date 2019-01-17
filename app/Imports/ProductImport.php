@@ -21,11 +21,10 @@ class ProductImport implements ToModel, WithHeadingRow
     public $errors = [];
 
 
-    public function __construct($images)
-    {
-        $this->images = $images;
-        // $this->errors = $errors;
-    }
+    // public function __construct($images)
+    // {
+    //     $this->images = $images;
+    // }
     /**
     * @param array $row
     *
@@ -56,14 +55,14 @@ class ProductImport implements ToModel, WithHeadingRow
             }
         }
 
-        foreach ($this->images as $filename) {
-                    if($filename->getClientOriginalName() != $failed_img) {
-                        $this->errors[] = [
-                            'model' => $product->model,
-                            'manifest_image_name' => $failed_img,
-                        ];
-                    }
-                }
+        // foreach ($this->images as $filename) {
+        //             if($filename->getClientOriginalName() != $failed_img) {
+        //                 $this->errors[] = [
+        //                     'model' => $product->model,
+        //                     'manifest_image_name' => $failed_img,
+        //                 ];
+        //             }
+        //         }
         // dd($this->errors);
         return $product; 
     }

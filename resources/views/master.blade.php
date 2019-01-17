@@ -8,8 +8,8 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />
-        <meta property="og:image" content="{{ asset('image/logo.png') }}">
+        <link rel="shortcut icon" href="{{ asset('storage/819byteslogo.png') }}" type="image/x-icon" />
+        <meta property="og:image" content="{{ asset('storage/819byteslogo.png') }}">
         <meta property="og:title" content="AHAM">
         <meta property="og:description" content="AHAM">
         <meta property="og:url" content="">

@@ -150,7 +150,7 @@ export default {
         },
 
         renderImage() {
-        	return 'storage/logo3.png';
+        	return 'storage/2xlogo.png';
         },
 
         renderExpiredImage() {

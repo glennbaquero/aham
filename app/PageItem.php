@@ -77,7 +77,6 @@ class PageItem extends Model
         } else {
             $item->update($vars);
         }
-
         return $item;
     }
 
