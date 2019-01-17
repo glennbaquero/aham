@@ -7,9 +7,9 @@
 			<div class="bw__form-row">
 				<label>Model Number</label>
 				<div class="input-text">
-					<select name="item">
+					<!-- <select name="item">
 					    <option value=""></option>
-					</select>
+					</select> -->
 					<div class="selected">
 				    	<i class="ion-arrow-down-b"></i>
 				    	<div>{{ request.product > 0 ? items[request.product - 1].model : 'Select Product'}}</div>
@@ -18,7 +18,7 @@
 				    	<div class="item-holder">
 				    		<div class="items" v-for="product in products" @click="choose(product.id, product.model)">
 				    			<div class="img-holder">
-				    				<!-- <img class="img-fit" :src="renderImage(product.images[0].image)"> -->
+				    				<img class="img-fit" :src="renderImage(product.images[0].image)">
 				    			</div
 				    			><div class="dropdown-content">
 				    				<div><b>{{ product.model }}</b></div>
