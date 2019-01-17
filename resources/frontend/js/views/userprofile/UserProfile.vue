@@ -38,21 +38,22 @@
 			<div class="password">
 				<div class="inlineBlock-parent">
 					<p class="usr__title">Change Password</p>	
-					<div class="icon" @click="disabled_password()"><i class="fa fa-pen"></i></div>
+					<div class="icon" @click="unhide()"><i class="fa fa-pen"></i></div>
+					<div class="icon" @click="hide()" v-show="visible"><i class="fa fa-times"></i></div>
 				</div>
-				<div class="usr__form-row">
+				<div class="usr__form-row" v-show="visible">
 					<label>Old Password</label>
 					<input class="input-text" type="password" name="old_password" v-model="password.old_password" :disabled="disabledpassword" required>
 				</div>
-				<div class="usr__form-row">
+				<div class="usr__form-row" v-show="visible">
 					<label>New Password</label>
 					<input class="input-text" type="password" name="password" v-model="password.password" :disabled="disabledpassword" required>
 				</div>
-				<div class="usr__form-row">
+				<div class="usr__form-row" v-show="visible">
 					<label>Repeat Password</label>
 					<input class="input-text" type="password" name="password_confirmation" v-model="password.password_confirmation" :disabled="disabledpassword" required>
 				</div
-				><div class="usr__form-row right-align" v-show="show_password_button">
+				><div class="usr__form-row right-align" v-show="visible">
 					<button class="btn btn-blue" @click="updatepassword()">
 						<p>Update Details</p>
 					</button>
@@ -79,13 +80,13 @@
 			return {
 				details: [],
 				disabled:true,
+				visible: false,
 				disabledpassword:true,
 				show:false,
-				show_password_button:false,
 				password: {
-					password: String,
-					old_password: String,
-					password_confirmation: String
+					password: null,
+					old_password: null,
+					password_confirmation: null
 				},
 				loading:false
 			}
@@ -130,6 +131,7 @@
 						if(response.data.response === 1){
 							this.loading = false;
 							swal('Password Updated', 'Password is updated', 'success');
+							this.visible = false;
 						} else {
 							this.loading = false;
 							swal('Ooops', 'Password is not match', 'error');
@@ -168,10 +170,15 @@
 				this.show = true;
 			},
 
-			disabled_password() {
+			unhide() {
 				this.disabledpassword = false;
-				this.show_password_button = true;
 				this.password = {};
+				this.visible = true;
+			},
+
+			hide() {
+				this.disabledpassword = true;
+				this.visible = false;
 			}
 		}
 	}

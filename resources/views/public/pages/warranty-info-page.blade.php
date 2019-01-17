@@ -9,8 +9,8 @@
 		<div class="wi__container animate-up">
 			<div class="vertical-parent">
 				<div class="vertical-align">
-					<p class="wi__title">{{ $item->banner_header_text }}</p>
-					<p class="wi__desc">{{ $item->banner_sub_text }}</p>
+					<p class="wi__title">{{ strip_tags($item->banner_header_text) }}</p>
+					<p class="wi__desc">{{ strip_tags($item->banner_sub_text) }}</p>
 				</div>
 			</div>
 		</div>

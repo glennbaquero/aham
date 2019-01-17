@@ -48,7 +48,7 @@ class ApprovedWarrantyNotification extends Notification implements ShouldQueue
                     ->subject(config('app.name') . ': One Year Warranty Approved')
                     ->greeting('Hello ' . $notifiable->renderFullname() . ',')
                     ->line('We gladly to know that your one year warranty is approved by AHAM.')
-                    ->action('Check product', route('home'));
+                    ->action('Check product', route('user.products'));
     }
 
     /**

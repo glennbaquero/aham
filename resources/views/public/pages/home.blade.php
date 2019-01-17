@@ -11,10 +11,10 @@
 			<div class="vertical-parent">
 				<div class="vertical-align">
 					<div class="frame-title h__title">
-						<p class="font--3 blah">{{ $item->banner_text_header }}</p>
+						<p class="font--3 blah">{{ strip_tags($item->banner_text_header) }}</p>
 					</div>
 					<div class="frame-title h__desc">
-						<p class="font--2">{{ $item->banner_sub_text_header }}</p>
+						<p class="font--2">{{ strip_tags($item->banner_sub_text_header) }}</p>
 					</div>
 					<a href="{{ url('about') }}" class="btn btn-blue">Learn More</a>
 				</div>
@@ -58,8 +58,8 @@
 	
 									<div class="h__slider-desc vertical-parent">
 										<div class="vertical-align">
-											<h2 class="h__f-prod-title">{{ $featured->model }}</h2>
-											<p class="h__f-prod-desc">{{ $featured->description }}</p>
+											<h2 class="h__f-prod-title">{{ strip_tags($featured->model) }}</h2>
+											<p class="h__f-prod-desc">{{ strip_tags($featured->description) }}</p>
 											<a class="btn btn-white font--1" href="{{ route('view.product', $featured->id) }}">View Specs</a>
 										</div>
 									</div>
@@ -79,8 +79,8 @@
 		<div class="vertical-parent">
 			<div class="vertical-align">
 				<div class="h__contact-container animate-up">
-					<p class="h__title">{!! $item->bottom_2_text_header !!}</p>
-					<p class="h__desc">{!! $item->bottom_2_text_sub !!}</p>
+					<p class="h__title">{{ strip_tags($item->bottom_2_text_header) }}</p>
+					<p class="h__desc">{{ strip_tags($item->bottom_2_text_sub) }}</p>
 					<a class="btn btn-blue" href="{{ url('contact') }}"><p>Contact Us</p></a>
 				</div>
 			</div>
