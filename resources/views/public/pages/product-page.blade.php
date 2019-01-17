@@ -40,15 +40,15 @@
 		</div>
 	</section>
 
-<section class="homepage frame--4 container">
-	<img class="img-fit" src="{{ $item->register_product }}">
-	<div class="frame-padding">
-		<div class="vertical-parent">
-			<products-registration
-			:products="{{ $products }}"
-			:basicurl="'{{ route('user.basic') }}'"
-			:extendedurl="'{{ route('user.extended') }}'"></products-registration>
+	<section class="homepage frame--4 container">
+		<img class="img-fit" src="{{ $item->register_product }}">
+		<div class="frame-padding">
+			<div class="vertical-parent">
+				<products-registration
+				:products="{{ $products }}"
+				:basicurl="'{{ route('user.basic') }}'"
+				:extendedurl="'{{ route('user.extended') }}'"></products-registration>
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
 @endsection
