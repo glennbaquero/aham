@@ -28,7 +28,7 @@
 	<div class="header--bottom inlineBlock-parent">
 		<div class="header__logo-holders inlineBlock-parent">
 			<div class="header__logo-holder1">
-				<a href=""><img class="header__logo" src="{{ $headerLogo->aham_logo }}"></a>
+				{{-- <a href=""><img class="header__logo" src="{{ $headerLogo->aham_logo }}"></a> --}}
 			</div
 			><div class="header__logo-holder2">
 				<a href="{{ route('user.extended') }}"><img class="header__logo" src="{{ asset('storage/819byteslogo.png') }}"></a>
