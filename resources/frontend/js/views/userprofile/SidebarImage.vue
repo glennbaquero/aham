@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="usr__img-holder">
-			<img class="img-fit" :src="renderImage(details.user_image)">
+			<!-- <img class="img-fit" :src="renderImage(details.user_image)"> -->
 		</div><p class="usr__name">{{ details.firstname }} {{ details.lastname }}</p>
 	</div>
 </template>
