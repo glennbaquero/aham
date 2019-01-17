@@ -127,8 +127,8 @@ var app = {
         });
 
         $('.items').on('click', function() {
-          var txt = $(this).find('.dropdown-content > div:first-child b').text();
-          $(this).parent().parent().parent().find('.selected div').html(txt);
+          // var txt = $(this).find('.dropdown-content > div:first-child b').text();
+          // $(this).parent().parent().parent().find('.selected div').html(txt);
           $(this).parent().parent().parent().find('.opened').removeClass('opened');
         });
 
@@ -199,47 +199,47 @@ var app = {
         }); 
 
       // Product Category Slider
-      $('.h__prod-category-slider-holder').slick({
-        infinite: true,
-        slidesToShow: 6,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        speed: 500,
-        arrows: false,
-        dots: false,
-        fade: false,
-        responsive: [
-        {
-          breakpoint: 1200,
-          settings: {
-            slidesToShow: 4,
-            slidesToScroll: 1
-          }   
-        },
-        {
-          breakpoint: 1100,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 1
-          }   
-        },
-        {
-          breakpoint: 801,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1
-          }   
-        },
-        {
-          breakpoint: 401,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }   
-        }
-        ]
-      });
+      // $('.h__prod-category-slider-holder').slick({
+      //   infinite: true,
+      //   slidesToShow: 6,
+      //   slidesToScroll: 1,
+      //   autoplay: true,
+      //   autoplaySpeed: 2000,
+      //   speed: 500,
+      //   arrows: false,
+      //   dots: false,
+      //   fade: false,
+      //   responsive: [
+      //   {
+      //     breakpoint: 1200,
+      //     settings: {
+      //       slidesToShow: 4,
+      //       slidesToScroll: 1
+      //     }   
+      //   },
+      //   {
+      //     breakpoint: 1100,
+      //     settings: {
+      //       slidesToShow: 3,
+      //       slidesToScroll: 1
+      //     }   
+      //   },
+      //   {
+      //     breakpoint: 801,
+      //     settings: {
+      //       slidesToShow: 2,
+      //       slidesToScroll: 1
+      //     }   
+      //   },
+      //   {
+      //     breakpoint: 401,
+      //     settings: {
+      //       slidesToShow: 1,
+      //       slidesToScroll: 1
+      //     }   
+      //   }
+      //   ]
+      // });
     },
 
     about: function(){

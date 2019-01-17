@@ -25,8 +25,8 @@
 
 	<div class="h__prod-category-container">
 		<div class="h__prod-category-slider-holder">
-			@foreach($categories as $category)
-			<a class="h__products">
+			
+			@foreach($categories as $category)<a class="h__products" href="">
 				<div class="h__products-img-holder">
 					<img class="img-fit" src="{{ $category->renderFilePath() }}">
 				</div>
@@ -58,6 +58,7 @@
 	
 									<div class="h__slider-desc vertical-parent">
 										<div class="vertical-align">
+
 											<h2 class="h__f-prod-title">{{ strip_tags($featured->model) }}</h2>
 											<p class="h__f-prod-desc">{{ strip_tags($featured->description) }}</p>
 											<a class="btn btn-white font--1" href="{{ route('view.product', $featured->id) }}">View Specs</a>
@@ -89,6 +90,8 @@
 </section>
 
 <section class="homepage frame--4 container">
+	<div class="full frame__background size--cover bring--front" style="background-color: #f4f5f7;"></div>
+	{{-- <div class="h__banner full frame__background size--cover bring--front" style="background-image: url('{{ $item->featured_product_bg }}');"></div> --}}
 	<img class="img-fit" src="{{ $item->product_register }}">
 	<div class="frame-padding">
 		<div class="vertical-parent">
