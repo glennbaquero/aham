@@ -26,8 +26,13 @@
 		</div>
 	</div>
 	<div class="header--bottom inlineBlock-parent">
-		<div class="header__logo-holder">
-			<a href=""><img class="header__logo" src="{{ $headerLogo->aham_logo }}"></a>
+		<div class="header__logo-holders inlineBlock-parent">
+			<div class="header__logo-holder1">
+				<a href=""><img class="header__logo" src="{{ $headerLogo->aham_logo }}"></a>
+			</div
+			><div class="header__logo-holder2">
+				<a href="{{ route('user.extended') }}"><img class="header__logo" src="{{ asset('images/logo-white.png') }}"></a>
+			</div>
 		</div
 		><div class="navigation__set inlineBlock-parent right-align">
 			<div class="navigation__link">
@@ -125,9 +130,6 @@
 			<a href="{{ route('user.extended') }}"><img class="img-fit" src="{{asset('storage/819byteslogo.png') }}"></a>
 		</div>
 		<div class="mbl-menu__btn">
-			<i class="mbl-menu__search ion-android-search"></i>
-		</div>
-		<div class="mbl-menu__btn">
 			<i name="close" class="mbl-menu ion-android-menu" role="img" aria-label="close"></i>
 		</div>
 	</div>
@@ -145,6 +147,13 @@
 				<p class="mbl-menu__username">{{ Auth::user()->renderFullname() }}</p>
 			@endif
 		</div>
+		<form method="GET" action="{{ url('/products') }}" class="header__search">
+			<div class="input-txt color--white">
+				<input type="search" name="search" placeholder="Search products.."><button class="" type="submit" style="border: none; background: transparent;">
+					<i class="fa fa-search color--white"></i>
+				</button>
+			</div>
+		</form>
 		
 		<div class="mbl-menu__links">
 			<a href="{{ route('home') }}"><p class="mbl-menu__text">Home</p></a>
