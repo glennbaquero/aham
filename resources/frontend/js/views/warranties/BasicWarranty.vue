@@ -12,31 +12,21 @@
 					</select>
 					<div class="selected">
 				    	<i class="ion-arrow-down-b"></i>
-				    	<div>{{ request.product > 0 ? items[request.product - 1].model : 'Select Product'}}</div>
+				    	<div>{{ request.product > 0 ? products[request.product - 1].model : 'Select Product'}}</div>
 				    </div>
 				    <div class="select-dropdown">
 				    	<div class="item-holder">
-				    		<div class="items" v-for="item in items" @click="choose(item.id, item.model)">
+				    		<div class="items" v-for="product in products" @click="choose(product.id)">
 				    			<div class="img-holder">
-				    				<img class="img-fit" :src="renderImage(item.images[0].image)">
+				    				<img class="img-fit" :src="renderImage(product.images[0].image)">
 				    			</div
 				    			><div class="dropdown-content">
-				    				<div><b>{{ item.model }}</b></div>
+				    				<div><b>{{ product.model }}</b></div>
 				    			</div>
 				    		</div>
 				    	</div>
 				    </div>
 				</div>
-				<!-- <select class="input-text select"  v-model="request.product">
-					<option class="inlineBlock-parent by-2" v-for="product in products" :value="product.id">
-						<div class="left-align">
-							<img src="http://via.placeholder.com/30x30">
-						</div
-						><div class="right-align">
-							<p>{{ product.model }}</p>
-						</div>
-					</option>
-				</select> -->
 			</div>
 			<div class="bw__form-row">
 				<label>Serial Number</label>
@@ -89,12 +79,13 @@
 				products:{},
 				request:{
 					price: null,
+					product: 0
 				},
 				image:null,
     			loading:false,
 				extend:'user/checkout/',
 				hidden: true,
-				segment: 0
+				segment: 0,
 			}
 		},
 
@@ -222,6 +213,15 @@
 				var segment = pathname.pop() || pathname.pop();
 
 				this.request.product = parseInt(segment);
+	        },
+
+
+	        choose(id){
+            	this.request.product = id;
+            },
+
+	        renderImage(image) {
+	        	return 'storage/' + image;
 	        }
 
 		}
