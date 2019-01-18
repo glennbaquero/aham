@@ -12,11 +12,11 @@
 					</select>
 					<div class="selected">
 				    	<i class="ion-arrow-down-b"></i>
-				    	<div>{{ request.product > 0 ? items[request.product - 1].model : 'Select Product'}}</div>
+				    	<div>{{ request.product > 0 ? products[request.product - 1].model : 'Select Product'}}</div>
 				    </div>
 				    <div class="select-dropdown">
 				    	<div class="item-holder">
-				    		<div class="items" v-for="product in products" @click="choose(product.id, product.model)">
+				    		<div class="items" v-for="product in products" @click="choose(product.id)">
 				    			<div class="img-holder">
 				    				<img class="img-fit" :src="renderImage(product.images[0].image)">
 				    			</div
@@ -79,12 +79,13 @@
 				products:{},
 				request:{
 					price: null,
+					product: 0
 				},
 				image:null,
     			loading:false,
 				extend:'user/checkout/',
 				hidden: true,
-				segment: 0
+				segment: 0,
 			}
 		},
 
@@ -215,7 +216,7 @@
 	        },
 
 
-	        choose(id, model){
+	        choose(id){
             	this.request.product = id;
             },
 
