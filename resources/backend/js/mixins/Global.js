@@ -168,6 +168,7 @@ Vue.mixin({
             let message = data.message;
             let title = data.title;
             let type = data.type;
+            let list = data.list;
 
             if (!title) {
                 title = 'Succes';
@@ -181,10 +182,15 @@ Vue.mixin({
                 type = 'success';
             }
 
+            if (!list) {
+                list = [];
+            }
+
 
             EventBus.$emit('showModal', {
                                 content: message,
-                                type: 'success'
+                                type: 'success',
+                                list: list,
                             });
 
             if (data.redirect) {
