@@ -5,7 +5,7 @@
 		<h1>{{ $contact->renderName() }} <small>(Update Contact Information)</small></h1>
 		<ol class="breadcrumb">
 			<li>
-				<a href="{{ route('admin.contacts.index') }}"><i class="fas fa-images"></i> Contact Info</a>
+				<a href="{{ route('admin.contacts.index') }}"><i class="fas fa-images"></i> Contact Information</a>
 			</li>
 			<li class="active">
 				{{ $contact->renderName() }}

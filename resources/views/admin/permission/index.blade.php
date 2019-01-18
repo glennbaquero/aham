@@ -5,7 +5,7 @@
 		<h1>Permission <small>(Index)</small></h1>
 		<ol class="breadcrumb">
 			<li>
-				<a href="{{ route('admin.permission') }}"><i class="fas fa-user-shield"></i> Administrator</a>
+				<a href="{{ route('admin.permission') }}"><i class="fas fa-user-shield"></i> Permission</a>
 			</li>
 			<li class="active">
 				Index
