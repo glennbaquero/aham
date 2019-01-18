@@ -144,6 +144,11 @@
             Users
           </a>
         </li>
+        <li class="{{ $checker->route->isActive('admin.employee.') }}">
+          <a href="{{ route('admin.employee.index') }}"><i class="fa fa-users"></i>
+            Employee
+          </a>
+        </li>
       @endif
 
       @if ($checker->permission->can(['admin.activity-logs.index']))

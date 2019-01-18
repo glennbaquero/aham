@@ -62,6 +62,9 @@ Vue.component('discount-details', require('./views/discounts/DiscountDetails.vue
 Vue.component('user-table', require('./views/users/UserTable.vue'));
 Vue.component('user-details', require('./views/users/UserDetails.vue'));
 
+Vue.component('employees-table', require('./views/employees/EmployeesTable.vue'));
+Vue.component('employee-details', require('./views/employees/EmployeeDetails.vue'));
+
 const app = {
 	init() {
 		this.setupVue();

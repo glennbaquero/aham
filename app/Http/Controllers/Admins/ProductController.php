@@ -16,6 +16,7 @@ use App\ProductImage;
 use App\Type;
 use App\Category;
 use App\ProductTag;
+use App\PageItem;
 
 use DB;
 
@@ -196,7 +197,8 @@ class ProductController extends Controller
     {
         return view('public.pages.product-selected-page',[
             'product' => $product->find($id),
-            'products' => $product->all()
+            'products' => $product->all(),
+            'item' => PageItem::where('slug','register_product_view')->first()
         ]);
     }
 

@@ -22,6 +22,11 @@ class Product extends Model
      * @Relationships
      */
 
+    
+    public function discount() {
+        return $this->belongsTo(Discount::class);
+    }
+
     public function category() {
     	return $this->belongsTo(Category::class);
     }

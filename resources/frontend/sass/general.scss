@@ -401,3 +401,121 @@
 .tool-tip[data-tooltip-position="right"]:hover::after {
   transform: translate3d(0px, -50%, 0);
 }
+#breadcrumb{
+	margin-top: 130px;
+	margin-left: 40px;
+  	list-style:none;
+  	display: inline-block;
+
+	.icon{
+	  	font-size: 24px;
+	  	color: $dark-gray;
+	}
+  
+  	li {
+    	float:left;
+
+    	a {
+      		color: $dark-gray;
+      		display:block;
+      		background: $light-gray;
+      		text-decoration: none;
+      		position:relative;
+      		height: 40px;
+      		line-height: 36px;
+      		padding: 0 10px 0 20px;
+      		text-align: center;
+      		margin-right: 21px;
+    	}
+
+	    &:nth-child(even) {
+	    	a {
+		        background-color: $light-gray;
+		        
+		        &:before {
+		          	border-color:$light-gray;
+		          	border-left-color:transparent;
+		        }
+		        
+		        &:after {
+		          	border-left-color:$light-gray;
+		        }
+		    }
+		}
+
+		&:first-child {
+			a {
+		        padding-left: 15px;
+		        background-color: $light-gray;
+		        
+		        &:before {
+		          	border:none;
+		        }
+		    }
+		}
+
+		a {   
+
+			&:before,
+			&:after {
+		        content: "";
+		        position: absolute;
+		        top: 0;
+		        border: 1px solid $light-gray;
+		        border-width: 20px 20px;
+		        width: 0;
+		        height: 0;
+		    }
+		    
+		    &:before {
+		        left:-20px;
+		        border-left-color: transparent;
+		    }
+		      
+		    &:after {
+		        left:100%;
+		        border-color:transparent;
+		        border-left-color:$light-gray;
+		    }
+
+		    &.active {
+		    	color: $white;
+		    	background-color: $blue;
+
+		    	&:before {
+		          	border-color:$blue;
+		          	border-left-color:transparent;
+		        }
+
+		        &:after {
+		          border-left-color:$blue;
+		        }
+		    }
+		}
+	}
+}
+
+
+.btn-img {
+	position: relative;
+	width: 30px;
+	height: 40px;
+	margin-right: 8px;
+
+	.img-fit {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
+
+.btn-img--1 {
+	position: relative;
+	width: 30px;
+	height: 25px;
+	margin-right: 8px;
+
+	.img-fit {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}

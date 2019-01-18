@@ -7,7 +7,7 @@
 		<p class="ch__title">Checkout</p>
 			<div class="ch__form-row">
 				<label>Application Number</label>
-				<input class="input-text" type="text" name="" v-model="item.invoice.application_number">
+				<input class="input-text" type="text" name="" v-model="item.invoice.application_number" :disabled="disabled">
 				<img src="">
 			</div>
 			<div class="ch__form-row">
@@ -32,16 +32,16 @@
 			<p class="ch__title">Your Product</p>
 			<div class="ch__form-row">
 				<label>Model Number</label>
-				<input class="input-text" type="text" name="model" v-model="item.product.model">
+				<input class="input-text" type="text" name="model" v-model="item.product.model" :disabled="disabled">
 				<input class="input-text" type="hidden" name="invoice_id" v-model="item.invoice.id">
 			</div>
 			<div class="ch__form-row">
 				<label>Serial Number</label>
-				<input class="input-text" type="text" name="" v-model="item.invoice.serial_number">
+				<input class="input-text" type="text" name="" v-model="item.invoice.serial_number" :disabled="disabled">
 			</div>
 			<div class="ch__form-row">
 				<label>Contact Number</label>
-				<input class="input-text" type="text" name="" v-model="item.invoice.contract_number">
+				<input class="input-text" type="text" name="" v-model="item.invoice.contract_number" :disabled="disabled">
 			</div>
 			<div class="ch__form-row">
 				<label>Discount Code</label>
@@ -100,6 +100,7 @@
     			loading:false,
     			payment_method: 1,
     			discounted_amount: 0,
+    			disabled:true
 			}
 		},
 
@@ -159,7 +160,6 @@
 					total = this.discounted_amount;
 				if(!this.discount_amount) {
 					$this.discount_available.forEach(function(e){
-						console.log(e.discount_code);
 						if(e.discount_code == $('.discount_code').val()) {
 							swal('Discount Code Match!', 'Discount code is match to your credentials', 'success');
 							$this.discounted_amount = e.discount_amount;

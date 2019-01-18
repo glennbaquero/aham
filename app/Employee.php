@@ -9,21 +9,17 @@ use Illuminate\Support\Facades\Storage;
 use Laravel\Scout\Searchable;
 use App\Traits\ActivityLogTrait;
 
-class Discount extends Model
+class Employee extends Model
 {
     use SoftDeletes, Searchable, ActivityLogTrait;
     protected $guarded = [];
     protected $dates = ['deleted_at'];
 
-    public function employee()
+    public function discount() 
     {
-    	return $this->belongsTo(Employee::class);
+    	return $this->hasMany(Discount::class);
     }
 
-    public function prodcuts()
-    {
-    	return $this->hasMany(Product::class);
-    }
 
     public static function store($request, $item = null)
     {
@@ -36,23 +32,19 @@ class Discount extends Model
         return $item;
     }
 
-    /*
-     * Render
-     */
-
-    public function renderName() {
+     public function renderName() {
         return '#' . $this->id . ' ' . $this->model;
     }
 
-     public function renderView() {
-        return route('admin.discount.edit', $this->id);
+    public function renderDelete() {
+        return route('admin.employee.destroy', $this->id);
     }
 
-    public function renderDelete() {
-        return route('admin.discount.destroy', $this->id);
+    public function renderView() {
+        return route('admin.employee.edit', $this->id);
     }
 
     public function renderRestore() {
-        return route('admin.discount.restore', $this->id);
+        return route('admin.employee.restore', $this->id);
     }
 }

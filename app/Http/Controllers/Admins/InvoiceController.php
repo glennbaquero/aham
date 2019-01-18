@@ -11,6 +11,7 @@ use App\Notifications\ExtendedPaymentURLNotification;
 use App\Invoice;
 use App\InvoiceItem;
 use App\User;
+use App\Discount;
 
 use DB;
 
@@ -158,8 +159,7 @@ class InvoiceController extends Controller
         $invoice_item = InvoiceItem::find($id);
         $invoice_item->invoice;
         $invoice_item->product;
-
-        $discounts = auth()->user()->discounts;
+        $discounts = Discount::where('product_id', $invoice_item->product->id)->get();
 
         $item = [
             'invoice_item' => $invoice_item,

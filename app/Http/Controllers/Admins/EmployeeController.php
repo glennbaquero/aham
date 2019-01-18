@@ -2,25 +2,14 @@
 
 namespace App\Http\Controllers\Admins;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
-use App\Discount;
-use App\Product;
 use App\Employee;
-
 use DB;
 
-class DiscountController extends Controller
+class EmployeeController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('App\Http\Middleware\Admins\Discounts\DiscountIndexMiddleware', ['only' => ['index']]);
-        $this->middleware('App\Http\Middleware\Admins\Discounts\DiscountStoreMiddleware', ['only' => ['create', 'store']]);
-        $this->middleware('App\Http\Middleware\Admins\Discounts\DiscountUpdateMiddleware', ['only' => ['edit', 'update']]);
-        $this->middleware('App\Http\Middleware\Admins\Discounts\DiscountDestroyMiddleware', ['only' => ['destroy', 'restore']]);
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +17,7 @@ class DiscountController extends Controller
      */
     public function index()
     {
-        return view('admin.discount.index');
+        return view('admin.employee.index');
     }
 
     /**
@@ -38,10 +27,7 @@ class DiscountController extends Controller
      */
     public function create()
     {
-        return view('admin.discount.create', [
-            'products' => Product::all(),
-            'users' => Employee::all()
-        ]);
+        return view('admin.employee.create');
     }
 
     /**
@@ -53,12 +39,12 @@ class DiscountController extends Controller
     public function store(Request $request)
     {
         DB::beginTransaction();
-            $discount = Discount::store($request);
+            $employee = Employee::store($request);
         DB::commit();
-
+        
         return response()->json([
-            'message' => 'You have successfully create a new discount',
-            'redirect' => $discount->renderView(),
+            'message' => 'You have successfully create the employee info',
+            'redirect' => $employee->renderView(),
         ]);
 
     }
@@ -66,10 +52,10 @@ class DiscountController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Employee $employee)
     {
         //
     }
@@ -77,48 +63,46 @@ class DiscountController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        return view('admin.discount.edit', [
-            'discount' => Discount::withTrashed()->find($id),
-            'products' => Product::all(),
-            'users' => Employee::all()
-        ]);
+        return view('admin.employee.edit', [
+            'employee' => Employee::withTrashed()->find($id)
+        ]); 
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $discount = Discount::withTrashed()->find($id);
+        $employee = Employee::withTrashed()->find($id);
 
         DB::beginTransaction();
-            $discount = Discount::store($request, $discount);
+            $employee = Employee::store($request, $employee);
         DB::commit();
 
         return response()->json([
-            'message' => "You have successfully updated this item",
+            'message' => "You have successfully updated the employee info",
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $discount = Discount::find($id);
-        $discount->delete();
+        $employee = Employee::find($id);
+        $employee->delete();
 
         return response()->json([
             'message' => "You have successfully archived this item",
@@ -133,11 +117,11 @@ class DiscountController extends Controller
      */
     public function restore($id)
     {
-        $discoutnt = Discount::onlyTrashed()->find($id);
-        $discoutnt->restore();
+        $employee = Employee::onlyTrashed()->find($id);
+        $employee->restore();
 
         return response()->json([
-            'message' => "You have successfully restored this item",
+            'message' => "You have successfully restored the employee",
         ]);
     }
 }
