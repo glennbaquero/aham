@@ -16,15 +16,16 @@ use App\Type;
 
 class ProductImport implements ToModel, WithHeadingRow
 {
-    protected $images, $failed_img;
+    protected $request;
+    protected $messages = [];
 
-    public $errors = [];
+    public function __construct($request)
+    {
+        session()->forget('import_messages');
+        session('import_messages');
+        $this->request = $request;
+    }
 
-
-    // public function __construct($images)
-    // {
-    //     $this->images = $images;
-    // }
     /**
     * @param array $row
     *
@@ -32,38 +33,39 @@ class ProductImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        // dd($this->images);
         $category = Category::firstOrCreate(['name' => $row['category_id']]);
-        $type = Type::firstOrCreate(['name' => $row['type_id']])->first();
+        $type = Type::firstOrCreate(['name' => $row['type_id']]);
 
-        $images = explode(',', $row['image']);
+        $product = Product::where('model', $row['model'])->first();
 
-        $product = Product::updateOrCreate([
-            'model' => $row['model'],
-            'category_id' => $category->id,
-            'type_id' => $type->id,
-            'specification' => $row['specification'],
-            'brand' => $row['brand'],
-            'extended_amount' => $row['extended_amount'],
-            // 'quantity' => $row['quantity']
-        ]);
+        $vars = [];
+        $vars['category_id'] = $category->id;
+        $vars['type_id'] = $type->id;
+        $vars['specification'] = $row['specification'];
+        $vars['brand'] = $row['brand'];
+        $vars['extended_amount'] = $row['extended_amount'];
 
-        if($images) {
-            foreach ($images as $image) {
-                    $failed_img = $image;
-                ProductImage::create(['product_id' => $product->id, 'image' => $image]);
+        if (!$product) {
+            $vars['model'] = $row['model'];
+            $product = Product::create($vars);
+            session()->push('import_messages', "Product {$product->model} has been created.");
+        } else {
+            $product->update($vars);
+            session()->push('import_messages', "Product {$product->model} has been updated.");
+        }
+
+        $manifestImages = explode(',', str_replace(' ', '', $row['image']));
+
+        if ($this->request->hasFile('images') && count($manifestImages)) {
+            foreach ($this->request->file('images') as $image) {
+                if (in_array($image->getClientOriginalName(), $manifestImages)) {
+                    $imageVars['product_id'] = $product->id;
+                    $imageVars['image'] = $image->store('product-images', 'public');
+                    ProductImage::create($imageVars);
+                }
             }
         }
 
-        // foreach ($this->images as $filename) {
-        //             if($filename->getClientOriginalName() != $failed_img) {
-        //                 $this->errors[] = [
-        //                     'model' => $product->model,
-        //                     'manifest_image_name' => $failed_img,
-        //                 ];
-        //             }
-        //         }
-        // dd($this->errors);
-        return $product; 
+        return $product;
     }
 }

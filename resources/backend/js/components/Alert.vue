@@ -20,6 +20,10 @@
 						</template>
 					</ul>
 					<p v-show="typeof errors === 'string'">{{ errors }}</p>
+
+					<ul v-show="list && list.length > 0">
+						<li v-for="item in list">{{ item }}</li>
+					</ul>
 				</div>
 				<!-- <div class="modal-footer">
 					<button type="button" class="btn btn-outline pull-right" data-dismiss="modal">Close</button>
@@ -49,6 +53,8 @@
 				type: 'info-circle',
 				bgType: 'bg-default',
 
+				list: [],
+
 				errors: [],
 
 				hasErrors: false,
@@ -65,6 +71,7 @@
 
 			setup(data) {
 				this.title = data.title ? data.title : 'Alert Message';
+				this.list = data.list ? data.list : [];
 				this.errors = data.content ? data.content : 'Please try again later.';
 				this.hasErrors = data.hasErrors;
 				this.redirectUrl = data.redirectUrl;
