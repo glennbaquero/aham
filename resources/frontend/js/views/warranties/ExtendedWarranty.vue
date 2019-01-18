@@ -21,7 +21,7 @@
 					    </select>
 					    <div class="selected">
 				    		<i class="ion-arrow-down-b"></i>
-				    		<div>{{ request.product > 0 ? items[request.product + 1].model : 'Select Product'}}</div>
+				    		<div>{{ request.product > 0 ? items[request.product - 1].model : 'Select Product'}}</div>
 				    	</div>
 				    	<div class="select-dropdown">
 				    		<div class="item-holder">
