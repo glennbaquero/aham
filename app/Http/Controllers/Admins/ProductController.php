@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\ProductImportPost;
+
 use App\Imports\ProductImport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -14,7 +16,6 @@ use App\ProductImage;
 use App\Type;
 use App\Category;
 use App\ProductTag;
-
 
 use DB;
 
@@ -166,12 +167,15 @@ class ProductController extends Controller
         return view('admin.uploadmanifests.products');
     }
 
-    public function uploadproduct(Request $request) 
+    public function uploadproduct(ProductImportPost $request) 
     {   
-        $result = Excel::import(new ProductImport, $request->file('manifest'));
-        // $result = Excel::import(new ProductImport($request->file('images')), $request->file('manifest'));
-        // dd($result->errors);
-        return redirect()->back();
+        $result = Excel::import(new ProductImport($request), $request->file('manifest'));
+
+        return response()->json([
+            'title' => 'Success',
+            'message' => 'You have successfully uploaded a manifest.',
+            'list' => session('import_messages'),
+        ]);
     } 
 
     public function featuredproduct(Product $product)

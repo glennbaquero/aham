@@ -18,17 +18,17 @@
                 		<div class="row">
                             <div class="col col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label for="">Select Manifest <small>(Product)</small></label>
+                                    <label for="">Select Manifest <a href="/files/sample_manifest.xlsx" target="_blank" class="btn btn-xs btn-warning"><i class="fa fa-download"></i> Sample Manifest</a></label>
                                     <input name="manifest" type="file" class="form-control input-sm">
                                 </div>
                             </div>
 
-                            <!-- <div class="col col-xs-12 col-sm-12 col-md-12">
+                            <div class="col col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <label for="">Select Images<small>(Product Image)</small></label>
+                                    <label for="">Select Images<small>(Product images should match name in the selected manifest and the image file name should be unique per batch, it is case sensitive, use underscores instead of spaces)</small></label>
                                     <input name="images[]" type="file" class="form-control input-sm" multiple>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
                         <!-- End Row -->
                     </div>
