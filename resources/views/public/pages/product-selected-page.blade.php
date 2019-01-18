@@ -12,7 +12,7 @@
         <li><a href="/"><i class="icon ion-ios-home"> </i></a></li>
         <li><a href="warranty_info"><span class="icon icon-beaker"> </span> Products</a></li>
         <li><a href="{{ route('category.all.product', $product->category) }}"><span class="icon icon-double-angle-right"></span> {{ $product->category->name }}</a></li>
-        <li><a href="" class="active"><span class="icon icon-double-angle-right"></span> {{ $product->model }}</a></li>
+        <li><a href="{{ route('view.product', $product->id) }}" class="active"><span class="icon icon-double-angle-right"></span> {{ $product->model }}</a></li>
     </ul>
 
 	<div class="sp__container animate-up">
@@ -40,15 +40,15 @@
 </section>
 
 <section class="register container">
-		<div class="reg__banner full frame__background size--cover bring--back" style="background-image: url('');"></div>
-		<div class="frame-padding">
-			<div class="vertical-parent">
-				<register-product
-				:products="{{ $products }}"
-				:basicurl="'{{ route('user.basic') }}'"
-				:extendedurl="'{{ route('user.extended') }}'"></register-product>
-			</div>
+	<div class="reg__banner full frame__background size--cover bring--back" style="background-image: url('{{  asset('storage/'.$item->content) }}');"></div>
+	<div class="frame-padding">
+		<div class="vertical-parent">
+			<register-product
+			:products="{{ $products }}"
+			:basicurl="'{{ route('user.basic') }}'"
+			:extendedurl="'{{ route('user.extended') }}'"></register-product>
 		</div>
-	</section>
+	</div>
+</section>
 
 @endsection
