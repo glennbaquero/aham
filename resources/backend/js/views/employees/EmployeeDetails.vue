@@ -18,70 +18,53 @@
 
                         <!-- Start Row -->
                 		<div class="row">
+
+                    		<div class="col col-xs-12 col-sm-12 col-md-4">
+                    			<div class="form-group">
+                    				<label for="">Firstname</label>
+                    				<input v-model="item.firstname" :disabled="editable" name="firstname" type="text" class="form-control input-sm" placeholder="Firstname">
+                    			</div>
+                    		</div>
+
                             <div class="col col-xs-12 col-sm-12 col-md-4">
                                 <div class="form-group">
-                                    <label for="">Discount Code</label>
-                                    <input v-model="item.discount_code" :disabled="editable" name="discount_code" type="text" class="form-control input-sm" placeholder="Discount Code">
+                                    <label for="">Lastname</label>
+                                    <input v-model="item.lastname" :disabled="editable" name="lastname" type="text" class="form-control input-sm" placeholder="Lastname">
                                 </div>
                             </div>
 
                             <div class="col col-xs-12 col-sm-12 col-md-4">
                                 <div class="form-group">
-                                    <label for="">Employee</label>
-                                    <select class="form-control" name="employee_id">
-                                        <option v-for="user in users" :value="user.id" :selected="user.id === item.user_id ? true : false">{{ user.firstname + ' ' + user.lastname }}</option>
-                                    </select>
+                                    <label for="">Sales</label>
+                                    <input v-model="item.sales" :disabled="editable" name="sales" type="number" min=0 class="form-control input-sm" placeholder="Sales">
                                 </div>
                             </div>
-
-                            <div class="col col-xs-12 col-sm-12 col-md-4">
-                                <div class="form-group">
-                                    <label for="">Product</label>
-                                    <select class="form-control" name="product_id">
-                                        <option v-for="product in products" :value="product.id" :selected="product.id === item.product_id ? true : false">{{ product.model }}</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col col-xs-12 col-sm-12 col-md-4">
-                                <div class="form-group">
-                                    <label for="">Percent Discount</label>
-                                    <input v-model="item.discount_amount" :disabled="editable" name="discount_amount" type="number" min="0" class="form-control input-sm" placeholder="Discounted Amount">
-                                </div>
-                            </div>
-                    		
-                            <div class="col col-xs-12 col-sm-12 col-md-4">
-                                <div class="form-group">
-                                    <label for="">Expiration</label>
-                                    <input v-model="item.expiration" :disabled="editable" name="expiration" type="text" class="flatpickr form-control input-sm" placeholder="Expiration">
-                                </div>
-                            </div>
-
                             
                         </div>
                         <!-- End Row -->
+                        
                     </div>
                     <!-- Box End -->
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 
 <script>
 import Loader from '../../components/Loader.vue';
+import ckeditor from '../../mixins/ckeditor.js';
 import flatpickr from '../../mixins/flatpickr.js';
 import select2 from '../../mixins/select2.js';
-import ckeditor from '../../mixins/ckeditor.js';
 
 export default {
 	props: {
         submiturl: String,
         fetchurl: String,
+        disable: Boolean,
         disabled: Boolean,
         model: {},
-        products: Array,
-        users: Array,
     },
 
     components: {
@@ -95,9 +78,14 @@ export default {
     ],
 
     data() {
-        return {
+    	return {
             loading: false,
-            item: {},
+            item: {
+                role_ids: [],
+            },
+
+            roles: [],
+            types: [],
     	}
     },
 
@@ -131,13 +119,15 @@ export default {
     		axios.post(this.fetchurl)
     		.then(response => {
                 const data = response.data;
+                console.log(data);
                 this.item = data.item ? data.item : {};
-
+                this.item.role_ids = data.roleIds;
+                this.roles = data.roles;
+                this.types = data.types;
     		}).catch(error => {
                 console.log(error);
     		}).then(() => {
                 this.load(false);
-                this.flatpickr.init('.flatpickr', true);
                 this.select2.init('.select2');
             });
     	},

@@ -38,7 +38,7 @@
 						<discount-details ref="discount-details"
 						:fetchurl="'{{ route('admin.discount.fetch', $discount->id) }}'"
 						:users="{{ $users }}"
-						:categories="{{ $categories }}">
+						:products="{{ $products }}">
 						</discount-details>
 
 						<div class="row">

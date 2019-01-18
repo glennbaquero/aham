@@ -14,6 +14,7 @@ Vue.component('contact-us', require('./views/contactus/ContactUs.vue'));
 Vue.component('checkout', require('./views/checkout/Checkout.vue'));
 Vue.component('user-products-table', require('./views/userproducts/UserProductsTable.vue'));
 Vue.component('products-registration', require('./views/includes/RegisterProduct.vue'));
+Vue.component('register-product', require('./views/includes/ProductRegister.vue'));
 
 const app = {
 	init() {

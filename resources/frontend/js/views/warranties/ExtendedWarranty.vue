@@ -3,7 +3,7 @@
 		<loader
         :loading="loading"
         ></loader>
-		<div class="ew__container animate-up">
+		<div class="ew__container animate-up" style="margin-top:0px;">
 			<div class="ew__title">
 				<div class="vertical-parent">
 					<div class="vertical-align">

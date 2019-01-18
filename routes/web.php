@@ -342,4 +342,20 @@ Route::name('admin.')
 	Route::post('users/fetch/q', 'UserFetchController@fetch')->name('users.fetch');
 	Route::post('users/fetch/q?archive=1', 'UserFetchController@fetch')->name('users.fetch.archive');
 	Route::post('users/fetch/users/{id?}', 'UserFetchController@fetchItem')->name('user.fetch');
+
+
+	/****************
+	 * EMPLOYEE
+	 ****************/
+	Route::get('employees', 'EmployeeController@index')->name('employee.index');
+	Route::get('employee/create', 'EmployeeController@create')->name('employee.create');
+	Route::post('employee/store', 'EmployeeController@store')->name('employee.store');
+	Route::get('employee/{id}', 'EmployeeController@edit')->name('employee.edit');
+	Route::post('employee/{id}', 'EmployeeController@update')->name('employee.update');
+	Route::delete('employee/{id}', 'EmployeeController@destroy')->name('employee.destroy');
+	Route::post('employee/restore/{employee}', 'EmployeeController@restore')->name('employee.restore');
+
+	Route::post('employees/fetch/q', 'EmployeeFetchController@fetch')->name('employees.fetch');
+	Route::post('employees/fetch/q?archive=1', 'EmployeeFetchController@fetch')->name('employees.archive');
+	Route::post('employees/fetch/employees/{id?}', 'EmployeeFetchController@fetchItem')->name('employee.fetch');
 });

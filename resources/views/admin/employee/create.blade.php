@@ -2,13 +2,13 @@
 @section('content')
 <div class="content-wrapper">
 	<section class="content-header">
-		<h1>Discount</h1>
+		<h1>Add Employee <small>(Make a new employee)</small></h1>
 		<ol class="breadcrumb">
 			<li>
-				<a href="{{ route('admin.discounts') }}"><i class="fas fa-images"></i> Discount</a>
+				<a href="{{ route('admin.employee.index') }}"><i class="fas fa-user-shield"></i> Employee</a>
 			</li>
 			<li class="active">
-				New Discount
+				New Employee
 			</li>
 		</ol>
 </section>
@@ -17,15 +17,13 @@
 			<div class="col-xs-12">
 				<!-- /.box-header -->
 					<form @submit.prevent="formSubmit" 
-						data-action="{{ route('admin.discount.store') }}" 
-						data-ref="discount-details"
+						data-action="{{ route('admin.employee.store') }}" 
+						data-ref="employee-details"
 						action="#" method="GET">
 
-						<discount-details ref="discount-details"
-						:fetchurl="'{{ route('admin.discount.fetch') }}'"
-						:users="{{ $users }}"
-						:products="{{ $products }}">
-						</discount-details>
+						<employee-details ref="employee-details"
+							:fetchurl="'{{ route('admin.employee.fetch') }}'">
+						</employee-details>
 
 						<div class="row">
 							<div class="col col-xs-12">

@@ -7,8 +7,17 @@
 </section>
 
 <section class="selected-productpage container">
+
+	<ul id="breadcrumb" class="bc-border" style="margin-top: 0px; margin-left: 0px; list-style: none">
+        <li><a href="/"><i class="icon ion-ios-home"> </i></a></li>
+        <li><a href="warranty_info"><span class="icon icon-beaker"> </span> Products</a></li>
+        <li><a href="{{ route('category.all.product', $product->category) }}"><span class="icon icon-double-angle-right"></span> {{ $product->category->name }}</a></li>
+        <li><a href="" class="active"><span class="icon icon-double-angle-right"></span> {{ $product->model }}</a></li>
+    </ul>
+
 	<div class="sp__container animate-up">
 		<div class="sp__col--1">
+
 			<div class="sp__img-holder">
 				@foreach($product->images as $image)
 					<img class="img-fit" src=" {{ $image->renderFilePath() }} ">
@@ -31,33 +40,15 @@
 </section>
 
 <section class="register container">
-	<div class="reg__banner full frame__background size--cover bring--back" style="background-image: url('{{ asset('images/bg3.jpg') }}');"></div>
-	<div class="frame-padding">
-		<div class="vertical-parent">
-			<div class="vertical-align">
-				<div class="rw__container center-align animate-up">
-					<p class="rw__title">Not yet registered to a warranty plan?</p>
-					<form class="rw__form">
-						<div class="rw__form-row">
-							<select class="select">
-								@foreach($products as $product)
-									<option value="{{ $product->id }}"> {{ $product->model }} </option>
-								@endforeach
-							</select><div class="tool-tip register" data-tooltip-title="Content here" data-tooltip-position="right"><i class="color--red fa fa-exclamation-circle"></i></div>
-						</div>
-						
-						<div class="rw__form-row">
-							<div class="button">
-								<a class="btn btn-white" href=""><p>Basic Warranty</p></a
-								><a class="rw__btn btn outline--white inlineBlock-parent relative" href="">
-									<div><img class="img-fit" src="{{ asset('images/logo-white.png')}}"></div><p>Extended Warranty</p></a>
-							</div>
-						</div>
-					</form>
-				</div>
+		<div class="reg__banner full frame__background size--cover bring--back" style="background-image: url('');"></div>
+		<div class="frame-padding">
+			<div class="vertical-parent">
+				<register-product
+				:products="{{ $products }}"
+				:basicurl="'{{ route('user.basic') }}'"
+				:extendedurl="'{{ route('user.extended') }}'"></register-product>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
 
 @endsection

@@ -28,14 +28,14 @@
 	</div>
 </section>
 
-<section class="homepage frame--4 container">
-	<img class="img-fit" src="{{ $item->warranty_product_register }}">
+<section class="register container">
+	<div class="reg__banner full frame__background size--cover bring--back" style="background-image: url('{{ $item->warranty_product_register }}');"></div>
 	<div class="frame-padding">
 		<div class="vertical-parent">
-			<products-registration
+			<register-product
 			:products="{{ $products }}"
 			:basicurl="'{{ route('user.basic') }}'"
-			:extendedurl="'{{ route('user.extended') }}'"></products-registration>
+			:extendedurl="'{{ route('user.extended') }}'"></register-product>
 		</div>
 	</div>
 </section>

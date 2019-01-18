@@ -48,8 +48,8 @@
 				<p>1 Year Free Warranty</p>
 			</button
 			><button type="submit" class="margin btn btn-gray inlineBlock-parent" @click="ExtendedWarranty()">
-				<div>
-					<!-- <img :src="asset('images/logo-white.png')"> -->
+				<div class="btn-img">
+					<img src="storage/logo-white.png">
 				</div
 				><div>
 					<span>I want</span>
@@ -146,38 +146,39 @@
             },
 
             ExtendedWarranty() {
-            	this.loading = true;
-            	var data = new FormData();
+            	window.location.href = 'user/extended';
+    //         	this.loading = true;
+    //         	var data = new FormData();
 
-            	data.append('product_id', this.request.product);
-            	data.append('serial_number', this.request.serial_number);
-            	data.append('purchase_date', this.request.purchase_date);
-            	data.append('proof_purchase', this.image);
-            	data.append('application_number', Math.random().toString(36).substr(2));
+    //         	data.append('product_id', this.request.product);
+    //         	data.append('serial_number', this.request.serial_number);
+    //         	data.append('purchase_date', this.request.purchase_date);
+    //         	data.append('proof_purchase', this.image);
+    //         	data.append('application_number', Math.random().toString(36).substr(2));
 
-				axios.post(this.extendedurl, data)
-					.then(response => {
-            			console.log(response.data);
-            			if(response.data.message == 1){
-            				this.loading = false;
-	            			swal('We are reviewing your application.', 
-	            				'Thank you for registering your product. To proceed you need to complete the transaction.',
-	            				'success')
-								.then(function(){
-			            			window.location.href = response.data.redirect;
-		            			});
-	            			this.request = {};
-	            			this.hidden = true;
-            			} else {
-							this.loading = false;
-	            			this.hidden = true;
-            			}
-            		})
-            		.catch(error => {
-            			this.loading = false;
-	            			this.hidden = true;
-            			swal('Ooops!', 'Fill up all the fields with correct data!', 'error');
-            		});;
+				// axios.post(this.extendedurl, data)
+				// 	.then(response => {
+    //         			console.log(response.data);
+    //         			if(response.data.message == 1){
+    //         				this.loading = false;
+	   //          			swal('We are reviewing your application.', 
+	   //          				'Thank you for registering your product. To proceed you need to complete the transaction.',
+	   //          				'success')
+				// 				.then(function(){
+			 //            			window.location.href = response.data.redirect;
+		  //           			});
+	   //          			this.request = {};
+	   //          			this.hidden = true;
+    //         			} else {
+				// 			this.loading = false;
+	   //          			this.hidden = true;
+    //         			}
+    //         		})
+    //         		.catch(error => {
+    //         			this.loading = false;
+	   //          			this.hidden = true;
+    //         			swal('Ooops!', 'Fill up all the fields with correct data!', 'error');
+    //         		});;
             },
 
             productImage(e) {
