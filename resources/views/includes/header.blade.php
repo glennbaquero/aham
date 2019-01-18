@@ -31,7 +31,7 @@
 				<a href=""><img class="header__logo" src="{{ $headerLogo->aham_logo }}"></a>
 			</div
 			><div class="header__logo-holder2">
-				<a href="{{ route('user.extended') }}"><img class="header__logo" src="{{ asset('images/logo-white.png') }}"></a>
+				<a href="{{ route('user.extended') }}"><img class="header__logo" src="{{ asset('storage/logo-white.png') }}"></a>
 			</div>
 		</div
 		><div class="navigation__set inlineBlock-parent right-align">

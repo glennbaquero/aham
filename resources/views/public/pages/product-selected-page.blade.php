@@ -17,7 +17,7 @@
 			><div class="sp__details">
 				<p class="sp__code">{{ $product->model }}</p>
 				<p class="sp__name">{{ $product->name }}</p>
-				<p class="sp__desc">{{ $product->desciption }}</p>
+				<p class="sp__desc">{{ $product->description }}</p>
 				<a class="btn btn-blue" href="{{ route('download.manual', $product->id) }}"><p>Download Manual</p></a>
 			</div>
 		</div

@@ -5,7 +5,7 @@
 		<h1>{{ $invoice->renderName() }} <small>(Update application information and details)</small></h1>
 		<ol class="breadcrumb">
 			<li>
-				<a href="{{ route('admin.application') }}"><i class="fas fa-boxes"></i> application</a>
+				<a href="{{ route('admin.application') }}"><i class="fas fa-boxes"></i> Application</a>
 			</li>
 			<li class="active">
 				{{ $invoice->renderName() }}
