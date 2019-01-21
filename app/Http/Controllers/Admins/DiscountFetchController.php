@@ -45,7 +45,7 @@ class DiscountFetchController extends FetchController
             array_push($result, array(
                 'id' => $item->id,
                 'discount_code' => $item->discount_code,
-                'name' => $item->user->firstname.' '.$item->user->lastname,
+                'name' => $item->employee->firstname.' '.$item->employee->lastname,
                 'amount' => $item->discount_amount,
                 'expiration' => $item->expiration,
                 'created_at' => $item->created_at->format('M d, Y (H:i:s)'),
