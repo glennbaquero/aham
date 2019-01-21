@@ -11,7 +11,7 @@
 			<div class="button">
 				<a class="btn btn-blue" @click="redirect(product[0])"><p>Basic Warranty</p></a>
 				<a class="rw__btn btn outline--blue inlineBlock-parent relative" @click="redirect(product[0], 1)">
-					<div class="btn-img--1"><img class="img-fit" src="storage/logo-white.png"></div><p>Extended Warranty</p>
+					<div class="btn-img--1" style="margin-right: -3px;"><img class="img-fit" src="storage/819byteslogo.png" style="height: 130%; top: 69%"></div><p>Extended Warranty</p>
 				</a>
 			</div>
 		</div>
