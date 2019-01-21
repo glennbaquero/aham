@@ -22,7 +22,7 @@
           </a>
           <ul class="treeview-menu {{ $checker->route->isActive('admin.request') }}">
             <li class="{{ $checker->route->isActive('admin.request') }}"><a href="{{ route('admin.request') }}"><i class="fas fa-hammer"></i> Repair Request</a></li>
-            <li><a href=""><i class="fas fa-history"></i> History</a></li>
+            {{-- <li><a href=""><i class="fas fa-history"></i> History</a></li> --}}
           </ul>
         </li>
       @endif
