@@ -31,7 +31,7 @@
 			<div class="bw__form-row">
 				<label>Serial Number</label>
 				<input class="input-text error" type="text" v-model="request.serial_number" name="serial_number" maxlength="15" @keyup="validate">
-				<div class="tool-tip" data-tooltip-title="Content here Content here Content here Content here Content here Content here Content here Content here Content here" data-tooltip-position="right"><i class="color--blue fa fa-question-circle"></i></div>
+				<div class="tool-tip" data-tooltip-title="Some product does not have a serial number!" data-tooltip-position="right"><i class="color--blue fa fa-question-circle"></i></div>
 			</div>
 			<div class="bw__form-row">
 				<label>Purchased Date</label>

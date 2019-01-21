@@ -40,7 +40,7 @@
 				<div class="ew__form-row">
 					<label>Serial Number</label>
 					<input class="input-text error" type="text" name="" maxlength="15" v-model="request.serial_number" @keyup="validate">
-					<i class="info fa fa-question-circle"></i>
+					<div class="tool-tip" data-tooltip-title="Some product does not have a serial number!" data-tooltip-position="right"><i class="color--white fa fa-question-circle"></i></div>
 				</div>
 				<div class="ew__form-row">
 					<label>Purchased Date</label>
