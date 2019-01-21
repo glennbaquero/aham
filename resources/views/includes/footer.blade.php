@@ -34,10 +34,10 @@
 		</div
 		><div class="footer__col--4">
 			<p class="menu-title">Customer Information</p>
-			<a class="menu-item" href=""><p>Warranty Information</p></a>
-			<a class="menu-item" href=""><p>Service Centre</p></a>
-			<a class="menu-item" href=""><p>Terms & Conditions</p></a>
-			<a class="menu-item" href=""><p>Privacy Policy</p></a>
+			<a class="menu-item" href="{{ url('warranty_info') }}"><p>Warranty Information</p></a>
+			<a class="menu-item" href="{{ url('contact') }}"><p>Service Centre</p></a>
+			<a class="menu-item" href="{{ url('warranty_info') }}"><p>Terms & Conditions</p></a>
+			<a class="menu-item" href="{{ url('warranty_info') }}"><p>Privacy Policy</p></a>
 		</div>
 	</div>
 	<div class="footer--bottom">
