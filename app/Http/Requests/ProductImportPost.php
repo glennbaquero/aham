@@ -24,7 +24,7 @@ class ProductImportPost extends FormRequest
     public function rules()
     {
         return [
-            'manifest' => 'required|mimes:xlsx,csv',
+            'manifest' => 'required',
             'images' => 'nullable',
         ];
     }
