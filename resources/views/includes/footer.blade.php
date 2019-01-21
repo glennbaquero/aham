@@ -48,7 +48,7 @@
 <footer class="mbl-footer">
 	<div class="footer--top">
 		<div class="footer__logo-holder">
-			<a href=""><img class="img-fit" src="{{asset('images/logo2.png') }}"></a>
+			<a href=""><img class="img-fit" src="{{ $footerLogo->aham_logo }}"></a>
 		</div>
 		<div class="inlineBlock-parent top-align address">
 			<i class="fa fa-map-marker-alt"></i
