@@ -127,7 +127,7 @@
 			<a href=""><img class="img-fit" src="{{ $headerLogo->aham_logo }}"></a>
 		</div>
 		<div class="header__logo-holder2">
-			<a href="{{ route('user.extended') }}"><img class="img-fit" src="{{asset('storage/819byteslogo.png') }}"></a>
+			<a href="{{ route('user.extended') }}"><img class="img-fit" src="{{ asset('storage/logo-white.png') }}"></a>
 		</div>
 		<div class="mbl-menu__btn">
 			<i name="close" class="mbl-menu ion-android-menu" role="img" aria-label="close"></i>
