@@ -8,7 +8,7 @@
 				</div>
 				<div class="header__cntct-details inlineBlock-parent middle-align color--white">
 					<i class="icon fa fa-envelope"></i>
-					<p>info@aham.org</p>
+					<p>ahamprotect@ahamcorp.com</p>
 				</div>
 			</div
 			><form method="GET" action="{{ url('/products') }}" class="header__search right-align inlineBlock-parent">
