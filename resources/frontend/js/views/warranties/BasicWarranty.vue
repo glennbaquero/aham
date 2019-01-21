@@ -35,7 +35,7 @@
 			</div>
 			<div class="bw__form-row">
 				<label>Purchased Date</label>
-				<input class="input-text flatPickr" type="text" v-model="request.purchase_date" placeholder="YYYY-MM-DD" name="purchase_date" @focus="showDatePicker()">
+				<input class="input-text flatPickr" type="text" v-model="request.purchase_date" placeholder="YYYY-MM-DD" name="purchase_date" @focus="showDatePicker()" autocomplete="off">
 			</div>
 			<div class="bw__form-row">
 				<label>Proof of Purchased</label>
