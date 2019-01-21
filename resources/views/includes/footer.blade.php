@@ -36,8 +36,6 @@
 			<p class="menu-title">Customer Information</p>
 			<a class="menu-item" href="{{ url('warranty_info') }}"><p>Warranty Information</p></a>
 			<a class="menu-item" href="{{ url('contact') }}"><p>Service Centre</p></a>
-			<a class="menu-item" href="{{ url('warranty_info') }}"><p>Terms & Conditions</p></a>
-			<a class="menu-item" href="{{ url('warranty_info') }}"><p>Privacy Policy</p></a>
 		</div>
 	</div>
 	<div class="footer--bottom">
@@ -56,20 +54,20 @@
 		</div>
 		<div class="mbl-footer__accordion-list">
 			<div class="mbl-footer__accordion">
-				<p class="mbl-footer__acc-menu">Contact US</p>
+				<a href="{{ url('contact') }}" class="mbl-footer__acc-menu">Contact US</a>
 			</div>
 			<div class="mbl-footer__accordion">
 				<p class="mbl-footer__acc-menu">About AHAM<i class="fa fa-sort-down"></i></p>
 				<div class="mbl-footer__acc-item">
-					<p>Home</p>
-					<p>Products</p>
+					<p><a href="">Home</a></p>
+					<p><a href="{{ url('products') }}">Products</a></p>
+					<p><a href="{{ url('warranty_info') }}">Warranty Info</a></p>
 				</div>
 			</div>
 			<div class="mbl-footer__accordion">
 				<p class="mbl-footer__acc-menu">Customer Information<i class="fa fa-sort-down"></i></p>
 				<div class="mbl-footer__acc-item">
-					<p>Refrigerator</p>
-					<p>Washing Machine</p>
+					<p><a href="{{ url('warranty_info') }}">Warranty Info</a></p>
 				</div>
 			</div>			
 		</div>
