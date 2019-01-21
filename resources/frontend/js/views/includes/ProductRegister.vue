@@ -13,7 +13,7 @@
 				<div class="rw__form-row">
 					<div class="button">
 						<a class="btn btn-white" @click="redirect(product[0])"><p>Basic Warranty</p></a
-						><a class="btn outline--white" @click="redirect(product[0], 1)">
+						><a class="btn outline--white" @click="redirect(product[0], 1)" :disabled="show">
 							<div class="btn-img--1"><img class="img-fit" src="storage/logo-white.png" style="height: 142%; left: 37%"><p style="margin-left: 90%">Extended Warranty</p></div></a>
 					</div>
 				</div>
@@ -35,6 +35,7 @@
 
 		data() {
 			return {
+				disabled: false,
 				product: null,
 				show:false
 			}

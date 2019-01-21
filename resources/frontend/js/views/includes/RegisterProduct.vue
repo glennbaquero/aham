@@ -7,10 +7,10 @@
 				<option disabled selected>Model Number</option>
 				<option v-for="product in products" :value="[product.id, product.extended_amount]"> {{ product.model }}</option>
 			</select>
-			<div class="tool-tip home" data-tooltip-title="Content here" data-tooltip-position="right" v-show="show"><i class="color--red fa fa-exclamation-circle"></i></div>
+			<div class="tool-tip home" data-tooltip-title="This product is not available for Extended Warranty" data-tooltip-position="right" v-show="show"><i class="color--red fa fa-exclamation-circle"></i></div>
 			<div class="button">
 				<a class="btn btn-blue" @click="redirect(product[0])"><p>Basic Warranty</p></a>
-				<a class="rw__btn btn outline--blue inlineBlock-parent relative" @click="redirect(product[0], 1)">
+				<a class="rw__btn btn outline--blue inlineBlock-parent relative" @click="redirect(product[0], 1)" :disabled="show">
 					<div class="btn-img--1" style="margin-right: -3px;"><img class="img-fit" src="storage/819byteslogo.png" style="height: 130%; top: 69%"></div><p>Extended Warranty</p>
 				</a>
 			</div>
@@ -27,6 +27,7 @@
 
 		data() {
 			return {
+				disabled: true,
 				product: null,
 				show: false
 			}
