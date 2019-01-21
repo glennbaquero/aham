@@ -140,6 +140,7 @@
                     $('.flatPickr').flatpickr({
                         dateFormat:'Y-m-d', 
                         allowInput:true,
+                        maxDate: "today"
                     });
                 });
             },
