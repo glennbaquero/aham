@@ -11,7 +11,7 @@
         <li><a href="{{ route('user.extended') }}" class="active"><span class="icon icon-double-angle-right"></span> Extended Warranty</a></li>
     </ul>
 	<extended-warranty
-	:fetchurl="'{{ route('fetch.product') }}'"
+	:fetchurl="'{{ route('extended.fetch.product') }}'"
 	:extendedurl="'{{ route('apply.extended.warranty') }}'">
 	</extended-warranty>
 </section>
