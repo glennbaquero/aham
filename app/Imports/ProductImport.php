@@ -64,6 +64,10 @@ class ProductImport implements ToModel, WithHeadingRow
                     ProductImage::create($imageVars);
                 }
             }
+        } else {
+            foreach ($manifestImages as $image) {
+                ProductImage::create(['product_id' => $product->id, 'image' => $image]);
+            }
         }
 
         return $product;
