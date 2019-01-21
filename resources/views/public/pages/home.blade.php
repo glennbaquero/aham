@@ -27,8 +27,8 @@
 		<div class="h__prod-category-slider-holder">
 			
 			@foreach($categories as $category)
-			<a class="h__products" href="{{ route('category.all.product', $category->id) }}" style="width: 15.66%">
-				<div class="h__products-img-holder" style="width: 34px">
+			<a class="h__products" href="{{ route('category.all.product', $category->id) }}">
+				<div class="h__products-img-holder">
 					<img class="img-fit" src="{{ $category->renderFilePath() }}">
 				</div>
 				<p>{{ $category->name }}</p>

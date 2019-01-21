@@ -1130,11 +1130,14 @@
 					font-size: 36px;
 				}
 			}
+			.h__prod-category-slider-holder {
+				text-align: center;
+			}
 			.h__prod-category-container {
 				transform: translateY(85px);
 
 				.h__products {
-					width: 33.333%;
+					width: 32.333%;
 					border: 1px solid $black;
 
 					.h__products-img-holder {
@@ -2127,6 +2130,15 @@
 		}
 	}
 
+	#breadcrumb li:first-child a {
+		display: none;
+	}
+
+	#breadcrumb {
+		font-size: 0.8em;
+		margin-left: 27px;
+	}
+
 	.homepage {
 		&.frame--1 {
 
@@ -2142,7 +2154,7 @@
 				transform: translateY(145px);
 
 				.h__products {
-					width: 50%;
+					width: 49%;
 					border: 1px solid $black;
 				}
 			}
