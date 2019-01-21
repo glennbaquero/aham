@@ -4,7 +4,7 @@
 			<div class="header__contact inlineBlock-parent">
 				<div class="header__cntct-details inlineBlock-parent middle-align color--white">
 					<i class="icon fa fa-phone"></i>
-					<p>374-4567</p>
+					<p>{{ $contact->contact }}</p>
 				</div>
 				<div class="header__cntct-details inlineBlock-parent middle-align color--white">
 					<i class="icon fa fa-envelope"></i>
