@@ -179,10 +179,10 @@
 		</div>
 		<div class="mbl-menu__contact-details">
 			<div class="mbl-menu__contact inlineBlock-parent">
-				<i class="fa fa-phone"></i><p>374-4567</p>
+				<i class="fa fa-phone"></i><p>{{ $contact->contact }}</p>
 			</div>
 			<div class="mbl-menu__contact inlineBlock-parent">
-				<i class="fa fa-envelope"></i><p>info@aham.org</p>
+				<i class="fa fa-envelope"></i><p>ahamprotect@ahamcorp.com</p>
 			</div>
 		</div>
 		@if(!Auth::check())
