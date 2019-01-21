@@ -1,5 +1,12 @@
 <template>
 	<div>
+		<div>
+			<ul id="breadcrumb" class="bc-border" style="margin-top: 0px; margin-left: 0px; list-style: none">
+		        <li><a href="/"><i class="icon ion-ios-home"> </i></a></li>
+		        <li><a href="/products" class="active"><span class="icon icon-double-angle-right"></span> Products</a></li>
+		    </ul>
+		</div>
+
 		<loader
 	    :loading="loading"
 	    ></loader>
@@ -8,13 +15,6 @@
 	    @onfilter="updateFilters"
 	    :fetchurl="filterurl">
 	    </filter-box>
-
-		<div>
-			<ul id="breadcrumb" class="bc-border" style="margin-top: 0px; margin-left: 0px; list-style: none">
-		        <li><a href="/"><i class="icon ion-ios-home"> </i></a></li>
-		        <li><a href="/products" class="active"><span class="icon icon-double-angle-right"></span> Products</a></li>
-		    </ul>
-		</div>
 
     	<div class="p__holder">
 	    	<template v-for="item in items">
@@ -125,10 +125,18 @@ export default {
                 /* Emit data for parent component to render */
                 this.items = response.data.items;
 
-                if (this.items.length > 0) {
-	                /* Update pagination */
-	                this.$refs.page.pagination = response.data.pagination;
-                }
+                this.$nextTick(() => {
+                	if (this.items.length > 0) {
+	                	let el = this.$refs.page;
+	                	console.log(el);
+		                if (el) {
+			                /* Update pagination */
+			                el.pagination = response.data.pagination;
+		                }
+	                }
+                }, 1000);
+                
+                
                 /* Check item length */
                 this.empty = this.items.length ? false : true;
             }).catch(error => {
