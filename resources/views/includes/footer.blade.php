@@ -61,13 +61,16 @@
 				<div class="mbl-footer__acc-item">
 					<p><a href="">Home</a></p>
 					<p><a href="{{ url('products') }}">Products</a></p>
-					<p><a href="{{ url('warranty_info') }}">Warranty Info</a></p>
+					<p><a href="{{ route('user.basic') }}">Basic Warranty</a></p>
+					<p><a href="{{ route('user.extended') }}">Extended Warranty</a></p>
+					<p><a href="{{ url('about') }}">About Us</a></p>
 				</div>
 			</div>
 			<div class="mbl-footer__accordion">
 				<p class="mbl-footer__acc-menu">Customer Information<i class="fa fa-sort-down"></i></p>
 				<div class="mbl-footer__acc-item">
 					<p><a href="{{ url('warranty_info') }}">Warranty Info</a></p>
+					<p><a href="{{ url('contact') }}">Service Center</a></p>
 				</div>
 			</div>			
 		</div>
