@@ -100,9 +100,9 @@ class UserController extends Controller
         $product = Product::find($request->product_id);
         $invoice->invoice_items()->create([
             'product_id' => $request->product_id,
-            'unit_price' => $product->extended_amount,
+            'unit_price' => $product->extended_amount == null ? 0 : $product->extended_amount,
             'discount' => 0,
-            'total_price' => $product->extended_amount,
+            'total_price' => $product->extended_amount == null ? 0 : $product->extended_amount,
         ]);
 
 
