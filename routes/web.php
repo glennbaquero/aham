@@ -173,6 +173,7 @@ Route::name('admin.')
 	Route::post('application/update/{id}', 'InvoiceController@update')->name('application.update');
 	Route::delete('application/destroy/{id}', 'InvoiceController@destroy')->name('application.destroy');
 	Route::post('application/restore/{id}', 'InvoiceController@restore')->name('application.restore');
+	Route::post('application/export', 'InvoiceController@export')->name('export');
 
 	Route::post('applications/fetch/q', 'InvoiceFetchController@fetch')->name('applications.fetch');
 	Route::post('applications/fetch/q?archive=1', 'InvoiceFetchController@fetch')->name('applications.archive');
