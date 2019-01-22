@@ -34,10 +34,8 @@
 		</div
 		><div class="footer__col--4">
 			<p class="menu-title">Customer Information</p>
-			<a class="menu-item" href=""><p>Warranty Information</p></a>
-			<a class="menu-item" href=""><p>Service Centre</p></a>
-			<a class="menu-item" href=""><p>Terms & Conditions</p></a>
-			<a class="menu-item" href=""><p>Privacy Policy</p></a>
+			<a class="menu-item" href="{{ url('warranty_info') }}"><p>Warranty Information</p></a>
+			<a class="menu-item" href="{{ url('contact') }}"><p>Service Centre</p></a>
 		</div>
 	</div>
 	<div class="footer--bottom">
@@ -48,7 +46,7 @@
 <footer class="mbl-footer">
 	<div class="footer--top">
 		<div class="footer__logo-holder">
-			<a href=""><img class="img-fit" src="{{asset('images/logo2.png') }}"></a>
+			<a href=""><img class="img-fit" src="{{ $footerLogo->aham_logo }}"></a>
 		</div>
 		<div class="inlineBlock-parent top-align address">
 			<i class="fa fa-map-marker-alt"></i
@@ -56,20 +54,23 @@
 		</div>
 		<div class="mbl-footer__accordion-list">
 			<div class="mbl-footer__accordion">
-				<p class="mbl-footer__acc-menu">Contact US</p>
+				<a href="{{ url('contact') }}" class="mbl-footer__acc-menu">Contact US</a>
 			</div>
 			<div class="mbl-footer__accordion">
 				<p class="mbl-footer__acc-menu">About AHAM<i class="fa fa-sort-down"></i></p>
 				<div class="mbl-footer__acc-item">
-					<p>Home</p>
-					<p>Products</p>
+					<p><a href="">Home</a></p>
+					<p><a href="{{ url('products') }}">Products</a></p>
+					<p><a href="{{ route('user.basic') }}">Basic Warranty</a></p>
+					<p><a href="{{ route('user.extended') }}">Extended Warranty</a></p>
+					<p><a href="{{ url('about') }}">About Us</a></p>
 				</div>
 			</div>
 			<div class="mbl-footer__accordion">
 				<p class="mbl-footer__acc-menu">Customer Information<i class="fa fa-sort-down"></i></p>
 				<div class="mbl-footer__acc-item">
-					<p>Refrigerator</p>
-					<p>Washing Machine</p>
+					<p><a href="{{ url('warranty_info') }}">Warranty Info</a></p>
+					<p><a href="{{ url('contact') }}">Service Center</a></p>
 				</div>
 			</div>			
 		</div>

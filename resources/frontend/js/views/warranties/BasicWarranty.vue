@@ -31,11 +31,11 @@
 			<div class="bw__form-row">
 				<label>Serial Number</label>
 				<input class="input-text error" type="text" v-model="request.serial_number" name="serial_number" maxlength="15" @keyup="validate">
-				<div class="tool-tip" data-tooltip-title="Content here Content here Content here Content here Content here Content here Content here Content here Content here" data-tooltip-position="right"><i class="color--blue fa fa-question-circle"></i></div>
+				<div class="tool-tip" data-tooltip-title="Some product does not have a serial number!" data-tooltip-position="right"><i class="color--blue fa fa-question-circle"></i></div>
 			</div>
 			<div class="bw__form-row">
 				<label>Purchased Date</label>
-				<input class="input-text flatPickr" type="text" v-model="request.purchase_date" placeholder="2018-12-01" name="purchase_date" @focus="showDatePicker()">
+				<input class="input-text flatPickr" type="text" v-model="request.purchase_date" placeholder="YYYY-MM-DD" name="purchase_date" @focus="showDatePicker()" autocomplete="off">
 			</div>
 			<div class="bw__form-row">
 				<label>Proof of Purchased</label>
@@ -106,9 +106,18 @@
 			showDatePicker() {
 
                 $(document).ready(function(){
+                	var today = new Date();
+					var dd = today.getDate();
+					var mm = today.getMonth()+1; //January is 0!
+					var yyyy = today.getFullYear() - 1;
+					var lastYear = yyyy + '-' + mm + '-' + dd;
+					console.log(yyyy + '-' + mm + '-' + dd);
+
                     $('.flatPickr').flatpickr({
                         dateFormat:'Y-m-d', 
                         allowInput:true,
+                        maxDate: "today",
+                        minDate: lastYear
                     });
                 });
             },

@@ -27,10 +27,6 @@
 		</div>
 	</section>
 
-	<section class="productpage container breadcrumbs">
-		
-	</section>
-
 	<section class="productpage frame--2 container">
 		<div class="frame-padding">
 			<product-page

@@ -55,8 +55,8 @@
 					<p class="ch__title">Total:</p>	
 				</div
 				><div class="right-align">
-					<p class="ch__title">{{ item.product.extended_amount - discounted_amount }}</p>
-					<input type="hidden" name="total_price" readonly :value="item.product.extended_amount - discounted_amount">
+					<p class="ch__title">{{ (item.product.extended_amount - discounted_amount) < 0 ? 0 : item.product.extended_amount - discounted_amount }}</p>
+					<input type="hidden" name="total_price" readonly :value="(item.product.extended_amount - discounted_amount) < 0 ? 0 : item.product.extended_amount - discounted_amount">
 					<input type="hidden" name="discount" readonly :value="discounted_amount">
 				</div>
 			</div>
@@ -125,6 +125,7 @@
 				if(this.loading) return;
 
 				this.loading = true;
+				var totalPrice = (this.item.product.extended_amount - this.discounted_amount)  < 0 ? 0 : this.item.product.extended_amount - this.discounted_amount;
 
 				let formData = new FormData();
 
@@ -134,7 +135,7 @@
 				formData.append('contract_number', this.item.invoice.contract_number);
 				formData.append('amount', this.item.product.extended_amount);
 				formData.append('payment_method', this.payment_method);
-				formData.append('total_price', this.item.product.extended_amount - this.discounted_amount);
+				formData.append('total_price', totalPrice);
 				formData.append('discount', this.discounted_amount);
 
 				axios.post(this.checkouturl, formData)
@@ -158,6 +159,7 @@
 			validate() {
 				var $this = this,
 					total = this.discounted_amount;
+
 				if(!this.discount_amount) {
 					$this.discount_available.forEach(function(e){
 						if(e.discount_code == $('.discount_code').val()) {
@@ -171,6 +173,7 @@
 
 					});
 				} 
+
 
 				return this.discounted_amount;
 			}

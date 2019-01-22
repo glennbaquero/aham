@@ -40,11 +40,11 @@
 				<div class="ew__form-row">
 					<label>Serial Number</label>
 					<input class="input-text error" type="text" name="" maxlength="15" v-model="request.serial_number" @keyup="validate">
-					<i class="info fa fa-question-circle"></i>
+					<div class="tool-tip" data-tooltip-title="Some product does not have a serial number!" data-tooltip-position="right"><i class="color--white fa fa-question-circle"></i></div>
 				</div>
 				<div class="ew__form-row">
 					<label>Purchased Date</label>
-					<input class="input-text flatPickr" type="text" placeholder="2018-12-01" v-model="request.purchase_date" name="purchase_date" @focus="showDatePicker()">
+					<input class="input-text flatPickr" type="text" placeholder="YYYY-MM-DD" v-model="request.purchase_date" name="purchase_date" @focus="showDatePicker()" autocomplete="off">
 				</div>
 				<div class="ew__form-row">
 					<label>Proof of Purchased</label>
@@ -140,6 +140,7 @@
                     $('.flatPickr').flatpickr({
                         dateFormat:'Y-m-d', 
                         allowInput:true,
+                        maxDate: "today"
                     });
                 });
             },

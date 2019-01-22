@@ -209,6 +209,13 @@ class ProductController extends Controller
         ]);
     }
 
+    public function extendedwarrantyproductfetch()
+    {
+        return response()->json([
+            'products' => Product::with('images')->orWhereNotNull('extended_amount')->get(),
+        ]);
+    }
+
     public function downloadmanual($id) {
         $product = Product::withTrashed()->find($id);
         $file = 'storage/'.$product->manual_path;

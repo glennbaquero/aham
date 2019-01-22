@@ -42,7 +42,7 @@
 						<p>{{ item.invoice.warranty_type === 1 ? 'Extended Warranty' : 'Basic Warranty' }}</p>
 					</td>
 					<td v-if="!item.invoice.has_notified">
-						<a :href="extend+item.id" v-if="item.invoice.warranty_type === 0">Apply for Extended Warranty</a>
+						<a :href="extend+item.id" v-if="item.invoice.warranty_type === 0 && item.product.extended_amount">Apply for Extended Warranty</a>
 						<img :src="renderImage()" v-if="item.invoice.warranty_type === 1">
 					</td>
 					<td v-else>

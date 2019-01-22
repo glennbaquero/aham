@@ -51,8 +51,10 @@ class AppServiceProvider extends ServiceProvider
             });
 
             View::composer('includes.header',  function($view) {
+                $contact = ContactUs::first();
                 $logo = Page::where('slug', 'logo')->first()->getData()['item'];
                 $view->with('headerLogo', $logo);
+                $view->with('contact', $contact);
             });
 
             View::composer('admin.includes.header',  function($view) {

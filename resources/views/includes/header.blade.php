@@ -4,11 +4,11 @@
 			<div class="header__contact inlineBlock-parent">
 				<div class="header__cntct-details inlineBlock-parent middle-align color--white">
 					<i class="icon fa fa-phone"></i>
-					<p>374-4567</p>
+					<p>{{ $contact->contact }}</p>
 				</div>
 				<div class="header__cntct-details inlineBlock-parent middle-align color--white">
 					<i class="icon fa fa-envelope"></i>
-					<p>info@aham.org</p>
+					<p>ahamprotect@ahamcorp.com</p>
 				</div>
 			</div
 			><form method="GET" action="{{ url('/products') }}" class="header__search right-align inlineBlock-parent">
@@ -127,7 +127,7 @@
 			<a href=""><img class="img-fit" src="{{ $headerLogo->aham_logo }}"></a>
 		</div>
 		<div class="header__logo-holder2">
-			<a href="{{ route('user.extended') }}"><img class="img-fit" src="{{asset('storage/819byteslogo.png') }}"></a>
+			<a href="{{ route('user.extended') }}"><img class="img-fit" src="{{ asset('storage/logo-white.png') }}"></a>
 		</div>
 		<div class="mbl-menu__btn">
 			<i name="close" class="mbl-menu ion-android-menu" role="img" aria-label="close"></i>
@@ -179,10 +179,10 @@
 		</div>
 		<div class="mbl-menu__contact-details">
 			<div class="mbl-menu__contact inlineBlock-parent">
-				<i class="fa fa-phone"></i><p>374-4567</p>
+				<i class="fa fa-phone"></i><p>{{ $contact->contact }}</p>
 			</div>
 			<div class="mbl-menu__contact inlineBlock-parent">
-				<i class="fa fa-envelope"></i><p>info@aham.org</p>
+				<i class="fa fa-envelope"></i><p>ahamprotect@ahamcorp.com</p>
 			</div>
 		</div>
 		@if(!Auth::check())
