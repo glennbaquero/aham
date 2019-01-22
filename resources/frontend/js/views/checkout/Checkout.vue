@@ -159,6 +159,7 @@
 			validate() {
 				var $this = this,
 					total = this.discounted_amount;
+
 				if(!this.discount_amount) {
 					$this.discount_available.forEach(function(e){
 						if(e.discount_code == $('.discount_code').val()) {
@@ -172,6 +173,7 @@
 
 					});
 				} 
+
 
 				return this.discounted_amount;
 			}
