@@ -160,10 +160,6 @@
 				var $this = this,
 					total = this.discounted_amount;
 
-				if(isEmpty(this.discount_available)) {
-					swal('Oooops!', 'Discount code is not match to your credentials', 'error');
-				}
-
 				if(!this.discount_amount) {
 					$this.discount_available.forEach(function(e){
 						if(e.discount_code == $('.discount_code').val()) {
