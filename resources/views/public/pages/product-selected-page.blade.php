@@ -19,9 +19,11 @@
 		<div class="sp__col--1">
 
 			<div class="sp__img-holder">
-				@foreach($product->images as $image)
-					<img class="img-fit" src=" {{ $image->renderFilePath() }} ">
-				@endforeach
+				{{-- @foreach($product->images as $image) --}}
+				@if($product->images)
+					<img class="img-fit" src=" {{ $product->images[0]->renderFilePath() }} ">
+				@endif
+				{{-- @endforeach --}}
 			</div
 			><div class="sp__details">
 				<p class="sp__code">{{ $product->model }}</p>
