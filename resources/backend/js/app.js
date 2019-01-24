@@ -65,6 +65,8 @@ Vue.component('user-details', require('./views/users/UserDetails.vue'));
 Vue.component('employees-table', require('./views/employees/EmployeesTable.vue'));
 Vue.component('employee-details', require('./views/employees/EmployeeDetails.vue'));
 
+Vue.component('export-data', require('./views/applications/ExportData.vue'));
+
 const app = {
 	init() {
 		this.setupVue();

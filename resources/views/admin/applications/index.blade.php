@@ -20,7 +20,10 @@
 	                    </li>
 	                    <li>
 	                        <a @click="runDatatable('invoices-admin')" href="#invoices-admin" data-toggle="tab"><h5><b>Archive</b></h5></a>
-	                    </li>                                                   
+	                    </li>  
+	                    <li>
+	                        <a href="#export" data-toggle="tab"><h5><b>Export</b></h5></a>
+	                    </li>                                                 
 	                </ul>
 
 	                <div class="tab-content">
@@ -40,7 +43,21 @@
 								:fetchurl="'{{ route('admin.applications.archive') }}'"
 							></applications-table>
 
-	                    </div>                  
+	                    </div>        
+	                    <div class="tab-pane" id="export">
+	                        <form method="post" action="{{ route('admin.export') }}">
+		                        @csrf
+								<export-data ref="export"
+									:export="'{{ route('admin.export') }}'"
+									:filterstatus="{{ $status }}"
+								></export-data>
+								<div class="row">
+									<div class="col col-xs-12">
+										<button type="submit" class="btn btn-primary pull-right">Export</button>
+									</div>
+								</div>
+							</form>
+	                    </div>               
 	                </div>
         	    </div>
 			</div>

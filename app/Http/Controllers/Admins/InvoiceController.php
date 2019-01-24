@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Admins;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\WarrantiesExport;
+use Illuminate\Support\Facades\Input; 
+
 use App\Notifications\ApprovedWarrantyNotification;
 use App\Notifications\ExtendedPaymentURLNotification;
 
@@ -167,5 +171,15 @@ class InvoiceController extends Controller
         ];
 
         return $item;
+    }
+
+    public function export()
+    {
+        $request_from = Input::get('from');
+        $request_to = Input::get('to');
+        $status = Input::get('status');
+
+        // dd($request);
+        return Excel::download(new WarrantiesExport($request_from, $request_to, $status), 'warranty_'.$request_from.'_'.$request_to.'.xlsx');
     }
 }
