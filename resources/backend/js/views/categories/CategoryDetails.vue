@@ -19,16 +19,25 @@
                         <!-- Start Row -->
                 		<div class="row">
 
-                    		<div class="col col-xs-12 col-sm-12 col-md-12">
+                    		<div class="col col-xs-12 col-sm-12 col-md-4">
                     			<div class="form-group">
                     				<label for="">Name</label>
                     				<input v-model="item.name" :disabled="editable" name="name" type="text" class="form-control input-sm" placeholder="Name">
                     			</div>
                     		</div>
-                            <div class="col col-xs-12 col-sm-12 col-md-12">
+                            <div class="col col-xs-12 col-sm-12 col-md-4">
                                 <div class="form-group">
                                     <label for="">Image</label>
                                     <input :disabled="editable" name="image" type="file" class="form-control input-sm" placeholder="Image">
+                                </div>
+                            </div>
+                            <div class="col col-xs-12 col-sm-12 col-md-4">
+                                <div class="form-group">
+                                    <label for="">Category is available for extended warranty?</label>
+                                    <select v-model="item.availability" class="form-control input-sm" name="availability">
+                                        <option value="0">Yes</option>
+                                        <option value="1">No</option>
+                                    </select>
                                 </div>
                             </div>
                             

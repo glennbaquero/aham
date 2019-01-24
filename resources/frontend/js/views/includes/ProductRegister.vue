@@ -6,7 +6,7 @@
 				<div class="rw__form-row">
 					<select class="select" v-model="product" @change="validate(product[1])">
 						<option disabled selected>Model Number</option>
-						<option v-for="product in products" :value="[product.id, product.extended_amount]" > {{ product.model }}</option>
+						<option v-for="product in products" :value="[product.id, product.category.availability]"> {{ product.model }}</option>
 					</select><div class="tool-tip register" data-tooltip-title="This product is not available for Extended Warranty" data-tooltip-position="right" v-show="show"><i class="color--red fa fa-exclamation-circle"></i></div>
 				</div>
 				
@@ -47,7 +47,7 @@
 
 		methods: {
 			validate(extended) {
-				if(!extended) {
+				if(extended) {
 					this.show = true;
 				} else {
 					this.show = false;

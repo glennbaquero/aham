@@ -60,6 +60,7 @@ class ProductFetchController extends FetchController
                 'extended_amount' => $item->extended_amount,
                 'created_at' => $item->created_at->format('M d, Y (H:i:s)'),
                 'tags' => $item->tags()->pluck('name')->toArray(),
+                'category' => $item->category,
 
                 'actions' => array(
                     'view' => $item->renderView(),

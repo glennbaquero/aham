@@ -95,7 +95,7 @@ class Page extends Model
     public function getExtraPageData($data) {
         $arr = [];
 
-        $products = Product::all();
+        $products = Product::with('category')->get();
 
         switch($this->slug) {
             case 'home':

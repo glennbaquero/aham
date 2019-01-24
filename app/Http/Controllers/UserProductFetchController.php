@@ -61,6 +61,7 @@ class UserProductFetchController extends FetchController
                 'product' => $item->product,
                 'invoice' => $item->invoice,
                 'product_image' => $item->renderFilePath(),
+                'category' => $item->product->category,
                 'created_at' => $item->created_at->format('M d, Y (H:i:s)'),
                 'actions' => array(
                     // 'view' => $item->renderPublicView(),
