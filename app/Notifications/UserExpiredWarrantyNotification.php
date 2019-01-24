@@ -48,7 +48,7 @@ class UserExpiredWarrantyNotification extends Notification implements ShouldQueu
                     ->subject(config('app.name') . ': Warranty Expired')
                     ->greeting('Hello ' . $notifiable->renderFullname() . ',')
                     ->line('We like to inform you that your product warranty has expired. Click the button to extend.')
-                    ->action('Extend warranty', route('checkout', $this->invoice->id));
+                    ->action('Extend warranty', route('user.products'));
     }
 
     /**

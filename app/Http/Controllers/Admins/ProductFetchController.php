@@ -33,10 +33,17 @@ class ProductFetchController extends FetchController
         }
         
         if($this->request->filled('tag_id')) {
-           $query = $query->whereHas('tags', function($query){
+           // $query = $query->whereHas('tags', function($query){
+           //      $query->where('id', $this->request->input('tag_id'));
+           //  });
+           $query = $query->whereHas('category', function($query){
                 $query->where('id', $this->request->input('tag_id'));
             });
         }
+
+        // if($this->request->filled('categories') && count($this->request->input('categories'))) {
+        //    $query = $query->whereIn('category_id', $this->request->input('categories'));
+        // }
 
         return $query;
     }

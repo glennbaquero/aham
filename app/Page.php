@@ -96,7 +96,7 @@ class Page extends Model
         $arr = [];
 
         $products = Product::with('category')->get();
-
+        
         switch($this->slug) {
             case 'home':
                     $data['view'] = "public.pages.home";
@@ -135,12 +135,12 @@ class Page extends Model
                     $data['view'] = "public.pages.contact-page";
                     $data['products'] = $products;
                 break;
-            case 'category':
-                    $data['view'] = "public.pages.product-category-page";
-                break;
             case 'selected':
                     $data['view'] = "public.pages.product-selected-page";
                     $data['products'] = $products;
+                break;
+            case 'category':
+                    $data['view'] = "public.pages.product-category-page";
                 break;
             case 'logo':
                 $data['aham_logo'] = "includes.footer";

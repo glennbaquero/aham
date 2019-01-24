@@ -38,8 +38,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $tags = ProductTag::select(ProductTag::MINIMAL_COLUMN)->get();
-
+        // $tags = ProductTag::select(ProductTag::MINIMAL_COLUMN)->get();
+        $tags = Category::all();
         return view('admin.products.index', [
             'tags' => $tags,
         ]);
@@ -197,7 +197,7 @@ class ProductController extends Controller
     {
         return view('public.pages.product-selected-page',[
             'product' => $product->find($id),
-            'products' => $product->all(),
+            'products' => $product->with('category')->get(),
             'item' => PageItem::where('slug','register_product_view')->first()
         ]);
     }
