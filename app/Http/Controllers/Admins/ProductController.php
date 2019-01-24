@@ -212,7 +212,7 @@ class ProductController extends Controller
     public function extendedwarrantyproductfetch()
     {
         return response()->json([
-            'products' => Product::with('images')->orWhereNotNull('extended_amount')->get(),
+            'products' => Product::with('images', 'category')->orWhereNotNull('extended_amount')->get(),
         ]);
     }
 

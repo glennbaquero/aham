@@ -29,8 +29,8 @@
 
     		<!-- DATATABLE -->
     		<datatable ref="datatable"
-            :headers="['#', 'Image', 'Model', 'Name', 'Extended Amount', 'Tags', 'Created At']"
-            :columns="['id', null, 'model', 'name', 'extended_amount', 'edate', 'tag', 'created_at']"
+            :headers="['#', 'Image', 'Model', 'Name', 'Category','Extended Amount', 'Tags', 'Created At']"
+            :columns="['id', null, 'model', 'name', 'category', 'extended_amount', 'edate', 'tag', 'created_at']"
     		:filters="filters"
     		
     		:fetchurl="fetchurl"
@@ -47,6 +47,7 @@
                         <td><img :src="item.image" class="img-thumbnail" width="100"></td>
                         <td>{{ item.model }}</td>
                         <td>{{ item.name }}</td>
+                        <td>{{ item.category.name }}</td>
     					<td>{{ item.extended_amount }}</td>
                         <td>
                             <a class="btn btn-xs btn-primary" v-for="tag in item.tags">

@@ -5,7 +5,7 @@
 			<p class="h__desc">Register your product to 1 year free basic warranty or try our extended warranty plan! We've got you covered!</p>
 			<select class="select" v-model="product" @change="validate(product[1])">
 				<option disabled selected>Model Number</option>
-				<option v-for="product in products" :value="[product.id, product.extended_amount]"> {{ product.model }}</option>
+				<option v-for="product in products" :value="[product.id, product.category.availability]"> {{ product.model }}</option>
 			</select>
 			<div class="tool-tip home" data-tooltip-title="This product is not available for Extended Warranty" data-tooltip-position="right" v-show="show"><i class="color--red fa fa-exclamation-circle"></i></div>
 			<div class="button">
@@ -39,7 +39,7 @@
 
 		methods: {
 			validate(extended) {
-				if(!extended) {
+				if(extended) {
 					this.show = true;
 				} else {
 					this.show = false;

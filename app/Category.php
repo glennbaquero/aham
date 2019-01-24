@@ -44,6 +44,7 @@ class Category extends Model
     
     public static function store($request, $item = null) {
         $vars = $request->only('name');
+        $image = null;
 
         if($request->hasFile('image')) {
             $image = $request->file('image')->store('category-image', 'public');
@@ -55,13 +56,20 @@ class Category extends Model
         if(!$item) {
             $item = static::create([
                 'name' => $request->input('name'),
-                'image' => $image
+                'availability' => $request->input('availability'),
+                // 'image' => $image
             ]);
+
         } else {
             $item->update([
                 'name' => $request->input('name'),
-                'image' => $image
+                'availability' => $request->input('availability'),
+                // 'image' => $image
             ]);
+        }
+
+        if($image) {
+            $item->update(['image' => $image]);
         }
 
 
