@@ -8,8 +8,8 @@
 	<div class="frame-banner full frame__background size--cover bring--back" style="background-image: url('storage/{{ $banner[0]->content }}');"></div>
 	<div class="frame-padding">
 		<div class="pc__container animate-up">
-			<p class="pc__title">Washing Aglow! </p>
-			<p class="pc__desc">Sustainability Standard for Household Clothes Washing Appliances</p>
+			<p class="pc__title">{{ $header[0]->content }} </p>
+			<p class="pc__desc">{{ $sub_text[0]->content }}</p>
 		</div>
 	</div>
 </section>
