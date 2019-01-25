@@ -19,12 +19,18 @@
 
 <section class="productpage frame--2 container">
 	<div class="frame-padding animate-up">
+		{{-- <div>
+			<ul id="breadcrumb" class="bc-border" style="margin-top: 0px; margin-left: 0px; list-style: none">
+		        <li><a href="/"><i class="icon ion-ios-home"> </i></a></li>
+		        <li><a href="/products"><span class="icon icon-double-angle-right"></span> Products</a></li>
+		        <li><a href="/" class="active"><span class="icon icon-double-angle-right"></span>{{ $category->name }}</a></li>
+		    </ul>
+		</div> --}}
 		<p class="p__title">{{ $category->name }}</p>
 		<div class="p__holder">
-			@foreach($category->products as $product)
-				<div class="p__col">
+			@foreach($category->products as $product)<div class="p__col">
 					<div class="p__img-holder">
-						<img class="img-fit" src="{{ $product->renderFilePath() }}">
+						<img class="p__product-img" src="{{ $product->renderFilePath() }}">
 					</div>
 					<div class="p__details">
 						<p class="p__code">{{ $product->model }}</p>
