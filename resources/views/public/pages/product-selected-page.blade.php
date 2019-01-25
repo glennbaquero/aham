@@ -10,7 +10,7 @@
 
 	<ul id="breadcrumb" class="bc-border" style="margin-top: 0px; margin-left: 0px; list-style: none">
         <li><a href="/"><i class="icon ion-ios-home"> </i></a></li>
-        <li><a href="warranty_info"><span class="icon icon-beaker"> </span> Products</a></li>
+        <li><a href="/products"><span class="icon icon-beaker"> </span> Products</a></li>
         <li><a href="{{ route('category.all.product', $product->category) }}"><span class="icon icon-double-angle-right"></span> {{ $product->category->name }}</a></li>
         <li><a href="{{ route('view.product', $product->id) }}" class="active"><span class="icon icon-double-angle-right"></span> {{ $product->model }}</a></li>
     </ul>

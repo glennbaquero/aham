@@ -4,10 +4,11 @@
 @section('content')
 
 <section class="product-category-page frame--1 container">
-	<div class="frame-banner full frame__background size--cover bring--back" style="background-image: url('{{asset('images/bg5.jpg') }}');"></div>
+
+	<div class="frame-banner full frame__background size--cover bring--back" style="background-image: url('storage/{{ $banner[0]->content }}');"></div>
 	<div class="frame-padding">
 		<div class="pc__container animate-up">
-			<p class="pc__title">Washing Aglow!</p>
+			<p class="pc__title">Washing Aglow! </p>
 			<p class="pc__desc">Sustainability Standard for Household Clothes Washing Appliances</p>
 		</div>
 	</div>
@@ -19,13 +20,13 @@
 
 <section class="productpage frame--2 container">
 	<div class="frame-padding animate-up">
-		{{-- <div>
+		<div>
 			<ul id="breadcrumb" class="bc-border" style="margin-top: 0px; margin-left: 0px; list-style: none">
 		        <li><a href="/"><i class="icon ion-ios-home"> </i></a></li>
 		        <li><a href="/products"><span class="icon icon-double-angle-right"></span> Products</a></li>
 		        <li><a href="/" class="active"><span class="icon icon-double-angle-right"></span>{{ $category->name }}</a></li>
 		    </ul>
-		</div> --}}
+		</div>
 		<p class="p__title">{{ $category->name }}</p>
 		<div class="p__holder">
 			@foreach($category->products as $product)<div class="p__col">
