@@ -47,7 +47,7 @@
 						<img :src="renderImage()" v-if="item.invoice.warranty_type === 1">
 					</td>
 					<td v-else>
-						<img :src="renderExpiredImage()" v-if="item.invoice.warranty_type === 1" height="75"><br>
+						<p v-if="item.invoice.warranty_type === 1" height="75" style="color: #d81111; font-size: 18px; font-weight: 1000">Expired</p><br>
 						<a :href="extend+item.id" v-if="item.invoice.warranty_type === 0 || item.invoice.has_notified">Apply for Extended Warranty</a>
 					</td>
 				</tr>

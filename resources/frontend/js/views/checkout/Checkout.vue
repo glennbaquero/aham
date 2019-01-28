@@ -45,9 +45,10 @@
 			</div>
 			<div class="ch__form-row">
 				<label>Discount Code</label>
-				<input class="input-text error discount_code" type="text" name="">
+				<input class="input-text error discount_code" type="text" name="" v-model="dicount" @keyup="discountCode">
 				<div class="right-align">
 					<p @click="validate" class="btn btn-gray">Check Discount Code</p>
+					<label style="color:#fb0000" v-show="enabled">Please check the discount code to proceed to the payment</label>
 				</div>
 			</div>
 			<div class="ch__form-row inlineBlock-parent by-2">
@@ -68,7 +69,7 @@
 			</label>
 		</div>
 		<div class="center-align">
-			<button class="btn btn-blue" @click="submit()"><p>Submit</p></button>
+			<button class="btn btn-blue" @click="submit()" :disabled="enabled"><p>Submit</p></button>
 			<a href="" class="btn outline--blue"><p>Back</p></a>
 		</div>
 	</div>	
@@ -100,7 +101,9 @@
     			loading:false,
     			payment_method: 1,
     			discounted_amount: 0,
-    			disabled:true
+    			disabled:true,
+    			dicount: null,
+    			enabled: false
 			}
 		},
 
@@ -174,9 +177,17 @@
 					});
 				} 
 
+				this.enabled = false;
+
 
 				return this.discounted_amount;
+			},
+
+			discountCode() {
+				// console.log(true);
+				this.enabled = true;
 			}
+
 		}
 	}
 </script>

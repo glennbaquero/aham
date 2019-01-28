@@ -114,4 +114,8 @@ class InvoiceItem extends Model
     public function renderRestore() {
         return route('admin.application.restore', $this->id);
     }
+
+    public function backToIndex() {
+        return route('admin.application');
+    }
 }

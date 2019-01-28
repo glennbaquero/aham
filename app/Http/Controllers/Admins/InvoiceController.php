@@ -112,6 +112,7 @@ class InvoiceController extends Controller
 
         return response()->json([
             'message' => 'You have successfully approved this request',
+            'redirect' => $invoice_item->backToIndex(),
         ]);
     }
 
