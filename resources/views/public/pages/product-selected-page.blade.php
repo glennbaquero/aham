@@ -10,7 +10,7 @@
 
 	<ul id="breadcrumb" class="bc-border" style="margin-top: 0px; margin-left: 0px; list-style: none">
         <li><a href="/"><i class="icon ion-ios-home"> </i></a></li>
-        <li><a href="/products"><span class="icon icon-beaker"> </span> Products</a></li>
+        <li><a href="warranty_info"><span class="icon icon-beaker"> </span> Products</a></li>
         <li><a href="{{ route('category.all.product', $product->category) }}"><span class="icon icon-double-angle-right"></span> {{ $product->category->name }}</a></li>
         <li><a href="{{ route('view.product', $product->id) }}" class="active"><span class="icon icon-double-angle-right"></span> {{ $product->model }}</a></li>
     </ul>
@@ -18,12 +18,12 @@
 	<div class="sp__container animate-up">
 		<div class="sp__col--1">
 
-			<div class="sp__img-holder">
-				{{-- @foreach($product->images as $image) --}}
-				@if($product->images)
-					<img class="p__product-img" style="width:100%" src=" {{ $product->images[0]->renderFilePath() }} ">
-				@endif
-				{{-- @endforeach --}}
+			<div class="sp__slider-holder">
+				@foreach($product->images as $image)
+					<div class="sp__img-holder">
+						<img style="width: 100%" src=" {{ $image->renderFilePath() }} ">
+					</div>
+				@endforeach
 			</div
 			><div class="sp__details">
 				<p class="sp__code">{{ $product->model }}</p>
