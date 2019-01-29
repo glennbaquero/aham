@@ -40,7 +40,7 @@
 							<li> {!! $product->specification !!} </li>
 						</ul>
 					</div>
-					<a href="" class="btn outline--blue"><p>View Specs</p></a>
+					<a href="{{ route('view.product', $product->id) }}" class="btn outline--blue"><p>View Specs</p></a>
 				</div>@endforeach
 		</div>
 	</div>
