@@ -21,7 +21,7 @@
 			<div class="sp__img-holder">
 				{{-- @foreach($product->images as $image) --}}
 				@if($product->images)
-					<img class="img-fit" src=" {{ $product->images[0]->renderFilePath() }} ">
+					<img class="p__product-img" style="width:100%" src=" {{ $product->images[0]->renderFilePath() }} ">
 				@endif
 				{{-- @endforeach --}}
 			</div
