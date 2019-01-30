@@ -45,7 +45,7 @@
 			</div>
 			<div class="ch__form-row">
 				<label>Discount Code</label>
-				<input class="input-text error discount_code" type="text" name="" v-model="dicount" @keyup="discountCode">
+				<input class="input-text error discount_code" type="text" name="" v-model="discount" @keyup="discountCode">
 				<div class="right-align">
 					<p @click="validate" class="btn btn-gray">Check Discount Code</p>
 					<label style="color:#fb0000" v-show="enabled">Please check the discount code to proceed to the payment</label>
@@ -102,7 +102,7 @@
     			payment_method: 1,
     			discounted_amount: 0,
     			disabled:true,
-    			dicount: null,
+    			discount: null,
     			enabled: false
 			}
 		},
@@ -168,24 +168,27 @@
 						if(e.discount_code == $('.discount_code').val()) {
 							swal('Discount Code Match!', 'Discount code is match to your credentials', 'success');
 							$this.discounted_amount = e.discount_amount;
+							$this.enabled = false;
 						} else if ($('.discount_code').val() === '') {
 							swal('Oooops!', 'Enter code!', 'error');
+							$this.enabled = true;
 						} else {
 							swal('Oooops!', 'Discount code is not match to your credentials', 'error');
+							$this.enabled = true;
 						}
 
 					});
 				} 
 
-				this.enabled = false;
-
-
 				return this.discounted_amount;
 			},
 
 			discountCode() {
-				// console.log(true);
-				this.enabled = true;
+				if(this.discount) {
+					this.enabled = true;
+				} else {
+					this.enabled = false;
+				}
 			}
 
 		}
