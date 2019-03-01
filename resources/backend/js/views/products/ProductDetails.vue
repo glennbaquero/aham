@@ -95,7 +95,6 @@
                             <div class="col col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="">Description</label>
-                                    {{ item.description }}
                                     <textarea name="description" class="content">{{ item.description }}</textarea>
                                 </div>
                             </div>
@@ -103,7 +102,7 @@
                             <div class="col col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="">Specification</label>
-                                    <textarea name="specification" class="content specification" >{{ item.specification }}</textarea>
+                                    <textarea name="specification" class="content" >{{ item.specification }}</textarea>
                                 </div>
                             </div>
 
