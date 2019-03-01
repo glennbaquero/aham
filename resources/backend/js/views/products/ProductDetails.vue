@@ -82,7 +82,7 @@
                             <div class="col col-xs-12 col-sm-12 col-md-4">
                                 <div class="form-group">
                                     <label for="">Tag</label>
-                                    <select class="form-control select2" name="product_tags[]" multiple v-model="item.product_tags">
+                                    <select class="form-control select2" name="product_tags[]" v-model="item.product_tags">
                                         <option v-for="tag in tags" :value="tag.id">{{ tag.name }}</option>
                                     </select>
                                 </div>
@@ -102,7 +102,7 @@
                             <div class="col col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="">Specification</label>
-                                    <textarea name="specification" class="content" >{{ item.specification }}</textarea>
+                                    <textarea name="specification" class="content">{{ item.specification }}</textarea>
                                 </div>
                             </div>
 
