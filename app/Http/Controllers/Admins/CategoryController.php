@@ -10,6 +10,7 @@ use App\Imports\CategoriesImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 use App\Category;
+use App\PageItem;
 use App\Product;
 use DB;
 
@@ -155,6 +156,9 @@ class CategoryController extends Controller
     {
         return view('public.pages.product-category-page', [
             // 'products' => Category::with('products')->find($id)
+            'banner' => PageItem::where('slug', 'category_product')->get(),
+            'header' => PageItem::where('slug', 'category_product_header')->get(),
+            'sub_text' => PageItem::where('slug', 'category_product_subtext')->get(),
             'category' => $category->fetchCategory($id)
         ]);
     }

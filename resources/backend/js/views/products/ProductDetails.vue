@@ -82,7 +82,7 @@
                             <div class="col col-xs-12 col-sm-12 col-md-4">
                                 <div class="form-group">
                                     <label for="">Tag</label>
-                                    <select class="form-control select2" name="product_tags[]" multiple v-model="item.product_tags">
+                                    <select class="form-control select2" name="product_tags[]" v-model="item.product_tags">
                                         <option v-for="tag in tags" :value="tag.id">{{ tag.name }}</option>
                                     </select>
                                 </div>
@@ -102,7 +102,7 @@
                             <div class="col col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="">Specification</label>
-                                    <textarea name="specification" class="content specification" >{{ item.specification }}</textarea>
+                                    <textarea name="specification" class="content">{{ item.specification }}</textarea>
                                 </div>
                             </div>
 
@@ -201,8 +201,10 @@ export default {
     		if (this.model) {
     			this.item = this.model ? this.model : {};
     		}
-
-            this.ckeditor.init();
+            var $this = this;
+            this.$nextTick( () =>  {
+                $this.ckeditor.init();
+            });
             this.dropzone.init();
     	},
 
@@ -212,18 +214,18 @@ export default {
 
     	fetch() {
             this.load(true);
-
-    		axios.post(this.fetchurl)
-    		.then(response => {
-                const data = response.data;
-                this.item = data.item ? data.item : {};
-    		}).catch(error => {
-                console.log(error);
-    		}).then(() => {
-                this.load(false);
-                this.flatpickr.init('.flatpickr', true);
-                this.select2.init('.select2');
-            });
+            axios.post(this.fetchurl)
+                .then(response => {
+                    const data = response.data;
+                    this.item = data.item ? data.item : {};
+                }).catch(error => {
+                    console.log(error);
+                }).then(() => {
+                    this.load(false);
+                    this.flatpickr.init('.flatpickr', true);
+                    this.select2.init('.select2');
+                });
+    		
     	},
 
         load(value) {

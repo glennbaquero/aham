@@ -24,7 +24,6 @@ class BasicWarrantyRequest extends FormRequest
     public function rules()
     {
         return [
-            'serial_number' => 'required',
             'purchase_date' => 'required|date|date_format:Y-m-d',
             'product_id' => 'required',
             'proof_purchase' => 'required|mimes:jpeg,jpg,png'

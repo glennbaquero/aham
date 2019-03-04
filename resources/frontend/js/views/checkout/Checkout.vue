@@ -45,9 +45,10 @@
 			</div>
 			<div class="ch__form-row">
 				<label>Discount Code</label>
-				<input class="input-text error discount_code" type="text" name="">
+				<input class="input-text error discount_code" type="text" name="" v-model="discount" @keyup="discountCode">
 				<div class="right-align">
 					<p @click="validate" class="btn btn-gray">Check Discount Code</p>
+					<label style="color:#fb0000" v-show="enabled">Please check the discount code to proceed to the payment</label>
 				</div>
 			</div>
 			<div class="ch__form-row inlineBlock-parent by-2">
@@ -68,7 +69,7 @@
 			</label>
 		</div>
 		<div class="center-align">
-			<button class="btn btn-blue" @click="submit()"><p>Submit</p></button>
+			<button class="btn btn-blue" @click="submit()" :disabled="enabled"><p>Submit</p></button>
 			<a href="" class="btn outline--blue"><p>Back</p></a>
 		</div>
 	</div>	
@@ -100,7 +101,9 @@
     			loading:false,
     			payment_method: 1,
     			discounted_amount: 0,
-    			disabled:true
+    			disabled:true,
+    			discount: null,
+    			enabled: false
 			}
 		},
 
@@ -165,18 +168,29 @@
 						if(e.discount_code == $('.discount_code').val()) {
 							swal('Discount Code Match!', 'Discount code is match to your credentials', 'success');
 							$this.discounted_amount = e.discount_amount;
+							$this.enabled = false;
 						} else if ($('.discount_code').val() === '') {
 							swal('Oooops!', 'Enter code!', 'error');
+							$this.enabled = true;
 						} else {
 							swal('Oooops!', 'Discount code is not match to your credentials', 'error');
+							$this.enabled = true;
 						}
 
 					});
 				} 
 
-
 				return this.discounted_amount;
+			},
+
+			discountCode() {
+				if(this.discount) {
+					this.enabled = true;
+				} else {
+					this.enabled = false;
+				}
 			}
+
 		}
 	}
 </script>
