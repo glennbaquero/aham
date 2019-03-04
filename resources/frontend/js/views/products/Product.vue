@@ -1,7 +1,7 @@
 <template>
 	<div class="p__col">
 		<div class="p__img-holder">
-			<img class="img-fit" :src="item.image">
+			<img class="p__product-img" :src="item.image">
 		</div>
 		<div class="p__details">
 			<p class="p__code">{{ item.model }}</p>

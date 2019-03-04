@@ -8,16 +8,16 @@ var app = {
     var setup = this.setup;
 
     switch(pageID) {
-    	case 'home':
-    		setup.home();
-      	case 'pages.product':
-        	setup.products();
-      	case 'pages.about':
-        	setup.about();
-      	break;
-      	default:
-        	setup.contact();
-      	break;
+      case 'home':
+        setup.home();
+        case 'pages.product':
+          setup.products();
+        case 'pages.about':
+          setup.about();
+        break;
+        default:
+          setup.contact();
+        break;
     }
 
     setup.bindEvents();
@@ -27,6 +27,7 @@ var app = {
     setup.animation();
     setup.defaultForm();
     setup.about();
+    setup.products();
     // setup.initFlatPickr();
 
 
@@ -198,48 +199,6 @@ var app = {
             speed: 500,
         }); 
 
-      // Product Category Slider
-      // $('.h__prod-category-slider-holder').slick({
-      //   infinite: true,
-      //   slidesToShow: 6,
-      //   slidesToScroll: 1,
-      //   autoplay: true,
-      //   autoplaySpeed: 2000,
-      //   speed: 500,
-      //   arrows: false,
-      //   dots: false,
-      //   fade: false,
-      //   responsive: [
-      //   {
-      //     breakpoint: 1200,
-      //     settings: {
-      //       slidesToShow: 4,
-      //       slidesToScroll: 1
-      //     }   
-      //   },
-      //   {
-      //     breakpoint: 1100,
-      //     settings: {
-      //       slidesToShow: 3,
-      //       slidesToScroll: 1
-      //     }   
-      //   },
-      //   {
-      //     breakpoint: 801,
-      //     settings: {
-      //       slidesToShow: 2,
-      //       slidesToScroll: 1
-      //     }   
-      //   },
-      //   {
-      //     breakpoint: 401,
-      //     settings: {
-      //       slidesToShow: 1,
-      //       slidesToScroll: 1
-      //     }   
-      //   }
-      //   ]
-      // });
     },
 
     about: function(){
@@ -255,46 +214,52 @@ var app = {
         dots: true
       });
 
-    var slider = $('.a-partners__slider'),
-      sliderHolder = $('.a-partners__sliderHolder');
-      slider.slick(app.slick.byFour($('#prev', sliderHolder), $('#next', sliderHolder)));
-      app.slickArrows.init(slider, sliderHolder, 4);
-      
+      var slider = $('.a-partners__slider'),
+        sliderHolder = $('.a-partners__sliderHolder');
+        slider.slick(app.slick.byFour($('#prev', sliderHolder), $('#next', sliderHolder)));
+        app.slickArrows.init(slider, sliderHolder, 4);
+        
 
-      $(".a__question").on("click", function() {
-        if ($(this).hasClass("active")) {
-          $(this).removeClass("active");
-          $(this)
-            .siblings(".a__answer")
-            .slideUp(200);
-          $(".a__question i")
-            .removeClass("fa-arrow-up")
-            .addClass("fa-arrow-down");
-        } else {
-          $(".a__question i")
-            .removeClass("fa-arrow-up")
-            .addClass("fa-arrow-down");
-          $(this)
-            .find("i")
-            .removeClass("fa-arrow-down")
-            .addClass("fa-arrow-up");
-          $(".a__question").removeClass("active");
-          $(this).addClass("active");
-          $(".a__answer").slideUp(200);
-          $(this)
-            .siblings(".a__answer")
-            .slideDown(200);
-        }
-    });
+        $(".a__question").on("click", function() {
+          if ($(this).hasClass("active")) {
+            $(this).removeClass("active");
+            $(this)
+              .siblings(".a__answer")
+              .slideUp(200);
+            $(".a__question i")
+              .removeClass("fa-arrow-up")
+              .addClass("fa-arrow-down");
+          } else {
+            $(".a__question i")
+              .removeClass("fa-arrow-up")
+              .addClass("fa-arrow-down");
+            $(this)
+              .find("i")
+              .removeClass("fa-arrow-down")
+              .addClass("fa-arrow-up");
+            $(".a__question").removeClass("active");
+            $(this).addClass("active");
+            $(".a__answer").slideUp(200);
+            $(this)
+              .siblings(".a__answer")
+              .slideDown(200);
+          }
+      });
     },
 
     products: function() {
-      // app.form.init({ 
-      //   form: $('#contactForm'),
-      //   url: baseHref + 'contact',
-      //   button: '.submitBtn',
-      //   message: '.alert',
-      // });
+      
+      $('.sp__slider-holder').slick({
+        infinite: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        speed: 500,
+        arrows: false,
+        fade: true,
+        dots: true
+      });
+
     },
 
     contact: function() {
@@ -308,39 +273,39 @@ var app = {
   },
 
   slick: {
-		default: function(arrowsBool, dotsBool, prev, next) {
-			return {
-				arrows: arrowsBool,
-				dots: dotsBool,
-				infinite: true,
-				fade:true,
-				cssEase: 'linear',
-				speed: 800,
-				autoplay: true,
-				autoplaySpeed: 5000,
-				slidesToShow: 1,
-				slidesToScroll: 1,
-				prevArrow: prev,
-  				nextArrow: next,
-			}
-		},
+    default: function(arrowsBool, dotsBool, prev, next) {
+      return {
+        arrows: arrowsBool,
+        dots: dotsBool,
+        infinite: true,
+        fade:true,
+        cssEase: 'linear',
+        speed: 800,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        prevArrow: prev,
+          nextArrow: next,
+      }
+    },
 
-		byThree: function(prev, next, centerBool, centerPaddingVal) {
-			return {
-				centerMode: centerBool,
-				centerPadding: centerPaddingVal,
-				dots: false,
-				arrows: true,
-				infinite: true,
-				speed: 800,
+    byThree: function(prev, next, centerBool, centerPaddingVal) {
+      return {
+        centerMode: centerBool,
+        centerPadding: centerPaddingVal,
+        dots: false,
+        arrows: true,
+        infinite: true,
+        speed: 800,
                 autoplay: true,
                 autoplaySpeed: 5000,
-				slidesToShow: 3,
-				slidesToScroll: 1,
-				focusOnSelect: true,
-				pauseOnFocus: true,
-				prevArrow: prev,
-  				nextArrow: next,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        focusOnSelect: true,
+        pauseOnFocus: true,
+        prevArrow: prev,
+          nextArrow: next,
                 responsive: [
                     {
                         breakpoint: 1001,
@@ -357,23 +322,23 @@ var app = {
                         }   
                     }
                 ]
-			}
-		},
+      }
+    },
 
-		byFour: function(prev, next) {
-			return {
-				dots: false,
-				arrows: true,
-				infinite: true,
-				speed: 800,
+    byFour: function(prev, next) {
+      return {
+        dots: false,
+        arrows: true,
+        infinite: true,
+        speed: 800,
                 autoplay: true,
                 autoplaySpeed: 5000,
-				slidesToShow: 4,
-				slidesToScroll: 1,
-				focusOnSelect: true,
-				pauseOnFocus: true,
-				prevArrow: prev,
-  				nextArrow: next,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        focusOnSelect: true,
+        pauseOnFocus: true,
+        prevArrow: prev,
+          nextArrow: next,
                 responsive: [
                     {
                         breakpoint: 1100,
@@ -397,23 +362,23 @@ var app = {
                         }   
                     }
                 ]
-			}
-		},
+      }
+    },
 
-		byFive: function(prev, next) {
-			return {
-				dots: false,
-				arrows: true,
-				infinite: true,
-				speed: 800,
+    byFive: function(prev, next) {
+      return {
+        dots: false,
+        arrows: true,
+        infinite: true,
+        speed: 800,
                 autoplay: true,
                 autoplaySpeed: 5000,
-				slidesToShow: 5,
-				slidesToScroll: 1,
-				focusOnSelect: true,
-				pauseOnFocus: true,
-				prevArrow: prev,
-  				nextArrow: next,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        focusOnSelect: true,
+        pauseOnFocus: true,
+        prevArrow: prev,
+          nextArrow: next,
                 responsive: [
                     {
                         breakpoint: 1100,
@@ -437,25 +402,25 @@ var app = {
                         }   
                     }
                 ]
-			}
-		},
+      }
+    },
 
-		bySix: function(prev, next) {
-			return {
-				dots: false,
-				arrows: true,
-				infinite: true,
-				speed: 800,
+    bySix: function(prev, next) {
+      return {
+        dots: false,
+        arrows: true,
+        infinite: true,
+        speed: 800,
                 autoplay: true,
                 autoplaySpeed: 5000,
-				slidesToShow: 6,
-				slidesToScroll: 1,
-				focusOnSelect: true,
-				pauseOnFocus: true,
-				prevArrow: prev,
-  				nextArrow: next,
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        focusOnSelect: true,
+        pauseOnFocus: true,
+        prevArrow: prev,
+          nextArrow: next,
                 responsive: [
-                	{
+                  {
                         breakpoint: 1200,
                         settings: {
                             slidesToShow: 4,
@@ -484,20 +449,20 @@ var app = {
                         }   
                     }
                 ]
-			}
-		},
-	},
+      }
+    },
+  },
 
-	// hide arrows if less than items
-	slickArrows: {
-		init: function($slider, $container, $length) {
-			if ($('.slick-slide', $slider).length > $length) {
-				$('.slider-arrows > *', $container).css('display', 'block');
-			} else {
-				$('.slider-arrows > *', $container).css('display', 'none');
-			}
-		}
-	},
+  // hide arrows if less than items
+  slickArrows: {
+    init: function($slider, $container, $length) {
+      if ($('.slick-slide', $slider).length > $length) {
+        $('.slider-arrows > *', $container).css('display', 'block');
+      } else {
+        $('.slider-arrows > *', $container).css('display', 'none');
+      }
+    }
+  },
 
   form: {
     /* Default Values */
