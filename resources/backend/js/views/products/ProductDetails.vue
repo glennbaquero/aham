@@ -214,19 +214,17 @@ export default {
 
     	fetch() {
             this.load(true);
-            // this.$nextTick( () =>  {
-                axios.post(this.fetchurl)
-                    .then(response => {
-                        const data = response.data;
-                        this.item = data.item ? data.item : {};
-                    }).catch(error => {
-                        console.log(error);
-                    }).then(() => {
-                        this.load(false);
-                        this.flatpickr.init('.flatpickr', true);
-                        this.select2.init('.select2');
-                    });
-            // })
+            axios.post(this.fetchurl)
+                .then(response => {
+                    const data = response.data;
+                    this.item = data.item ? data.item : {};
+                }).catch(error => {
+                    console.log(error);
+                }).then(() => {
+                    this.load(false);
+                    this.flatpickr.init('.flatpickr', true);
+                    this.select2.init('.select2');
+                });
     		
     	},
 

@@ -24,7 +24,7 @@
             <prx-alert></prx-alert>
         </div>
         @yield('js')
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.11.1/ckeditor.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.7.3/ckeditor.js"></script>
         <script type="text/javascript" src="{{ mix('assets/manifest.js') }}"></script>
         <script type="text/javascript" src="{{ mix('assets/vendor.js') }}"></script>
         <script type="text/javascript" src="{{ mix('assets/app-backend.js') }}"></script>
