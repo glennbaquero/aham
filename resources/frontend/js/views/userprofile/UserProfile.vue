@@ -29,6 +29,10 @@
 				<label>Lastname</label>
 				<input class="input-text" type="text" name="lastname" v-model="details.lastname" :disabled="disabled" required>
 			</div
+			><div class="usr__form-row">
+				<label>Address</label>
+				<input class="input-text" type="text" name="address" v-model="details.address" :disabled="disabled" required>
+			</div
 			><div class="usr__form-row" v-show="show">
 				<button class="btn btn-blue" @click="updatedetails">
 						<p>Update Profile</p>
@@ -153,6 +157,7 @@
 					lastname: this.details.lastname,
 					contact: this.details.contact,
 					birthday: this.details.birthday,
+					address: this.details.address,
 				}
 				axios.post(this.updateurl, data)
 					.then(response => {

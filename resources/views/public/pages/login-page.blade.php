@@ -8,6 +8,13 @@
 		<div class="ls__container animate-up">
 			<p class="ls__title">Log in to your account</p>
 			<p class="ls__desc">Log in to register new product</p>
+            @if(count($errors))
+                <ul>
+                @foreach($errors->all() as $error)
+                    <li><p class="">{{$error}}</p></li>
+                @endforeach
+                </ul>
+            @endif
 			<form method="POST" action="{{ route('login') }}" class="ls__form">
 				<div class="ls__form-row">
 					<label>Email</label>
