@@ -44,6 +44,11 @@
 					<label class="error-label"><i>{{ $errors->first('contact') }}</i></label>
 				</div>
 				<div class="ls__form-row">
+					<label>Address</label>
+					<input class="input-text" type="text" value="{{ old('address') }}" name="address">
+					<label class="error-label"><i>{{ $errors->first('address') }}</i></label>
+				</div>
+				<div class="ls__form-row">
 					<label>Birthdate</label>
 					<input class="input-text flatPickr" type="text" name="birthday" value="{{ old('birthday') }}" placeholder="2017-12-26 (Y-M-D)">
 					<label class="error-label"><i>{{ $errors->first('birthday') }}</i></label>
@@ -63,7 +68,7 @@
 						  <span class="checkmark"></span>
 					</label>
 					<label class="checkbox-lbl"><a href="">Receive marketing information</a>(optional)
-						  <input type="checkbox" class="market_info" name="remember" oldinputs>
+						  <input type="checkbox" class="market_info" name="marketing" oldinputs>
 						  <span class="checkmark"></span>
 					</label>
 				</div>
@@ -92,18 +97,20 @@
 				}
 			})
 
-			$('.flatPickr').focus(function(){
-				var year = (new Date()).getUTCFullYear();
+			$(document).ready(function(){
+			    $('.flatPickr').flatpickr({
+			        dateFormat:'Y-m-d', 
+			        allowInput:true,
+			        // maxDate: '01-01-'+year,
+			    });
+			});
 
-	            $(document).ready(function(){
-	                $('.flatPickr').flatpickr({
-	                    dateFormat:'Y-m-d', 
-	                    allowInput:true,
-	                    maxDate: '01-01-'+year,
-	                });
-	            });
+			// $('.flatPickr').click(function(){
+			// 	var year = (new Date()).getUTCFullYear();
+
+	            
 				
-			})
+			// })
 		})
 	</script>
 @endsection

@@ -32,6 +32,15 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
     public function requests() {
         return $this->hasMany(RepairServiceRequest::class);
     }
@@ -64,7 +73,7 @@ class User extends Authenticatable
     }
 
     public static function store($request, $item = null) {
-        $vars = $request->only(['email', 'firstname', 'lastname', 'contact', 'birthday']);
+        $vars = $request->only(['email', 'firstname', 'lastname', 'contact', 'birthday', 'address']);
 
         if(!$item) {
             $item = static::create([
@@ -73,6 +82,7 @@ class User extends Authenticatable
                 'lastname' => $request->input('lastname'),
                 'contact' => $request->input('contact'),
                 'birthday' => $request->input('birthday'),
+                'address' => $request->input('address'),
                 'password' => Hash::make($request->input('password')),
                 'email_token' => Helpers::generateRandomString(60),
             ]);
@@ -99,6 +109,11 @@ class User extends Authenticatable
     /*
     *  Renderers
     */
+   
+   public function isVerified()
+   {
+       return $this->is_verified;
+   }
    
     public function renderFullName() {
         return $this->firstname . ' '. $this->lastname;

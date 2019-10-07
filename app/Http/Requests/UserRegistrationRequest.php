@@ -33,6 +33,7 @@ class UserRegistrationRequest extends FormRequest
             'password_confirmation' => 'same:password',
             'agree' => 'required',
             'terms' => 'required',
+            'address' => 'required',
             'privacy_policy' => 'required',
         ];
     }
