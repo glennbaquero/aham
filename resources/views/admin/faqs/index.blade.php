@@ -31,18 +31,18 @@
 	                <div class="tab-content">
 	                    <div class="tab-pane active" id="pages">
 	                        
-	                        <discounts-table ref="pages"
+	                        <faqs-table ref="pages"
 								:autofetch="true"
-								:fetchurl="'{{ route('admin.discounts.fetch') }}'"
-							></discounts-table>
+								:fetchurl="'{{ route('admin.faqs.fetch') }}'"
+							></faqs-table>
 
 	                    </div>
-	                    <div class="tab-pane" id="pages-discounts">
+	                    <div class="tab-pane" id="pages-faqs">
 	                        
-							<discounts-table ref="pages-discounts"
+							<faqs-table ref="pages-faqs"
 								:autofetch="false"
-								:fetchurl="'{{ route('admin.discounts.archive') }}'"
-							></discounts-table>
+								:fetchurl="'{{ route('admin.faqs.archive') }}'"
+							></faqs-table>
 
 	                    </div>                  
 	                </div>
