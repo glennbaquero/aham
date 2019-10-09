@@ -40,7 +40,7 @@
 				<input class="input-text" type="text" name="" v-model="item.invoice.serial_number" :disabled="disabled">
 			</div>
 			<div class="ch__form-row">
-				<label>Contact Number</label>
+				<label>Contract Number</label>
 				<input class="input-text" type="text" name="" v-model="item.invoice.contract_number" :disabled="disabled">
 			</div>
 			<div class="ch__form-row">
