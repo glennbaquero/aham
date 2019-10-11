@@ -27,8 +27,8 @@
 
     		<!-- DATATABLE -->
     		<datatable ref="datatable"
-            :headers="['#', 'Requested Products', 'Requester', 'Assigned Repairman', 'Complaint', 'Status', 'Created Date']"
-            :columns="['id', null, null, null, 'complaint', 'status', 'created_at']"
+            :headers="['#', 'Requester', 'Assigned Repairman', 'Complaint', 'Status', 'Created Date']"
+            :columns="['id', null, null, 'complaint', 'status', 'created_at']"
     		:filters="filters"
     		
     		:fetchurl="fetchurl"
@@ -42,7 +42,6 @@
     			<tbody slot="body">
                     <tr v-for="item in items">
                         <td>{{ item.id }}</td>
-                        <td>{{ item.products }}</td>
                         <td><a :href="item.user_link" target="_blank">{{ item.user_name }}</a></td>
                         <td><a :href="item.repairman_link" target="_blank">{{ item.repairman_name }}</a></td>
                         <td v-html="item.complaint"></td>
