@@ -11,7 +11,7 @@
 		<br>
 		@if ($checker->permission->can(['admin.types.create']))
 			<a href="{{ route('admin.types.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Type</a>
-			<a href="{{ route('admin.type.upload') }}" class="btn btn-primary"><i class="fas fa-file-upload"></i> Upload Types</a>
+			{{-- <a href="{{ route('admin.type.upload') }}" class="btn btn-primary"><i class="fas fa-file-upload"></i> Upload Types</a> --}}
 		@endif
 	</section>
 	<section class="content">
