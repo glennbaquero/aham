@@ -15,7 +15,7 @@ class CategoriesImport implements ToModel
     public function model(array $row)
     {
         return new Category([
-            'name' => $row[0]
+            'name' => $row[0],
         ]);
     }
 }

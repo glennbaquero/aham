@@ -18,14 +18,14 @@
 		<div class="row mb-4">
 			<div class="col-md-12">
 				
-				<std-button
+			{{-- 	<std-button
 				:size="'btn-sm pull-right'"
 				:label="'Delete'"
 		        :action="'{{ $page->trashed() ? 'restore' : 'delete' }}'"
 		        :message="'{{ 'page ' . $page->renderName() }}'"
 		        :restoreurl="'{{ $page->renderRestore() }}'"
 		        :deleteurl="'{{ $page->renderDelete() }}'"
-		        ></std-button>
+		        ></std-button> --}}
 
 			</div>
 		</div>
@@ -37,9 +37,9 @@
 	                    <li class="active">
 	                        <a href="#magnitude" data-toggle="tab"><h5><b>Page</b></h5></a>
 	                    </li>
-	                    <li>
+	                 {{--    <li>
 	                        <a @click="runDatatable('page-items')" href="#page-items" data-toggle="tab"><h5><b>Page Items</b></h5></a>
-	                    </li>                                                   
+	                    </li>     --}}                                               
 	                </ul>
 
 	                <div class="tab-content">
@@ -51,7 +51,8 @@
 							action="#" method="GET">
 
 								<page-details ref="page-details" 
-								:fetchurl="'{{ route('admin.page.fetch', $page->id) }}'">
+								:fetchurl="'{{ route('admin.page.fetch', $page->id) }}'"
+								:field-disabled="true">
 								</page-details>
 
 								<div class="row">
@@ -62,7 +63,7 @@
 							</form>
 
 	                    </div>
-	                    <div class="tab-pane" id="page-items">
+	                {{--     <div class="tab-pane" id="page-items">
 	                        
 	                        <page-item-table ref="page-items"
 	                        :autofetch="false"
@@ -70,7 +71,7 @@
 	                        :fetchurl="'{{ route('admin.page-items.fetch.page', $page->id) }}'"
 	                        ></page-item-table>
 
-	                    </div>                  
+	                    </div>       --}}            
 	                </div>
 	            </div>
 	        </div>
