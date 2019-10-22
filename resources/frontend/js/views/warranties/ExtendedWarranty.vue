@@ -148,7 +148,7 @@
 
             choose(id, model){
             	this.request.product = id;
-            	this.opened = null;
+            	this.opened = '';
             },
 
             proofOfPurchased(e) {
