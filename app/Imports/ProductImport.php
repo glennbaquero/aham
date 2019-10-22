@@ -43,6 +43,7 @@ class ProductImport implements ToModel, WithHeadingRow
         $vars['type_id'] = $type->id;
         $vars['specification'] = $row['specification'];
         $vars['brand'] = $row['brand'];
+        $vars['name'] = $row['name'];
         $vars['extended_amount'] = $row['extended_amount'];
 
         if (!$product) {
