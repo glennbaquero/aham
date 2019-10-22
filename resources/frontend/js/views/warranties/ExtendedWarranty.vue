@@ -15,7 +15,7 @@
 			<div class="ew__form">
 				<div class="ew__form-row">
 					<label>Model Number</label>
-					<div class="input-text">
+					<div class="input-text" @click="showItem">
 					    <select name="item">
 					    	<option value=""></option>
 					    </select>
@@ -23,7 +23,7 @@
 				    		<i class="ion-arrow-down-b"></i>
 				    		<div>{{ request.product > 0 ? items[request.product - 1].model : 'Select Product'}}</div>
 				    	</div>
-				    	<div class="select-dropdown">
+				    	<div class="select-dropdown" :class="opened">
 				    		<div class="item-holder">
 				    			<div class="items" v-for="item in items" @click="choose(item.id, item.model)"  v-if="item.category.availability == 0">
 				    				<div class="img-holder">
@@ -83,6 +83,7 @@
 				image:null,
 				loading: false,
 				hidden: true,
+				opened: null,
 			}
 		},
 
@@ -147,7 +148,7 @@
 
             choose(id, model){
             	this.request.product = id;
-            	console.log(model);
+            	this.opened = '';
             },
 
             proofOfPurchased(e) {
@@ -191,6 +192,14 @@
 
 	        renderImage(image) {
 	        	return 'storage/' + image;
+	        },
+
+	        showItem() {
+	        	if(this.opened != null) {
+	        		this.opened = null;
+	        	} else {
+	        		this.opened = 'opened'
+	        	}
 	        }
 		}
 	}

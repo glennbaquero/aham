@@ -123,9 +123,9 @@ var app = {
             }
         });
 
-        $('.selected').on('click', function() {
-          $(this).next().toggleClass('opened');
-        });
+        // $('.selected').on('click', function() {
+        //   $(this).next().toggleClass('opened');
+        // });
 
         $('.items').on('click', function() {
           // var txt = $(this).find('.dropdown-content > div:first-child b').text();
