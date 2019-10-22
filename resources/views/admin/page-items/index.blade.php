@@ -17,7 +17,7 @@
     <!-- Main content -->
     <section class="content">
 
-        <div class="row mb-4">
+     {{--    <div class="row mb-4">
             <div class="col-md-12">
                 @if ($checker->permission->can(['admin.faqs.create']))
                     <a href="{{ route('admin.page-items.create') }}" class="btn btn-primary btn-sm">
@@ -26,7 +26,7 @@
                 @endif
             </div>
             <!-- /.col -->
-        </div>
+        </div> --}}
 
         <div class="row">
             <div class="col-xs-12">

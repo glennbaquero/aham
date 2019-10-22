@@ -18,7 +18,7 @@
 	<div class="row mb-4">
 		<div class="col-md-12">
 			
-			<std-button
+	{{-- 		<std-button
 			:size="'btn-sm pull-right'"
 			:label="'Delete'"
 	        :action="'{{ $pageItem->trashed() ? 'restore' : 'delete' }}'"
@@ -26,7 +26,7 @@
 	        :restoreurl="'{{ $pageItem->renderRestore() }}'"
 	        :deleteurl="'{{ $pageItem->renderDelete() }}'"
 	        ></std-button>
-
+ --}}
 		</div>
 	</div>
 
@@ -39,7 +39,8 @@
 			action="#" method="GET">
 
 				<page-item-details ref="pageItem-details" 
-				:fetchurl="'{{ route('admin.page-item.fetch', $pageItem->id) }}'">
+				:fetchurl="'{{ route('admin.page-item.fetch', $pageItem->id) }}'"
+				:field-disabled="true">
 				</page-item-details>
 
 				<div class="row">

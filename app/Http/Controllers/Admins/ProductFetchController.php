@@ -94,7 +94,7 @@ class ProductFetchController extends FetchController
                 ];
             }
             $item->photos = $formatted_images;
-            $item->product_tags = $item->tags()->pluck('id')->toArray();
+            $item->product_tags = $item->tags()->count() ? $item->tags[0]->id : [];
         }
 
         return response()->json([

@@ -28,7 +28,7 @@
                             <div class="col col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="">Slug <small class="text-danger">(WARNING: avoid editing may cause errors)</small></label>
-                                    <input v-model="item.slug" :disabled="editable" name="slug" type="text" class="form-control input-sm" placeholder="Slug">
+                                    <input v-model="item.slug" :disabled="fieldDisabled" name="slug" type="text" class="form-control input-sm" placeholder="Slug">
                                 </div>
                             </div>
 
@@ -53,6 +53,7 @@ export default {
         submiturl: String,
         fetchurl: String,
         disabled: Boolean,
+        fieldDisabled: Boolean,
         model: {
             type: Object,
         },

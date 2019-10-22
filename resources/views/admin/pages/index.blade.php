@@ -16,7 +16,7 @@
     <!-- Main content -->
     <section class="content">
 
-        <div class="row mb-4">
+  {{--       <div class="row mb-4">
             <div class="col-md-12">
 
                 @if ($checker->permission->can(['admin.pages.create']))
@@ -25,7 +25,7 @@
                     </a>
                 @endif
             </div>
-        </div>
+        </div> --}}
 
         <div class="row">
             <div class="col-xs-12">

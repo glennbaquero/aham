@@ -82,8 +82,8 @@
                             <div class="col col-xs-12 col-sm-12 col-md-4">
                                 <div class="form-group">
                                     <label for="">Tag</label>
-                                    <select class="form-control select2" name="product_tags[]" v-model="item.product_tags">
-                                        <option v-for="tag in tags" :value="tag.id">{{ tag.name }}</option>
+                                    <select class="form-control select2" multiple name="product_tags[]" v-model="item.product_tags">
+                                        <option v-for="tag in tags" :value="tag.id" :selected="tag.id === item.product_tags">{{ tag.name }}</option>
                                     </select>
                                 </div>
                             </div>
