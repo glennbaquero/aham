@@ -197,7 +197,7 @@
 
 	        choose(id){
             	this.request.product = id;
-            	this.opened = '';
+            	this.opened = null;
             },
 
 	        renderImage(image) {
