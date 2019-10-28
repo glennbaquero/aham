@@ -17,8 +17,10 @@ class AdministratorIndexMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.administrator'])) {
-            abort(401);
+        if(!$user->hasRole('Super Admin')) {
+            if (!$user->hasAnyPermission(['admin.administrator'])) {
+                abort(401);
+            }
         }
 
         return $next($request);

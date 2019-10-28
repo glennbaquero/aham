@@ -17,8 +17,10 @@ class ContactUsUpdateMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.contacts.edit'])) {
-            abort(401);
+        if(!$user->hasRole('Super Admin')) {
+            if (!$user->hasAnyPermission(['admin.contacts.edit'])) {
+                abort(401);
+            }
         }
 
         return $next($request);

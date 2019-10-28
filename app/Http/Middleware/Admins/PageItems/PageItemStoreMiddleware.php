@@ -16,9 +16,10 @@ class PageItemStoreMiddleware
     public function handle($request, Closure $next)
     {
         $user = $request->user();
-
-        if (!$user->hasAnyPermission(['admin.page-items.create'])) {
-            abort(401);
+        if(!$user->hasRole('Super Admin')) {
+            if (!$user->hasAnyPermission(['admin.page-items.create'])) {
+                abort(401);
+            }
         }
 
         return $next($request);

@@ -16,9 +16,10 @@ class PageIndexMiddleware
     public function handle($request, Closure $next)
     {
         $user = $request->user();
-
-        if (!$user->hasAnyPermission(['admin.pages.index'])) {
-            abort(401);
+        if(!$user->hasRole('Super Admin')) {
+            if (!$user->hasAnyPermission(['admin.pages.index'])) {
+                abort(401);
+            }
         }
 
         return $next($request);

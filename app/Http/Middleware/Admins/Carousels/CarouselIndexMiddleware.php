@@ -17,8 +17,10 @@ class CarouselIndexMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.carousel.index'])) {
-            abort(401);
+        if(!$user->hasRole('Super Admin')) {
+            if (!$user->hasAnyPermission(['admin.carousel.index'])) {
+                abort(401);
+            }
         }
 
         return $next($request);
