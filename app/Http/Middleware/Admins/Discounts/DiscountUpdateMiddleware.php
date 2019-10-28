@@ -17,8 +17,10 @@ class DiscountUpdateMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.discount.edit'])) {
-            abort(401);
+        if(!$user->hasRole('Super Admin')) {
+            if (!$user->hasAnyPermission(['admin.discount.edit'])) {
+                abort(401);
+            }
         }
 
         return $next($request);

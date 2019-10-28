@@ -17,8 +17,10 @@ class RepairRequestUpdateMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.request.edit'])) {
-            abort(401);
+        if(!$user->hasRole('Super Admin')) {
+            if (!$user->hasAnyPermission(['admin.request.edit'])) {
+                abort(401);
+            }
         }
 
         return $next($request);

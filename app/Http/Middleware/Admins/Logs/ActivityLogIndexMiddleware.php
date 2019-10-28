@@ -16,9 +16,10 @@ class ActivityLogIndexMiddleware
     public function handle($request, Closure $next)
     {
         $user = $request->user();
-
-        if (!$user->hasAnyPermission(['activity-logs.index'])) {
-            abort(401);
+        if(!$user->hasRole('Super Admin')) {
+            if (!$user->hasAnyPermission(['activity-logs.index'])) {
+                abort(401);
+            }
         }
 
         return $next($request);

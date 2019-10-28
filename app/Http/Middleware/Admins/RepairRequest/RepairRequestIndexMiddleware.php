@@ -17,8 +17,10 @@ class RepairRequestIndexMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.request'])) {
-            abort(401);
+        if(!$user->hasRole('Super Admin')) {
+            if (!$user->hasAnyPermission(['admin.request'])) {
+                abort(401);
+            }
         }
 
         return $next($request);

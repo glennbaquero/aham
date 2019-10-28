@@ -16,9 +16,10 @@ class CategoryUpdateMiddleware
     public function handle($request, Closure $next)
     {
         $user = $request->user();
-
-        if (!$user->hasAnyPermission(['admin.categories.edit'])) {
-            abort(401);
+        if(!$user->hasRole('Super Admin')) {
+            if (!$user->hasAnyPermission(['admin.categories.edit'])) {
+                abort(401);
+            }
         }
 
         return $next($request);

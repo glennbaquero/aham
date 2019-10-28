@@ -17,13 +17,15 @@ class UsersDestroyMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.users.destroy'])) {
+        if(!$user->hasRole('Super Admin')) {
+            if (!$user->hasAnyPermission(['admin.users.destroy'])) {
 
-            if($request->ajax()) {
-                return response([], 401);
+                if($request->ajax()) {
+                    return response([], 401);
+                }
+
+                abort(401);
             }
-
-            abort(401);
         }
 
         return $next($request);

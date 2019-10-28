@@ -17,10 +17,11 @@ class RolesPermissionsStoreMiddleware
     {
         $user = $request->user();
 
-        if (!$user->hasAnyPermission(['admin.roles.create'])) {
-            abort(401);
+        if(!$user->hasRole('Super Admin')) {
+            if (!$user->hasAnyPermission(['admin.roles.create'])) {
+                abort(401);
+            }
         }
-
         return $next($request);
     }
 }

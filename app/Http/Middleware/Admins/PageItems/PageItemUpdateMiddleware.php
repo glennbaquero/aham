@@ -16,9 +16,10 @@ class PageItemUpdateMiddleware
     public function handle($request, Closure $next)
     {
         $user = $request->user();
-
-        if (!$user->hasAnyPermission(['admin.page-items.edit'])) {
-            abort(401);
+        if(!$user->hasRole('Super Admin')) {
+            if (!$user->hasAnyPermission(['admin.page-items.edit'])) {
+                abort(401);
+            }
         }
 
         return $next($request);
