@@ -24,7 +24,7 @@ class InvoiceItem extends Model
     const INVOICE_PENDING_PAYMENT = 4;
 
     public function invoice() {
-    	return $this->belongsTo(Invoice::class, 'invoice_id');
+    	return $this->belongsTo(Invoice::class, 'invoice_id')->withTrashed();
     }
     
     public function product() {

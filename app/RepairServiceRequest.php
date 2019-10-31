@@ -21,7 +21,7 @@ class RepairServiceRequest extends Model
     const COMPLETE = 30;
 
     public function user() {
-    	return $this->belongsTo(User::class);
+    	return $this->belongsTo(User::class)->withTrashed();
     }
 
     public function repairman() {
