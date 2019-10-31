@@ -24,11 +24,11 @@ class Product extends Model
 
     
     public function discount() {
-        return $this->belongsTo(Discount::class);
+        return $this->belongsTo(Discount::class)->withTrashed();
     }
 
     public function category() {
-    	return $this->belongsTo(Category::class);
+    	return $this->belongsTo(Category::class)->withTrashed();
     }
 
     public function tags() {
@@ -36,7 +36,7 @@ class Product extends Model
     }
 
     public function type() {
-    	return $this->belongsTo(Type::class);
+    	return $this->belongsTo(Type::class)->withTrashed();
     }
 
     public function images() {
@@ -48,7 +48,7 @@ class Product extends Model
     }
 
     public function user() {
-       return $this->belongsTo(User::class);
+       return $this->belongsTo(User::class)->withTrashed();
     }
     
     public function product_image($request) {

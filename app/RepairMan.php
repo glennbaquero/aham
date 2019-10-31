@@ -21,7 +21,7 @@ class RepairMan extends Model
     }
 
     public function request() {
-    	return $this->belongsTo(RepairServiceRequest::class, 'request_id');
+    	return $this->belongsTo(RepairServiceRequest::class, 'request_id')->withTrashed();
     }
 
     public function admin() {

@@ -19,8 +19,8 @@
 
     		<!-- DATATABLE -->
     		<datatable ref="datatable"
-            :headers="['#', 'Discount Code', 'Employee', 'Amount', 'Expiration', 'Created At']"
-            :columns="['id', 'discount_code', 'name', 'amount', 'expiration', 'created_at']"
+            :headers="['#', 'Discount Code', 'Employee', 'Discount', 'Expiration', 'Created At']"
+            :columns="['id', 'discount_code', 'name', 'discount', 'expiration', 'created_at']"
     		:filters="filters"
     		
     		:fetchurl="fetchurl"
