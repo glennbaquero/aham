@@ -11,14 +11,19 @@ class ContactUsMessageNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    private $firstname, $lastname, $email, $message;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($firstname, $lastname, $email, $message)
     {
-        //
+        $this->lastname = $lastname;
+        $this->firstname = $firstname;
+        $this->email = $email;
+        $this->message = $message;
     }
 
     /**
@@ -29,7 +34,7 @@ class ContactUsMessageNotification extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -56,7 +61,10 @@ class ContactUsMessageNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            //
+            'email' => $this->email,
+            'firstname' => $this->firstname,
+            'lastname' => $this->lastname,
+            'message' => $this->message,
         ];
     }
 }

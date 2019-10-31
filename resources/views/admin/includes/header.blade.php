@@ -20,30 +20,8 @@
         {{-- <li>
           <a href="#"><i class="fa fa-bell"></i></a>
         </li> --}}
-        <li class="dropdown messages-menu">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-envelope"></i>
-            <span class="label label-success">{{ $messages->count() }}</span>
-          </a>
-          <ul class="dropdown-menu">
-            <li class="header">You have {{ $messages->count() }} {{ $messages->count() <= 1 ? 'message' : 'messages' }} </li>
-            <li>
-              <ul class="menu">
-                @foreach($messages as $message)
-                  <li><!-- start message -->
-                    <a href="#" data-toggle="modal" data-target="#modal-default{{ $message->id }}">
-                      <h4>
-                        {{ $message->firstname. ' '. $message->lastname }}
-                        <small><i class="fa fa-clock-o"></i> {{ $message->created_at->diffForHumans() }}</small>
-                      </h4>
-                      <p>{{ $message->message }}</p>
-                    </a>
-                  </li>
-                @endforeach
-              </ul>
-            </li>
-          </ul>
-        </li>
+        
+          <notifications fetch-url="{{ route('admin.notifications') }}"></notifications>
 
         @auth('admin')
           <li>
@@ -66,15 +44,14 @@
       <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Message From {{ $message->email }} <small> ({{ $message->firstname. ' '. $message->lastname }}) </small></h4>
+          <h4 class="modal-title">Message From {{ $message->data['email'] }} <small> ({{ $message->data['firstname']. ' '. $message->data['lastname'] }}) </small></h4>
       </div>
       <div class="modal-body">
-        {{ $message->message }}
+        {{ $message->data['message'] }}
       </div>
       <div class="modal-footer">
-        <div class="row">
+        <mark-as-read :message="{{ $message }}" url="{{ route('admin.notifications.read', $message->id) }}"></mark-as-read>
           {{-- <reply-message></reply-message> --}}
-        </div>
       </div>
       </div>
   </div>

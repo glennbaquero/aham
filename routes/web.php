@@ -303,6 +303,10 @@ Route::name('admin.')
 	Route::post('contacts/{id}', 'ContactUsController@update')->name('contacts.update');
 	Route::delete('contacts/{id}', 'ContactUsController@destroy')->name('contacts.destroy');
 	Route::post('contacts/restore/{user}', 'ContactUsController@restore')->name('contacts.restore');
+	Route::post('contacts/restore/{user}', 'ContactUsController@restore')->name('notifications.read');
+
+	Route::get('notification/read/{id}', 'NotificationController@read')->name('notifications.read');
+	Route::get('notification/', 'NotificationController@getAllNotification')->name('notifications');
 
 	Route::post('contacts/fetch/q', 'ContactUsFetchController@fetch')->name('contacts.fetch');
 	Route::post('contacts/fetch/q?archive=1', 'ContactUsFetchController@fetch')->name('contacts.archive');
