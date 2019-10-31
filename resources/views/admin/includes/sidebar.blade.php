@@ -38,7 +38,7 @@
             </span>
           </a>
           <ul class="treeview-menu {{ $checker->route->isActive(['admin.products.', 'admin.product.', 'admin.categories.', 'admin.types.']) }}">
-            @if ($checker->permission->can(['admin.products.index', 'admin.product.create', 'admin.product.edit', 'admin.product.destroy']))
+            @if (auth()->user()->hasRole('Super Admin') ||  $checker->permission->can(['admin.products.index', 'admin.product.create', 'admin.product.edit', 'admin.product.destroy']))
               <li class="{{ $checker->route->isActive(['admin.products.', 'admin.product.']) }}">
                 <a href="{{ route('admin.products.index') }}"><i class="fas fa-boxes"></i> Product</a>
               </li>
