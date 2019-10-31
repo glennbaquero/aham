@@ -21,7 +21,7 @@
 					    </select>
 					    <div class="selected">
 				    		<i class="ion-arrow-down-b"></i>
-				    		<div>{{ request.product > 0 ? items[request.product - 1].model : 'Select Product'}}</div>
+				    		<div>{{ request.product > 0 ? request.model : 'Select Product'}}</div>
 				    	</div>
 				    	<div class="select-dropdown" :class="opened">
 				    		<div class="item-holder">
@@ -78,7 +78,8 @@
 			return {
 				items:{},
 				request: {
-					product: 0
+					product: 0,
+					model: null
 				},
 				image:null,
 				loading: false,
@@ -148,6 +149,7 @@
 
             choose(id, model){
             	this.request.product = id;
+            	this.request.model = model;
             	this.opened = '';
             },
 
