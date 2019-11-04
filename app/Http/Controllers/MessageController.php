@@ -96,8 +96,8 @@ class MessageController extends Controller
 
         $admins = Admin::where('type', 0)->get();
         foreach ($admins as $admin) {
-            if($admin->hasAnyPermission(['admin.application.edit', 'admin.application.create', 'admin.application.destroy'])) {
-                $admin->notify(new ContactUsMessageNotification($admin->email));
+            if($admin->role('Super Admin') || $admin->hasAnyPermission(['admin.application.edit', 'admin.application.create', 'admin.application.destroy'])) {
+                $admin->notify(new ContactUsMessageNotification($request->firstname, $request->lastname, $request->email, $request->message));
             }
         }
 

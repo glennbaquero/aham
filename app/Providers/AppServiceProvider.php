@@ -58,7 +58,7 @@ class AppServiceProvider extends ServiceProvider
             });
 
             View::composer('admin.includes.header',  function($view) {
-                $view->with('messages', Message::latest()->get());
+                $view->with('messages', auth()->user()->notifications()->where(['type' => 'App\Notifications\ContactUsMessageNotification'])->latest()->get());
             });
 
             $categories = Category::select(Category::MINIMAL_COLUMN)->get();
