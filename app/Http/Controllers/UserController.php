@@ -32,6 +32,7 @@ class UserController extends Controller
     	$user = User::whereEmailToken($token)->whereIsVerified(false)->first();
 
     	$user->is_verified = true;
+        $user->email_verified_at = Carbon::now();
 
     	$user->save();
 
