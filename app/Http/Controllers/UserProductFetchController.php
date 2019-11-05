@@ -37,7 +37,7 @@ class UserProductFetchController extends FetchController
     	}
 
         if ($this->request->filled('search')) {
-            $ids = $this->class::search($this->request->input('search'))->get()->pluck('id')->toArray();
+            $ids = $this->class::search($this->request->input('search'))->get()->pluck('model')->toArray();
             $query = $query->whereIn('id', $ids);
         }
 
