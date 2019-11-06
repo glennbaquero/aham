@@ -94,7 +94,7 @@ class InvoiceItem extends Model
     }
     
     public function renderName() {
-        return '#' . $this->id . ' ' . $this->model;
+        return '#' . $this->id;
     }
 
     public function renderFilePath() {
