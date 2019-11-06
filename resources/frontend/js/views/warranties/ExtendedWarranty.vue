@@ -26,10 +26,7 @@
 				    	<div class="select-dropdown" :class="opened">
 				    		<div class="item-holder">
 				    			<div class="items" v-for="item in items" @click="choose(item.id, item.model)"  v-if="item.category.availability == 0">
-				    				<div class="img-holder">
-				    					<!-- <img class="img-fit" :src="renderImage(item.images[0].image)"> -->
-				    				</div
-				    				><div class="dropdown-content">
+				    				<div class="dropdown-content">
 				    					<div><b>{{ item.model }}</b></div>
 				    				</div>
 				    			</div>
