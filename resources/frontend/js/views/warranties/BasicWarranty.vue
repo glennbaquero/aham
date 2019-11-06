@@ -18,7 +18,7 @@
 				    	<div class="item-holder">
 				    		<div class="items" v-for="product in products" @click="choose(product.id)">
 				    			<div class="img-holder">
-				    				<img class="img-fit" :src="renderImage(product.images[0].image)">
+				    				<!-- <img class="img-fit" :src="renderImage(product.images[0].image)"> -->
 				    			</div
 				    			><div class="dropdown-content">
 				    				<div><b>{{ product.model }}</b></div>
