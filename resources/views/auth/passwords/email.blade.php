@@ -8,12 +8,18 @@
             <p class="ls__title">Forgot password</p>
             <p class="ls__desc">Enter valid email address to send a forgot password link to your email</p>
 
-            @if (session('status'))
+            @if (session('success'))
                 <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
+                    {{ session('success') }}
                 </div>
             @endif
             
+            @if (session('error'))
+                <div class="alert alert-error" role="alert">
+                    {{ session('error') }}
+                </div>
+            @endif
+
             <form method="POST" action="{{ route('password.email') }}" class="ls__form">
                 @csrf
                 <div class="ls__form-row">

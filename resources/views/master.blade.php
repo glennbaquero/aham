@@ -76,9 +76,9 @@
         <div id="app" class="main">
             
             @yield('content')
-            {{-- @include('sweetalert::alert') --}}
             
         </div>
+        @include('sweetalert::alert')
         @include('includes.footer')
 
         <!-- Vars -->
