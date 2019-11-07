@@ -13,7 +13,7 @@
 				</div>
 			</div>
 			<div class="ew__form">
-				<div class="ew__form-row">
+				<!-- <div class="ew__form-row">
 					<label>Model Number</label>
 					<div class="input-text" @click="showItem">
 					    <select name="item">
@@ -36,6 +36,10 @@
 				    		</div>
 				    	</div>
 					</div>
+				</div> -->
+				<div class="ew__form-row">
+					<label>Model Number</label>
+					<input class="input-text" type="text">
 				</div>
 				<div class="ew__form-row">
 					<label>Serial Number</label>

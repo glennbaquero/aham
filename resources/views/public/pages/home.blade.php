@@ -2,6 +2,7 @@
 @section('pageTitle', 'Home')
 @section('content')
 
+
 <section class="homepage frame--1 container">
 	<div class="h__banner full frame__background size--cover bring--back" style="background-image: url('{{ $item->banner_image }}');"></div>
 	<div class="frame-padding">
