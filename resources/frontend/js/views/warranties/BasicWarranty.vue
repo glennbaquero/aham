@@ -4,7 +4,7 @@
 			<loader
 	        :loading="loading"
 	        ></loader>
-			<div class="bw__form-row">
+			<!-- <div class="bw__form-row">
 				<label>Model Number</label>
 				<div class="input-text">
 					<select name="item">
@@ -27,6 +27,10 @@
 				    	</div>
 				    </div>
 				</div>
+			</div> -->
+			<div class="bw__form-row">
+				<label>Model Number</label>
+				<input class="input-text" type="text">
 			</div>
 			<div class="bw__form-row">
 				<label>Serial Number</label>
