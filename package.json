@@ -35,6 +35,7 @@
         "vuex": "^3.0.1"
     },
     "dependencies": {
-        "bootstrap-switch": "^3.3.4"
+        "bootstrap-switch": "^3.3.4",
+        "vue-select2": "^0.2.6"
     }
 }
