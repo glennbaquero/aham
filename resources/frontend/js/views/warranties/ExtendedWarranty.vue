@@ -39,7 +39,10 @@
 				</div> -->
 				<div class="ew__form-row">
 					<label>Model Number</label>
-					<input class="input-text" type="text">
+					<select class="select2 input-text" v-model="request.product">
+						<option v-for="item in items" :value="item.id">{{ item.model }}</option>
+					</select>
+					<!-- <input class="input-text" type="text"> -->
 				</div>
 				<div class="ew__form-row">
 					<label>Serial Number</label>
@@ -67,6 +70,7 @@
 </template>
 <script>
     import Loader from '../../components/Loader.vue';
+	import select2 from '../../mixins/select2.js';
 
 	export default{
 		props : {
@@ -77,6 +81,10 @@
 		components : {
     		'loader': Loader,
 		},
+
+		mixins: [
+			select2,
+		],
 
 		data() {
 			return {
@@ -106,6 +114,10 @@
 				axios.get(this.fetchurl)
 					.then(response => {
 						this.items = response.data.products;
+					}).catch(error => {
+
+					}).then(()=>{
+						this.select2.init('.select2');
 					})
 			},
 
@@ -113,7 +125,8 @@
 				this.loading = true;
             	var data = new FormData();
 
-            	data.append('product_id', this.request.product);
+            	// data.append('product_id', this.request.product);
+            	data.append('product_id', this.$root.product_selected_basic_extend);
             	data.append('serial_number', this.request.serial_number);
             	data.append('purchase_date', this.request.purchase_date);
             	data.append('proof_purchase', this.image);

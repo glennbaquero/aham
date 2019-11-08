@@ -112,8 +112,6 @@
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-        <!-- jQuery Validate -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script> 
         
         <!-- Popper JS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
@@ -123,8 +121,6 @@
         <!-- Latest compiled JavaScript -->
         {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script> --}}
         
-        <!-- Slick -->
-        <script src="//cdn.jsdelivr.net/jquery.slick/1.4.1/slick.min.js"></script>
     
         <!-- Remodal -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/remodal/1.0.6/remodal.min.js"></script>
@@ -137,8 +133,6 @@
         <!-- SweetAlert -->
         <script src="https://cdn.jsdelivr.net/sweetalert2/6.6.2/sweetalert2.min.js"></script>
                 
-        <!-- Flatpickr  js -->
-        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
         <!-- TweenMax -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
@@ -156,5 +150,13 @@
         <script type="text/javascript" src="{{ mix('assets/manifest.js') }}"></script>
         <script type="text/javascript" src="{{ mix('assets/vendor.js') }}"></script>
         <script type="text/javascript" src="{{ mix('assets/app-frontend.js') }}"></script>
+        
+        <!-- jQuery Validate -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script> 
+
+        <!-- Flatpickr  js -->
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <!-- Slick -->
+        <script src="//cdn.jsdelivr.net/jquery.slick/1.4.1/slick.min.js"></script>
     </body>
 </html>

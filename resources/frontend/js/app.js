@@ -2,6 +2,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 require('./settings');
 require('./script');
+require('vue-select2');
 
 Vue.component('map-selector', require('./views/MapSelector.vue'));
 
@@ -16,16 +17,15 @@ Vue.component('user-products-table', require('./views/userproducts/UserProductsT
 Vue.component('products-registration', require('./views/includes/RegisterProduct.vue'));
 Vue.component('register-product', require('./views/includes/ProductRegister.vue'));
 
-const app = {
-	init() {
-		this.setupVue();
-	},
-
-	setupVue() {
-		new Vue({
+const app = new Vue({
 		    el: '#app',
+		    data: {
+		    	product_selected_basic_extend: 0
+		    },
 		});
-	}
-};
 
-app.init();
+$(document).ready(function() {
+	$('.select2').on('change', () => {
+	    app.product_selected_basic_extend = $('.select2').val();
+	});
+});
