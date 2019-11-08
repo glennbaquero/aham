@@ -2393,3 +2393,26 @@
 		}
  	}
 }
+
+.select2-container--default .select2-selection--single {
+    background-color: transparent !important;
+    border: 1px solid #737272 !important;
+    border-radius: 0px !important;
+}
+
+.select2-dropdown {
+	span { font-size: 14px !important; }
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field {
+    border: 1px solid #737272 !important;
+    font-size: 15px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 32px !important;
+}
+
+.select2-container .select2-selection--single {
+    height: 32px !important;
+}
