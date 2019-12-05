@@ -28,7 +28,7 @@ class ProductFetchController extends FetchController
     public function filterQuery($query)
     {
         if ($this->request->filled('search')) {
-            $ids = $this->class::search($this->request->input('search'))->get()->pluck('id')->toArray();
+            $ids = $this->class::where('model', $this->request->input('search'))->orWhere('name', $this->request->input('search'))->get()->pluck('id')->toArray();
             $query = $query->whereIn('id', $ids);
         }
         
