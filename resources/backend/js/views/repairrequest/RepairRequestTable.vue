@@ -105,7 +105,7 @@
     			items: [],
     			filters: {},
 
-    			searchbox:null,
+    			searchbox: null,
     			filter:null,
     		};
     	},
@@ -144,9 +144,9 @@
     		/**
     	     * Search keyword.
     	     */
-    	    search: function() {
+    	    search: function(value) {
 
-    	    	this.filters = Object.assign(this.filters, { search:this.search });
+    	    	this.filters = Object.assign(this.filters, { search:value });
     	    	this.fetch();
     	    },
 

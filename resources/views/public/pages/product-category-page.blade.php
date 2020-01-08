@@ -5,7 +5,7 @@
 
 <section class="product-category-page frame--1 container">
 
-	<div class="frame-banner full frame__background size--cover bring--back" style="background-image: url('storage/{{ $banner[0]->content }}');"></div>
+	<div class="frame-banner full frame__background size--cover bring--back" style="background-image: url('storage/{{ $category->image }}');"></div>
 	<div class="frame-padding">
 		<div class="pc__container animate-up">
 			<p class="pc__title">{{ $header[0]->content }} </p>

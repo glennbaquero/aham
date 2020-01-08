@@ -12,6 +12,8 @@ use App\UserProduct;
 use App\RepairMan;
 use App\Admin;
 
+use DB;
+
 class RepairServiceRequestFetchController extends FetchController
 {
     /**
@@ -33,10 +35,13 @@ class RepairServiceRequestFetchController extends FetchController
     public function filterQuery($query)
     {
         if ($this->request->filled('search')) {
-            $ids = $this->class::search($this->request->input('search'))->get()->pluck('id')->toArray();
+            // $ids = $this->class::where('model', $this->request->input('search'))->orWhere('name', $this->request->input('search'))->get()->pluck('id')->toArray();
+            $ids = $this->class::whereHas('user', function($query) {
+                $query->where(DB::raw('concat(firstname, " " ,lastname)'), 'LIKE' , '%'.$this->request->input('search').'%');
+            })->get()->pluck('id')->toArray();
             $query = $query->whereIn('id', $ids);
         }
-        
+
         if($this->request->filled('status')) {
            $query = $query->where('status',  $this->request->input('status'));
         }
