@@ -21,7 +21,7 @@
                             <div class="col col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Page <small class="text-danger">(WARNING: avoid editing may cause errors)</small></label>
-                                    <select v-model="item.page_id" @change="change" :disabled="fieldDisabled" name="page_id" class="form-control input-sm">
+                                    <select v-model="item.page_id" @change="change" :readonly="fieldDisabled" name="page_id" class="form-control input-sm">
 
                                         <option :value="undefined">Select a Page</option>
 
@@ -38,14 +38,14 @@
                             <div class="col col-xs-12 col-sm-12 col-md-6">
                                 <div class="form-group">
                                     <label for="">Slug <small class="text-danger">(WARNING: avoid editing may cause errors)</small></label>
-                                    <input v-model="item.slug" :disabled="fieldDisabled" name="slug" type="text" class="form-control input-sm" placeholder="Slug">
+                                    <input v-model="item.slug" :readonly="fieldDisabled" name="slug" type="text" class="form-control input-sm" placeholder="Slug">
                                 </div>
                             </div>
 
                             <div class="col col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="">Type <small class="text-danger">(WARNING: avoid editing may cause errors)</small></label>
-                                    <select v-model="selectedType" :disabled="fieldDisabled" name="type" class="form-control input-sm">
+                                    <select v-model="selectedType" :readonly="fieldDisabled" name="type" class="form-control input-sm">
 
                                         <option :value="null">Select a Type</option>
 
