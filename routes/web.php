@@ -159,6 +159,7 @@ Route::name('admin.')
 	Route::post('request/update/{id}', 'RepairServiceRequestController@update')->name('request.update');
 	Route::delete('request/destroy/{id}', 'RepairServiceRequestController@destroy')->name('request.destroy');
 	Route::post('request/restore/{id}', 'RepairServiceRequestController@restore')->name('request.restore');
+	Route::post('request/export', 'RepairServiceRequestController@export')->name('export.service-request');
 
 	Route::post('requests/fetch/q', 'RepairServiceRequestFetchController@fetch')->name('requests.fetch');
 	Route::post('requests/fetch/q?archive=1', 'RepairServiceRequestFetchController@fetch')->name('requests.archive');

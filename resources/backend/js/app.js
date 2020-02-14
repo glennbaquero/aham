@@ -42,6 +42,7 @@ Vue.component('faq-details', require('./views/faqs/FAQDetails.vue'));
 
 Vue.component('repair-request-table', require('./views/repairrequest/RepairRequestTable.vue'));
 Vue.component('repair-request-details', require('./views/repairrequest/RepairRequestDetails.vue'));
+Vue.component('repair-request-export', require('./views/repairrequest/ExportData.vue'));
 
 Vue.component('permission-list', require('./views/permission/PermissionsList.vue'));
 

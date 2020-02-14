@@ -7,6 +7,9 @@ use App\Http\Requests\ServiceRepairRequest;
 use Illuminate\Http\Request;
 
 use App\Notifications\AssignedTechnicianNotification;
+use Illuminate\Support\Facades\Input; 
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ServiceRequestExport;
 
 use App\RepairServiceRequest;
 use App\Admin;
@@ -23,6 +26,7 @@ class RepairServiceRequestController extends Controller
         $this->middleware('App\Http\Middleware\Admins\RepairRequest\RepairRequestUpdateMiddleware', ['only' => ['edit', 'update']]);
         $this->middleware('App\Http\Middleware\Admins\RepairRequest\RepairRequestDestroyMiddleware', ['only' => ['destroy', 'restore']]);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -32,8 +36,25 @@ class RepairServiceRequestController extends Controller
     {
         $status = json_encode(RepairServiceRequest::getStatus());
 
+        $requests = RepairServiceRequest::all();
+
+        $products = [];
+
+        foreach ($requests as $request) {
+            foreach ($request->invoice_items as $item) {
+                if(!collect($products)->contains('id', $item->product->id)) {
+                    array_push($products, [
+                        'id' => $item->product->id,
+                        'name' => $item->product->model,
+                    ]);
+                }
+                
+            }
+        }
+
         return view('admin.repairservice.request.index', [
             'status' => $status,
+            'products' => json_encode($products),
         ]);
     }
 
@@ -149,5 +170,14 @@ class RepairServiceRequestController extends Controller
         return response()->json([
             'message' => "You have successfully restored {$repair->renderName()}",
         ]);
+    }
+
+    public function export()
+    {
+        $product = Input::get('product');
+        $status = Input::get('status');
+
+        // dd($request);
+        return Excel::download(new ServiceRequestExport($product, $status), 'service-request_'.$product.'_status'.$status.'.xlsx');
     }
 }

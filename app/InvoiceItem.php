@@ -31,6 +31,10 @@ class InvoiceItem extends Model
     	return $this->belongsTo(Product::class, 'product_id')->withTrashed();
     }
 
+    public function service_requests() {
+        return $this->belongsToMany(RepairServiceRequest::class, 'service_request', 'user_product_id', 'request_id');
+    }
+
     public function toSearchableArray() {
         return [
             'id' => $this->id,
