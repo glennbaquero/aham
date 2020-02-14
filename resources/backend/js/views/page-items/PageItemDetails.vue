@@ -68,7 +68,8 @@
 
                                 <div v-show="isContent" class="form-group">
                                     <label>Content</label>
-                                    <textarea name="content" class="content form-control input-sm" placeholder="Content" >{{ item.content }}</textarea>
+                                    <vue-ckeditor type="classic" v-model="item.content" :editors="editors"></vue-ckeditor>
+                                    <!-- <textarea name="content" class="content form-control input-sm" placeholder="Content" >{{ item.content }}</textarea> -->
                                 </div>
                             </div>
 
@@ -89,6 +90,8 @@
 <script>
 import Loader from '../../components/Loader.vue';
 import ckeditor from '../../mixins/ckeditor.js';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import VueCkeditor from 'vue-ckeditor5'
 
 export default {
     props: {
@@ -103,6 +106,7 @@ export default {
 
     components: {
         'loader': Loader,
+        'vue-ckeditor': VueCkeditor.component
     },
 
     mixins: [
@@ -120,6 +124,9 @@ export default {
             item: {
                 title: '',
             },
+            editors: {
+                classic: ClassicEditor
+            }
         }
     },
 
