@@ -13,10 +13,12 @@ class ServiceRequestExport implements FromCollection, WithHeadings, ShouldAutoSi
 {
     use Exportable;
 
-	public function __construct($product, $status)
+	public function __construct($product, $status, $request_from, $request_to)
 	{
         $this->product = $product;
 		$this->status = $status;
+        $this->request_from = $request_from;
+        $this->request_to = $request_to;
 	}
 
     /**
@@ -28,9 +30,11 @@ class ServiceRequestExport implements FromCollection, WithHeadings, ShouldAutoSi
     	// if($this->status == 'all')
     	// {
     		if($this->product == 'all') {
-    			$invoice_items = InvoiceItem::all();
+    			$invoice_items = InvoiceItem::whereBetween('created_at', [\Carbon\Carbon::parse($this->request_from), \Carbon\Carbon::parse($this->request_to)->endOfDay()])
+                    ->get();
     		} else {
-    			$invoice_items = InvoiceItem::where('product_id', $this->product)->get();
+    			$invoice_items = InvoiceItem::whereBetween('created_at', [\Carbon\Carbon::parse($this->request_from), \Carbon\Carbon::parse($this->request_to)->endOfDay()])
+                    ->where('product_id', $this->product)->get();
     		}
     		return collect($this->formatColumns(
                            $invoice_items

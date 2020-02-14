@@ -33,6 +33,19 @@
                             </select>
                         </div>
                     </div>
+                    <div class="col col-xs-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">From</label>
+                            <input name="from" type="text" class="flatpickr form-control input-sm" placeholder="From" v-model="request.from">
+                        </div>
+                    </div>
+
+                    <div class="col col-xs-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <label for="">To</label>
+                            <input name="to" type="text" class="flatpickr form-control input-sm" placeholder="To" v-model="request.to">
+                        </div>
+                    </div>
             	</div>
             </div>
         </div>

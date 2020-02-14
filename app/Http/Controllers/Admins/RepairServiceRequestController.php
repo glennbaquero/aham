@@ -176,8 +176,10 @@ class RepairServiceRequestController extends Controller
     {
         $product = Input::get('product');
         $status = Input::get('status');
+        $from = Input::get('from');
+        $to = Input::get('to');
 
         // dd($request);
-        return Excel::download(new ServiceRequestExport($product, $status), 'service-request_'.$product.'_status'.$status.'.xlsx');
+        return Excel::download(new ServiceRequestExport($product, $status, $from, $to), 'service-request_'.$product.'_status'.$status.'.xlsx');
     }
 }
