@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Notifications\UserResetPasswordNotification;
 use Laravel\Scout\Searchable;
 use App\Helpers;
 
@@ -70,6 +71,17 @@ class User extends Authenticatable
             'birthday' => $this->birthday,
             'email' => $this->email,
         ];
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new UserResetPasswordNotification($token));
     }
 
     public static function store($request, $item = null) {

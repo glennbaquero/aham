@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Http\Request;
 
+use App\Notifications\UserResetPasswordNotification;
+
 use App\User;
 
 class ForgotPasswordController extends Controller
@@ -69,6 +71,8 @@ class ForgotPasswordController extends Controller
             $response = $this->broker()->sendResetLink(
                 $request->only('email')
             );
+
+            // $user_check->notify(new UserResetPasswordNotification());
 
             if ($response === Password::RESET_LINK_SENT) {
                 alert()->success('Hooray!', 'We sent the reset password link to your email!');
