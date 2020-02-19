@@ -45,9 +45,9 @@
 		<div class="a__accordion__list">
 			@foreach($faqs as $faq)
 			<div class="a__accordion">
-				<p class="a__question">{{ strip_tags($faq->question) }}<i class="fa fa-arrow-down"></i></p>
+				<p class="a__question">{!! $faq->question !!}<i class="fa fa-arrow-down"></i></p>
 				<div class="a__answer">
-					{{ strip_tags($faq->answer) }}
+					{!! $faq->answer !!}
 				</div>
 			</div>
 			@endforeach		
