@@ -68,7 +68,7 @@
 
                                 <div v-show="isContent" class="form-group">
                                     <label>Content</label>
-                                    <vue-ckeditor type="classic" v-model="item.content" :editors="editors"></vue-ckeditor>
+                                    <vue-ckeditor v-if="isContent" type="classic" v-model="item.content" :editors="editors"></vue-ckeditor>
                                     <input v-if="isContent"  v-model="item.content" name="content" type="hidden" class="form-control input-sm" placeholder="Content">
                                     <!-- <textarea name="content" class="content form-control input-sm" placeholder="Content" >{{ item.content }}</textarea> -->
                                 </div>
