@@ -57,7 +57,7 @@
 
 <section class="aboutpage frame--4 container">
 	<div class="frame-padding animate-up">
-		<p class="a__title">Our Strategic Partners</p>
+		<p class="a__title">{!! $item->strategic_partners !!}</p>
 		<div class="a-partners__sliderHolder slider-holder">
 			<div class="a-partners__slider">
 				@foreach($carousels as $carousel)
