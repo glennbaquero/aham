@@ -95,14 +95,18 @@
                             <div class="col col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="">Description</label>
-                                    <textarea name="description" class="content">{{ item.description }}</textarea>
+                                    <!-- <textarea name="description" class="content">{{ item.description }}</textarea> -->
+                                    <input  v-model="item.description" name="description" type="hidden" class="form-control input-sm" placeholder="Content">
+                                    <vue-ckeditor type="classic" v-model="item.description" :editors="editors"></vue-ckeditor>
                                 </div>
                             </div>
 
                             <div class="col col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="">Specification</label>
-                                    <textarea name="specification" class="content">{{ item.specification }}</textarea>
+                                    <!-- <textarea name="specification" class="content">{{ item.specification }}</textarea> -->
+                                    <input  v-model="item.specification" name="specification" type="hidden" class="form-control input-sm" placeholder="Content">
+                                    <vue-ckeditor type="classic" v-model="item.specification" :editors="editors"></vue-ckeditor>
                                 </div>
                             </div>
 
@@ -126,6 +130,8 @@ import flatpickr from '../../mixins/flatpickr.js';
 import ckeditor from '../../mixins/ckeditor.js';
 import dropzone from '../../mixins/dropzone.js';
 import select2 from '../../mixins/select2.js';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import VueCkeditor from 'vue-ckeditor5'
 
 export default {
 	props: {
@@ -140,7 +146,8 @@ export default {
     },
 
     components: {
-        'loader': Loader
+        'loader': Loader,
+        'vue-ckeditor': VueCkeditor.component
     },
 
     mixins: [
@@ -154,7 +161,10 @@ export default {
     	return {
             loading: false,
             item: {},
-            description: null
+            description: null,
+            editors: {
+                classic: ClassicEditor
+            }
     	}
     },
 

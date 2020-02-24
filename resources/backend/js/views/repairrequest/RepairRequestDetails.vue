@@ -119,13 +119,17 @@
                             <div class="col col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="">Complaint</label>
-                                    <textarea class="content" name="complaint">{{ item.complaint }}</textarea>
+                                    <input  v-model="item.complaint" name="complaint" type="hidden" class="form-control input-sm" placeholder="Content">
+                                    <!-- <textarea class="content" name="complaint">{{ item.complaint }}</textarea> -->
+                                    <vue-ckeditor type="classic" v-model="item.complaint" :editors="editors"></vue-ckeditor>
                                 </div>
                             </div>
                             <div class="col col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="">Solution</label>
-                                    <textarea class="content" name="solution">{{ item.solution }}</textarea>
+                                    <input  v-model="item.solution" name="solution" type="hidden" class="form-control input-sm" placeholder="Content">
+                                    <!-- <textarea class="content" name="solution">{{ item.solution }}</textarea> -->
+                                    <vue-ckeditor type="classic" v-model="item.solution" :editors="editors"></vue-ckeditor>
                                 </div>
                             </div>
                         </div>
@@ -145,6 +149,8 @@ import Loader from '../../components/Loader.vue';
 import ckeditor from '../../mixins/ckeditor.js';
 import flatpickr from '../../mixins/flatpickr.js';
 import select2 from '../../mixins/select2.js';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import VueCkeditor from 'vue-ckeditor5'
 
 export default {
     props: {
@@ -157,7 +163,8 @@ export default {
     },
 
     components: {
-        'loader': Loader
+        'loader': Loader,
+        'vue-ckeditor': VueCkeditor.component
     },
 
     mixins: [
@@ -178,6 +185,9 @@ export default {
             repairmen: [],
             statuses: {},
             invoiceitems:[],
+            editors: {
+                classic: ClassicEditor
+            }
         }
     },
 
