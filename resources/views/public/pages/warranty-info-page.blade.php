@@ -19,7 +19,7 @@
 
 <section class="warrantyinfo frame--2 container">
 	<div class="frame-padding">
-		<p class="wi__title animate-up">Warranty Policy</p>
+		<p class="wi__title animate-up">{!! $item->warranty_policy_title !!}</p>
 		<div class="wi__container animate-up">
 			<div class="wi__desc">
 				{!! $item->policy !!}
