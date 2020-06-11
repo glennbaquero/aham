@@ -28,7 +28,7 @@
 			><div class="sp__details">
 				<p class="sp__code">{{ $product->model }}</p>
 				<p class="sp__name">{{ $product->name }}</p>
-				<p class="sp__desc">{{ $product->description }}</p>
+				<p class="sp__desc">{!! $product->description !!}</p>
 				@if($product->manual_path) 
 					<a class="btn btn-blue" href="{{ route('download.manual', $product->id) }}"><p>Download Manual</p></a>
 				@endif
