@@ -66,7 +66,7 @@ class WarrantiesExport implements FromCollection, WithHeadings, ShouldAutoSize
     	foreach ($datas as $data) {
 			$formats = [
 				'id' => $data->id,
-				'customer' => $data->invoice->user->firstname. ' '.$data->invoice->user->firstname,
+				'customer' => $data->invoice->user->firstname. ' '.$data->invoice->user->lastname,
 				'model' => $data->product->model,
 				'serial_number' => $data->invoice->serial_number,
 				'contract_number' => $data->invoice->contract_number,
