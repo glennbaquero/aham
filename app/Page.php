@@ -103,7 +103,7 @@ class Page extends Model
                     $data['featured_products'] = Product::whereHas('tags', function($query){
                                                     $query->where('name', 'Featured Product');
                                                 })->get();
-                    $data['products'] = $products;
+                    $data['products'] = Product::with('category')->orderBy('model', 'asc')->get();;
                     $data['categories'] = Category::all();;
                 break;
             case 'products':
@@ -133,7 +133,7 @@ class Page extends Model
                 break;
             case 'contact':
                     $data['view'] = "public.pages.contact-page";
-                    $data['products'] = $products;
+                    $data['products'] = Product::with('category')->orderBy('model', 'asc')->get();;
                 break;
             case 'selected':
                     $data['view'] = "public.pages.product-selected-page";
