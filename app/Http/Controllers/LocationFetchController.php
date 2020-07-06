@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class LocationFetchController extends Controller
 {
     public function fetch() {
-        $locations = Location::orderBy('sort_column', 'asc')->get();
+        $locations = Location::orderBy('name', 'asc')->get();
 
         return response()->json([
             'locations' => $locations,
