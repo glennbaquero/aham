@@ -67,7 +67,7 @@ class ServiceRequestExport implements FromCollection, WithHeadings, ShouldAutoSi
     				'id' => $request->id,
     				'customer' => $data->invoice->user->firstname. ' '.$data->invoice->user->firstname,
     				'product' => $data->product->model,
-    				'complaint' => $request->complaint,
+    				'complaint' => strip_tags($request->complaint),
     				'repairman' => $request->repairman->admin->renderFullname(),
     				'model' => $request->renderStatusLabel(),
     			];   
