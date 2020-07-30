@@ -26,5 +26,6 @@ class LocationDestroyMiddleware
                 abort(401);
             }
         }
+        return $next($request);
     }
 }
