@@ -112,7 +112,7 @@ Route::name('admin.')
 	Route::post('administrator/store', 'AdminController@store')->name('administrator.store');
 	Route::get('administrator/view/edit/{id}', 'AdminController@edit')->name('administrator.edit');
 	Route::post('administrator/update/{id}', 'AdminController@update')->name('administrator.update');
-	Route::delete('administrator/destroy/{id}', 'AdminController@destroy')->name('administrator.destroy');
+	Route::get('administrator/destroy/{id}', 'AdminController@destroy')->name('administrator.destroy');
 	Route::post('administrator/restore/{role}', 'AdminController@restore')->name('administrator.restore');
 
 	Route::post('administrators/fetch/q', 'AdminFetchController@fetch')->name('administrators.fetch');
@@ -144,7 +144,7 @@ Route::name('admin.')
 	Route::post('roles/store', 'RoleController@store')->name('roles.store');
 	Route::get('roles/view/edit/{id}', 'RoleController@edit')->name('roles.edit');
 	Route::post('roles/update/{id}', 'RoleController@update')->name('role.update');
-	Route::delete('roles/destroy/{id}', 'RoleController@destroy')->name('role.destroy');
+	Route::get('roles/destroy/{id}', 'RoleController@destroy')->name('role.destroy');
 	Route::post('roles/restore/{role}', 'RoleController@restore')->name('role.restore');
 
 	Route::post('roles/fetch/q', 'RoleFetchController@fetch')->name('roles.fetch');
@@ -157,7 +157,7 @@ Route::name('admin.')
 	Route::post('request/store', 'RepairServiceRequestController@store')->name('request.store');
 	Route::get('request/view/edit/{id}', 'RepairServiceRequestController@edit')->name('request.edit');
 	Route::post('request/update/{id}', 'RepairServiceRequestController@update')->name('request.update');
-	Route::delete('request/destroy/{id}', 'RepairServiceRequestController@destroy')->name('request.destroy');
+	Route::get('request/destroy/{id}', 'RepairServiceRequestController@destroy')->name('request.destroy');
 	Route::post('request/restore/{id}', 'RepairServiceRequestController@restore')->name('request.restore');
 	Route::post('request/export', 'RepairServiceRequestController@export')->name('export.service-request');
 
@@ -173,7 +173,7 @@ Route::name('admin.')
 	Route::get('applications', 'InvoiceController@index')->name('application');
 	Route::get('application/edit/{id}', 'InvoiceController@edit')->name('application.approve');
 	Route::post('application/update/{id}', 'InvoiceController@update')->name('application.update');
-	Route::delete('application/destroy/{id}', 'InvoiceController@destroy')->name('application.destroy');
+	Route::get('application/destroy/{id}', 'InvoiceController@destroy')->name('application.destroy');
 	Route::post('application/restore/{id}', 'InvoiceController@restore')->name('application.restore');
 	Route::post('application/export', 'InvoiceController@export')->name('export');
 
@@ -192,7 +192,7 @@ Route::name('admin.')
 	Route::get('product/create', 'ProductController@create')->name('product.create');
 	Route::post('product/store', 'ProductController@store')->name('product.store');
 	Route::post('product/update/{id}', 'ProductController@update')->name('product.update');
-	Route::delete('product/{id}', 'ProductController@destroy')->name('product.destroy');
+	Route::get('product/{id}', 'ProductController@destroy')->name('product.destroy');
 	Route::post('product/restore/{user}', 'ProductController@restore')->name('product.restore');
 	Route::get('product/upload', 'ProductController@upload')->name('product.upload');
 	Route::post('products/upload', 'ProductController@uploadproduct')->name('products.upload');
@@ -211,7 +211,7 @@ Route::name('admin.')
 	Route::get('categories/create', 'CategoryController@create')->name('categories.create');
 	Route::post('categories/store', 'CategoryController@store')->name('categories.store');
 	Route::post('categories/update/{id}', 'CategoryController@update')->name('categories.update');
-	Route::delete('categories/{id}', 'CategoryController@destroy')->name('categories.destroy');
+	Route::get('categories/{id}', 'CategoryController@destroy')->name('categories.destroy');
 	Route::post('categories/restore/{user}', 'CategoryController@restore')->name('categories.restore');
 	Route::get('category/upload', 'CategoryController@upload')->name('category.upload');
 	Route::post('categories/upload', 'CategoryController@uploadcategory')->name('categories.upload');
@@ -229,7 +229,7 @@ Route::name('admin.')
 	Route::get('types/create', 'TypeController@create')->name('types.create');
 	Route::post('types/store', 'TypeController@store')->name('types.store');
 	Route::post('types/update/{id}', 'TypeController@update')->name('types.update');
-	Route::delete('types/{id}', 'TypeController@destroy')->name('types.destroy');
+	Route::get('types/{id}', 'TypeController@destroy')->name('types.destroy');
 	Route::post('types/restore/{user}', 'TypeController@restore')->name('types.restore');
 	Route::get('type/upload', 'TypeController@upload')->name('type.upload');
 	Route::post('types/upload', 'TypeController@uploadtype')->name('types.upload');
@@ -249,7 +249,7 @@ Route::name('admin.')
 	Route::get('carousel/create', 'CarouselController@create')->name('carousel.create');
 	Route::post('carousel/store', 'CarouselController@store')->name('carousel.store');
 	Route::post('carousel/update/{id}', 'CarouselController@update')->name('carousel.update');
-	Route::delete('carousel/destroy/{id}', 'CarouselController@destroy')->name('carousel.destroy');
+	Route::get('carousel/destroy/{id}', 'CarouselController@destroy')->name('carousel.destroy');
 	Route::post('carousel/restore/{id}', 'CarouselController@restore')->name('carousel.restore');
 
 	Route::post('carousel/{id}', 'CarouselImageController@destroy')->name('carousel.destroy');
@@ -263,7 +263,7 @@ Route::name('admin.')
 	Route::post('pages/store', 'PageController@store')->name('pages.store');
 	Route::get('pages/{id}', 'PageController@edit')->name('pages.edit');
 	Route::post('pages/{id}', 'PageController@update')->name('pages.update');
-	Route::delete('pages/{id}', 'PageController@destroy')->name('pages.destroy');
+	Route::get('pages/{id}', 'PageController@destroy')->name('pages.destroy');
 	Route::post('pages/restore/{user}', 'PageController@restore')->name('pages.restore');
 
 	Route::post('pages/fetch/q', 'PageFetchController@fetch')->name('pages.fetch');
@@ -276,7 +276,7 @@ Route::name('admin.')
 	Route::post('page-items/store', 'PageItemController@store')->name('page-items.store');
 	Route::get('page-items/{id}', 'PageItemController@edit')->name('page-items.edit');
 	Route::post('page-items/{id}', 'PageItemController@update')->name('page-items.update');
-	Route::delete('page-items/{id}', 'PageItemController@destroy')->name('page-items.destroy');
+	Route::get('page-items/{id}', 'PageItemController@destroy')->name('page-items.destroy');
 	Route::post('page-items/restore/{user}', 'PageItemController@restore')->name('page-items.restore');
 
 	Route::post('page-items/fetch/q', 'PageItemFetchController@fetch')->name('page-items.fetch');
@@ -289,7 +289,7 @@ Route::name('admin.')
 	Route::post('faqs/store', 'FaqController@store')->name('faqs.store');
 	Route::get('faqs/{id}', 'FaqController@edit')->name('faqs.edit');
 	Route::post('faqs/{id}', 'FaqController@update')->name('faqs.update');
-	Route::delete('faqs/{id}', 'FaqController@destroy')->name('faqs.destroy');
+	Route::get('faqs/{id}', 'FaqController@destroy')->name('faqs.destroy');
 	Route::post('faqs/restore/{user}', 'FaqController@restore')->name('faqs.restore');
 
 	Route::post('faqs/fetch/q', 'FaqFetchController@fetch')->name('faqs.fetch');
@@ -302,7 +302,7 @@ Route::name('admin.')
 	Route::post('contacts/store', 'ContactUsController@store')->name('contacts.store');
 	Route::get('contacts/{id}', 'ContactUsController@edit')->name('contacts.edit');
 	Route::post('contacts/{id}', 'ContactUsController@update')->name('contacts.update');
-	Route::delete('contacts/{id}', 'ContactUsController@destroy')->name('contacts.destroy');
+	Route::get('contacts/{id}', 'ContactUsController@destroy')->name('contacts.destroy');
 	Route::post('contacts/restore/{user}', 'ContactUsController@restore')->name('contacts.restore');
 	Route::post('contacts/read/{user}', 'ContactUsController@restore')->name('notifications.read');
 
@@ -319,7 +319,7 @@ Route::name('admin.')
 	Route::post('locations/store', 'LocationController@store')->name('locations.store');
 	Route::get('locations/{id}', 'LocationController@edit')->name('locations.edit');
 	Route::post('locations/{id}', 'LocationController@update')->name('locations.update');
-	Route::delete('locations/{id}', 'LocationController@destroy')->name('locations.destroy');
+	Route::get('locations/{id}', 'LocationController@destroy')->name('locations.destroy');
 	Route::post('locations/restore/{user}', 'LocationController@restore')->name('locations.restore');
 
 	Route::post('locations/fetch/q', 'LocationFetchController@fetch')->name('locations.fetch');
@@ -333,7 +333,7 @@ Route::name('admin.')
 	Route::post('discount/store', 'DiscountController@store')->name('discount.store');
 	Route::get('discount/{id}', 'DiscountController@edit')->name('discount.edit');
 	Route::post('discount/{id}', 'DiscountController@update')->name('discount.update');
-	Route::delete('discount/{id}', 'DiscountController@destroy')->name('discount.destroy');
+	Route::get('discount/{id}', 'DiscountController@destroy')->name('discount.destroy');
 	Route::post('discount/restore/{user}', 'DiscountController@restore')->name('discount.restore');
 
 	Route::post('discounts/fetch/q', 'DiscountFetchController@fetch')->name('discounts.fetch');
@@ -344,7 +344,7 @@ Route::name('admin.')
 	Route::get('users', 'UserController@index')->name('users.index');
 	Route::get('users/create', 'UserController@create')->name('users.create');
 	Route::get('users/{id}', 'UserController@edit')->name('users.edit');
-	Route::delete('users/{id}', 'UserController@destroy')->name('users.destroy');
+	Route::get('users/{id}', 'UserController@destroy')->name('users.destroy');
 	Route::post('users/restore/{user}', 'UserController@restore')->name('users.restore');
 
 	Route::post('users/fetch/q', 'UserFetchController@fetch')->name('users.fetch');
@@ -360,7 +360,7 @@ Route::name('admin.')
 	Route::post('employee/store', 'EmployeeController@store')->name('employee.store');
 	Route::get('employee/{id}', 'EmployeeController@edit')->name('employee.edit');
 	Route::post('employee/{id}', 'EmployeeController@update')->name('employee.update');
-	Route::delete('employee/{id}', 'EmployeeController@destroy')->name('employee.destroy');
+	Route::get('employee/{id}', 'EmployeeController@destroy')->name('employee.destroy');
 	Route::post('employee/restore/{employee}', 'EmployeeController@restore')->name('employee.restore');
 
 	Route::post('employees/fetch/q', 'EmployeeFetchController@fetch')->name('employees.fetch');
