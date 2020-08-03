@@ -19,7 +19,7 @@ var app = {
           setup.contact();
         break;
     }
-
+    setup.home();
     setup.bindEvents();
     setup.vendors();
     setup.alertStatusMessage();
