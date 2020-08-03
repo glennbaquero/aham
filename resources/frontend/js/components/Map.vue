@@ -34,7 +34,9 @@ export default {
 	},
 
 	mounted() {
-		this.setup();
+		setTimeout(() => {
+			this.setup();
+		}, 500);
 		setTimeout(() => {
 			this.init();
 		}, 500);
