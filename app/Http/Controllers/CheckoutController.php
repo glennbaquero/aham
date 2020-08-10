@@ -92,6 +92,6 @@ class CheckoutController extends Controller
      */
     public function paypalReturn(Request $request)
     {
-        return redirect()->route('public.pages.payment.success-page');
+        return view('public.pages.payment.success-page');
     }
 }
