@@ -45,7 +45,7 @@ class UserProductFetchController extends FetchController
         // }
 
 
-        return $query->whereIn('status', [1, 3]);
+        return $query->whereIn('status', [1, 3, 5]);
     }
 
     /**
