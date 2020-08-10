@@ -22,7 +22,7 @@
 			:size="'btn-sm pull-right'"
 			:label="'Delete'"
 	        :action="'{{ $location->trashed() ? 'restore' : 'delete' }}'"
-	        :message="'{{ 'location ' . $location->renderName() }}'"
+	        message="'{{ 'location ' . $location->renderName() }}'"
 	        :restoreurl="'{{ $location->renderRestore() }}'"
 	        :deleteurl="'{{ $location->renderDelete() }}'"
 	        ></std-button>
