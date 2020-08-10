@@ -55,9 +55,17 @@ class ProcessPayPal
 
         # will cause error if no code is there
         $this->invoice = Invoice::where('reference_code', $this->result['reference_code'])->first();
-        $this->invoice->status = Invoice::PAID;
         $this->invoice->payment_gateway_code = $this->result['transaction_code'];
+        
+        $this->invoice->warranty_type = Invoice::EXTENDED;
 
+        if($this->invoice->has_notified){
+            $this->invoice->date_of_purchase = Carbon::now();
+            $this->invoice->applied_date = Carbon::now();
+            $this->invoice->expiration_date = Carbon::now()->addYears(2);
+            $this->invoice->has_notified = false;
+        }
+        
         $this->invoice->save();
 
         \DB::commit();
