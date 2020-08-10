@@ -4,6 +4,8 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
+use App\Admin;
+use App\Permission;
 
 class Helpers
 {
@@ -112,5 +114,69 @@ class Helpers
         session()->flash('status_title', $title);
         session()->flash('status_message', $message);
         session()->flash('status_type', $type);
+    }
+
+    /**
+     * Get Admins base on guard resources
+     * @param  Array|String  $guardResources praxxys admin guard resource in controllers
+     * @return PRAXXYS\Admin\Models\Admin
+     */
+    public static function getNotifiableAdmins($guardResources = [])
+    {
+        $admins = [];
+
+        if (!$guardResources) {
+            $admins = Admin::get();
+        }
+
+        if ($guardResources) {
+
+            $toNotifyIds = [];
+
+            if (is_array($guardResources)) {
+                foreach ($guardResources as $guardResource) {
+                    
+                    $superAdminIds = static::getAdminsByResource($guardResource);
+
+                    array_push($toNotifyIds, $superAdminIds);
+                }
+            } else {
+
+                $superAdminIds = static::getAdminsByResource($guardResources);
+
+                array_push($toNotifyIds, $superAdminIds);
+            }
+
+            $superAdminIds = Role::where('name', 'super-admin')->first()->users()->pluck('id')->toArray();
+
+            array_push($toNotifyIds, $superAdminIds);
+
+            $toNotifyIds = array_unique(array_flatten($toNotifyIds));
+
+            $admins = Admin::whereIn('id', $toNotifyIds)->get();
+        }
+
+        if (!count($admins)) {
+            $admins = false;
+        }
+
+        return $admins;
+    }
+
+    private static function getAdminsByResource($guardResource)
+    {
+        $toNotifyIds = [];
+
+        $permissions = Permission::where('name', 'like', $guardResource . '%')->get();
+
+        foreach ($permissions as $key => $permission) {
+            foreach ($permission->roles as $role) {
+                $ids = $role->users()->pluck('id')->toArray();
+
+                array_push($toNotifyIds, $ids);
+            }
+        }        
+
+        return $toNotifyIds;
     }
 }

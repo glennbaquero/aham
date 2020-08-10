@@ -10,7 +10,7 @@
 				<input class="input-text" type="text" name="" v-model="item.invoice.application_number" :disabled="disabled">
 				<img src="">
 			</div>
-			<div class="ch__form-row">
+			<!-- <div class="ch__form-row">
 				<label>Payment</label>
 				<input class="input-text" type="text" name="" v-model="item.payment">
 			</div>
@@ -18,10 +18,10 @@
 				<label>Bank</label>
 				<input class="input-text" type="text" name="" v-model="item.bank">
 				<img src="">
-			</div>
+			</div> -->
 		<p class="ch__sub-title">Payment Method</p>
 		<div class="check-box">
-			<label class="checkbox-lbl font--2">iPay88
+			<label class="checkbox-lbl font--2">Paypal
 				<input type="radio" name="payment_method" v-model="payment_method" :value="payment_method">
 				<span class="checkmark"></span>
 			</label>
@@ -64,13 +64,13 @@
 		</div>
 		<div class="check-box">
 			<label class="checkbox-lbl font--2"><b>Agree to</b> Terms & Conditions & AHAMCorp Privacy Policy
-				<input type="checkbox" name="agree">
+				<input type="checkbox" name="agree" v-model="agree">
 				<span class="checkmark"></span>
 			</label>
 		</div>
 		<div class="center-align">
-			<button class="btn btn-blue" @click="submit()" :disabled="enabled"><p>Submit</p></button>
-			<a href="" class="btn outline--blue"><p>Back</p></a>
+			<button class="btn btn-blue" @click="submit()" :disabled="enabled" v-if="showSubmit"><p>Submit</p></button>
+			<a href="user/products" class="btn outline--blue"><p>Back</p></a>
 		</div>
 	</div>	
 
@@ -82,6 +82,7 @@
 <script>
     import Loader from '../../components/Loader.vue';
 	import ipayform from '../ecommerce/iPayForm';
+	import prx_paypal_mixin from '../../../../../public/vendor/praxxys/ecommerce/paypal/js/vue-mixin.js';
 
 	export default {
 		props : {
@@ -94,6 +95,8 @@
 			'loader': Loader,
 		},
 
+		mixins: [prx_paypal_mixin],
+
 		data() {
 			return {
 				item: {},
@@ -103,7 +106,15 @@
     			discounted_amount: 0,
     			disabled:true,
     			discount: null,
-    			enabled: false
+    			enabled: false,
+    			agree: false,
+    			showSubmit: false
+			}
+		},
+
+		watch: {
+			agree(val) {
+				this.showSubmit = val;
 			}
 		},
 
@@ -123,40 +134,53 @@
 						this.discount_available = response.data.discounts;
 					})
 			},
+			/**
+			 * iPay88 code
+			 * 
+			 */
+			// submit() {
+			// 	if(this.loading) return;
 
+			// 	this.loading = true;
+			// 	var totalPrice = (this.item.product.extended_amount - this.discounted_amount)  < 0 ? 0 : this.item.product.extended_amount - this.discounted_amount;
+
+			// 	let formData = new FormData();
+
+			// 	formData.append('invoice_id', this.item.invoice.id);
+			// 	formData.append('model', this.item.product.model);
+			// 	formData.append('serial_number', this.item.invoice.serial_number);
+			// 	formData.append('contract_number', this.item.invoice.contract_number);
+			// 	formData.append('amount', this.item.product.extended_amount);
+			// 	formData.append('payment_method', this.payment_method);
+			// 	formData.append('total_price', totalPrice);
+			// 	formData.append('discount', this.discounted_amount);
+
+			// 	axios.post(this.checkouturl, formData)
+			// 		.then(response => {
+			// 			const data = response.data;
+
+			// 			if(data.redirectUrl) {
+			// 				window.location.href = data.redirectUrl;
+			// 			}
+
+			// 			let invoice = data.invoice;
+			// 			let user = data.user;
+			// 			this.$refs.ipayform.init(data.gateway, invoice, user, this.item.product.extended_amount);
+		 //    			this.loading = false;
+			// 		}).catch(errors => {
+			// 			this.loading = false;
+			// 			swal('Error!', errors, 'error');
+			// 		})
+			// },
 			submit() {
-				if(this.loading) return;
+				this.PRXPayPalSubmit(this.buildItems(), this.item.invoice.reference_code, 'PHP');
+			},
 
-				this.loading = true;
-				var totalPrice = (this.item.product.extended_amount - this.discounted_amount)  < 0 ? 0 : this.item.product.extended_amount - this.discounted_amount;
-
-				let formData = new FormData();
-
-				formData.append('invoice_id', this.item.invoice.id);
-				formData.append('model', this.item.product.model);
-				formData.append('serial_number', this.item.invoice.serial_number);
-				formData.append('contract_number', this.item.invoice.contract_number);
-				formData.append('amount', this.item.product.extended_amount);
-				formData.append('payment_method', this.payment_method);
-				formData.append('total_price', totalPrice);
-				formData.append('discount', this.discounted_amount);
-
-				axios.post(this.checkouturl, formData)
-					.then(response => {
-						const data = response.data;
-
-						if(data.redirectUrl) {
-							window.location.href = data.redirectUrl;
-						}
-
-						let invoice = data.invoice;
-						let user = data.user;
-						this.$refs.ipayform.init(data.gateway, invoice, user, this.item.product.extended_amount);
-		    			this.loading = false;
-					}).catch(errors => {
-						this.loading = false;
-						swal('Error!', errors, 'error');
-					})
+			buildItems() {
+				const items = []; 
+				var total = parseFloat(this.item.total_price);
+				items.push({name: this.item.product.model, price: total, qty: 1});
+				return items;
 			},
 
 			validate() {

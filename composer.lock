@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b869c7754ae75b9b677500183e123c73",
+    "content-hash": "0079abe050468c0fcc8e810d3267ecd0",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2231,6 +2231,45 @@
                 "xlsx"
             ],
             "time": "2020-07-19T09:51:35+00:00"
+        },
+        {
+            "name": "praxxys-ecommerce/paypal",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "ssh://git@gitlab.praxxys.ph:52222/laravel/praxxys-ecommerce-paypal.git",
+                "reference": "bb0177ba100873e93877eca0ac827f2aa093d031"
+            },
+            "require": {
+                "illuminate/support": "5.*"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "PRAXXYSEcommerce\\PayPal\\PayPalServiceProvider"
+                    ],
+                    "aliases": {
+                        "PRXPayPal": "PRAXXYSEcommerce\\PayPal\\Facades\\PRXPayPal"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PRAXXYSEcommerce\\PayPal\\": "src/"
+                }
+            },
+            "license": [
+                "Copyright 2018 PRAXXYS Solutions Inc."
+            ],
+            "authors": [
+                {
+                    "name": "John Dalangin",
+                    "email": "john@praxxys.ph"
+                }
+            ],
+            "description": "PRAXXYS Ecommerce PayPal Module",
+            "time": "2018-10-02T03:16:59+00:00"
         },
         {
             "name": "psr/container",

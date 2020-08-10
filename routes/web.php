@@ -46,6 +46,9 @@ Route::group(['middleware' => ['auth']],function(){
 		Route::post('checkout/process', 'CheckoutController@processCheckout')->name('checkout.process');
 		Route::post('ipay/process', 'CheckoutController@ipayProcess')->name('ipay.process');
 		Route::post('ipay/return', 'CheckoutController@ipayReturn')->name('ipay.return');
+
+		Route::post('payment/success', 'CheckoutController@paypalReturn')->name('paypal.return');
+
 		Route::get('user/extended', 'PageController@extended')->name('user.extended');
 		Route::get('user/extended/{id}', 'PageController@extended')->name('user.extended.id');
 		Route::post('user/extended', 'UserController@extendedwarranty')->name('apply.extended.warranty');

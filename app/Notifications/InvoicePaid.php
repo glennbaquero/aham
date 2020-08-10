@@ -43,7 +43,7 @@ class InvoicePaid extends Notification implements ShouldQueue
         return (new MailMessage)
                     ->subject(config('app.name') . ': Invoice Paid')
                     ->greeting('Greetings ' . $notifiable->renderFullname() . ',')
-                    ->line('This is know that we have received the payment with a reference #' . $this->invoice->application_number . ' - ' . 'via iPay88')
+                    ->line('This is know that we have received the payment with a reference #' . $this->invoice->application_number . ' - ' . 'via Paypal')
                     // ->action('View Invoice', route('invoice.transaction-history', $this->invoice->id))
     }
 

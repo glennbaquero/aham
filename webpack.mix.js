@@ -23,3 +23,6 @@ mix.js([
 mix.sass('resources/backend/sass/app.scss', 'public/assets/app-backend.css').version().sourceMaps();
 mix.sass('resources/backend/sass/vendor.scss', 'public/assets/vendor-backend.css').version().sourceMaps();
 mix.sass('resources/frontend/sass/app.scss', 'public/assets/app-frontend.css').version().sourceMaps();
+
+
+mix.disableNotifications();

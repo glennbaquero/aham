@@ -95,6 +95,7 @@ class UserController extends Controller
             'date_of_purchase' => Carbon::now(),
             'applied_date' => Carbon::now(),
             'expiration_date' => Carbon::now()->addYears(1),
+            'reference_code' => $this->generateCode()
         ]);
 
         $invoice_item = Invoice::find($invoice);
@@ -140,6 +141,7 @@ class UserController extends Controller
             'date_of_purchase' => Carbon::now(),
             'applied_date' => Carbon::now(),
             'expiration_date' => Carbon::now()->addYears(2),
+            'reference_code' => $this->generateCode()
         ]);
 
         $invoice_item = Invoice::find($invoice);
@@ -171,5 +173,25 @@ class UserController extends Controller
     public function userproduct()
     {
         return view('public.pages.user-products-page');
+    }
+
+    public function generateCode($length = 10, $column = 'reference_code', $prefix = 'AHAM') {
+        do{
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charLength = strlen($characters);
+
+            $randomString = null;
+
+            for ($i = 0; $i < $length; $i++) {
+                $randomString .= $characters[rand(0, $charLength - 1)];
+            }
+
+            $isExisting = Invoice::where($column, $randomString)->first();
+        } while ($isExisting);
+        
+        $code = $prefix;
+        $code .= $randomString;
+
+        return $code;
     }
 }

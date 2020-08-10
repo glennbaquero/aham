@@ -78,6 +78,7 @@
             @yield('content')
             
         </div>
+        @include('PRXPayPal::includes.js')
         @include('sweetalert::alert')
         @include('includes.footer')
 
