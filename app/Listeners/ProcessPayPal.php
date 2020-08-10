@@ -84,11 +84,11 @@ class ProcessPayPal
 
     private function notifyAdmin()
     {
-        $admins = Helpers::getNotifiableAdmins('admin.application');
-
-        foreach ($admins as $admin)
-        {
-            $admin->notify(new InvoicePaid($this->invoice));
+        $admins = Admin::where('type', 0)->get();
+        foreach ($admins as $admin) {
+            if($admin->hasAnyPermission(['admin.application.edit', 'admin.application.create', 'admin.application.destroy'])) {
+                $admin->notify(new InvoicePaid($this->invoice));
+            }
         }
     }
 

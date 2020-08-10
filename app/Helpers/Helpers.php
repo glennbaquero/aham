@@ -171,7 +171,7 @@ class Helpers
 
         foreach ($permissions as $key => $permission) {
             foreach ($permission->roles as $role) {
-                $ids = $role->users()->pluck('id')->toArray();
+                $ids = $role->admins()->pluck('id')->toArray();
 
                 array_push($toNotifyIds, $ids);
             }
