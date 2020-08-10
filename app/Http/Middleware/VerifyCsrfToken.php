@@ -22,5 +22,6 @@ class VerifyCsrfToken extends Middleware
         'ipay/process',
         'ipay/return',
         'prx_paypal/notify_url',
+        'payment/success'
     ];
 }
