@@ -56,7 +56,7 @@ class ProcessPayPal
         # will cause error if no code is there
         $this->invoice = Invoice::where('reference_code', $this->result['reference_code'])->first();
         $this->invoice->payment_gateway_code = $this->result['transaction_code'];
-        
+
         $this->invoice->warranty_type = Invoice::EXTENDED;
 
         if($this->invoice->has_notified){
@@ -67,6 +67,11 @@ class ProcessPayPal
         }
         
         $this->invoice->save();
+
+
+        foreach ($this->invoice->invoice_items as $key => $item) {
+            $item->update(['status' => 5]);
+        }
 
         \DB::commit();
 
