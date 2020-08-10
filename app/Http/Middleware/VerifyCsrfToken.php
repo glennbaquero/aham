@@ -21,5 +21,6 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         'ipay/process',
         'ipay/return',
+        'prx_paypal/notify_url',
     ];
 }
