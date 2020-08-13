@@ -178,7 +178,8 @@
 
 			buildItems() {
 				const items = []; 
-				var total = parseFloat(this.item.total_price);
+				// var total = parseFloat(this.item.total_price);
+				var total = this.item.product.extended_amount - this.discounted_amount;
 				items.push({name: this.item.product.model, price: total, qty: 1});
 				return items;
 			},
