@@ -97,9 +97,7 @@ class InvoiceController extends Controller
     public function update(Request $request, $id)
     {
         DB::beginTransaction();
-            $invoice = Invoice::find($id);
-            $invoice_item = $invoice->invoice_items->first();
-            // $invoice_item = InvoiceItem::find($id);
+            $invoice_item = InvoiceItem::find($id);
             $user = User::find($request->get('id'));
 
             if($invoice_item->invoice->warranty_type == 0){
