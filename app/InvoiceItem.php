@@ -50,11 +50,11 @@ class InvoiceItem extends Model
 
     public static function getStatus() {
         return [
-            ['value' => static::APP_PENDING, 'label' => 'PENDING APPLICATION', 'class' => 'bg-red'],
-            ['value' => static::APP_APPROVED, 'label' => 'APPROVED APPLICATION', 'class' => 'bg-blue'],
-            ['value' => static::INVOICE_PENDING, 'label' => 'PENDING INVOICE', 'class' => 'bg-red'],
-            ['value' => static::INVOICE_PENDING_PAYMENT, 'label' => 'PENDING INVOICE (PAYMENT)', 'class' => 'bg-red'],
-            ['value' => static::INVOICE_APPROVED, 'label' => 'APPROVED INVOICE', 'class' => 'bg-blue'],
+            ['value' => static::APP_PENDING, 'label' => 'FOR APPROVAL (BASIC)', 'class' => 'bg-red'],
+            ['value' => static::APP_APPROVED, 'label' => 'APPROVED APPLICATION (BASIC)', 'class' => 'bg-blue'],
+            ['value' => static::INVOICE_PENDING, 'label' => 'FOR APPROVAL (EXTENDED)', 'class' => 'bg-red'],
+            ['value' => static::INVOICE_PENDING_PAYMENT, 'label' => 'PENDING PAYMENT (EXTENDED)', 'class' => 'bg-red'],
+            ['value' => static::INVOICE_APPROVED, 'label' => 'APPROVED APPLICATION (EXTENDED)', 'class' => 'bg-blue'],
             ['value' => static::INVOICE_PAID_PAYMENT, 'label' => 'PAID WARRANTY', 'class' => 'bg-green'],
         ];
     }
