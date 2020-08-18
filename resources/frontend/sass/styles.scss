@@ -1476,6 +1476,27 @@
 						transform: rotate(45deg);
 				  	}
 				}
+
+				&.custom {
+
+					.checkmark {
+						width: 20px;
+						height: 20px;
+					}
+
+					.checkbox-lbl {
+						padding-left: 35px;
+						line-height: 26px;
+						font-size: 14px;
+
+						.checkmark:after {
+							top: 0px;
+							left: 6px;
+							width: 8px;
+							height: 15px;
+						}
+					}
+				}
 			}
 
 			.ch__title {
@@ -1487,6 +1508,12 @@
 			.ch__form-row {
 				position: relative;
 				margin-bottom: 10px;
+
+				&.custom em {
+					display: inline-block;
+					margin-top: 5px;
+					font-size: 12px;
+				}
 
 				.btn {
 					position: relative;
