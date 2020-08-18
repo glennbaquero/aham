@@ -20,7 +20,7 @@
 				<img src="">
 			</div> -->
 		<p class="ch__sub-title">Payment Method</p>
-		<div class="check-box">
+		<div class="check-box custom">
 			<label class="checkbox-lbl font--2">Paypal
 				<input type="radio" name="payment_method" v-model="payment_method" :value="payment_method">
 				<span class="checkmark"></span>
@@ -43,8 +43,10 @@
 				<label>Contract Number</label>
 				<input class="input-text" type="text" name="" v-model="item.invoice.contract_number" :disabled="disabled">
 			</div>
-			<div class="ch__form-row">
-				<label>Discount Code</label>
+			<div class="ch__form-row custom">
+				<label>Discount Code <br>
+					<em>Enter here the discount code provided by promodizer or leave it blank if it's not covered by discount code</em>
+				</label>
 				<input class="input-text error discount_code" type="text" name="" v-model="discount" @keyup="discountCode">
 				<div class="right-align">
 					<p @click="validate" class="btn btn-gray">Check Discount Code</p>
@@ -63,7 +65,8 @@
 			</div>
 		</div>
 		<div class="check-box">
-			<label class="checkbox-lbl font--2"><b>Agree to</b> Terms & Conditions & AHAMCorp Privacy Policy
+			<label class="checkbox-lbl font--2"><b>Agree to</b> Terms & Conditions & AHAMCorp Privacy Policy <br>
+				By clicking this button you will directed to the payment screen
 				<input type="checkbox" name="agree" v-model="agree">
 				<span class="checkmark"></span>
 			</label>
