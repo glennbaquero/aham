@@ -77,7 +77,9 @@ export default {
 	data() {
 		return {
 			loading: false,
-			request:{}
+			request:{
+                product: 'all'
+            }
 		}
 	},
 
